@@ -1,0 +1,54 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+<Table inset="false" class="tableclass table_ticket_admin sapUiSizeCompact"
+		mode="SingleSelectMaster" width="100%" items="{travelsettlement>/advancehistory/}">
+
+		<columns>
+			<Column width="5rem">
+				<Text text="Date" tooltip="Date" />
+			</Column>
+				
+			<Column width="5rem">
+				<Text text="Amount" tooltip="Amount" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Currency" tooltip="Currency" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Reason" tooltip="Reason" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Approved Amount" tooltip="Approved Amount" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Currency" tooltip="Currency" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Remarks by Travel Settlement" tooltip="Reason" />
+			</Column>
+			<Column width="5rem">
+				<Text text="PDF" tooltip="PDF" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<Label text="{path:'travelsettlement>Begda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Label  text="{travelsettlement>Paemp}" />
+					<Label text="{travelsettlement>Waers}" />
+					<Label text="{travelsettlement>Rmrks}" />
+					<Label  text="{travelsettlement>Apamt}" />
+					<Label text="{travelsettlement>Apcur}" />
+					<Label text="{travelsettlement>Tremr}" />
+					<Link text="INR Advance PDF" tooltip="INR Advance PDF" press = "onDownloadLink"/>
+					
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

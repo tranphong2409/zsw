@@ -1,0 +1,122 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:view="sap.ui.core.mvc" xmlns:c="sap.ui.commons"
+	controllerName="sap.ui.project.e2etm.controller.CardReload" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id='tcktAdmin' class="pageTicketingAdmin" showHeader="false" enableScrolling="true">
+		<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+		<Toolbar height="2rem" id="finreports">
+		<Button text="REPORTS" icon="sap-icon://trip-report" type="Emphasized" press="onMRPress" class="report_request"/>
+<!-- 		<Button text="MONTHLY RENT" icon="sap-icon://official-service" type="Emphasized" press="onAccReportsPress" class="report_request"/> -->
+<!-- 		<Button text="ACCOMMODATION SETTLEMENT" icon="sap-icon://official-service" type="Emphasized" press="onAccSetlReportsPress" class="report_request"/> -->
+<!-- 		<Button text="Bank Transfer" press="onBankTransfer"/> -->
+		</Toolbar>
+		<IconTabBar id="icontabbaradmin" class="icontabbaradmin sapUiSizeCompact"
+			select="onIconTabSelectAdmin">
+			<items>
+				<IconTabFilter id="monthIcon" icon="sap-icon://wallet"
+					visible="true" text="Monthly Remittance" tooltip="Monthly Remittance"
+					key="MONTH">
+					<!-- <core:Fragment fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContent" -->
+					<!-- type="XML" /> -->
+				</IconTabFilter>
+				<IconTabFilter id="forexIcon" icon="sap-icon://add-equipment"
+					text="Forex" key="FOREX" tooltip="Forex">
+					
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+					
+					<Button text="Approve" id="mass_approve" icon="sap-icon://approvals"
+						press="onFrxMassApprove" type="Accept"
+						visible="true" /> 	
+						
+				</IconTabFilter>
+				<IconTabFilter id="cardIcon" icon="sap-icon://begin"
+					text="Card Reload" tooltip="Card Reload" key="CARD">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter id="appIcon" icon="sap-icon://approvals"
+					key="APPROVE" text="Approved" tooltip="Approved">
+					<FlexBox id="filterPanel" direction="Row" alignItems="Center"
+						width="800px" justifyContent="SpaceBetween">
+						<Label text="From Date" class="font_size_14" />
+						<DatePicker id="date1" displayFormat="dd.MM.yyyy"
+							valueFormat="yyyyMMdd" change="onFilterDate" />
+						<Label text="To Date" class="font_size_14" />
+						<DatePicker id="date2" displayFormat="dd.MM.yyyy"
+							valueFormat="yyyyMMdd" change="onFilterDate" />
+						<Label text="Country" class="font_size_14" visible="false"/>
+						<c:TextField id="country" change="onFilterDate" visible="false"/>
+					</FlexBox>
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter id="rejIcon" icon="sap-icon://employee-rejections"
+					key="REJECT" text="Rejected" tooltip="Rejected">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter id="clsIcon" icon="sap-icon://status-completed"
+					key="CLOSE" text="Closed" tooltip="Closed">
+					  <core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ClosedSearch"
+						type="XML" />
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter id="reimIcon" icon="sap-icon://employee-rejections"
+					key="REIM" text="Reimbursement" tooltip="Rejected">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.reimbursement.ReimbursementContent"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter id="bankIcon" icon="sap-icon://fallback"
+					key="BTRN" text="Bank Transfer" tooltip="Bank Transfer">
+				<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.BankTransferTab"
+					type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://journey-change" id="tabCHCLS" visible="false"
+					tooltip="Modify Closed" text="Modify Closed" key="CHCLS">
+					<core:Fragment id="frgCHCLS" fragmentName="sap.ui.project.e2etm.fragment.forex.ClosedSearch"
+						type="XML" />
+					
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://upload" id="tabUPL" visible="true"
+					tooltip="CGGS:Upload Emp.Salary Details" text="CGGS:Upload Emp.Salary Details" key="UPLD">
+					<core:Fragment  fragmentName="sap.ui.project.e2etm.fragment.CardReload.UploadEmpSalary"
+						type="XML" />
+				</IconTabFilter>
+			</items>
+			<content>
+			</content>
+		</IconTabBar>
+		<footer>
+			<!-- <Bar id="footerBar" visible="{fielddashboardproperties>/barvisible}"> -->
+			<Bar id="footerBar">
+				<contentLeft>
+					<Button id="dashboardRefresh" text="Refresh" press="onDashboardRefresh" icon="sap-icon://refresh" />
+				</contentLeft>
+				<contentRight>
+				    <Button text="Account" id="close" icon="sap-icon://status-completed"
+						press="onMassClose" type="Accept"
+						visible="{fielddashboardproperties>/clsvisible}" />
+					<Button text="Approve" id="approve" icon="sap-icon://approvals"
+						press="onMassApprove" type="Accept"
+						visible="{fielddashboardproperties>/appvisible}" />
+					<Button id="monthrem" text="Monthly Remittance" press="onMonthlyRemittance"
+						type="Emphasized" visible="{fielddashboardproperties>/mremvisible}" />
+					<!-- <Button text="Accept" id="accept" type="Accept" visible="{fielddashboardproperties>/accvisible}"/> -->
+					<Button id="reject" text="Send Back" press="onMassSendBack"
+						visible="{fielddashboardproperties>/rejvisible}" type="Emphasized" />
+					<Button text="Review" icon="sap-icon://forward" press="onMassReview"
+						visible="{fielddashboardproperties>/revvisible}" type="Emphasized" />
+					<Button text="Process Payment" icon="sap-icon://forward" press="onProcessPayment"
+						visible="{fielddashboardproperties>/bnkpayvisible}" type="Emphasized" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+	<core:Fragment id="custommenu"
+		fragmentName="sap.ui.project.e2etm.fragment.common.CustomMenu" type="XML" />
+</core:View>

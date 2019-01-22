@@ -1,0 +1,40 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table" controllerName="sap.ui.project.e2etm.controller.MISReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="MIS Report" class="sapUiSizeCompact">
+		<content>
+			<Toolbar class="misRadioBtnGroup">
+				<content>
+<!-- 					<RadioButtonGroup id="btnMisGrp" columns="2" width="300px" -->
+<!-- 						select="onSelect"> -->
+<!-- 						<buttons> -->
+<HBox>
+							<RadioButton id="btnBefore" selected="true" select="onSelect1" text="Before Travel" />
+							<RadioButton id="btnAfter" select="onSelect2" text="On Travel" />
+</HBox>
+
+<!-- 						</buttons> -->
+<!-- 					</RadioButtonGroup> -->
+					<Label text="Filter By From:" width="130px" design="Bold"/>
+					<DatePicker displayFormat="dd-MM-yyyy" id="frmDate" width="150px" valueFormat="yyyy-MM-dd"/>
+					<Label text="To" design="Bold"/>
+					<DatePicker displayFormat="dd-MM-yyyy" id="toDate" width="150px" valueFormat="yyyy-MM-dd"/>
+					<Button text="Submit" type="Accept" press="onSubmit"/>
+					<Button text="Reset" type="Reject" press="onReset"/>
+					<ToolbarSpacer />
+					
+					<Button text="Export" type="Emphasized" press="onExport" />
+				</content>
+			</Toolbar>
+			<table:Table id="tableMis" visibleRowCount="10" enableCellFilter="true"
+				selectionMode="Single" class="compact_table margin_10"
+				columnHeaderHeight="40" showNoData="false" navigationMode="Paginator"
+				selectionBehavior="RowOnly">
+				<!-- <table:toolbar> -->
+
+
+				<!-- </table:toolbar> -->
+			</table:Table>
+		</content>
+	</Page>
+</core:View>

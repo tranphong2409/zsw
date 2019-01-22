@@ -1,0 +1,41 @@
+<mvc:View controllerName="sap.ui.project.e2etm.controller.travelrequest.SIMCard" xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<HBox>
+		<Label class="label_bold font-size-18" text="Do you need SIM Card ?"/>
+		<l:VerticalLayout>
+			<l:content>
+				<Switch change="onSimcardChange" class="cm_switch" customTextOff="No" customTextOn="Yes" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+					id="simReq" state="false">
+					<layoutData>
+						<FlexItemData growFactor="1"/>
+					</layoutData>
+				</Switch>
+			</l:content>
+		</l:VerticalLayout>
+	</HBox>
+	<HBox>
+		<l:VerticalLayout class="sapUiContentPadding">
+			<l:content>
+				<Label class="font-size-18 lbl_head_dtl" id="simTypeL" text="SIM Type"/>
+				<ComboBox autoAdjustWidth="true" change="onSIMTypeSelect" class="font-size-18 cm_input_border_bottom" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+					filterSecondaryValues="true" id="simType" selectedKey="{trvRequestDtl>/ZZ_SIM_TYP_KEY}" showSecondaryValues="true">
+					<core:Item key="P" text="Please select"></core:Item>
+					<core:Item key="NO" text="Normal"></core:Item>
+					<core:Item key="MI" text="Micro"></core:Item>
+					<core:Item key="NA" text="Nano"></core:Item>
+				</ComboBox>
+			</l:content>
+		</l:VerticalLayout>
+		<l:VerticalLayout class="sapUiContentPadding">
+			<l:content>
+				<Label class="font-size-18 lbl_head_dtl" id="simDataL" text="SIM Data"/>
+				<ComboBox change="onSIMDataSelect" class="font-size-18 cm_input_border_bottom" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" filterSecondaryValues="true" id="simData"
+					selectedKey="{trvRequestDtl>/ZZ_SIM_DATA_KEY}" showSecondaryValues="true">
+					<core:Item key="P" text="Please select"></core:Item>
+					<core:Item key="Y" text="Data required - Yes"/>
+					<core:Item key="N" text="Data required - No"/>
+				</ComboBox>
+			</l:content>
+		</l:VerticalLayout>
+	</HBox>
+</mvc:View>

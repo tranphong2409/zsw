@@ -1,0 +1,44 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:commons="sap.ui.commons" controllerName="sap.ui.project.e2etm.controller.VisaRequest"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Business VISA Details" class="pageVisaPlan">
+		<Toolbar id="visaToolbar" visible="{/view/visano}">
+			<!-- <ToolbarSpacer/> -->
+			<Label text="VISA NO:" />
+			<Label text="{ZZ_VISA_REQ}" />
+
+		</Toolbar>
+		<FlexBox class="sapUiSizeCompact" direction="Column">
+			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.visaplan.Visa"
+				type="XML" />
+		</FlexBox>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="back" text="Back" type="Emphasized"
+						press="onBackPress" icon="sap-icon://home"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Button id="btnSave" text="Save Visa Plan" type="Emphasized"
+						press="onVisaPlanSave" icon="sap-icon://save" visible="{properties>/savevisible}"></Button>
+
+
+					<!-- icon="sap-icon://home"></Button> -->
+				</contentMiddle>
+				<contentRight>
+					<Button id="btnsndback" text="Send Back" type="Emphasized" press="onVisaPlanSendBack"
+						icon="sap-icon://response" visible="{properties>/gvisible}"></Button>
+
+					<Button id="btnSubmit" text="Submit" type="Accept"
+						press="onVisaPlanSubmitPress" icon="sap-icon://sys-enter" visible="{properties>/submitvisible}"></Button>
+					<Button id="approve" text="Approve" type="Emphasized" press="onVisaPlanApprove"
+						icon="sap-icon://accept" visible="{properties>/grmvisible}"></Button>
+					<Button id="reject" text="Reject" type="Reject" press="onVisaPlanReject"
+						icon="sap-icon://sys-cancel" visible="{properties>/gvisible}"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+
+	</Page>
+</core:View>

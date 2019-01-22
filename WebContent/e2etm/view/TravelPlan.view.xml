@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table" xmlns="sap.m" xmlns:c="sap.ui.commons" xmlns:l="sap.ui.layout"
+	xmlns:view="sap.ui.core.mvc" controllerName="sap.ui.project.e2etm.controller.TravelPlan"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<c:Panel text="TRAVEL DETAILS" 
+	    class="panelCollapse margin_bottom_10">
+		<FlexBox>
+		    <FlexBox alignItems="Center" justifyContent="SpaceBetween" class="padding_right_20 border_lightgray background_gray_linear">
+		        <FlexBox direction="Column" alignItems="Start" width="150px">
+		            <Label text="Personal number:" class="label_bold margin_10"/>
+			    	<Label text="Trip number:" class="label_bold margin_10"/>
+		        </FlexBox>
+		        <FlexBox direction="Column" alignItems="Start" class="margin_left_10">
+		            <Label text="{ZZ_PERNR}" class="margin_10"/>
+			    	<Label text="{ZZ_REINR}" class="margin_10"/>
+		        </FlexBox>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox margin_left_20" direction="Column"
+			    justifyContent="SpaceAround"
+			    alignItems="Center">
+				<FlexBox>
+					<FlexBox alignItems="Center">
+						<Label text="Trip start date and time" width="150px" class="required margin_right_10"></Label>
+						<c:DatePicker enabled="{/view/isFuture}" yyyymmdd="{ZZ_DATV1}"
+							value="{path: '/view/ZZ_DATV1_VALUE',					        
+					        type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					        class="margin_right_10"
+							change="onTravelDateChange" valueState="{/view/ZZ_DATV1_ERROR}" />
+						<DateTimeInput type="Time" value="{ZZ_UHRB1}" width="60px" valueState="{/view/ZZ_UHRB1_ERROR}"
+							enabled="{/view/isFuture}" displayFormat="HH:mm" valueFormat="HHmmss"
+							class="time_field margin_right_10"></DateTimeInput>
+						<Label text="Trip end date and time" class="required margin_right_10"></Label>
+						<c:DatePicker enabled="{/view/enabled}" yyyymmdd="{ZZ_DATB1}" class="margin_right_10"
+							value="{path: '/view/ZZ_DATB1_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							change="onTravelDateChange" valueState="{/view/ZZ_DATB1_ERROR}" />
+						<DateTimeInput type="Time" value="{ZZ_UHRV1}" width="60px" class="time_field margin_right_10"
+							enabled="{/view/enabled}" displayFormat="HH:mm" valueFormat="HHmmss" valueState="{/view/ZZ_UHRV1_ERROR}"></DateTimeInput>
+					</FlexBox>
+				</FlexBox>
+				<!-- Display old version here -->
+				<FlexBox class="previous margin_left_2"
+				    visible="{path: 'ZZ_CHANGE_GE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}">
+				    <FlexBox alignItems="Center">
+						<Label text="Previous Trip start date" width="150px" class="required margin_right_10"></Label>
+						<c:DatePicker enabled="false" yyyymmdd="{/old/ZZ_DATV1}"
+							value="{path: '/old/ZZ_DATV1_VALUE',					        
+					        	type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					        class="margin_right_10"
+							change="onTravelDateChange" valueState="{/view/ZZ_DATV1_ERROR}" />
+						<DateTimeInput type="Time" value="{/old/ZZ_UHRB1}" width="60px"
+							enabled="false" displayFormat="HH:mm" valueFormat="HHmmss"
+							class="time_field margin_right_10"></DateTimeInput>
+						<Label text="Previous Trip end date" class="required margin_right_10"></Label>
+						<c:DatePicker enabled="false" yyyymmdd="{/old/ZZ_DATB1}" class="margin_right_10"
+							value="{path: '/old/ZZ_DATB1_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							change="onTravelDateChange" valueState="{/view/ZZ_DATB1_ERROR}" />
+						<DateTimeInput type="Time" value="{/old/ZZ_UHRV1}" width="60px" class="time_field margin_right_10"
+							enabled="false" displayFormat="HH:mm" valueFormat="HHmmss"></DateTimeInput>
+					</FlexBox>
+				</FlexBox>
+				<!-- Display old version here -->
+			</FlexBox>
+		</FlexBox>
+	</c:Panel>
+	<FlexBox class="dep_customer_flexbox">
+		<c:TabStrip selectedIndex="{/view/selectedTab}" select="onTabSelect">
+			<c:tabs>
+				<c:Tab text="GENERAL">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.TRA_General"
+						type="XML" />
+				</c:Tab>
+				<c:Tab text="COST ASSIGNMENT">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.travel.TRA_CostAssignment"
+						type="XML" />
+				</c:Tab>
+				<c:Tab text="TRAVEL DETAIL">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.TRA_Detail"
+						type="XML" />
+				</c:Tab>
+				<c:Tab text="ACCOMODATION">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.travel.TRA_Accomodation"
+						type="XML" />
+				</c:Tab>
+				<c:Tab text="ADVANCE">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.TRA_Advance"
+						type="XML" />
+				</c:Tab>
+				<c:Tab text="CONFIRMATION" visible="{/view/international}">
+					<FlexBox direction="Column">
+						<c:TextView
+							text="Associate and Superiors are fully responsible to ensure that the proposed foreign travel is with appropriate and correct 
+						    				visa in line with section 3 of international Business travel policy for all International business trips 
+						    				and Section 1.1 of 'International Deputation Policy' for all International Deputations."></c:TextView>
+						<c:Link text="Travel Policy"
+							href="http://sgpvm070:8080/pkit/go/pelement.do?id=208178&amp;type=Activity"
+							target="_blank" class="margin_top_10"></c:Link>
+<!-- 						<c:Link text="International Deputation" -->
+<!-- 							href="http://sgpvm070:8080/pkit/downloadService/QSR_InternationalDeputation.doc?key=_unRHID3RnOWoBNSi3Fr3ow" -->
+<!-- 							target="_top"></c:Link> -->
+						<c:CheckBox text="I have read and understood the above statement."
+							enabled="{/view/enableConfirm}" class="margin_top_10" checked="{/view/confirm}"></c:CheckBox>
+					</FlexBox>
+
+				</c:Tab>
+			</c:tabs>
+		</c:TabStrip>
+	</FlexBox>
+</core:View>

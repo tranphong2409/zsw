@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="sap.ui.project.e2etm.controller.OnsiteAddress">
+	<html:style>
+		.height_auto .sapMTextAreaInner {
+			height: auto !important;
+		}
+		.panel_border {
+			border: 1px solid lightgray;
+		}
+		
+		.panel_border .sapMTB {
+			background: lightgray;
+		}
+	</html:style>
+	<Page title="ONSITE ADDRESS" class="pageInsurance">
+		<headerContent>
+			<Link text="Help"
+				href="http://sgpmis02.apac.bosch.com/Helpdesk/ESS/swifthelpdoc/"
+				target="_blank" />
+		</headerContent>
+		<ObjectHeader id='objhdr' class="forexObjHeader"
+				title="{='Travel Plan:' + ${onsiteAddress>/ZZ_TRV_REQ}}" />
+		<Panel width="auto" class="sapUiResponsiveMargin panel_border">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="Employee Info" />
+				</Toolbar>
+			</headerToolbar>
+			<content>		    			    
+				<f:SimpleForm minWidth="1024" maxContainerCols="2"
+					class="onsiteAddressFormat" editable="false" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+					columnsL="1" columnsM="1">
+					<f:content>
+						<Label text="Employee Name" class="required" />
+						<Input width="60%" value="{onsiteAddress>/ZZ_EMP_NAME}" editable="false" valueState="{onsiteAddress>/view/ZZ_EMP_NAME_ERROR}"/>
+
+						<Label text="Employee Number" class="required" />
+						<Input width="60%" value="{onsiteAddress>/ZZ_EMP_NO}" editable="false" valueState="{onsiteAddress>/view/ZZ_EMP_NO_ERROR}"/>
+
+						<Label text="Department" class="required" />
+						<Input width="60%" value="{onsiteAddress>/ZZ_DEPT}" editable="false" valueState="{onsiteAddress>/view/ZZ_DEPT_ERROR}"/>
+
+						<Label text="Country Of Deputation" class="required" />
+						<Select width="60%" selectedKey="{onsiteAddress>/ZZ_TO_COUNTRY}"
+							id="ToCountryId" change="onCountryChange" items="{ path: 'onsiteAddress>/country'}"
+							enabled="false" valueState="{onsiteAddress>/view/ZZ_TO_COUNTRY_ERROR}">
+							<core:Item key="{onsiteAddress>MOLGA}" text="{onsiteAddress>LTEXT}" />
+						</Select>
+
+						<Label text="Onsite Work Location" class="required" />
+						<Input width="60%" value="{onsiteAddress>/ZZ_WORK_LOC}" editable="{onsiteAddress>/view/editable}" valueState="{onsiteAddress>/view/ZZ_WORK_LOC_ERROR}"/>
+						
+						<Label text="Remarks" />
+						<TextArea value="{onsiteAddress>/ZZ_REMARK}" maxLength="254"
+							rows="3" class="height_auto" editable="{onsiteAddress>/view/editable}" width="60%"/>
+					</f:content>
+				</f:SimpleForm>
+			</content>
+		</Panel>
+		<Panel width="auto" class="sapUiResponsiveMargin panel_border">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="Emergency contact in INDIA" />
+				</Toolbar>
+			</headerToolbar>
+			<content>
+				<f:SimpleForm minWidth="1024" maxContainerCols="2"
+					class="onsiteAddressFormat" editable="false" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+					columnsL="2" columnsM="2">
+					<f:content>
+						<core:Title text="Emergency Contact 1" level="H5" />
+						<Label text="Name" class="required" />
+						<Input value="{onsiteAddress>/ZZ_EMER_NAME}" valueState="{onsiteAddress>/view/ZZ_EMER_NAME_ERROR}"
+							editable="{onsiteAddress>/view/editable}" />
+
+						<Label text="Mobile Number" class="required" />
+						<Input value="{onsiteAddress>/ZZ_EMER_MOBILE}" valueState="{onsiteAddress>/view/ZZ_EMER_MOBILE_ERROR}"
+							editable="{onsiteAddress>/view/editable}" type="Number" />
+
+						<Label text="City or Town" class="required" />
+						<Input value="{onsiteAddress>/ZZ_EMER_CITY}" valueState="{onsiteAddress>/view/ZZ_EMER_CITY_ERROR}"
+							editable="{onsiteAddress>/view/editable}" />
+
+						<core:Title text="Emergency Contact 2" level="H5" />
+						<Label text="Name" class="required" />
+						<Input value="{onsiteAddress>/ZZ_EMER_NAME1}" valueState="{onsiteAddress>/view/ZZ_EMER_NAME1_ERROR}"
+							editable="{onsiteAddress>/view/editable}" />
+						<Label text="Mobile Number" class="required" />
+						<Input value="{onsiteAddress>/ZZ_EMER_MOBILE1}" valueState="{onsiteAddress>/view/ZZ_EMER_MOBILE1_ERROR}"
+							editable="{onsiteAddress>/view/editable}" type="Number" />
+
+						<Label text="City or Town" class="required" />
+						<Input value="{onsiteAddress>/ZZ_EMER_CITY1}" valueState="{onsiteAddress>/view/ZZ_EMER_CITY1_ERROR}"
+							editable="{onsiteAddress>/view/editable}" />
+					</f:content>
+				</f:SimpleForm>
+			</content>
+		</Panel>
+		<Panel width="auto" class="sapUiResponsiveMargin panel_border">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="Travel Info" />
+				</Toolbar>
+			</headerToolbar>
+			<content>
+				<f:SimpleForm minWidth="1024" maxContainerCols="2"
+					class="onsiteAddressFormat" editable="false" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+					columnsL="1" columnsM="1">
+					<f:content>
+						<Label text="Residence coordinator"/>
+						<Input value="{onsiteAddress>/ZZ_RES_CO_NAME}" editable="{onsiteAddress>/view/editable}" width="60%"/>
+
+						<Label text="Onsite Residential Address" class="required" />
+						<TextArea value="{onsiteAddress>/ZZ_RES_ADDR}"
+							valueState="{onsiteAddress>/view/ZZ_RES_ADDR_ERROR}" maxLength="254"
+							rows="3" class="height_auto" editable="{onsiteAddress>/view/editable}" width="60%"/>
+
+						<Label text="Onsite Contact Number - Mobile" class="required" />
+						<Input value="{onsiteAddress>/ZZ_CONTACT_MOBI}" valueState="{onsiteAddress>/view/ZZ_CONTACT_MOBI_ERROR}"
+							editable="{onsiteAddress>/view/editable}" type="Number" width="60%"/>
+
+						<Label text="Onsite Contact Number - Office" class="required" />
+						<Input value="{onsiteAddress>/ZZ_CONTACT_OFFI}" valueState="{onsiteAddress>/view/ZZ_CONTACT_OFFI_ERROR}"
+							editable="{onsiteAddress>/view/editable}" type="Number" width="60%"/>
+
+						<Label text="Deputation Start Date" class="required" />
+						<c:DatePicker yyyymmdd="{onsiteAddress>/ZZ_DEP_STDATE}"
+							value="{path: 'onsiteAddress>/ZZ_DEP_STDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							editable="false" valueState="{onsiteAddress>/view/ZZ_DEP_STDATE_ERROR}" width="60%"/>
+
+						<Label text="Deputation End Date" class="required" />
+						<c:DatePicker yyyymmdd="{onsiteAddress>/ZZ_DEP_EDATE}"
+							value="{path: 'onsiteAddress>/ZZ_DEP_EDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							editable="false" valueState="{onsiteAddress>/view/ZZ_DEP_EDATE_ERROR}" width="60%"/>
+
+						<Label text="Reporting manager at RBEI" class="required" />
+						<Input value="{onsiteAddress>/ZZ_REP_MGR_NAME}" editable="{onsiteAddress>/view/editable}"
+							valueState="{onsiteAddress>/view/ZZ_REP_MGR_NAME_ERROR}" width="60%"/>
+						
+						<Label text="Reporting Manager Department" class="required" />
+						<Input value="{onsiteAddress>/ZZ_REP_MGR_DEPT}" editable="{onsiteAddress>/view/editable}"
+							valueState="{onsiteAddress>/view/ZZ_REP_MGR_DEPT_ERROR}" width="60%"/>
+						
+						<Label text="Reporting Manager Mobile Number" class="required" />
+						<Input value="{onsiteAddress>/ZZ_REP_MGR_MOBI}" editable="{onsiteAddress>/view/editable}"
+							valueState="{onsiteAddress>/view/ZZ_REP_MGR_MOBI_ERROR}" type="Number" width="60%"/>
+					</f:content>
+				</f:SimpleForm>
+			</content>
+		</Panel>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="btnBack" text="Back" type="Emphasized" press="onBackPress"
+						icon="sap-icon://home"></Button>
+				</contentLeft>
+				<contentRight>
+					<Button id="btnEdit" text="Edit" type="Reject" press="onEditPress"
+						visible="{onsiteAddress>/view/visible}" icon="sap-icon://edit"></Button>
+					<Button id="btnSubmit" text="Save" type="Accept" press="onSubmitPress"
+						visible="{onsiteAddress>/view/visible}" icon="sap-icon://accept"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

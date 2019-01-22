@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+	<VBox id="frexAccTable">
+		<items>
+			<Table id="expTable" inset="false" growing="true"
+				growingThreshold="100" class="table_ticket_admin sapUiSizeCompact"
+				items="{path: '/'}">
+				<infoToolbar>
+					<Toolbar active="true">
+						<Label text="Expenses" class="font_color_white" />
+					</Toolbar>
+				</infoToolbar>
+				<columns>
+
+					<Column width="4em">
+						<Text text="Date" />
+					</Column>
+
+					<Column width="4em">
+						<Text text="Tcode" />
+					</Column>
+					<Column width="5em">
+						<Text text="Expense Amount" />
+
+					</Column>
+					<Column width="5em">
+						<Text text="Expense currency" />
+					</Column>
+
+
+
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text
+								text="{path:'Date',formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+							<Text text="{TCODE}" />
+							<Text text="{AMOUNT}" />
+							<Text text="{CURRENCY}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table id="errTable" inset="false" growing="true"
+				growingThreshold="100" class="table_ticket_admin sapUiSizeCompact"
+				items="{path: '/'}">
+				<infoToolbar>
+					<Toolbar active="true">
+						<Label text="Error Details" class="font_color_white" />
+						<ToolbarSpacer />
+					</Toolbar>
+				</infoToolbar>
+				<columns>
+
+					
+					
+					<Column width="5em">
+						<Text text="Date" />
+					</Column>
+					
+					<Column width="5em">
+						<Text text="Employee No" />
+					</Column>
+
+					<Column width="5em">
+						<Text text="Travel Plan" />
+					</Column>
+
+					<Column width="5em">
+						<Text text="Error" />
+					</Column>
+
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text
+								text="{path:'Date',formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+							<Text text="{PERNR}" />
+							<Text text="{REINR}" />
+							<Text text="{ERROR}" />
+
+
+						</cells>
+					</ColumnListItem>
+				</items>
+
+			</Table>
+		</items>
+	</VBox>
+</core:FragmentDefinition>

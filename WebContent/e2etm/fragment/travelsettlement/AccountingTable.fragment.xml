@@ -1,0 +1,241 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+	<VBox id="accountingTable">
+		<items>
+			<Table id="pr05AccTable" inset="false" growing="true"
+				growingThreshold="100" class="table_ticket_admin sapUiSizeCompact"
+				items="{path: 'travelsettlement>/pr05acc/expenses'}">
+				<infoToolbar>
+					<Toolbar active="true">
+						<Label text="PR05 Expenses" class="font_color_white" />
+					</Toolbar>
+				</infoToolbar>
+				<columns>
+					<Column width="5em">
+						<Text text="Expense Type" />
+						<footer>
+							<FlexBox direction="Column" items="{travelsettlement>/pr05acc/footer}">
+								<items>
+									<Text wrapping="true" text="{path:'travelsettlement>Text'}"
+										tooltip="Total" textAlign="Center" class="label_small_bold" />
+								</items>
+							</FlexBox>
+						</footer>
+
+					</Column>
+					<Column width="4em">
+						<Text text="Expense name" />
+					</Column>
+					<Column width="5em">
+						<Text text="Expense Amount" />
+
+					</Column>
+					<Column width="5em">
+						<Text text="Expense currency" />
+					</Column>
+					<Column width="5em">
+						<Text text="Exchange Rate" />
+					</Column>
+					<Column width="5em">
+						<Text text="Local Amount" />
+						<footer>
+							<FlexBox direction="Column" items="{travelsettlement>/pr05acc/footer}">
+								<items>
+									<Label
+										text="{path:'travelsettlement>Lamt',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										tooltip="Local Amount" textAlign="Center" class="label_small_bold"></Label>
+								</items>
+							</FlexBox>
+						</footer>
+					</Column>
+					<Column width="5em">
+						<Text text="Local Currency" />
+						<footer>
+							<FlexBox direction="Column" items="{travelsettlement>/pr05acc/footer}">
+								<items>
+									<Label
+										text="{path:'travelsettlement>Lcur',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										 textAlign="Center" class="label_small_bold"></Label>
+								</items>
+							</FlexBox>
+						</footer>
+					</Column>
+
+
+					<Column width="5em">
+						<Text text="Date" />
+					</Column>
+
+
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{travelsettlement>exp_type}" />
+							<Text text="{travelsettlement>sptxt}" />
+							<Text text="{travelsettlement>betrg}" />
+							<Text text="{travelsettlement>pr05_waers}" />
+							<Text text="{travelsettlement>erate}" />
+							<Text text="{travelsettlement>lcl_betrg}" />
+							<Text text="{travelsettlement>lcl_waers}" />
+
+
+							<Text
+								text="{path:'travelsettlement>bldat',formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table id="prfiAccTable" inset="false" growing="true"
+				growingThreshold="100" class="table_ticket_admin sapUiSizeCompact"
+				items="{path: 'travelsettlement>/prfiacc/expenses'}">
+				<infoToolbar>
+					<Toolbar active="true">
+						<Label text="PRRW Expenses" class="font_color_white" />
+						<ToolbarSpacer />
+					</Toolbar>
+				</infoToolbar>
+				<columns>
+
+					<Column width="5em">
+						<Text text="Run Id" />
+						<footer>
+							<Label text="{path:'travelsettlement>/prfiacc/footer/Text'}"
+								tooltip="Total" textAlign="Center" class="label_small_bold" />
+						</footer>
+					</Column>
+					<Column width="5em">
+						<Text text="Document No" />
+					</Column>
+					<Column width="5em">
+						<Text text="Account No" />
+					</Column>
+					<Column width="5em">
+						<Text text="Account Text" />
+					</Column>					
+
+					<Column width="5em">
+						<Text text="Gross Debit" />
+						<footer>
+
+							<Label
+								text="{path:'travelsettlement>/prfiacc/footer/Camt',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                minFractionDigits:2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+								tooltip="Local Amount" textAlign="Center" class="label_small_bold"></Label>
+						</footer>
+					</Column>
+					<Column width="5em">
+						<Text text="Gross Credit" />
+						<footer>
+
+							<Label
+								text="{path:'travelsettlement>/prfiacc/footer/Damt',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                minFractionDigits:2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+								tooltip="Local Amount" textAlign="Center" class="label_small_bold"></Label>
+						</footer>
+
+					</Column>
+					
+					<Column width="5em">
+						<Text text="Currency" />
+						<footer>
+							<Label text="{path: 'travelsettlement>/prfiacc/footer/Cur'}"
+								textAlign="Center" class="label_small_bold"></Label>
+						</footer>
+					</Column>
+					<Column width="5em">
+						<Text text="Personnel no" />
+					</Column>
+					<Column width="5em">
+						<Text text="Company Code" />
+
+					</Column>
+					<Column width="5em">
+						<Text text="Business area" />
+
+					</Column>
+					<Column width="5em">
+						<Text text="Cost Center" />
+					</Column>
+					<Column width="5em">
+						<Text text="WBS Element" />
+					</Column>
+					<Column width="5em">
+						<Text text="Budget Center" />
+					</Column>
+					<Column width="5em">
+						<Text text="Commitment Item" />
+					</Column>
+					<Column width="5em">
+						<Text text="Fund Center" />
+						<footer>
+							<Label
+								text="{path:'travelsettlement>/prfiacc/footer/CDamt',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                minFractionDigits:2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+								textAlign="Center" class="label_small_bold"></Label>
+						</footer>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{travelsettlement>runid}" />
+							<Text text="{travelsettlement>awref}" />
+							<Text text="{travelsettlement>hkont}" />
+							<Text text="{travelsettlement>ktext}" />
+							
+							<Text text="{path:'travelsettlement>gross_credit',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                minFractionDigits:2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+				             
+				             <Text text="{path:'travelsettlement>gross_debit',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                minFractionDigits:2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+
+							<Text text="{travelsettlement>waers}" />
+							<Text text="{travelsettlement>pernr}" />
+							<Text text="{travelsettlement>bukrs}" />
+							<Text text="{travelsettlement>gsber}" />
+							<Text text="{travelsettlement>kostl}" />
+							<Text text="{travelsettlement>posnr}" />
+							<Text text="{travelsettlement>fistl}" />
+							<Text text="{travelsettlement>fipex}" />
+							<Text text="{travelsettlement>geber}" />
+
+						</cells>
+					</ColumnListItem>
+				</items>
+
+			</Table>
+		</items>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,368 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<FlexBox direction="Column">
+		<!-- Your profile Panel -->
+		<c:Panel id="panelCheckYourProfile" text="CONFIRM YOUR PERSONAL DETAILS"
+			class="panelCollapse">
+			<FlexBox justifyContent="SpaceAround" alignItems="Center"
+				fitContainer="true" class="margin_10">
+				<FlexBox>
+					<Label text="Name:" class="margin_10"></Label>
+					<Input value="{/employeeDetail/ZZ_DEP_NAME}" editable="false"/>
+				</FlexBox>
+				<FlexBox>
+					<Label text="Group:" class="margin_10"></Label>
+					<Input value="{/employeeDetail/ZZ_DEP_GROUP}" editable="false" />
+				</FlexBox>
+				<FlexBox>
+					<Label text="Passport Number:" class="margin_10"></Label>
+					<Input value="{/passportDetail/ZZ_PASSPORT_NO}" editable="false" />
+				</FlexBox>
+				<FlexBox justifyContent="End">
+					<c:Button text="Personal Information" press="onCheckProfile"
+						class="margin_left_10"></c:Button>
+				</FlexBox>
+			</FlexBox>
+		</c:Panel>
+		<!-- Deputation Details Panel -->
+		<c:Panel text="DEPUTATION DETAILS" class="panelCollapse">
+			<FlexBox class="dep_customer_flexbox margin_left_20 margin_bottom_15">
+				<!-- Flexbox Left -->
+				<FlexBox direction="Column">
+				<FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Name as in Passport"></Label>
+							<HBox alignItems="Center">
+						<Input class="mentorIp" placeholder="Surname" value="{ZZ_SUR_NAME}" editable="{parts:[{path:'ZZ_SUR_NAME'},{path:'editable'}],
+				                                   formatter:'sap.ui.project.e2etm.util.Formatter.editPassportFields'}" valueState="{ZZ_SUR_NAME_ERROR}"/>
+						<Input class="mentorIp"  placeholder="Given Name"  value="{ZZ_GIVEN_NAME}" editable="{parts:[{path:'ZZ_GIVEN_NAME'},{path:'editable'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.editPassportFields'}" valueState="{ZZ_GIVEN_NAME_ERROR}"/>						
+						</HBox>
+						
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Date of Joining"></Label>
+						<DatePicker value="{ZZ_DEP_DOJ}" valueFormat="yyyyMMdd" displayFormat="dd/MM/yyyy" editable="false"/>
+					</FlexBox>
+					
+					
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="{i18n>dep_req}"></Label>
+						<Input value="{ZZ_DEP_REQ}" editable="false"
+							placeholder="Will be automatically populated"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select_short_with_to">
+						<Label text="Deputation Date" class="required"></Label>
+						<c:DatePicker yyyymmdd="{ZZ_DEP_STDATE}" enabled="{startDateChange}"
+							value="{path: 'ZZ_DEP_STDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							placeholder="{i18n>pls_sel}" change="onDeputationDateChange"
+							valueState="{ZZ_DEP_STDATE_ERROR}" />
+						<Label text="To"></Label>
+						<c:DatePicker yyyymmdd="{ZZ_DEP_ENDATE}" enabled="{endDateisChange}" 
+							value="{path: 'ZZ_DEP_ENDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							placeholder="{i18n>pls_sel}" change="onDeputationDateChange"
+							valueState="{ZZ_DEP_ENDATE_ERROR}" />
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select_short_with_to previous" visible="{path: 'ZZ_VREASON', 
+			    			formatter: 'sap.ui.project.e2etm.util.Formatter.visiblePreviousDateVersion'}">
+						<Label text="Previous date"></Label>
+						<c:DatePicker yyyymmdd="{pre_stdate}" enabled="false"
+							value="{path: 'pre_stdate_value', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							placeholder="{i18n>pls_sel}" change="onDeputationDateChange"
+							valueState="{ZZ_DEP_STDATE_ERROR}" />
+						<Label text="To"></Label>
+						<c:DatePicker yyyymmdd="{pre_eddate}" enabled="false"
+							value="{path: 'pre_eddate_value', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							placeholder="{i18n>pls_sel}" change="onDeputationDateChange"
+							valueState="{ZZ_DEP_ENDATE_ERROR}" />
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="{i18n>dur_in_day}"></Label>
+						<Input value="{ZZ_DEP_DAYS}" editable="false"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="To Country"></Label>
+						<Input value="{ZZ_DEP_TOCNTRY_TXT}" editable="false"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Purpose of travel"></Label>
+						<Select items="{ path: '/visaType'}" selectedKey="{ZZ_TRV_CAT}" enabled="false">
+							<core:Item key="{ZZ_VKEY}" text="{ZZ_VISA_DESC}" />
+						</Select>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select" visible="{isApproved}">
+						<Label text="Deputation To"></Label>
+						<Select items="{ path: '/subType'}" selectedKey="{ZZ_DEP_SUB_TYPE}" enabled="false">
+							<core:Item key="{ZZ_DEP_SUB_TYPE}" text="{ZZ_SUB_DEP_DESC}" />
+						</Select>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="Min WAGE"></Label>
+						<Input value="{ZZ_MIN_WAGE}" editable="false"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="Estimated Date"></Label>
+						<c:DatePicker yyyymmdd="{ZZ_DEP_TEDATE}" width="300px"
+						    value="{path: 'ZZ_DEP_TEDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}" 
+						    enabled="false"></c:DatePicker>
+					</FlexBox>
+				<FlexBox class="dep_customer_flexbox_input" alignItems="Center"
+						visible="{= ${ZZ_3PARTY_CUST} !== ''}">
+					<Label text="Third Party Customer:"></Label>
+					<Input value="{ZZ_3PARTY_CUST}" editable="false"></Input>
+				</FlexBox>
+				  <FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Mentor E.No"></Label>
+						<Input value="{ZZ_MENTOR_NO}" valueState="{ZZ_MENTOR_NO_ERROR}" editable="{editable}"></Input>
+					</FlexBox>
+				</FlexBox>
+
+				<!-- Flexbox Right -->
+				<FlexBox direction="Column">
+				<FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Date of Birth"></Label>
+						
+						<DatePicker value="{ZZ_DEP_DOB}" valueFormat="yyyyMMdd" displayFormat="dd/MM/yyyy" editable="false"/>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Job Level"></Label>
+						<Input value="{ZZ_DEP_LEVEL}" editable="false"></Input>
+					</FlexBox>
+				  
+				    <FlexBox class="dep_customer_flexbox_select" visible="{isApproved}">
+						<Label text="Assignment Model"></Label>
+						<Select items="{ path: '/assModel'}" selectedKey="{ZZ_ASG_TYP}" enabled="false">
+							<core:Item key="{ZZ_ASG_TYP}" text="{ZZ_ASG_DESC}" tooltip="{ZZ_ASG_DESC}"/>
+						</Select>
+					</FlexBox>
+				    <FlexBox class="dep_customer_flexbox_select" visible="{isApproved}">
+						<Label text="Motive for travel"></Label>
+						<Select items="{ path: '/purpose'}" selectedKey="{ZZ_TRV_PUR}" enabled="false">
+							<core:Item key="{ZZ_TRV_PUR}" text="{ZZ_TRV_DESC}" />
+						</Select>
+					</FlexBox>
+				    <FlexBox class="dep_customer_flexbox_select" visible="{isApproved}">
+						<Label text="Service Condition"></Label>
+						<Select items="{ path: '/serviceType'}" selectedKey="{ZZ_SERV_TYP}" enabled="false">
+							<core:Item key="{ZZ_SERV_TYP}" text="{ZZ_SERV_TEXT}" />
+						</Select>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input" visible="{isApproved}">
+						<Label text="Month(s)"></Label>
+						<Input value="{ZZ_SRVTYP_MONTHS}" editable="false"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="To Location" class="required"></Label>
+						<Input value="{ZZ_DEP_TOLOC_TXT}" editable="false" valueState="{ZZ_DEP_TOLOC_TXT_ERROR}"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_textarea">
+						<Label text="Reason for travel" class="required"></Label>
+						<TextArea value="{ZZ_RSN_TRV}"
+						    editable="{editable}"
+							valueState="{ZZ_RSN_TRV_ERROR}"></TextArea>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_textarea">
+						<Text text="Host entity (Name of the Bosch entity)" wrapping="true" class="required"></Text>
+						<TextArea id="txtCustName" editable="{editable}" value="{ZZ_CUST_NAME}" placeholder="Enter name and address"
+							valueState="{ZZ_CUST_NAME_ERROR}"></TextArea>
+					</FlexBox>
+<!-- Start-CGGS Changes -->
+              <FlexBox direction="Column" visible="{parts:[{path:'ZZ_TRV_REQ'},{path:'ZZ_DEP_TOCNTRY'},{path:'ZZ_ASG_TYP'},{path:'ZZ_REQ_TYP'}],
+					                           formatter:'sap.ui.project.e2etm.util.Formatter.visibleCggsPersonalData'}">				    					
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="Son of/Daughter of" class="required"></Label>
+						<Input value="{ZZ_PARENTNAME}" maxLength="40" editable="{editable}" change="onParentNameChange" valueState="{ZZ_PARENTNAME_ERROR}"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="Spouse of" class="required"></Label>
+						<Input value="{ZZ_SPOUSENAME}" maxLength="40" editable="{editable}" change="onSpouseNameChange" valueState="{ZZ_SPOUSENAME_ERROR}"></Input>
+					</FlexBox>				
+				</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Associate Designation" class="required"></Label>	
+						<Input value="{ZZ_DESIGNATION}" maxLength="40" editable="{editable}" change="onDesignationChange" valueState="{ZZ_DESIGNATION_ERROR}"></Input>
+					</FlexBox>
+				   <FlexBox class="dep_customer_flexbox_input" visible="{parts:[{path:'ZZ_TRV_CAT'},{path:'ZZ_DEP_TYPE'}],
+				                                            formatter:'sap.ui.project.e2etm.util.Formatter.visibleTransferFields'}">
+						<Label text="Mentor Name"></Label>
+						<HBox alignItems="Center">
+						<Input class="mentorIp" value="{ZZ_MENTOR_NAME}" valueState="{ZZ_MENTOR_NAME_ERROR}" editable="{editable}"></Input>
+						<Text text="Contact your RBEI reporting manager for mentor details" wrapping="true"/>
+						</HBox>
+					</FlexBox>	
+					
+<!-- 					<core:Fragment id="depuCggs" -->
+<!-- 				        fragmentName="sap.ui.project.e2etm.fragment.common.CggsFields" -->
+<!-- 						type="XML" /> -->
+						
+					<FlexBox direction="Column" id="cggsFlxBoxDepu" visible="{parts:[{path:'isApproved'},{path:'ZZ_TRV_REQ'},{path:'ZZ_DEP_TOCNTRY'},{path:'ZZ_ASG_TYP'},{path:'ZZ_REQ_TYP'},{path:'ZZ_TRV_CAT'}],
+					                           formatter:'sap.ui.project.e2etm.util.Formatter.visibleCggsData'}">				    
+					<FlexBox class="dep_customer_flexbox_input" visible="true">
+						<Label text="Job Level in Host Country" class="line_height_30"></Label>
+						<Input value="{cggsmodel>/Zlevel}" editable="false" ></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input" visible="true">
+						<Label text="Job Title in Host Country" class="line_height_30"></Label>
+						<Input value="{cggsmodel>/Jobtitle}"  editable="false" ></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input" visible="true">
+						<Label text="CGGS Amount" class="line_height_30"></Label>
+						<HBox alignItems="Center">
+						<Input editable="false"
+							value="{path:'cggsmodel>/Amount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+							></Input>
+							<Label text="EUR"/>
+						</HBox>
+					</FlexBox>
+				</FlexBox>
+<!-- End-CGGS Changes -->							
+				</FlexBox>
+			</FlexBox>
+			<FlexBox id="familyPanel" 
+				class="dep_customer_flexbox border_top_lightgray travellingMemberFlexbox">
+				<FlexBox direction="Column">
+					<FlexBox class="dep_customer_flexbox_radio_short" id="flexBoxEligibility">
+						<Label text="Eligibility of Family Sponsorship"></Label>
+						<RadioButton id="sponsorYesRad" text="{i18n>yes}"
+						    	enabled="{isSTAandDE}"></RadioButton>
+<!-- 							enabled="{isDependentChangeBeforeDeputation}"></RadioButton> -->
+							
+						<RadioButton id="sponsorNoRad" text="{i18n>no}"
+						    enabled="{isSTAandDE}"></RadioButton>
+<!-- 							enabled="{isDependentChangeBeforeDeputation}"></RadioButton> -->
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_radio_short" id="flexBoxFamilyAcc">
+						<Label text="{i18n>fam_acc}"></Label>
+						<RadioButton id="familyAccYesRad" groupName="fam_acc"
+							text="{i18n>yes}" select="onfamilyAccompaniedSelectYes" enabled="{isDependentChangeBeforeDeputation}"></RadioButton>
+						<RadioButton id="familyAccNoRad" groupName="fam_acc"
+							text="{i18n>no}" select="onfamilyAccompaniedSelectNo" enabled="{isDependentChangeBeforeDeputation}"></RadioButton>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_radio_short" id="flexBoxFamilyJoining">
+						<Label text="{i18n>fam_joi_sta}"></Label>
+						<RadioButton id="joinStatusYesRad" groupName="fam_joi_sta"
+							text="{i18n>now}" enabled="{isDependentChangeBeforeDeputation}" select="onfamilyJoinSelectYes"></RadioButton>
+						<RadioButton id="joinStatusNoRad" groupName="fam_joi_sta"
+							text="{i18n>lat}" select="onfamilyJoinSelectNo" enabled="{isDependentChangeBeforeDeputation}"></RadioButton>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_radio_short">
+						<Label text="Visa Exists?"></Label>
+						<RadioButton id="visaYesRad" groupName="visa_grp"
+							text="Yes" enabled="{startDateChange}" select="onvisaSelectYes"></RadioButton>
+						<RadioButton id="visaNoRad" groupName="visa_grp" text="No"
+							select="onvisaSelectNo" enabled="{startDateChange}"></RadioButton>
+					</FlexBox> 
+					<FlexBox class="dep_customer_flexbox_radio_short" id="flexBoxProcessByBosch"
+						visible="false">
+						<Label text="Visa processed by Bosch"></Label>
+						<RadioButton id="pbYesRad" groupName="process_bosch"
+							text="Yes" enabled="{startDateChange}" select="onpbSelectYes"></RadioButton>
+						<RadioButton id="pbNoRad" groupName="process_bosch"
+							text="No" select="onpbSelectNo" enabled="{startDateChange}"></RadioButton>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox direction="Column" id="flexBoxTravellingMembers" class="MembersFlexBox" fitContainer="true">
+				    <FlexBox justifyContent="SpaceBetween">
+				        <Label text="Travelling Members:" class="label_bold margin_bottom_10 margin_top_10"></Label>
+				        <FlexBox>
+				            <c:Button text="Current Version" class="margin_10" press="showCurrentDependents" id="btnCurrentVersionDependent"
+				            	visible="{path: 'ZZ_VREASON', formatter: 'sap.ui.project.e2etm.util.Formatter.visiblePreviousDependentVersion'}" 
+				            	enabled="false" ></c:Button>
+				            <c:Button text="Previous Version" class="margin_10" press="showPreviousDependents" id="btnPreviousVersionDependent"
+				            	visible="{path: 'ZZ_VREASON', formatter: 'sap.ui.project.e2etm.util.Formatter.visiblePreviousDependentVersion'}" ></c:Button>
+				        </FlexBox>
+				    </FlexBox>
+				    <Label text="[Please select visa type as Dependent Visa, if dependent travel is more than 3 months]"
+				        class="notification"></Label>
+					<c:TextView id="lblNodataAvailable" text="There are no family member details maintained in HR system. Please update the details in ESS" 
+					    visible="false"></c:TextView>
+					<c:RowRepeater numberOfRows="1" id="rowRepeaterFamilyAccompanies">
+				        <c:noData>
+				            <c:TextView text=""></c:TextView>
+				        </c:noData>
+				        <c:rows>
+							<FlexBox width="630px" id="membersTravelling" items="{/dependentDetail}" class="travellingMember" direction="Column">
+							    <FlexBox direction="Column">
+							        <FlexBox fitContainer="true" justifyContent="SpaceBetween"
+										alignItems="Center">
+										<c:CheckBox text="{ZZ_DEP_NAME} ({ZZ_DEP_TYP})" tooltip="{ZZ_DEP_NAME} ({ZZ_DEP_TYP})"
+											class="margin_10" width="170px"></c:CheckBox>
+									    <Select width="160px" class="normal_select">
+											<core:Item key="DPND" text="Dependent Visa" />
+											<core:Item key="TOUR" text="Tourist Visa" />
+										</Select>
+										<c:CheckBox change="onVisaExistSelect" text="Visa Exists?" class="margin_10" width="130px"></c:CheckBox>
+										<c:CheckBox visible="false" text="Processed by Bosch or Not?" tooltip="Processed by Bosch or Not?" class="proc_margin_30"></c:CheckBox>
+									</FlexBox>
+									<FlexBox fitContainer="true" 
+										alignItems="Start">
+										    
+										   
+											<c:DatePicker width="120px" class="margin_right_20" placeholder="Start date" 
+											    value="{path: 'dummy', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}" />
+											<c:DatePicker width="120px" class="margin_right_20" placeholder="End date"
+											   	value="{path: 'dummy1', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}" />
+											<c:DatePicker width="120px" class="margin_right_20" placeholder="DOB" editable="false"
+											   	value="{path: 'ZZ_DEP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+<!-- 											<DatePicker width="120px" class="margin_right_20 sapUiSizeCompact" placeholder="Date of Birth"  editable="false" -->
+<!-- 											    value="{ZZ_DEP_DOB}" valueFormat="yyyyMMdd" displayFormat="dd/MM/yyyy"/> -->
+											 <Select class="normal_select sapUiTinyMarginTop" selectedKey="{= ${ZZ_DEP_GENDER} === 'Female' ? 'F' : 'M' }" enabled="false">
+											 <items>
+											 	<core:Item key="" text="Select Gender" />
+											 	 <core:Item key="F" text="Female" />
+											 	  <core:Item key="M" text="Male" />
+											 </items>
+											 </Select>
+									</FlexBox>
+							    </FlexBox>
+							</FlexBox>
+							<FlexBox width="630px" id="preMembersTravelling" direction="Column"
+							    visible="{path: 'ZZ_VREASON', formatter: 'sap.ui.project.e2etm.util.Formatter.visiblePreviousDependentVersion'}" 
+							    items="{/dependentDetail}" class="travellingMember">
+							    <FlexBox direction="Column">
+							        <FlexBox fitContainer="true" justifyContent="SpaceBetween"
+										alignItems="Center">
+										<c:CheckBox text="{ZZ_DEP_NAME} ({ZZ_DEP_TYP})" tooltip="{ZZ_DEP_NAME} ({ZZ_DEP_TYP})"
+											class="margin_10" width="170px"></c:CheckBox>
+										<Select selectedKey="{global>/screenData/ZZ_DEP_TOCNTRY}"
+											width="160px">
+											<core:Item key="DPND" text="Dependent Visa" />
+											<core:Item key="TOUR" text="Tourist Visa" />
+										</Select>
+										<c:CheckBox text="Visa Exists?" class="margin_10" width="130px"></c:CheckBox>
+										<c:CheckBox visible="false" text="Processed by Bosch or Not?" tooltip="Processed by Bosch or Not?" class="proc_margin_30"></c:CheckBox>
+									</FlexBox>
+									<FlexBox fitContainer="true" justifyContent="End"
+										alignItems="End">
+											<c:DatePicker width="150px" class="margin_right_20" />
+											<c:DatePicker width="150px" class="margin_right_20" />
+									</FlexBox>
+							    </FlexBox>
+							</FlexBox>
+						</c:rows>
+					</c:RowRepeater>
+				</FlexBox>
+			</FlexBox>
+		</c:Panel>
+		<!-- Confirmation Panel -->
+		<c:Panel text="CONFIRMATION" class="panelCollapse" id="panelConfirmation">
+			<FlexBox class="margin_left_20">
+				<Label text="Comment" class="margin_top_30 margin_left_10 margin_right_10"></Label>
+				<TextArea value="{ZZ_NEW_COMMENTS}" class="remarks" maxLength="254"
+					editable="{isChange}" valueState="{ZZ_COMMENTS_ERROR}" />
+			</FlexBox>
+			<c:CheckBox text="I confirm that all information has been checked"
+				checked="{ZZ_CONFIRM_FLAG}" enabled="{isChange}"
+				class="margin_left_30 margin_top_10 margin_bottom_10" valueState="{ZZ_CONFIRM_FLAG_ERROR}" />
+		</c:Panel>
+	</FlexBox>
+</core:FragmentDefinition>

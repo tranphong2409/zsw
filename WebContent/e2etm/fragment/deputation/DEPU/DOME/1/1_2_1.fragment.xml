@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:commons="sap.ui.commons"
+	xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<FlexBox fitContainer="true">
+	    <FlexBox width="80%" class="panelMinwidth" fitContainer="true" direction="Column">
+			<c:Panel text="DEPUTATION DETAILS" class="panelCollapse">
+				<FlexBox>
+					<!-- Flexbox Left -->
+					<FlexBox direction="Column" >
+						<FlexBox class="margin_10 flexbox_margin_right_30">
+							<Label text="{i18n>dep_dat}" class="label_bold"></Label>
+							<Label text="{path: 'ZZ_DEP_STDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						</FlexBox>
+						<FlexBox class="margin_10 flexbox_margin_right_30">
+							<Label text="From Location" class="label_bold"></Label>
+							<Label text="{ZZ_DEP_FRMLOC_TXT}" />
+						</FlexBox>
+						<FlexBox class="margin_10 flexbox_margin_right_30"
+						    visible="{parts : [{path : 'ZZ_TRV_CAT'},
+									   	   {path : 'ZZ_DEP_TYPE'}], 
+				    				formatter: 'sap.ui.project.e2etm.util.Formatter.visibleDurationIfDOMETRFR'}">
+							<Label text="{i18n>dur_in_day}" class="label_bold"></Label>
+							<Label text="{ZZ_DEP_DAYS}" />
+						</FlexBox>
+					</FlexBox>
+					<!-- Flexbox Right -->
+					<FlexBox direction="Column" class="margin_left_10">
+					    <FlexBox class="margin_10 flexbox_margin_right_30">
+							<Label text="To Date" class="label_bold"></Label>
+							<Label text="{path: 'ZZ_DEP_ENDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						</FlexBox>
+						<FlexBox class="margin_10 flexbox_margin_right_30">
+							<Label text="To Location" class="label_bold"></Label>
+							<Label text="{ZZ_DEP_TOLOC_TXT}" />
+						</FlexBox>
+						<FlexBox class="margin_10 flexbox_margin_right_30">
+							<Label text="{i18n>dep_typ}" class="label_bold"></Label>
+							<Label text="{ZZ_DEP_TYPE}" />
+						</FlexBox>
+					</FlexBox>
+				</FlexBox> 
+			</c:Panel>
+			
+			<c:Panel text="TRANSFER REQUISITION FORM" visible="false" id="transferRequisitionPanelId"
+				class="panelCollapse">
+				<FlexBox>
+					<FlexBox direction="Column">
+						<Label id="lblTransferRequisition" text="There is no transfer requisition form at the moment"
+							class="margin_20" visible="false"></Label>
+						<FlexBox id="flexBoxTransferRequisition" direction="Column"
+							width="100px" class="margin_10" visible="false" justifyContent="Center"
+							alignItems="Center">
+							<Image src="./images/contract.png" id="lnkPreIL"
+							    width="50px" height="50px"></Image>
+							<Link text="Signed Requisition" href="{/screenData/ZZ_TRFR_DOC_PATH}"
+								target="_blank"></Link>
+						</FlexBox>
+					</FlexBox>
+				</FlexBox>
+			</c:Panel>
+			
+			<c:Panel text="CONTRACT LETTER" visible="true" class="panelCollapse">
+			    <FlexBox fitContainer="true">
+			        <FlexBox direction="Column" fitContainer="true">
+				        <Label id="lblContractLetter" text="There is no contract letter generated at the moment" class="margin_20" visible="false"></Label>
+				        <FlexBox id="flexBoxContractLetter" fitContainer="true" visible="false">
+				            <c:Carousel content="{contractList}" width="670px" height="100px"
+				                defaultItemHeight="100px" defaultItemWidth="150px" >
+						        <c:content>
+									<FlexBox direction="Column" class="margin_right_20">
+								    	<Image src="./images/contract.png" width="50px" height="50px"></Image>
+								    	<Link text="{ZZ_DOC_NAME}" href="{ZZ_DOC_PATH}" target="_blank"/>
+							        </FlexBox>
+								</c:content>
+							</c:Carousel>
+				        </FlexBox>
+				        <FlexBox id="flexBoxMigrationDocuments" class="margin_left_10 margin_top_5" visible="false">
+						    <Label text="For documents, please refer this link" class="line_height_30"></Label>
+							<Link text="Link1" class="margin_left_5 line_height_30" target="_blank"
+							    href="file://\\bosch.com\dfsrb\DfsIN\loc\Kor\HRL\HRL-SC\520_Deputation\"></Link>
+							<Label text="or" class="margin_left_5 line_height_30"></Label>
+							<Link text="Link2" class="margin_left_5 line_height_30" target="_blank"
+							    href="https://inside-ilm.bosch.com/irj/go/km/navigation/guid/b062ff01-2a21-3210-e49f-cc26ac2ff6e1"></Link>
+						</FlexBox>
+					</FlexBox>
+		        </FlexBox>
+			</c:Panel>
+		</FlexBox>
+		<Panel width="auto" headerText="CURRENT STATUS" class="margin_left_10 summary_approval"></Panel>
+	</FlexBox>
+</core:FragmentDefinition>

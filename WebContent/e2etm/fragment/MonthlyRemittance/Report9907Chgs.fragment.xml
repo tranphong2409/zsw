@@ -1,0 +1,238 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:table="sap.ui.table">
+	<table:Table id="report9907" selectionMode="MultiToggle"
+		rows="{path:'tableModel>/rep9907/'}" class="compact_table margin_10"
+		navigationMode="Paginator" showNoData="true">
+
+
+		<table:columns>
+			<table:Column resizable="true" width="120px"
+				sortProperty="EmpNo" filterProperty="EmpNo" hAlign="Center">
+				<table:label>
+					<Label text="Employee No" tooltip="Employee No" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>EmpNo}" tooltip="{path: 'tableModel>EmpNo'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="StartDate"
+				width="80px" filterProperty="StartDate" hAlign="Center">
+				<table:label>
+					<Label text="Start Date" class="label_bold" tooltip="Start Date"></Label>
+				</table:label>
+				<table:template>
+					<Label
+						text="{path:'tableModel>StartDate',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="EndDate"
+				width="80px" filterProperty="EndDate" hAlign="Center">
+				<table:label>
+					<Label text="End Date" class="label_bold" tooltip="End Date"></Label>
+				</table:label>
+				<table:template>
+					<Label
+						text="{path:'tableModel>EndDate',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="TravelPlan" filterProperty="TravelPlan">
+				<table:label>
+					<Label text="Trip No" tooltip="Trip No" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>TravelPlan}" tooltip="{tableModel>TravelPlan}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="DepStartDate"
+				width="80px" filterProperty="DepStartDate" hAlign="Center">
+				<table:label>
+					<Label text="Dep.Start Date" class="label_bold" tooltip="Deputation Start Date"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>DepStartDate}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="DepEndDate" filterProperty="DepEndDate">
+				<table:label>
+					<Label text="Dep.End Date" tooltip="Deputation End Date"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>DepEndDate}" tooltip="{tableModel>DepEndDate}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="120px"
+				sortProperty="ToLoc" filterProperty="ToLoc">
+				<table:label>
+					<Label text="Departure Location" tooltip="Departure Location"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>ToLoc}" tooltip="{tableModel>ToLoc}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="DepCityClass" filterProperty="DepCityClass">
+				<table:label>
+					<Label text="Departure City Class" tooltip="Departure City Class"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>DepCityClass}" tooltip="{tableModel>DepCityClass}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Company" filterProperty="Company">
+				<table:label>
+					<Label text="Company Code" tooltip="Company Code" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Company}" tooltip="{tableModel>Company}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="CountryKey" filterProperty="CountryKey">
+				<table:label>
+					<Label text="Country Key" tooltip="Country Key" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>CountryKey}" tooltip="{tableModel>CountryKey}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="150px"
+				sortProperty="Description" filterProperty="Description">
+				<table:label>
+					<Label text="Description" tooltip="Description" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Description}" tooltip="{tableModel>Description}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Acctype" filterProperty="Acctype">
+				<table:label>
+					<Label text="Accommodation Type" tooltip="Accommodation Type"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Acctype}" tooltip="{tableModel>Acctype}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="FamilyAcc" filterProperty="FamilyAcc">
+				<table:label>
+					<Label text="Accompanied by Family" tooltip="Accompanied by Family" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>FamilyAcc',formatter: 'sap.ui.project.e2etm.util.Formatter.formatFamilyAccompanied'}"/>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="SponsCmp" filterProperty="SponsCmp">
+				<table:label>
+					<Label text="Family Travel Sponsored" tooltip="Family Travel Sponsored"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>SponsCmp',formatter: 'sap.ui.project.e2etm.util.Formatter.formatFamilyAccompanied'}"/>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Spouse" filterProperty="Spouse">
+				<table:label>
+					<Label text="Spouse on Deputation" tooltip="Spouse on Deputation"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>Spouse',formatter: 'sap.ui.project.e2etm.util.Formatter.formatFamilyAccompanied'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Childno" filterProperty="Childno">
+				<table:label>
+					<Label text="No of Children" tooltip="No of Children" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Childno}"/>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Gender1" filterProperty="Gender1">
+				<table:label>
+					<Label text="Gender1" tooltip="Gender1" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>Gender1',formatter: 'sap.ui.project.e2etm.util.Formatter.formatGender'}" tooltip="{tableModel>Gender1}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Gender2" filterProperty="Gender2">
+				<table:label>
+					<Label text="Gender2" tooltip="Gender2" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>Gender2',formatter: 'sap.ui.project.e2etm.util.Formatter.formatGender'}"/>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Gender3" filterProperty="Gender3">
+				<table:label>
+					<Label text="Gender3" tooltip="Gender3" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>Gender3',formatter: 'sap.ui.project.e2etm.util.Formatter.formatGender'}"/>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Gender4" filterProperty="Gender4">
+				<table:label>
+					<Label text="Gender4" tooltip="Gender4" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>Gender4',formatter: 'sap.ui.project.e2etm.util.Formatter.formatGender'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Gender5" filterProperty="Gender5">
+				<table:label>
+					<Label text="Gender5" tooltip="Gender5" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>Gender5',formatter: 'sap.ui.project.e2etm.util.Formatter.formatGender'}"/>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Status" filterProperty="Status">
+				<table:label>
+					<Label text="Status" tooltip="Status" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Status}" tooltip="{tableModel>Status}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="TransType" filterProperty="TransType">
+				<table:label>
+					<Label text="Transportation" tooltip="Transportation" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>TransType}" tooltip="{tableModel>TransType}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="120px"
+				sortProperty="Ssnno" filterProperty="Ssnno">
+				<table:label>
+					<Label text="SSN" tooltip="SSN" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Ssnno}" tooltip="{tableModel>Ssnno}" />
+				</table:template>
+			</table:Column>
+
+
+		</table:columns>
+	</table:Table>
+	</core:FragmentDefinition>

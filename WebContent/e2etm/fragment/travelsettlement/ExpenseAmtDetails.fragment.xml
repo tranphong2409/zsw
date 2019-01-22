@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons">
+	<Input change="onCalculate1" editable="{travelsettlement>/fieldproperties/editable}"
+		value="{path:'travelsettlement>Paemp',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+	<Input change="onCalculate1" editable="false"
+		value="{path:'travelsettlement>Pacmp',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+	<commons:ComboBox width="100%" change="onCalculate1"
+		editable="{parts:[{path:'travelsettlement>Pacmp'},{path:'travelsettlement>/traveldetails/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatTSCurrencyEditable'}"
+		value="{path:'travelsettlement>Waers'}" displaySecondaryValues="true"
+		items="{curModel>/}">
+
+		<commons:items>
+			<core:ListItem additionalText="{curModel>FIELD2}" text="{curModel>FIELD1}" />
+
+		</commons:items>
+
+	</commons:ComboBox>
+	<TextArea cols="50" rows="2" value="{travelsettlement>Rmrks}"
+		editable="{travelsettlement>/fieldproperties/editable}" />
+
+	<Input change="onCalculateAdvance"
+		value="{path:'travelsettlement>Apamt',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+		editable="{travelsettlement>/fieldproperties/trsteditable}" />
+	<commons:ComboBox width="100%" change="onCalculateAdvance"
+		editable="{travelsettlement>/fieldproperties/trsteditable}" value="{travelsettlement>Apcur}"
+		displaySecondaryValues="true" items="{curModel>/}">
+
+		<commons:items>
+			<core:ListItem additionalText="{curModel>FIELD2}" text="{curModel>FIELD1}" />
+
+		</commons:items>
+	</commons:ComboBox>
+	<TextArea cols="50" rows="2" value="{travelsettlement>Tremr}"
+		editable="{travelsettlement>/fieldproperties/trsteditable}" />
+
+
+
+
+</core:FragmentDefinition>

@@ -1,0 +1,143 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+		  xmlns:f="sap.ui.layout.form" controllerName="sap.ui.project.e2etm.controller.DepuNotifications" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Send Notifications" class="sapUiSizeCompact">
+		<content>
+		<f:SimpleForm id="SimpleFormToolbar"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="10"
+			labelSpanS="10"
+			adjustLabelSpan="false"
+			emptySpanXL="1"
+			emptySpanL="1"
+			emptySpanM="1"
+			emptySpanS="1"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+				<core:Title />
+				<Label text="Travel Category" />
+				<Select id="TrvCat" change="onTrvCatChange">
+					<items>
+						<core:Item text="Please Select" key=""/>
+						<core:Item text="Domestic" key="DOME"/>
+						<core:Item text="International" key="INTL"/>
+					</items>
+				</Select>
+				<Label text="Travel Type" />
+				<Select id="TrvTyp" selectedKey="{/visaModel>/ZZ_VKEY}" items="{path:'visaModel>/'}">	
+					<core:Item text="{visaModel>ZZ_VISA_DESC}" key="{visaModel>ZZ_VKEY}"/>					
+				</Select>
+				<Label text="From Country" />
+				<Select id="FCntry" selectedKey="{frmCntry>/MOLGA}" items="{path: 'frmCntry>/'}"  change="onFrmCntryChange" >	
+					<core:Item text="{frmCntry>LTEXT}" key="{frmCntry>MOLGA}"/>
+				</Select>
+				<Label text="From Location" />
+				<Select id="FrmLoc" selectedKey="{fromLocation>/MOLGA}" items="{path: 'fromLocation>/'}">
+					<core:Item text="{fromLocation>BLAND}" key="{fromLocation>MOLGA}"></core:Item>
+				</Select>
+				<!-- <Label text="Message   " ></Label>
+						<TextArea></TextArea> -->
+			
+			<core:Title />
+			<Label text="Assignment Model" />
+				<Select id="AsgModel"  items="{/AsgModelsF4Set}">
+				<core:Item text="{AsgType}" key="{Key}"></core:Item>
+				</Select>
+				<Label text="To Country" />
+				<Select id="TCntry" selectedKey="{/toCntry>/MOLGA}" items="{path: 'toCntry>/'}" change="onToCntryChange" >	
+					<core:Item text="{toCntry>LTEXT}" key="{toCntry>MOLGA}"/>
+				</Select>
+				
+				<Label text="To Location" />
+				<Select id="ToLoc" selectedKey="{toLocation>/MOLGA}" items="{path: 'toLocation>/'}">
+					<core:Item text="{toLocation>BLAND}" key="{toLocation>MOLGA}"></core:Item>
+				</Select>	
+				 <Label></Label>
+				 
+				 <!-- <core:Fragment 
+						fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+						type="XML" />  -->
+			</f:content>
+		</f:SimpleForm>
+					
+		<f:SimpleForm id="FormMailList"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="2"
+			labelSpanL="2"
+			labelSpanM="2"
+			labelSpanS="2"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<core:Title />
+				<Label text="Send MailsTo" >
+
+				</Label>
+					<l:Grid  id="ChkList" defaultSpan="L4 M6 S6"  content="{/DepuNotificationsMailListSet}">
+						<l:content>
+						<CheckBox text="{DepDesc}" select="onCheck" selected="{path:'Selected',type:'sap.ui.model.type.Boolean',formatter:'.formatSelected'}" ></CheckBox>
+						</l:content>
+					</l:Grid>
+				</f:content>
+				</f:SimpleForm>   
+	
+	<f:SimpleForm id="SimpleFormToolbar1"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="1"
+			labelSpanS="1"
+			adjustLabelSpan="false"
+			emptySpanXL="1"
+			emptySpanL="1"
+			emptySpanM="0"
+			emptySpanS="1"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+			<core:Title />
+			<Label text="Message"></Label>
+			<TextArea id="MailTxt" rows="8"></TextArea>
+			<core:Title />
+			 <core:Fragment 
+				fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+				type="XML" /> 
+ 			<core:Title />
+			<core:Title />
+			<Text text="Pls note max size of the file will be 4mb as per standard SAP"></Text>			
+			</f:content>
+			
+			</f:SimpleForm> 
+	
+	
+	
+	</content>
+	<footer>
+			<Bar>
+			<contentRight>
+			<Button id="sendMail" text="Send" type="Accept" icon="sap-icon://response" press="onSendMail"></Button>
+			</contentRight>
+			<contentLeft>
+			<Button id="back" text="Back" type="Reject" icon="sap-icon://decline" press="onBack"></Button>
+			</contentLeft>
+			
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

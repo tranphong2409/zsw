@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">	
+	<Popover placement="Bottom" showHeader="false" class="padding_10">
+	    <Link text="View Profile" press="onEmployeeDetails"></Link>
+	    <FlexBox direction="Column">
+	        <Link text="Substitution" press="onSubStitutionPress"></Link>
+	    </FlexBox>
+	</Popover>
+</core:FragmentDefinition> 

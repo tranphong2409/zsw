@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<VBox>
+		<HBox justifyContent="End">
+			<Link text="Download Template" press="onDownloadTemplate" />
+		</HBox>
+		<HBox justifyContent="SpaceBetween" alignItems="Center" width="500px">
+			<Label text="Filename:" design="Bold" />
+			<u:FileUploader id="fileUploader" name="myFileUpload"
+
+				tooltip="Upload your file to the local server" />
+			<Button text="Upload" press="onSalaryUpload" icon="sap-icon://upload" type="Accept"/>
+		</HBox>
+		<!-- <Button text="Upload File" press="handleUploadPress" /> -->
+	</VBox>
+
+</core:FragmentDefinition>

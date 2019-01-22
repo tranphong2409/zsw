@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons">
+	<ScrollContainer class="padding_top_5">
+		<Table id="idItemTable" inset="false" growing="true"
+			growingScrollToLoad="true" noDataText="{No Data}" 
+			fixedLayout="true">
+			<headerToolbar>
+				<Toolbar>
+<!-- 				<Button icon="sap-icon://action-settings" press="onPersoButtonPressed" /> -->
+<!-- 				<DatePicker valueFormat="yyyyMMddHHmmss" width="150px" -->
+<!-- 					placeholder="From Date" displayFormat="dd/MM/yyyy" change="handleChange" -->
+<!-- 					id="idFromDate" /> -->
+<!-- 				<DatePicker valueFormat="yyyyMMddHHmmss" width="150px" -->
+<!-- 					placeholder="To Date" displayFormat="dd/MM/yyyy" change="handleChange" -->
+<!-- 					id="idToDate" /> -->
+<!-- 					<Button text="Search" type="Emphasized" icon="sap-icon://search"  -->
+<!-- 						    class="margin_left_10" press="onSearch"></Button> -->
+<!-- 					<Button text="Export To Excel" type="Accept" icon="sap-icon://excel-attachment"  -->
+<!-- 						    class="margin_left_10" press="onExportExcel"></Button> -->
+<!-- <contentLeft>				  -->
+				<Label text="SECTION"/>
+				<Select enabled="true" width="200px" name="Section" items="{json>/SECTIONList}"
+					change="onSectionSelect" id="idSectionSelect" >
+					<core:Item key="{json>SECTION}" text="{json>SECTION}" tooltip="{json>SECTION}" />
+				</Select>
+<!-- 			</contentLeft> -->
+				<ToolbarSpacer></ToolbarSpacer >
+				
+
+			</Toolbar>
+			</headerToolbar>
+<!-- 			<columns> -->
+<!-- 				<Column  minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 					> -->
+<!-- 					<Text text="Row Labels" /> -->
+<!-- 				</Column> -->
+<!-- 				<Column  minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 					> -->
+<!-- 					<Text text="Associate can travel in 2016" /> -->
+<!-- 				</Column> -->
+<!-- 				<Column  minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 					> -->
+<!-- 					<Text text="Associate can travel in 2017" /> -->
+<!-- 				</Column> -->
+<!-- 				<Column  minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 					> -->
+<!-- 					<Text text="Associate can travel in 2018" /> -->
+<!-- 				</Column> -->
+<!-- 				<Column  minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 					> -->
+<!-- 					<Text text="Associate can travel in 2019" /> -->
+<!-- 				</Column> -->
+<!-- 				<Column  minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 					> -->
+<!-- 					<Text text="Grand Total" /> -->
+<!-- 				</Column> -->
+				
+<!-- 			</columns> -->
+<!-- 			<items> -->
+<!-- 				<ColumnListItem> -->
+<!-- 					<cells> -->
+<!-- 						<Text text="{Json>SECTION}" /> -->
+<!-- 						<Text text="{Json>THISYEAR}"/> -->
+<!-- 						<Text text="{Json>NEXTYEAR}" /> -->
+<!-- 						<Text text="{Json>TWOYEARLATTER}" /> -->
+<!-- 						<Text text="{Json>THREEYEARLATTER}" /> -->
+<!-- 						<Text text="{Json>SECTION_TOTAL}" /> -->
+<!-- 					</cells> -->
+<!-- 				</ColumnListItem> -->
+<!-- 			</items> -->
+	<columns>
+
+		</columns>
+		<items>
+			<ColumnListItem>
+			</ColumnListItem>
+		</items>
+
+		</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

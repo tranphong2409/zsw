@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons" xmlns:calendar="sap.ui.unified.calendar"
+	xmlns:t="sap.ui.table">
+
+
+	<t:Table rows="{/}" id="mrtable" navigationMode="Paginator" columnHeaderHeight="40" class="sapUiSizeCompact margin_bottom_10"
+		visibleRowCount="1">
+<!-- 		<t:toolbar> -->
+<!-- 			<Toolbar> -->
+<!-- 				<c:Button text="Add row" enabled="{fieldproperties>/editable}" -->
+<!-- 					icon="sap-icon://add" press="onAddCard"></c:Button> -->
+<!-- 				<c:Button text="Delete row" enabled="{fieldproperties>/editable}" -->
+<!-- 					icon="sap-icon://less" class="margin_left_10" press="onDelCard"></c:Button> -->
+<!-- 					<ToolbarSpacer/> -->
+<!-- 				<c:Label design="Bold" text="Travel Advance : 6500 EUR"/> -->
+<!-- 				<ToolbarSpacer/> -->
+<!-- 				<c:Label design="Bold" text="Advance Recovery:5200 EUR"/> -->
+<!-- 			</Toolbar> -->
+<!-- 		</t:toolbar> -->
+		<t:noData>
+			<c:Label text=""></c:Label>
+		</t:noData>
+		<t:Column width="8rem">
+			<c:Label text="Month" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+			<c:TextView/>
+
+			</t:template>
+		</t:Column>
+		<t:Column width="6rem">
+			<c:Label text="Year" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+ 			<c:TextView/>
+
+
+			</t:template>
+		</t:Column>
+		<t:Column width="5rem">
+			<c:Label text="No of Family Members" tooltip="No of Family Members" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Living" tooltip="Living" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+			<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Lodging"  tooltip="Lodging" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="OHA" tooltip="OHA" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Caution Deposit" tooltip="Caution Deposit" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Transportation"  tooltip="Transportation" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Others" tooltip="Others" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextView/>
+			</t:template>
+		</t:Column>
+		<t:Column width="11rem">
+			<c:Label text="Remarks" tooltip="Remarks" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextView/>
+			</t:template>
+		</t:Column>		
+	</t:Table>
+</core:FragmentDefinition>

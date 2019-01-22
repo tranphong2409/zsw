@@ -1,0 +1,96 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:table="sap.ui.table"
+	xmlns:u="sap.ui.unified" 
+		controllerName="sap.ui.project.e2etm.controller.RoomList" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+		<headerToolbar>
+			<Toolbar>
+			   <Button icon="sap-icon://nav-back" press="onNavBack" />
+				<Label text="Apartment Details-{viewData>/Hname}" design="Bold" />
+				<ToolbarSpacer />
+					<u:FileUploader class="button_bgcolor" icon="sap-icon://upload"  sameFilenameAllowed="true" 
+				         fileType="xlsx,csv"  buttonText="Import" buttonOnly="true" uploadOnChange="false"
+								change="onImport" typeMissmatch="sap.ui.project.e2etm.util.StaticUtility.onTypeMissmatch"/>
+				<Button text="Export" icon="sap-icon://download" press="onExportCSV" class="button_bgcolor"/>
+				<Button text="Add Room" icon="sap-icon://add" press="onRoomAdd" class="button_bgcolor" />
+				<Button text="Delete" icon="sap-icon://delete" press="onRoomDelete" class="button_bgcolor"/>
+			</Toolbar>
+		</headerToolbar>
+		<content>
+		<table:Table rows="{reservation>/}"
+				id="table" class="sapUiSizeCompact"				
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				ariaLabelledBy="title">
+				<table:toolbar>
+				<Toolbar>
+					<Label text="Show" />
+					<Select change="sap.ui.project.e2etm.util.StaticUtility.onEntriesDisplay">
+						<items>
+							<core:Item key="10" text="10" />
+							<core:Item key="25" text="25" />
+							<core:Item key="50" text="50" />
+							<core:Item key="100" text="100" />
+						</items>
+					</Select>
+					<Label text="Entries" />
+					<ToolbarSpacer/>
+					<SearchField width="200px" liveChange="onLiveSearch" selectOnFocus="false"/>
+				</Toolbar>
+				</table:toolbar>
+				<table:columns>
+					<table:Column sortProperty="reservation>Romno">
+						<Label text="Room No" />
+						<table:template>
+							<Text text="{reservation>Romno}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="RtypeDesc">
+						<Label text="Room Category" />
+						<table:template>
+							<Text text="{reservation>RtypeDesc}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Rcost">
+						<Label text="Cost" />
+						<table:template>
+						<Text text="{parts:[{path:'reservation>Rcost'},{path:'reservation>Waers'}],type: 'sap.ui.model.type.Currency', formatOptions:{                               
+                                currencyCode:false
+                                }}"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Rsize">
+						<Label text="Room Size" />
+						<table:template>
+							
+							<Text text="{reservation>Rsize}{reservation>Runit}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Floor">
+						<Label text="Floor" />
+						<table:template>
+							<Text text="{reservation>Floor}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Begda">
+						<Label text="Available From" />
+						<table:template>
+							<Text text="{path:'reservation>BegdaTxt'}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Endda">
+						<Label text="Available Upto" />
+						<table:template>
+							<Text text="{path:'reservation>EnddaTxt'}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Room" />
+						<table:template>
+							<Link text="Edit" 	emphasized="true" press="onRoomEdit"/>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</content>
+	</Panel>
+</core:View>

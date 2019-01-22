@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+	<Panel headerText="Advance taken">
+	<Table id="forexhistory" items="{frexhistory>/}" class="tableclass table_ticket_admin sapUiSizeCompact">
+		<columns>
+			<Column>
+				<Label text="Advance" tooltip="Advance"/>
+			</Column>
+			<Column>
+				<Label text="Type" tooltip="Type" />
+			</Column>
+			<Column>
+				<Label text="Amount" tooltip="Amount"/>
+			</Column>
+			<Column>
+				<Label text="Currency" tooltip="Currency"/>
+			</Column>
+			
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<Text text="{frexhistory>Advance}" textAlign="Center"/>
+					<Text text="{frexhistory>Type}" textAlign="Center" />
+					<Text text="{frexhistory>Amount}" textAlign="Center" />
+					<Text text="{frexhistory>Currency}" textAlign="Center" />
+					
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+</Panel>
+</core:FragmentDefinition>

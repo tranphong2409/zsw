@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+
+	<c:Label text="{path:'travelsettlement>Paemp',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" tooltip="Paid By Emp"
+								textAlign="Center" class="label_small_bold"></c:Label>
+</core:FragmentDefinition>

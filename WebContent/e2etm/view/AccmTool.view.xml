@@ -1,0 +1,73 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:ux="sap.uxap" xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.AccmTool"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page class="sapUiSizeCompact resMainPage" showHeader="true"
+		title="Reservation">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button id="btnHome" icon="sap-icon://home" press="onHomePress" />
+				</contentLeft>
+				<contentMiddle>
+					<Title text="Reservation" />
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<IconTabBar id="mainBar" backgroundDesign="Solid"
+				class="reservationTabs" select="onTabSelect">
+				<items>
+					<IconTabFilter text="Administrator" key="ADMN" id="tabAdmin">
+						<IconTabBar class="accAdminProp" id="adminBar" select="onAdminTabSelect">
+							<items>
+
+								<IconTabFilter id="tabHotelList" text="Apartments"
+									icon="sap-icon://building" key="ADHT" />
+
+								<IconTabFilter id="tabTravelplan" text="Travel Plan"
+									icon="sap-icon://travel-request" key="ADTP" />
+								<IconTabFilter id="tabOhaAll" text="OHA Allowances" tooltip="OHA Allowances"
+									icon="sap-icon://wallet" key="ADOA" />
+								<IconTabFilter id="tabRomRnt" text="Upload Room Rents" tooltip="Upload Room Rents"
+									icon="sap-icon://upload" key="ADRT" />
+								<IconTabFilter id="tabRooms" text="View Rooms"
+									icon="sap-icon://meeting-room" key="ADVR" />
+							</items>
+						</IconTabBar>
+					</IconTabFilter>
+
+					<IconTabFilter text="Reports" key="REPT" id="tabReports">
+						<IconTabBar class="accAdminProp" id="reportBar" select="onReportTabSelect">
+							<items>
+
+								<IconTabFilter id="tabOccRep" text="Occupancy"
+									class="sapUiMediumMarginEnd" icon="sap-icon://area-chart" key="RPOR"
+									tooltip="Occupancy Report" />
+
+
+								<IconTabFilter id="tabCost" text="Cost Analysis"
+									class="sapUiMediumMarginEnd" icon="sap-icon://travel-expense"
+									key="RPCA" tooltip="Cost Analysis" />
+								<IconTabFilter id="tabBookDetls" text="Monthly Rent"
+									class="sapUiMediumMarginEnd" icon="sap-icon://meeting-room"
+									key="RPBD" tooltip="Monthly Rent" />
+								<IconTabFilter id="tabPayroll" text="Booking Details"
+									class="sapUiMediumMarginEnd" icon="sap-icon://batch-payments"
+									key="RPDP" tooltip="Booking Details" />
+								<IconTabFilter id="tabSetlRep" text="Accommodation Settlement"
+									class="sapUiMediumMarginEnd" icon="sap-icon://status-completed"
+									key="RPSR" tooltip="Accommodation Settlement Report" />
+								<IconTabFilter id="tabOhaRep" text="OHA Allowance"
+									class="sapUiMediumMarginEnd" icon="sap-icon://expense-report"
+									key="RPOH" tooltip="OHA Allowance Report" />
+							</items>
+						</IconTabBar>
+
+					</IconTabFilter>
+
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</core:View>

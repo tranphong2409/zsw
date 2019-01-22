@@ -1,0 +1,145 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:table="sap.ui.table">
+	<FlexBox class="landing_flexbox_my_task1" id="flexboxEmployeeMyTask">
+		<FlexBox direction="Column" class="refreshEmployeeFlexBox">
+			<commons:Button id="btnEmployeeRefreshMyTaskTable"
+				class="refresh_button refresh_button_emp" icon="sap-icon://refresh"
+				tooltip="Refresh" press="onRefreshData" visible="false"></commons:Button>
+			<FlexBox id="lblNodata">
+				<Label text="At the moment, there is no data in your Mytask box"
+					class="margin_20"></Label>
+				<commons:Button class="refresh_button margin_top_20 margin_bottom_20"
+					icon="sap-icon://refresh" press="onRefreshData" tooltip="Refresh"></commons:Button>
+			</FlexBox>
+			<table:Table id="tableEmployeeMyTasks" visibleRowCount="8"
+				selectionMode="Single" class="compact_table margin_10"
+				columnHeaderHeight="40" rowSelectionChange="onEmployeeMyTaskTableChange"
+				showNoData="false" navigationMode="Paginator" selectionBehavior="RowOnly"
+				filter="onTableCentralFilter">
+				<table:columns>
+					<table:Column resizable="false" width="70px"
+						sortProperty="ZZ_REQ_TYP" sorted="true" filterProperty="ZZ_REQ_TYP"
+						hAlign="Center">
+						<table:label>
+							<Label text="TYPE" class="label_bold"></Label>
+						</table:label>
+						<table:template width="80px">
+							<Label text="{ZZ_REQ_TYP}"
+								tooltip="{path: 'ZZ_REQ_TYP', formatter: 'sap.ui.project.e2etm.util.Formatter.formatReqType'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="true" width="95px"
+						sortProperty="ZZ_DEP_REQ" sorted="true" sortOrder="Descending"
+						filterProperty="ZZ_DEP_REQ" hAlign="Center">
+						<table:label>
+							<Label text="REQ ID" class="label_bold" tooltip="Request Number"></Label>
+						</table:label>
+						<table:template width="100px">
+							<Label text="{ZZ_DEP_REQ}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_TOCNTRY_TXT" width="125px"
+						sorted="true" filterProperty="ZZ_DEP_TOCNTRY_TXT" hAlign="Center">
+						<table:label>
+							<Label text="CNTRY" class="label_bold" tooltip="To Country"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{path: 'ZZ_DEP_TOCNTRY_TXT'}"></Label>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</FlexBox>
+		<FlexBox class="panel_gray employeeRightPanel" id="flexboxEmployeeMyTaskDetail"
+			visible="false" direction="Column" fitContainer="true">
+			<html:Div class="arrow_gray_background"></html:Div>
+			<Bar class="landing_panel_mytask_detail_bar">
+				<contentLeft>
+					<Label
+						text="{path: 'myEmployeeSelectedTaskModel>/ZZ_DEP_FRCNTRY_TXT'}"
+						class="label_bold margin_left_5 header_text"></Label>
+					<Label id="labelFromLocation" text="- {myEmployeeSelectedTaskModel>/ZZ_DEP_FRMLOC_TXT}"></Label>
+					<core:Icon src="sap-icon://arrow-right"></core:Icon>
+					<Label text="{path: 'myEmployeeSelectedTaskModel>/ZZ_DEP_TOCNTRY_TXT'}"
+						class="label_bold margin_left_10 header_text"></Label>
+					<Label id="labeltoLocation" text="- {myEmployeeSelectedTaskModel>/ZZ_DEP_TOLOC_TXT}"></Label>
+				</contentLeft>
+				<contentRight>
+				    <Label text="{path: 'myEmployeeSelectedTaskModel>/ZZ_DEP_STDATE', 
+				        formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+						class="margin_left_5"></Label>
+				    <core:Icon src="sap-icon://arrow-right"></core:Icon>
+					<Label text="{path: 'myEmployeeSelectedTaskModel>/ZZ_DEP_ENDATE', 
+					    formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+					    class="margin_right_20"></Label>
+					<commons:Button text="REQUEST DETAILS"
+						class="landing_panel_mytask_detail_button" icon="sap-icon://begin"
+						press="onViewDepDetails"></commons:Button>
+				</contentRight>
+			</Bar>
+			<FlexBox fitContainer="true">
+				<FlexBox direction="Column" width="100%" class="box_left">
+				    <FlexBox direction="Column">
+				        <Label text="MY ACTIONS" class="margin_top_10 margin_bottom_5 label_bold header_text"></Label>
+				        
+				        <FlexBox class="margin_left_30" direction="Column">
+				            <Link text="Ticketing" id="lnkTicketing" press="onActionClick"></Link>
+					        <Link text="Insurance" id="lnkInsurance" press="onActionClick"></Link>
+					        <Link text="Bank Advice Form" id="lnkBankAdvice" press="onActionClick"></Link>
+					        <Link text="Monthly Remittance" id="lnkMonthlyRemittance" press="onActionClick"></Link>
+					        <Link text="Onsite Address" id="lnkOnsiteAddress" press="onActionClick"></Link>
+					        <Link text="Personal Calls Declaration" id="lnkPcalls" press="onActionClick"></Link>
+					        <Link text="Sign CL while on deputation" id="lnkAcceptCL" press="onActionClick"></Link>
+					        <Link text="Sign salary slip while on deputation" id="lnkSignCs" press="onActionClick"></Link>
+				       		<Link text="Sign Revised Allowance Letter" id="lnkSTAAllowance" press="onActionClick"></Link>
+				        </FlexBox>
+				    </FlexBox>
+				    <FlexBox direction="Column">
+				        <Label text="INITIATE" class="margin_top_10 margin_bottom_5 label_bold header_text"></Label>
+				        
+				        <FlexBox class="margin_left_30" direction="Column">
+				            <Link text="Accommodation" id="lnkAccommodation" press="onActionClick"></Link>
+					        <FlexBox>
+					            <Link text="Create Cargo onward" id="lnkCargoOnward" press="onActionClick"></Link>
+<!-- 					            <Label text="-" class="margin_left_5 margin_right_5"></Label> -->
+<!-- 					            <Link text="Request personal baggage onward" id="lnkPersonalBaggageOnward" press="onActionClick"></Link> -->
+					        </FlexBox>
+					        <FlexBox>
+					            <Link text="Create Cargo return" id="lnkCargoReturn" press="onActionClick"></Link>
+<!-- 					            <Label text="-" class="margin_left_5 margin_right_5"></Label> -->
+<!-- 					            <Link text="Request personal baggage return" id="lnkPersonalBaggageReturn" press="onActionClick"></Link> -->
+					        </FlexBox>
+					        <Link text="Additional Advance" id="lnkAdditionalAdvance" press="onActionClick"></Link>
+					        <Link text="Payment Voucher" id="lnkPaymentVoucher" press="onActionClick"></Link>
+					        <Link text="Reimbursement" id="lnkReimb" press="onActionClick"></Link>
+					        <Link text="Travel Settlement" id="lnkTravelSettlement" press="onActionClick"></Link>
+					        <Link text="INR Advance" id="lnkINRAdvance" press="onActionClick"></Link>
+				        </FlexBox>
+				    </FlexBox>
+				</FlexBox>
+				<FlexBox direction="Column" width="100%" class="box_right">
+				    <Label text="OTHER ACTIONS" class="margin_top_10 margin_bottom_5 label_bold header_text"></Label>
+				    
+				    <FlexBox class="margin_left_30" direction="Column">
+				        <Link text="Change Dates" id="lnkChangeDate" press="onActionClick"></Link>
+				        <Link text="Change end date while on deputation" id="lnkChangeEndDate" press="onActionClick"></Link>
+				        <Link text="Amend request to Change accompanying Family" id="lnkChangeDepes" press="onActionClick"></Link>
+				        <Link text="Amend request to Add new born kid(While on Deputation)" id="lnkNewBornKid" press="onActionClick"></Link>
+				        <Link text="Change Family return dates" id="lnkChangeFamilyReturn" press="onActionClick"></Link>
+				        <Link text="Cancel Request" id="lnkCancel" press="onActionClick"></Link>
+				        
+				        <Link text="Upload Visa copies" class="margin_top_10" id="lnkUploadVisaCopies" press="onActionClick"></Link>
+				        <Link text="Upload additional deputation documents" id="lnkUploadAdditionalDocs" press="onActionClick"></Link>
+				        <Link text="Upload Requisition Form" id="lnkUploadRequisition" press="onActionClick"></Link>
+				        <Link text="Upload Exit Checklist" id="lnkUploadExitChecklist" press="onActionClick"></Link>
+				        
+				        <Link text="Secondary travel request" class="margin_top_10" id="lnkSecondary" press="onActionClick"></Link>
+				        <Link text="Home trip travel request" id="lnkHomeTrip" press="onActionClick"></Link>
+				        <Link text="Emergency travel request" id="lnkEmergency" press="onActionClick"></Link>
+				    </FlexBox>
+				</FlexBox>
+			</FlexBox>
+		</FlexBox>
+	</FlexBox>
+</core:FragmentDefinition>

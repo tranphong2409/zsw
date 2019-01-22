@@ -1,0 +1,100 @@
+<core:FragmentDefinition height="100%" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns:m="sap.m"
+	xmlns:rs="sap.ui.project.e2etm.view.travel.request" xmlns="sap.uxap">
+	<ObjectPageLayout editHeaderButtonPress="handleEditBtnPress" enableLazyLoading="true" height="60rem" id="ObjectPageLayout" class="ObjectPageLayout"
+		showEditHeaderButton="true" showTitleInHeaderContent="true" headerContentPinnable="true" alwaysShowContentHeader="true"
+		navigate="onChangeSectionHandle">
+		<headerContent>
+			<!--<m:FlexBox alignContent="SpaceBetween" class="travelRequestDetailHead">-->
+			<!--	<m:items>-->
+			<!--		<layout:VerticalLayout class="travelRequestDetailHead-Left">-->
+			<!--			<m:Label class="red_bold_text" text="{trvRequestDtl>/empDetail/ZZ_DEP_NAME}"/>-->
+			<!--			<m:Label text="{trvRequestDtl>/empDetail/ZZ_DEP_EMAIL}"/>-->
+			<!--		</layout:VerticalLayout>-->
+			<!--		<layout:VerticalLayout class="travelRequestDetailHead-Right">-->
+			<!--			<layout:HorizontalLayout>-->
+			<!--				<m:Label text="Travel Request number: "/>-->
+			<!--				<m:Label class="red_bold_text" text="10055067"/>-->
+			<!--			</layout:HorizontalLayout>-->
+			<!--			<m:Label class="text_title" text="{trvRequestDtl>/empDetail/travelDesc}"/>-->
+			<!--		</layout:VerticalLayout>-->
+			<!--	</m:items>-->
+			<!--</m:FlexBox>-->
+		</headerContent>
+		<sections>
+			<!-- Travelling Details-->
+			<ObjectPageSection id="travelDetailSec" class="travelDetailSec" title="{i18n>traveling_detail_sec}">
+				<subSections>
+					<ObjectPageSubSection id="travelDetailPage" title=" ">
+						<blocks>
+							<rs:TravelDetails id="travelDetailBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<!-- passport-->
+			<ObjectPageSection id="passportVisaSec" title="{i18n>passport_visa_doc_sec}">
+				<subSections>
+					<ObjectPageSubSection id="passportVisaPage" title=" ">
+						<blocks>
+							<rs:PassportVisa id="passportVisaBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<!-- Accommodation -->
+			<ObjectPageSection id="acdINTLSec" title="{i18n>accm_sec}">
+				<subSections>
+					<ObjectPageSubSection id="acdINTLSub" title=" ">
+						<blocks>
+							<rs:AccmINTL id="acdINTLBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection id="acdDOMSec" title="{i18n>accm_sec}" visible="false">
+				<subSections>
+					<ObjectPageSubSection id="acdDOMSub" title=" ">
+						<blocks>
+							<rs:AccmDOM id="acdDOMBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<!-- Advance/Sim Card Details -->
+			<ObjectPageSection id="accommodotaion" importance="Medium" title="{i18n>adv_sim_sec}">
+				<subSections>
+					<ObjectPageSubSection id="advMoneySec" title="{i18n>adv_money}">
+						<blocks>
+							<rs:AdvanceMoney id="advMoneyBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection id="simcardSec" title="{i18n>sim_card_details}">
+						<blocks>
+							<rs:SIMCard id="simCardBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<!-- sponsor section -->
+			<ObjectPageSection id="sponsorSec" title="{i18n>sponsor_detail_sec}">
+				<subSections>
+					<ObjectPageSubSection id="sponsorSub" title=" ">
+						<blocks>
+							<rs:Sponsors id="sponsorBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<!-- comment section -->
+			<ObjectPageSection id="comtSection" title="{i18n>comment_sec}">
+				<subSections>
+					<ObjectPageSubSection id="comSecsub" title=" ">
+						<blocks>
+							<rs:Comment id="comtBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</core:FragmentDefinition>

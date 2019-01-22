@@ -1,0 +1,147 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="sap.ui.project.e2etm.controller.RoomCreation"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel headerText="Add" class="resPanelNoBackground">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://nav-back" press="onNavBack" />
+				<ToolbarSpacer />
+				<Label text="Room Details" design="Bold" />
+				<ToolbarSpacer />
+
+			</Toolbar>
+		</headerToolbar>
+		<content>
+			<Panel headerText="Details" class="resFilterPanel resPanelBorder" expandable="true"
+				expanded="true">
+				<f:SimpleForm id="roomDet" editable="true"
+					layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+					labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+					columnsL="2" columnsM="2" columnsS="1" singleContainerFullSize="false">
+					<f:content>
+						<core:Title />
+						<Label text="Apartment Name" />
+						<Input value="{viewData>/Hname}" editable="false">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+						<Label text="Room Type" />
+						<ComboBox selectedKey="{reservation>Rtype}" id="ipRtype"
+							items="{reservation>/RoomTypeSet}">
+							<items>
+								<core:Item key="{reservation>Rtype}" text="{reservation>Rdesc}" />
+							</items>
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</ComboBox>
+						<Label text="Room Size" />
+						<Input
+							value="{path:'reservation>Rsize'}"
+							id="ipRsize">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+						<ComboBox id="ipRunit" selectedKey="{reservation>Runit}"
+							placeholder="Unit">
+							<items>
+								<core:Item key="Sq.ft" text="Sq.ft" />
+								<core:Item key="Sq.Mtr" text="Sq.Mtr" />
+							</items>
+							<layoutData>
+								<l:GridData span="L2 M3 S4" />
+							</layoutData>
+						</ComboBox>
+						<Label text="Available From" />
+
+						<DatePicker id="ipBegda"
+							value="{path:'reservation>Begda'}" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</DatePicker>
+						<Label text="Floor" />
+						<Input value="{reservation>Floor}" id="ipFloor">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+					    <Label text="No of Persons" />
+						<Input value="{reservation>Nopers}" type="Number" id="ipNopers">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+						
+
+						<core:Title />
+
+						<Label text="Room No" />
+						<Input value="{reservation>Romno}" id="ipRomno">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+						<Label text="Room Cost" />
+						<Input value="{reservation>Rcost}" id="ipRcost">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+						<ComboBox id="ipWaers" selectedKey="{reservation>Waers}"
+							placeholder="Currency" items="{path:'curModel>/'}">
+							<items>
+								<core:Item key="{curModel>FIELD1}" text="{curModel>FIELD1}" />
+							</items>
+							<layoutData>
+								<l:GridData span="L2 M3 S4" />
+							</layoutData>
+						</ComboBox>
+						<ComboBox id="ipRfreq" selectedKey="{reservation>Rfreq}"
+							placeholder="Period" items="{period>/}">
+							<items>
+								<core:Item text="{period>DDTEXT}" key="{period>DOMVALUE_L}" enabled="{=${period>DOMVALUE_L}!=='Y'}"/>
+							</items>
+							<layoutData>
+								<l:GridData span="L2 M3 S4" />
+							</layoutData>
+						</ComboBox>
+						<Label text="Room Status" />
+						<ComboBox id="ipRstat" selectedKey="{reservation>Rstat}">
+						<items>
+						<core:Item key="A" text="Available" />
+						<core:Item key="N" text="Not Available" />
+						</items>
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</ComboBox>
+
+						<Label text="Available Upto" />
+
+						<DatePicker id="ipEndda"
+							value="{path:'reservation>Endda'}" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</DatePicker>
+						<Label text="Travel Manager" />
+						<Input value="{reservation>Trmgr}" id="ipTrmgr">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+					</f:content>
+				</f:SimpleForm>
+				<HBox justifyContent="Center">
+					<Button text="Save" press="onSave" type="Accept" />
+				</HBox>
+			</Panel>
+		</content>
+
+	</Panel>
+</core:View>

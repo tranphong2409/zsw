@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	<Dialog class="dialog" id="dialogUploadVisaCopy" modal="true" title="UPLOAD VISA COPIES" width="700px">
+		<FlexBox class="margin_bottom_10 border_bottom_lightgray" direction="Column">
+			<FlexBox class="dep_customer_flexbox_select_short_with_to" width="658px">
+				<FlexBox direction="Column">
+					<Label class="label_bold padding_bottom_10" text="YOUR VISA COPY"></Label>
+				</FlexBox>
+				<DatePicker change="onChangeVS" displayFormat="dd/MM/yyyy" enabled="{trvRequestDtl>ZZ_ENABLE}" tooltip="Visa valid from date"
+					value="{/selfVisa/ZZ_VISA_SDATE_VALUE}" valueFormat="dd/MM/yyyy" valueState="{/selfVisa/ZZ_VISA_SDATE_ERROR}"
+					yyyymmdd="{/selfVisa/ZZ_VISA_SDATE}"/>
+				<Label text="To"></Label>
+				<DatePicker change="onChangeVE" displayFormat="dd/MM/yyyy" enabled="{trvRequestDtl>ZZ_ENABLE}" tooltip="Visa valid to date"
+					value="{/selfVisa/ZZ_VISA_EDATE_VALUE}" valueFormat="dd/MM/yyyy" valueState="{/selfVisa/ZZ_VISA_EDATE_ERROR}"
+					yyyymmdd="{/selfVisa/ZZ_VISA_EDATE}"/>
+				<c:FileUploader buttonOnly="true" buttonText="Upload Visa Copy" change="onFileChange" class="margin_top_8 margin_left_10"
+					fileAllowed="onFileAllowed" fileSizeExceed="onFileSizeExceed" id="UploadVisaSelf" maximumFileSize="5" typeMissmatch="onTypeMissmatch"></c:FileUploader>
+				<Link class="margin_top_13 margin_left_5" href="{/selfVisa/href}" target="_blank" text="Open File" visible="{/selfVisa/visibleOpen}"></Link>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_input_short margin_bottom_10" width="611px">
+				<Label text=""></Label>
+				<Input placeholder="Enter visa number" tooltip="Visa number" value="{path: '/selfVisa/ZZ_VISA_NO', mode: 'TwoWay'}"
+					valueState="{/selfVisa/ZZ_VISA_NO_ERROR}"></Input>
+				<Select class="margin_left_20 normal_select margin_top_4" selectedKey="{path: '/selfVisa/ZZ_CURR_VISA_TYP', mode: 'TwoWay'}" width="137px"
+				valueState="{/selfVisa/ZZ_CURR_VISA_TYP_ERROR}">
+					<core:Item key="BUSR" text="Business Visa" tooltip="Business Visa"/>
+					<core:Item key="TRNG" text="Training Visa" tooltip="Training Visa"/>
+					<core:Item key="WRKP" text="Work Permit" tooltip="Work Permit"/>
+				</Select>
+				<c:CheckBox checked="{path: '/selfVisa/ZZ_MULT_ENTRY_CHAR', mode: 'TwoWay'}" class="margin_top_8 margin_left_20" text="Multi-Entry"></c:CheckBox>
+			</FlexBox>
+		</FlexBox>
+		<c:RowRepeater numberOfRows="1" rows="{/visaItems/}">
+			<c:noData>
+				<c:TextView text="Currently, there is no dependent travelling along with you"></c:TextView>
+			</c:noData>
+			<FlexBox direction="Column">
+				<FlexBox class="dep_customer_flexbox_select_short_with_to" width="658px">
+					<FlexBox direction="Column">
+						<Label class="label_bold padding_bottom_10" text="{ZZ_DEPNDT_TYP}"></Label>
+					</FlexBox>
+					<c:DatePicker placeholder="Visa valid from" tooltip="Visa valid from date"
+						value="{path: 'ZZ_VISA_SDATE_VALUE', mode: 'TwoWay', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+						valueState="{ZZ_VISA_SDATE_ERROR}" yyyymmdd="{ZZ_VISA_SDATE}"/>
+					<Label text="To"></Label>
+					<c:DatePicker placeholder="Visa valid to" tooltip="Visa valid to date"
+						value="{path: 'ZZ_VISA_EDATE_VALUE', mode: 'TwoWay', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+						valueState="{ZZ_VISA_EDATE_ERROR}" yyyymmdd="{ZZ_VISA_EDATE}"/>
+					<c:FileUploader buttonOnly="true" buttonText="Upload Visa Copy" change="onFileChange" class="margin_top_8 margin_left_10"
+						fileAllowed="onFileAllowed" fileSizeExceed="onFileSizeExceed" id="UploadVisaDependent" maximumFileSize="5" typeMissmatch="onTypeMissmatch"></c:FileUploader>
+					<Link class="margin_top_13 margin_left_5" href="{href}" target="_blank" text="Open File" visible="{visibleOpen}"></Link>
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_input_short margin_bottom_10" width="611px">
+					<Label text=""></Label>
+					<Input placeholder="Enter visa number" tooltip="Visa number" value="{path: 'ZZ_VISA_NO', mode: 'TwoWay'}" valueState="{ZZ_VISA_NO_ERROR}"></Input>
+					<Select class="margin_left_20 normal_select margin_top_4" selectedKey="{ZZ_CURR_VISA_TYP}" width="137px">
+						<core:Item key="DPND" text="Dependent Visa"/>
+						<core:Item key="TOUR" text="Tourist Visa"/>
+					</Select>
+					<c:CheckBox checked="{path: 'ZZ_MULT_ENTRY_CHAR', mode: 'TwoWay'}" change="onChangeMultiEntry" class="margin_top_8 margin_left_20" text="Multi-Entry"></c:CheckBox>
+				</FlexBox>
+			</FlexBox>
+		</c:RowRepeater>
+		<endButton>
+			<Button icon="sap-icon://sys-cancel" press="onCloseVisaCopyUpload" text="Close"/>
+		</endButton>
+		<beginButton>
+			<Button icon="sap-icon://upload" press="onUploadVisaCopiesHandle" text="Update Visa Copies Info"/>
+			
+			<!--<Button icon="sap-icon://upload" press="onVisaCopyUpload" text="Upload Visa Copies"/>-->
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

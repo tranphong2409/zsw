@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<Dialog id="dialogUploadCOC" modal="true" width="700px" title="UPLOAD COC" class="dialog">
+	    <FlexBox>
+	        <FlexBox class="margin_right_10 padding_right_20 border_right_lightblue"
+	            justifyContent="Center" alignItems="Center">
+	            <c:FileUploader change="onCOCFileChange"
+					maximumFileSize="5" fileSizeExceed="onFileSizeExceed"
+					fileAllowed="onFileAllowed" class="margin_left_10"
+					typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload COC">
+				</c:FileUploader>
+				<Link text="COC Link" href="{/ZZ_DOC_PATH}" target="_blank" id="lnkCOCDocument"
+				    class="margin_left_10 margin_top_5"></Link>
+	        </FlexBox> 
+	        <FlexBox justifyContent="Center" alignItems="Center">
+	            <Label text="From Date" class="margin_right_10 margin_top_5"></Label>
+	            <c:DatePicker
+	                value="{path: '/ZZ_COC_STDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					placeholder="Please select" yyyymmdd="{/ZZ_COC_STDATE}" />
+				<Label text="To" class="margin_right_10 margin_top_5 margin_left_10"></Label>
+				<c:DatePicker
+				    value="{path: '/ZZ_COC_EDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					placeholder="Please select" yyyymmdd="{/ZZ_COC_EDATE}" />
+				<Label text="COC No" class="margin_right_10 margin_top_5 margin_left_10"></Label>
+				<Input width="90px" class="normal_input" value="{/ZZ_COC_NO}"></Input>
+	        </FlexBox>
+		</FlexBox>
+		<endButton>
+		    <Button text="Close" press="onCloseVisaCopyUpload" icon="sap-icon://sys-cancel"/>
+		</endButton>
+		<beginButton>
+			<Button text="Upload COC" press="onUploadCOC" icon="sap-icon://upload"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

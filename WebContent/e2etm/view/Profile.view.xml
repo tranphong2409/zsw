@@ -1,0 +1,363 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.Profile" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:suite="sap.suite.ui.commons" xmlns:view="sap.ui.core.mvc" xmlns="sap.m">
+	<Page class="pageProfile" height="100%" navButtonPress="backPress" showHeader="false" showNavButton="true" title="EMPLOYEE PROFILE">
+		<content>
+			<FlexBox class="padding_left_20 padding_right_20 padding_top_10" direction="Column">
+				<FlexBox fitContainer="true">
+					<FlexBox class="profile_main_flexbox" fitContainer="true" width="36%">
+						<Image class="profile_main_image" height="80px" src="images/edit_profile.png" width="80px"></Image>
+						<FlexBox class="profile_main_box" direction="Column">
+							<Label class="profile_name" text="{/employeeDetail/ZZ_DEP_NAME}" tooltip="{/employeeDetail/ZZ_DEP_NAME}"></Label>
+							<Label class="profile_pernr" text="{/employeeDetail/ZZ_DEP_PERNR}" tooltip="{/employeeDetail/ZZ_DEP_PERNR}"></Label>
+						</FlexBox>
+					</FlexBox>
+					<FlexBox alignItems="Start" fitContainer="true" justifyContent="SpaceBetween" width="64%">
+						<FlexBox class="profile_box" direction="Column">
+							<Label class="profile_box_value"
+								text="{path : '/employeeDetail/ZZ_DEP_DESGN', formatter: 'sap.ui.project.e2etm.util.Formatter.noValueFormat'}"
+								tooltip="{/employeeDetail/ZZ_DEP_DESGN}"></Label>
+							<Label class="profile_box_desc" text="Role"></Label>
+						</FlexBox>
+						<FlexBox class="profile_box" direction="Column">
+							<Label class="profile_box_value"
+								text="{path : '/employeeDetail/ZZ_DEP_DEPT', formatter: 'sap.ui.project.e2etm.util.Formatter.noValueFormat'}"
+								tooltip="{/employeeDetail/ZZ_DEP_DEPT}"></Label>
+							<Label class="profile_box_desc" text="Department"></Label>
+						</FlexBox>
+						<FlexBox class="profile_box" direction="Column">
+							<Label class="profile_box_value"
+								text="{path : '/employeeDetail/ZZ_DEP_GRM', formatter: 'sap.ui.project.e2etm.util.Formatter.noValueFormat'}"
+								tooltip="{/employeeDetail/ZZ_DEP_GRM}"></Label>
+							<Label class="profile_box_desc" text="Manager"></Label>
+						</FlexBox>
+						<Link class="margin_top_30" href="http://sgpmis02.apac.bosch.com/Helpdesk/ESS/swifthelpdoc/Deputation/profiledetails.html"
+							id="lnkHelpDeputation" target="_blank" text="Help" tooltip="Help" visible="true"></Link>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox class="margin_top_10" fitContainer="true">
+					<FlexBox class="profile_left" direction="Column" width="50%">
+						<FlexBox class="profile_general" direction="Column">
+							<Label class="profile_header" text="GENERAL INFORMATION"></Label>
+							<FlexBox class="profile_content">
+								<FlexBox direction="Column" fitContainer="true">
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Level"></Label>
+										<Input editable="false" value="{/employeeDetail/ZZ_DEP_LEVEL}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Location"></Label>
+										<Input editable="false" value="{/employeeDetail/ZZ_DEP_LOCATN}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Email Address"></Label>
+										<Input editable="false" value="{/employeeDetail/ZZ_DEP_EMAIL}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Date of birth"></Label>
+										<Input editable="false" value="{path: '/employeeDetail/ZZ_DEP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Nationality"></Label>
+										<Input editable="false" value="{/employeeDetail/ZZ_DEP_NATIONALITY}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Date of Joining"></Label>
+										<Input editable="false" value="{path: '/employeeDetail/ZZ_DEP_DOJ', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Mobile Number"></Label>
+										<Input editable="false" value="{path: '/employeeDetail/ZZ_CONTACT'}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input" id="flexBoxCTC">
+										<Label text="CTC"></Label>
+										<Input editable="false" value="{path: '/employeeDetail/ZZ_DEP_CTC'}"></Input>
+									</FlexBox>
+								</FlexBox>
+							</FlexBox>
+						</FlexBox>
+						<FlexBox class="profile_general" direction="Column">
+							<Label class="profile_header" text="PASSPORT INFORMATION"></Label>
+							<FlexBox class="profile_content">
+								<FlexBox direction="Column" fitContainer="true">
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Passport Number"></Label>
+										<Input editable="false" value="{/passportDetail/ZZ_PASSPORT_NO}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="{i18n>nam_in_pas}"></Label>
+										<Input editable="false" value="{/passportDetail/ZZ_PASSPORT_NAME}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="{i18n>iss_by}"></Label>
+										<Input editable="false" value="{/passportDetail/ZZ_ISSUED_BY}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="{i18n>pla_of_iss}"></Label>
+										<Input class="dep_dur" editable="false" value="{/passportDetail/ZZ_ISSUED_PLACE}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="{i18n>dat_of_iss}"></Label>
+										<Input editable="false" value="{path: '/passportDetail/ZZ_DATE_ISSUE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="{i18n>dat_of_exp}"></Label>
+										<Input editable="false" value="{path: '/passportDetail/ZZ_DATE_EXPIRY', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="{i18n>dat_of_bir}"></Label>
+										<Input editable="false" value="{path: '/employeeDetail/ZZ_DEP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+									</FlexBox>
+									<FlexBox class="dep_customer_flexbox_input">
+										<Label text="Previous PP No"></Label>
+										<Input class="dep_dur" editable="false" value="{/passportDetail/ZZ_PREV_PP_DETAILS}"></Input>
+									</FlexBox>
+								</FlexBox>
+							</FlexBox>
+						</FlexBox>
+					</FlexBox>
+					<FlexBox class="profile_right" width="50%">
+						<FlexBox class="profile_general" direction="Column">
+							<Label class="profile_header" text="FAMILY DETAILS"></Label>
+							<FlexBox class="profile_content">
+								<FlexBox alignItems="End" direction="Column" justifyContent="End">
+									<commons:RowRepeater currentPage="{/dependentDetail/currentPage}" numberOfRows="1" rows="{/dependentDetail}">
+										<commons:noData>
+											<Link href="https://rb-hrcoreportal.bosch.com/irj/portal" target="_blank"
+												text="No dependent is maintained, please update in HRCORE ESS portal."></Link>
+										</commons:noData>
+										<FlexBox direction="Column">
+											<!-- <Label text="Dependent Info" class="label_bold"></Label> -->
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="First Name"/>
+												<Input editable="false" value="{ZZ_DPND_FNAME}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="Last Name"/>
+												<Input editable="false" value="{ZZ_DPND_LNAME}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="Dependent Type"/>
+												<Input editable="false" value="{ZZ_DEP_TYP}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="Gender"></Label>
+												<Input editable="false" value="{ZZ_DEP_GENDER}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="{i18n&gt;dat_of_bir}"/>
+												<Input editable="false" value="{path: 'ZZ_DEP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+											</FlexBox>
+											<!-- <FlexBox class="dep_customer_flexbox_input">
+												<Label text="Last Name" />
+												<Input value="{ZZ_DPND_LNAME}" editable="false" />
+											</FlexBox> -->
+											<FlexBox class="dep_customer_flexbox_select">
+												<Label text="Nationality"></Label>
+												<Select autoAdjustWidth="true" enabled="false" items="{ path: '/country'}" selectedKey="{ZZ_DPND_NATIONALITY}">
+													<core:Item key="{MOLGA}" text="{LTEXT}"/>
+												</Select>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_select">
+												<Label text="Working with Bosch"></Label>
+												<Select autoAdjustWidth="true" enabled="false" items="{ path: '/yesorno'}" selectedKey="{ZZ_WRK_INBOSCH}">
+													<core:Item key="{key}" text="{description}"/>
+												</Select>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input" visible="{isVisible}">
+												<Label text="Death Date"/>
+												<Input editable="false" value="{path: 'ZZ_DEATH_DATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+											</FlexBox>
+											<!-- <Label text="Passport Info" class="label_bold margin_top_20"></Label> -->
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label class="required" text="{i18n&gt;pas_inf}"/>
+												<Input editable="{isEnabled}" enabled="true" id="passportNo" value="{ZZ_PASSPORT_NO}" valueState="{ZZ_PASSPORT_NO_ERROR}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="Name as in Passport"/>
+												<Input editable="{isEnabled}" value="{ZZ_PASSPORT_NAME}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label class="required" text="{i18n&gt;dat_of_iss}"/>
+												<commons:DatePicker change="onDeputationDateChange" enabled="{isEnabled}" placeholder="{i18n>pls_sel}"
+													value="{path: 'ZZ_DATE_ISSUE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}" valueState="{ZZ_DATE_ISSUE_ERROR}"
+													yyyymmdd="{ZZ_DATE_ISSUE}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label class="required" text="{i18n&gt;dat_of_exp}"/>
+												<commons:DatePicker change="onDeputationDateChange" enabled="{isEnabled}" placeholder="{i18n>pls_sel}"
+													value="{path: 'ZZ_DATE_EXPIRY_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}" valueState="{ZZ_DATE_EXPIRY_ERROR}"
+													yyyymmdd="{ZZ_DATE_EXPIRY}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label class="required" text="{i18n&gt;pla_of_iss}"/>
+												<Input editable="{isEnabled}" value="{ZZ_ISSUED_PLACE}" valueState="{ZZ_ISSUED_PLACE_ERROR}"/>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_select">
+												<Label class="required" text="Country of Issue"/>
+												<Select autoAdjustWidth="true" enabled="{isEnabled}" items="{ path: '/country'}" selectedKey="{ZZ_CNTRY_ISSUED}">
+													<core:Item key="{MOLGA}" text="{LTEXT}"/>
+												</Select>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_select">
+												<Label class="required" text="ECNR Status"></Label>
+												<Select autoAdjustWidth="true" enabled="{isEnabled}" items="{ path: '/yesorno'}" selectedKey="{ZZ_ECNR_STATUS}">
+													<core:Item key="{key}" text="{description}"/>
+												</Select>
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="Previous PP No"></Label>
+												<Input class="dep_dur" editable="{isEnabled}" value="{ZZ_PREVIOUS_PPNO}"></Input>
+											</FlexBox>
+											<!-- <FlexBox class="dep_customer_flexbox_input">
+												<Label text="{i18n&gt;dat_of_bir}" />
+												<Input editable="false"
+													value="{path: 'ZZ_DEP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Input>
+											</FlexBox> -->
+											<!-- <FlexBox class="dep_customer_flexbox_input">
+												<Label text="Last Name" />
+												<Input value="{ZZ_DPND_LNAME}" editable="false" />
+											</FlexBox> -->
+											<!-- <FlexBox class="dep_customer_flexbox_input">
+												<Label text="Father's Name" />
+												<Input value="{ZZ_FATHERS_NAME}" editable="{isEnabled}" />
+											</FlexBox>
+											<FlexBox class="dep_customer_flexbox_input">
+												<Label text="Mother's Name" />
+												<Input value="{ZZ_MOTHERS_NAME}" editable="{isEnabled}" />
+											</FlexBox> -->
+										</FlexBox>
+									</commons:RowRepeater>
+									<Button class="normal_button margin_right_10" id="btnSaveProfile" press="onSaveEmployeeDialog" text="Save" type="Emphasized"/>
+								</FlexBox>
+							</FlexBox>
+						</FlexBox>
+					</FlexBox>
+				</FlexBox>
+			</FlexBox>
+			<FlexBox class="padding_left_20 padding_right_20 padding_top_10" direction="Column">
+				<FlexBox alignItems="Start" class="profile_general" direction="Column">
+					<Label class="additional_header profile_header" text="ADDITIONAL INFORMATION"></Label>
+					<FlexBox alignItems="Start" class="additional_content profile_content" direction="Column">
+						<FlexBox>
+							<FlexBox direction="Column" fitContainer="true" width="50%">
+								<FlexBox class="dep_customer_flexbox_input">
+									<Label text="Mobile Number"></Label>
+									<Input id="iMbAdditional" type="Number" value="{profile>/aPrefer/zz_mobile}"></Input>
+								</FlexBox>
+								<FlexBox class="dep_customer_flexbox_select">
+									<Label text="Meal Preference"></Label>
+									<ComboBox change="onHeaderChange" class="profile_ad_seat" filterSecondaryValues="true" items="{ path: 'profile>/aMeal'}" max-width="150px"
+										selectedKey="{profile>/aPrefer/zz_meal}" showSecondaryValues="true">
+										<core:Item key="{profile>DOMVALUE_L}" text="{profile>DDTEXT}"/>
+									</ComboBox>
+								</FlexBox>
+								<FlexBox>
+									<HBox>
+										<items>
+											<VBox class="profileAddFirstClm">
+												<items>
+													<Label text="Seat Preference"></Label>
+												</items>
+											</VBox>
+											<VBox class="profileAddSecClm">
+												<items>
+													<ComboBox change="onHeaderChange" class="profile_ad_seat" filterSecondaryValues="true" items="{ path: 'profile>/aFlighSeat'}"
+														max-width="150px" selectedKey="{profile>/aPrefer/zz_seat}" showSecondaryValues="true">
+														<core:Item key="{profile>DOMVALUE_L}" text="{profile>DDTEXT}"/>
+													</ComboBox>
+												</items>
+											</VBox>
+											<VBox class="profileAddLastClm">
+												<items>
+													<Button class="normal_button " id="btnSaveAdditionalInfox" press="onSaveAdditionalInfo" text="Update" type="Emphasized"/>
+												</items>
+											</VBox>
+										</items>
+									</HBox>
+								</FlexBox>
+							</FlexBox>
+							<!--end left-->
+							<FlexBox direction="Column" fitContainer="true" width="50%">
+								<FlexBox class="visaDetail" width="100%">
+									<Table id="idVisaTable" items="{profile>/aVisa}">
+										<columns>
+											<Column>
+												<Text text="Country"/>
+											</Column>
+											<Column>
+												<Text text="Valid From"/>
+											</Column>
+											<Column>
+												<Text text="Valid To"/>
+											</Column>
+											<Column>
+												<Text text="Multi Entry"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{profile>ZZ_VISA_TOCNTRY}"/>
+													<Text text="{profile>ZZ_VISA_SDATE}"/>
+													<Text text="{profile>ZZ_VISA_EDATE}"/>
+													<Text text="{profile>ZZ_MULT_ENTRY}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</FlexBox>
+							</FlexBox>
+						</FlexBox>
+						<FlexBox width="100%" class="profile_frequent_block">
+							<FlexBox direction="Column" fitContainer="true" width="50%">
+								<FlexBox>
+									<Label class="profile_header" text="Frequent locations"></Label>
+								</FlexBox>
+								<FlexBox width="100%">
+									<HBox>
+										<items>
+											<ComboBox id="dependentSelectBox" change="onDependentChange" class="profile_frequent_loc" items="{ path: 'profile>/aCountries',length:1000}" max-width="100px"
+												selectedKey="{profile>/ZLOCKEY}" showSecondaryValues="true">
+												<core:ListItem additionalText="{profile>CITYCODE}" key="{profile>CITY_COUNTRY_CODE}" text="{profile>CITY_COUNTRY}"/>
+											</ComboBox>
+										</items>
+										<items>
+											<Button class="normal_button profile_frequent_btn_add " id="btnAddFrequentCountry" press="onAddFrequentCountry" text="Add" type="Emphasized"/>
+										</items>
+									</HBox>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox direction="Column" fitContainer="true" width="50%">
+								<HBox alignItems="End">
+									<List id="locationList" includeItemInSelection="true" items="{profile>/aLocation}" mode="MultiSelect" class="profile_freq_loc_list">
+										<StandardListItem title="{profile>CITY_COUNTRY}"/>
+									</List>
+									<Button class="normal_button profileAddLastClm" id="btnRemoveFrequentCountry" press="onRemoveFrequentCountry" text="Remove" type="Emphasized"/>
+								</HBox>
+							</FlexBox>
+						</FlexBox>
+					</FlexBox>
+				</FlexBox>
+			</FlexBox>
+			<FlexBox class="padding_left_20 padding_right_20 padding_top_10" direction="Column">
+				<FlexBox class="profile_general" direction="Column">
+					<Label class="profile_header" text="HELP"></Label>
+					<FlexBox class="profile_content">
+						<FlexBox direction="Column" fitContainer="true">
+							<Link href="https://rb-hrcoreportal.bosch.com/irj/portal" target="_blank"
+								text="If there are any changes to the above information, Kindly update in ESS portal."
+								tooltip="If there are any changes to the above information, Kindly update in ESS portal."/>
+						</FlexBox>
+					</FlexBox>
+				</FlexBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar class="actionBar">
+				<contentLeft>
+					<Button icon="sap-icon://sys-cancel" press="backPress" text="Back" type="Reject"/>
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

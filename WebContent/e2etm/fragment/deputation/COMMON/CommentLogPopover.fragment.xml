@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">	
+	<Popover placement="Top" showHeader="false" title="Comments History" class="padding_10">
+	    <TextArea id="textAreaCommentHistory" value="{ZZ_COMMENTS}" rows="10" width="320px" editable="false"></TextArea>
+	</Popover> 
+</core:FragmentDefinition>

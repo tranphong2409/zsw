@@ -1,0 +1,149 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="sap.ui.project.e2etm.controller.ManualTPCreation"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel headerText="Details" class="resPanel" expandable="true"
+		expanded="true">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://nav-back" press="onNavBack" />
+				<ToolbarSpacer />
+				<Label text="Details" design="Bold" />
+				<ToolbarSpacer />
+
+			</Toolbar>
+		</headerToolbar>
+		<f:SimpleForm id="tpCreateForm" editable="true"
+			layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+			emptySpanM="0" emptySpanS="0" columnsL="2" columnsM="1" columnsS="1"
+			singleContainerFullSize="false">
+			<f:content>
+				<core:Title />
+				<Label text="Trip Number" />
+				<Input value="{reservation>Reinr}" id="ipReinr" change="onTripChange">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Employee No" />
+				<Input value="{reservation>Pernr}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Department" />
+				<Input value="{reservation>Department}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Source" />
+				<ComboBox id="ipFrmcn" selectedKey="{reservation>Frmcn}"
+					items="{path:'global>/country'}" change="onCountryChange">
+					<items>
+						<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+					</items>
+					<layoutData>
+						<l:GridData span="L2 M3 S4" />
+					</layoutData>
+				</ComboBox>
+				<ComboBox id="ipFrloc" selectedKey="{reservation>Frloc}"
+					items="{path: '/DEP_LOCATIONSSet'}">
+					<items>
+						<core:Item key="{MOLGA}" text="{BLAND}" />
+					</items>
+					<layoutData>
+						<l:GridData span="L2 M3 S4" />
+					</layoutData>
+				</ComboBox>
+				<Label text="Start Date" />
+				<DatePicker value="{reservation>Begda}" valueFormat="yyyyMMdd"
+					displayFormat="dd.MM.yyyy">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</DatePicker>
+				<Label text="Cost Center" />
+				<Input value="{reservation>Kostl}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Visa Category" />
+				<Input value="{reservation>Visa}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+
+
+				<core:Title />
+
+				<Label text="Travel Type" />
+				<Input value="{reservation>Trvky}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Emp Name" />
+				<Input value="{reservation>Empname}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Level" />
+				<Input value="{reservation>Level}">
+					<layoutData>
+						<l:GridData span="L2 M3 S4" />
+					</layoutData>
+				</Input>
+
+
+				<Label text="Destination" />
+				<ComboBox id="ipTocnt" selectedKey="{reservation>Tocnt}"
+					items="{path:'global>/country'}" change="onCountryChange">
+					<items>
+						<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+					</items>
+					<layoutData>
+						<l:GridData span="L2 M3 S4" />
+					</layoutData>
+				</ComboBox>
+				<ComboBox id="ipToloc" selectedKey="{reservation>Toloc}"
+					items="{path: '/DEP_LOCATIONSSet'}">
+					<items>
+						<core:Item key="{MOLGA}" text="{BLAND}" />
+					</items>
+					<layoutData>
+						<l:GridData span="L2 M3 S4" />
+					</layoutData>
+				</ComboBox>
+				<Label text="End Date" />
+				<DatePicker value="{reservation>Endda}" valueFormat="yyyyMMdd"
+					displayFormat="dd.MM.yyyy">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</DatePicker>
+				<Label text="Budget Code" />
+				<Input value="{reservation>BudgetCode}">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Email" />
+				<Input value="{reservation>Email}" type="Email">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+
+			</f:content>
+		</f:SimpleForm>
+		<HBox justifyContent="Center">
+			<Button text="Save" press="onSave" class="resMBtnBlack sapUiSmallMarginEnd" />
+			<Button text="Generate Travel Plan" id="btnDummyTp" press="onGenerateTP" class="resMBtnBlack" />
+		</HBox>
+	</Panel>
+</core:View>

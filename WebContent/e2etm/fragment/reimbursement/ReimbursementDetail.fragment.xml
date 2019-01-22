@@ -1,0 +1,135 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<ScrollContainer>
+		<Carousel pages="{new>/reimhdr}" id="itemdetail" pageChanged="onPageChange" width="1673px">
+			<pages>
+				<Table id="test" items="{new>ZE2E_REI_DETAIL/results}" mode="SingleSelectMaster" class="memberTable" width="1670px">
+					<headerToolbar>
+						<Toolbar design="Transparent" height="3rem">
+							<Button icon="sap-icon://add" type="Emphasized" press="onAddRow"
+								id="add"
+								enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>/INDEX'}, {path: 'new>/LENGTH'}, {path:'new>/REQFLG'}, {path:'new>/act_req'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim_1'}" />
+							<Button icon="sap-icon://less" type="Reject" press="onDelRow"
+								id="del"
+								enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>/INDEX'}, {path: 'new>/LENGTH'}, {path:'new>/REQFLG'}, {path:'new>/act_req'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim_1'}" />
+							<ToolbarSpacer />
+							<Text text="Total Amount" />
+							<Input id="totalamount" type="Text" width="100px" editable="false"
+								value="{path:'new>sTotalAmount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 3,
+				                groupingEnabled: false 
+				                }}" />
+							<Input id="vatamount" type="Text" width="100px" editable="false"
+								value="{path:'new>sVATAmount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 3,
+				                groupingEnabled: false 
+				                }}" />
+							<Input id="netamount" type="Text" width="100px" editable="false"
+								value="{path:'new>sNetAmount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 3,
+				                groupingEnabled: false 
+				                }}" />
+							<Select id="currencyid" items="{new>/currency}"
+								selectedKey="{new>WAERS}" change="onCurrChange"
+								enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>/INDEX'}, {path: 'new>/LENGTH'}, {path:'new>/REQFLG'}, {path:'new>/act_req'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim_1'}">
+								<core:Item key="{new>FIELD1}" text="{new>FIELD1}" />
+							</Select>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="100px">
+							<Text text="Bill Number" />
+						</Column>
+						<Column  width="120px">
+							<Text text="Bill Date" />
+						</Column>
+						<Column width="150px">
+							<Text text="Expense Type" />
+						</Column>
+						<Column width="100px">
+							<Text text="Expense Incurred For" />
+						</Column>
+						<Column width="250px">
+							<Text text="Nature of Expense" />
+						</Column>
+						<Column width="70px">
+							<Text text="Net Amount" />
+						</Column>
+						<Column width="70px">
+							<Text text="VAT Amount" />
+						</Column>
+						<Column width="70px">
+							<Text text="Total Amount" />
+						</Column>
+						<Column width="80px">
+							<Text text="Bill Attached" />
+						</Column>
+						<Column width="100px">
+							<Text text="Remarks" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Input maxLength="10" id="m_1" type="Text" required="true"
+									value="{new>ZZ_BILL_NO}"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}" />
+
+								<DatePicker id="dp" valueFormat="yyyyMMdd" value="{new>ZZ_BILL_DATE}"
+									displayFormat="dd/MM/yyyy" change="handleChange"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}" />
+								<Select tooltip="Expense Type" selectedKey="{new>ZZ_EXP_TYPE}"
+									width="150px"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}">
+									<core:Item key="01" text="Expense Incurred" tooltip="Expense Incurred" />
+									<core:Item key="02" text="Advance" tooltip="Advance" />
+								</Select>
+
+								<Select tooltip="Expense Incurr For" selectedKey="{new>ZZ_EXP_INCUR}" change="onChangeIncurr"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}">
+									<core:Item key="01" text="Self" tooltip="Self" />
+									<core:Item key="02" text="Spouse" tooltip="Family" />
+									<core:Item key="03" text="Kid(s)" tooltip="Self and Family" />
+								</Select>
+
+								<Select tooltip="Nature of Expense" selectedKey="{new>ZZ_NATURE}"
+								    width="250px"
+									items="{new>/natureexp}"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}">
+									<core:Item key="{new>ZZ_NATURE}" text="{new>ZZ_DESCIPTION}" />
+								</Select>
+
+								<Input maxLength="10" id="ZZ_AMOUNT" type="Text"
+									value="{new>ZZ_AMOUNT}" change="doUpdval"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}" />
+
+								<Input id="ZZ_VAT" type="Text" value="{new>ZZ_VAT}"
+									change="doUpdval_vat"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}"
+									maxLength="10" />
+
+								<Input maxLength="10" id="ZZ_AMOUNT_N" type="Text"
+									value="{path:'new>ZZ_AMOUNT_N',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 3,
+				                groupingEnabled: false 
+				                }}" editable="false" />
+
+								<CheckBox id="attchement"
+									selected="{path: 'new>ZZ_ATTACEMENT',formatter: 'sap.ui.project.e2etm.util.Formatter.visaPlanCheckBox'}"
+									select="onAttachFile"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}" />
+								<TextArea class="textareaAcc" id="ZZ_REMARKS" type="Text"
+									value="{new>ZZ_REMARKS}"
+									enabled="{parts: [ {path: 'new>/Role'}, {path: 'new>INDEX'}, {path: 'new>LENGTH'}, {path:'new>REQFLG'}, {path:'new>ACT'}] , formatter: 'sap.ui.project.e2etm.util.Formatter.editableReim'}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</pages>
+		</Carousel>
+	</ScrollContainer>
+</core:FragmentDefinition>

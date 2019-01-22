@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="sap.ui.project.e2etm.controller.Insurance">
+	<Page title="INSURANCE DETAILS" class="pageInsurance">
+		<headerContent>
+			<Link text="Help"
+				href="http://sgpmis02.apac.bosch.com/Helpdesk/ESS/swifthelpdoc/"
+				target="_blank" />
+		</headerContent>
+		<FlexBox class="sapUiSizeCompact" direction="Column">
+			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.insurance.Insurance"
+				type="XML" />
+		</FlexBox>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="btnBack" text="Back" type="Emphasized" press="onBackPress"
+						icon="sap-icon://home"></Button>
+				</contentLeft>
+
+				<contentMiddle>
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSavePress"
+						icon="sap-icon://save"></Button>
+				</contentMiddle>
+
+				<contentRight>
+					<Button id="btnSendBack" text="Send Back" type="Emphasized"
+						icon="sap-icon://employee" press="onSendBackPress"
+						visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}">
+					</Button>
+					<!-- <Button id="btnCancel" text="Cancel" type="Reject" press="onCancelPress" -->
+					<!-- icon="sap-icon://home"></Button> -->
+					<Button id="btnNext" text="Next" type="Emphasized" press="onNextPress"
+						icon="sap-icon://media-forward"></Button>
+					<Button id="btnSubmit" text="Submit" type="Accept" press="onSubmitPress"
+						icon="sap-icon://accept"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

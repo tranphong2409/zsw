@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+
+
+	<IconTabBar class="sapUiResponsiveContentPadding" select="onSurrTabSelect">
+
+		<items>
+			<IconTabFilter key="NEW" text="New" id="tabSURNEW">
+
+			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+ 					type="XML"/>
+
+			</IconTabFilter>
+			<IconTabFilter key="SUR" text="Surrender" id="tabSURSUR">
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+ 					type="XML"/>
+			</IconTabFilter>
+			<IconTabFilter key="PSUR" text="Partial Surrender" tooltip="Partial Surrender" id="tabSURPSUR">
+			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+ 					type="XML"/>
+			</IconTabFilter>
+			<IconTabFilter key="SEBT" text="Sent Back by TravelSettlement Team" id="tabSURSEBT" tooltip="Sent Back by Travl settlement Team">
+			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+ 					type="XML"/>
+			</IconTabFilter>
+			
+			<IconTabFilter key="CLS" text="Closed">
+				<Table itemPress="onItemPress" inset="false"
+					class="tableclass table_ticket_admin" items="{path: 'trworklist>/'}">
+					<headerToolbar>
+						<Toolbar>
+							<Label text="Travel Plan:" />
+							<c:TextField change="onCloseSearchWorklist" />
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="5em">
+							<Label text="Travel Plan" />
+						</Column>
+
+
+						<Column width="5em">
+							<Label text="Employee No" />
+						</Column>
+
+						<Column width="5em">
+							<Label text="Employee Name" />
+						</Column>
+
+
+						<Column width="5em">
+							<Label text="Travel Type" />
+						</Column>
+						<Column width="5em">
+							<Label text="Receive Date" />
+						</Column>
+
+
+
+					</columns>
+
+					<items>
+						<ColumnListItem type="Navigation" height="10px">
+							<cells>
+								<Text text="{trworklist>TravelPlan}" />
+								<Text text="{trworklist>EmpNo}" />
+								<Text text="{trworklist>EmpName}" />
+
+								<Text text="{trworklist>VisaType}" />
+                                 <Text text="{path:'trworklist>ReceivedDt',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+
+				</Table>
+			</IconTabFilter>			
+		</items>
+		
+	</IconTabBar>
+<!-- 	</l:VerticalLayout> -->
+</core:FragmentDefinition>

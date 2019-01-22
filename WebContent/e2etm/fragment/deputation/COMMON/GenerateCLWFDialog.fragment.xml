@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+	<commons:Dialog modal="true" width="510px" title="WORKFLOW ACTION" class="dialog">
+	    <FlexBox direction="Column">
+	    <FlexBox class="landing_dep_detail" id="flxClFormats">
+				<Label text="CL Format" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/clModes'}" width="300px" 
+				    placeholder="Please select" id="cbClFormat" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>Selpar}" text="{global>Value}" tooltip="{global>Value}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_textarea">
+				<Label text="Remarks" class="required"></Label>
+				<TextArea id="txtGenerateCLWFComment" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="landing_dep_detail">
+				<Label text="Assignment Model" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/assgModel'}" width="300px" change="onChangeAssignmentModel"
+				    placeholder="Please select" id="cbAssModel" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>ZZ_ASG_TYP}" text="{global>ZZ_ASG_DESC}" tooltip="{global>ZZ_ASG_DESC}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_textarea" id="flexBoxMentor">
+				<Label text="Mentor" class="required"></Label>
+				<TextArea id="txtMentor" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_textarea" id="flexBoxHost">
+				<Label text="Host Entity" class="required"></Label>
+				<TextArea id="txtHost" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_textarea" id="flexBoxJob">
+				<Label text="Job Title" class="required"></Label>
+				<TextArea id="txtJob" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_textarea" id="flexBoxCls">
+				<Label text="Job Classification" class="required"></Label>
+				<TextArea id="txtCls" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_textarea" id="flexBoxSal">
+				<Label text="Shadow Salary(in INR)" class="required"></Label>
+				<Input id="txtSal"></Input>
+			</FlexBox>
+		</FlexBox> 
+		<commons:buttons>
+			<commons:Button id="btnCLGenerate" text="Edit CL" press="onGenerateCLButtonClick" height="30px" />
+			<commons:Button id="btnCLSubmitToEmployee" text="Generate CL/TL and Submit" press="onCLSubmitToEMPButtonClick" height="30px" />
+		</commons:buttons>
+	</commons:Dialog>
+</core:FragmentDefinition>

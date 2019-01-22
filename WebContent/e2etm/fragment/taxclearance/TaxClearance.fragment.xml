@@ -1,0 +1,115 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+
+	<ObjectHeader id="tvPlanheader" title="Travel Plan: {new>/trvhdr/ZZ_REINR}"
+		responsive="true" fullScreenOptimized="false">
+		<attributes>
+
+			<ObjectAttribute title="Employee No" text="{new>/trvhdr/ZZ_PERNR}" />
+			<ObjectAttribute />
+
+			<ObjectAttribute title="Employee Name"
+				text="{new>/trvhdr/DEP_EMP/ZZ_DEP_NAME}" />
+			<ObjectAttribute />
+
+			<ObjectAttribute title="Department"
+				text="{new>/trvhdr/DEP_EMP/ZZ_DEP_GROUP}" />
+			<ObjectAttribute />
+
+		</attributes>
+
+	</ObjectHeader>
+
+	<commons:Panel text="General Information" class="panelCollapse">
+		<f:SimpleForm id="generalinfo" minWidth="1024"
+			maxContainerCols="1" editable="false" layout="ResponsiveGridLayout"
+			labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+			columnsM="2" class="editableForm">
+			<f:content>
+				<core:Title text="" />
+				<Label text="Travelling From Country" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_FMCNTRY',formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+				<Label text="Travelling From Location" />
+				<Text text="{new>/trvhdr/ZZ_FMLOC}" />
+				<Label text="Start Date" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_DATV1',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				<Label text="Visa Type" />
+
+				<Label text="Duration (in days)" />
+				<Text text="{new>/trvhdr/ZZ_ZDURN}" />
+				<Label text="Visa Type" />
+				<Text
+					text="{path: 'new>/VISATYPE',formatter: 'sap.ui.project.e2etm.util.Formatter.visaTypeFormat'}" />
+				<Label text="Family Accompanied" />
+				<Text text="{path: 'new>/ACCFAMILY' ,formatter: 'sap.ui.project.e2etm.util.Formatter.formatCheckBoxStatus'}" />
+
+				<core:Title text="" />
+				<Label text="Travelling To Country" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_LAND1',formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+				<Label text="Travelling To Location" />
+				<Text text="{new>/trvhdr/ZZ_LOCATION_END}" />
+				<Label text="End Date" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_DATB1',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				<Label text="Level" />
+				<Text text="{new>/trvhdr/ZZ_LEVEL}" />
+				<Label text="Email ID" />
+				<Text text="{new>/trvhdr/DEP_EMP/ZZ_DEP_EMAIL}" />
+				<Label text="Family Sponsorship" />
+				<Text
+					text="{path: 'new>/trvhdr/ZE2E_INS_HDR/ZZ_SPONSOR' ,formatter: 'sap.ui.project.e2etm.util.Formatter.formatCheckBoxStatus'}" />
+				<Label text="Assignment Model" />
+				<Text text="{new>/STA}" />
+			</f:content>
+		</f:SimpleForm>
+	</commons:Panel>
+	<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<!--Attchment File -->
+			<IconTabFilter icon="sap-icon://attachment" key="attach">
+				<content>
+					<FlexBox direction="Column">
+						<FlexBox>
+							<Text text="Please find the documents to be uploaded at this"
+								class="color_red smalltext link_notice margin_left_10 font_size_14" />
+							<Text text=""
+								class="color_red smalltext link_notice margin_left_10 font_size_14" />
+							<Link text="Link" emphasized="true" class="font_size_14 height_12"
+								target=""
+								href="file://bosch.com/DfsRB/DfsIN/LOC/Kor/HRL/HRL-TD/HRL-TD-Share/18-Global_Mobility/Cargo" />
+							<Text text=". Kindly upload the scanned documents"
+								class="color_red smalltext link_notice margin_left_10 font_size_14" />
+
+						</FlexBox>
+					</FlexBox>
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+						type="XML" />
+				</content>
+			</IconTabFilter>
+			<!--Comment Tab -->
+			<IconTabFilter icon="sap-icon://comment" id="idApprove"
+				tooltip="History">
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+					type="XML" />
+			</IconTabFilter> 
+		</items>
+	</IconTabBar>
+	<commons:Panel class="panelCollapse">
+		<f:SimpleForm minWidth="1024" maxContainerCols="1"
+			editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+			labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+			class="editableForm">
+			<f:content>
+				<core:Title text="" />
+				<Label text="Comments" />
+				<TextArea id="comment" value="" rows="8" cols="60" />
+				<core:Title text="" />
+			</f:content>
+		</f:SimpleForm>
+	</commons:Panel>
+</core:FragmentDefinition>

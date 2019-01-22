@@ -1,0 +1,162 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" controllerName="sap.ui.project.e2etm.controller.OfficeLocation"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel class="resPanelNoBackground">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://nav-back" press="onNavBack" />
+			</Toolbar>
+		</headerToolbar>
+		<Panel class="resFilterPanel resPanelBorder">
+			<headerToolbar>
+				<Toolbar>
+					<!-- <Button icon="sap-icon://nav-back" press="onNavBack" /> -->
+					<Label text="Add Near by Office Locations for {viewData>/Hname}"
+						design="Bold" />
+
+				</Toolbar>
+			</headerToolbar>
+			<f:SimpleForm id="locDet" editable="true"
+				layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+				labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="6"
+				columnsM="2" columnsS="1" singleContainerFullSize="false">
+				<f:content>
+					<core:Title />
+					<Label text="Office Name">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Label>
+					<Input value="{reservation>Cname}">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Input>
+					<core:Title />
+					<Label text="Area Name">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Label>
+					<Input value="{reservation>Aname}">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Input>
+					<core:Title />
+					<Label text="Distance">
+						<layoutData>
+							<l:GridData span="L4 M3 S12" />
+						</layoutData>
+					</Label>
+					<Input value="{reservation>Distance}" description="km">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Input>
+					<core:Title />
+					<Label text="Time To Drive">
+						<layoutData>
+							<l:GridData span="L6 M3 S12" />
+						</layoutData>
+					</Label>
+					<Input value="{reservation>Timed}" description="Min">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Input>
+					<core:Title />
+					<Label text="Time to Walk">
+						<layoutData>
+							<l:GridData span="L6 M3 S12" />
+						</layoutData>
+					</Label>
+					<Input value="{reservation>Timew}" description="Min">
+						<layoutData>
+							<l:GridData span="L5 M3 S12" />
+						</layoutData>
+					</Input>
+					<core:Title />
+					<Button text="Add" class="resMBtnBlack" press="onAdd">
+						<layoutData>
+							<l:GridData span="L3 M3 S12" />
+						</layoutData>
+					</Button>
+				</f:content>
+			</f:SimpleForm>
+		</Panel>
+		<Panel class="sapUiMediumMarginTop resFilterPanel resPanelBorder">
+			<headerToolbar>
+				<Toolbar>
+					<Label text="List of Near by Office Locations for {viewData>/Hname}"
+						design="Bold" />
+					<ToolbarSpacer />
+
+
+				</Toolbar>
+			</headerToolbar>
+			<table:Table rows="{locations>/}" id="tblOfficeList"
+				selectionMode="MultiToggle" class="resTblOfficeList sapUiSizeCompact" navigationMode="Paginator"
+				visibleRowCount="7" ariaLabelledBy="title">
+				<table:toolbar>
+					<Toolbar>
+						<Label text="Show" />
+						<Select change="sap.ui.project.e2etm.util.StaticUtility.onEntriesDisplay">
+							<items>
+								<core:Item key="10" text="10" />
+								<core:Item key="25" text="25" />
+								<core:Item key="50" text="50" />
+								<core:Item key="100" text="100" />
+							</items>
+						</Select>
+						<Label text="Entries" />
+						<ToolbarSpacer />
+						<SearchField width="200px" liveChange="onLiveSearch"
+							selectOnFocus="false" />
+						<Button text="Delete" icon="sap-icon://delete" press="onDelete"
+							class="button_bgcolor" />
+					</Toolbar>
+				</table:toolbar>
+				<table:columns>
+
+
+					<table:Column sortProperty="Cname">
+						<Label text="Office Name" />
+						<table:template>
+							<Text text="{locations>Cname}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Aname">
+						<Label text="Area Name" />
+						<table:template>
+							<Text text="{locations>Aname}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Distance(km)">
+						<Label text="Distance" />
+						<table:template>
+							<Text text="{locations>Distance}" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Timed">
+						<Label text="Time to Drive" />
+						<table:template>
+
+							<Text text="{locations>Timed}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Timew">
+						<Label text="Time to Walk" />
+						<table:template>
+							<Text text="{locations>Timed}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+				</table:columns>
+			</table:Table>
+
+		</Panel>
+	</Panel>
+</core:View>

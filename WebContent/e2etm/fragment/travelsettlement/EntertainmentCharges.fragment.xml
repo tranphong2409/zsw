@@ -1,0 +1,171 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+	<!-- class="sapUiSizeCompact margin_bottom_10" -->
+	<Panel id="panelentr" headerText="Conveyance" expandable="false"
+		expandAnimation="false" class="panelBorderTrSettle">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Entertainment Charges" />
+			</Toolbar>
+		</headerToolbar>
+		<content>
+			<ScrollContainer>
+				<Table id="entrexp" items="{travelsettlement>/entr/expenses/}"
+					class="sapUiSizeCompact" mode="MultiSelect">
+					<headerToolbar>
+						<Toolbar>
+							<c:Button id="entrAdd" text="Add row"
+								enabled="{travelsettlement>/fieldproperties/editable}" icon="sap-icon://add"
+								press="onAdd"></c:Button>
+							<c:Button id="entrDel" text="Delete row"
+								enabled="{travelsettlement>/fieldproperties/editable}" icon="sap-icon://less"
+								class="margin_left_10" press="onDel"></c:Button>
+							<ToolbarSpacer />
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="6.5rem">
+							<c:Label text="Date" tooltip="Date" textAlign="Center"
+								class="label_small_bold"></c:Label>
+							<footer>
+								<FlexBox direction="Column" items="{travelsettlement>/entr/footer}">
+									<items>
+									<core:Fragment
+											fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.Subtotal"
+											type="XML" />
+									</items>
+								</FlexBox>
+							</footer>
+						</Column>
+						<Column width="8rem">
+							<c:Label text="Description" tooltip="Description"
+								textAlign="Center" class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="6rem">
+							<c:Label text="Paid By Emp" tooltip="Paid By Employee"
+								textAlign="Center" class="label_small_bold"></c:Label>
+							<footer>
+								<FlexBox direction="Column" items="{travelsettlement>/entr/footer}">
+									<items>
+										<core:Fragment
+											fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.EmployeePaid"
+											type="XML" />
+									</items>
+								</FlexBox>
+							</footer>
+						</Column>
+						<Column width="6rem">
+							<c:Label text="Paid By Comp" tooltip="Paid By company"
+								textAlign="Center" class="label_small_bold"></c:Label>
+							<footer>
+								<FlexBox direction="Column" items="{travelsettlement>/entr/footer}">
+									<items>
+										<core:Fragment
+											fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.CompanyPaid"
+											type="XML" />
+									</items>
+								</FlexBox>
+							</footer>
+						</Column>
+						<Column width="5rem">
+							<c:Label text="Currency" tooltip="Currency" textAlign="Center"
+								class="label_small_bold"></c:Label>
+							<footer>
+								<FlexBox direction="Column" items="{travelsettlement>/entr/footer}">
+									<items>
+										<core:Fragment
+											fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.Currency"
+											type="XML" />
+									</items>
+								</FlexBox>
+							</footer>
+						</Column>
+						<Column width="7rem">
+							<c:Label text="Remarks" tooltip="Remarks" textAlign="Center"
+								class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="6rem"
+							visible="{travelsettlement>/fieldproperties/trvlvisible}">
+							<c:Label text="Approved Amount" tooltip="Approved Amount"
+								textAlign="Center" class="label_small_bold"></c:Label>
+							<footer>
+								<FlexBox direction="Column" items="{travelsettlement>/entr/apfooter}">
+									<items>
+										<core:Fragment
+											fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.ApprovedAmt"
+											type="XML" />
+									</items>
+								</FlexBox>
+							</footer>
+						</Column>
+							<Column width="7rem"
+							visible="{travelsettlement>/fieldproperties/trvlvisible}">
+							<c:Label text="Currency" tooltip="Currency"
+								textAlign="Center" class="label_small_bold"></c:Label>
+								<footer>
+								<FlexBox direction="Column" items="{travelsettlement>/entr/apfooter}">
+									<items>
+										<core:Fragment
+											fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.ApprovedCurrency"
+											type="XML" />
+									</items>
+								</FlexBox>
+							</footer>
+						</Column>
+						<Column width="7rem"
+							visible="{travelsettlement>/fieldproperties/trvlvisible}">
+							<c:Label text="Remarks by Trvl Settlement" tooltip="Remarks by Trvl Settlement"
+								textAlign="Center" class="label_small_bold"></c:Label>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem height="10px">
+							<cells>
+								<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+									change="onValidDateChange" value="{travelsettlement>Begda}"
+									valueFormat="yyyyMMdd" required="true"
+									editable="{travelsettlement>/fieldproperties/editable}" />
+								<Input value="{travelsettlement>Descr}" maxLength="255"
+									editable="{travelsettlement>/fieldproperties/editable}" />
+								<core:Fragment
+									fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.ExpenseAmtDetails"
+									type="XML" />
+
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+<!-- 				<FlexBox direction="Column" items="{travelsettlement>/entr/footer}"> -->
+<!-- 					<items> -->
+<!-- 						<FlexBox direction="Row"> -->
+<!-- 							<items> -->
+<!-- 								<ToolbarSpacer width="2rem" /> -->
+<!-- 								<c:Label width="10rem" text="Subtotal" tooltip="Subtotal" -->
+<!-- 									textAlign="Center" class="label_small_bold"></c:Label> -->
+<!-- 								<ToolbarSpacer width="21rem" /> -->
+<!-- 								<c:Label width="10rem" -->
+<!-- 									text="{path:'travelsettlement>Paemp',type: 'sap.ui.model.type.Float', -->
+<!--                 formatOptions: { -->
+<!-- 				                maxFractionDigits: 2, -->
+<!-- 				                groupingEnabled: true,  -->
+<!-- 				                groupingSeparator: ','}}" -->
+<!-- 									tooltip="Paid By Emp" textAlign="Center" class="label_small_bold"></c:Label> -->
+<!-- 								<c:Label width="14rem" -->
+<!-- 									text="{path:'travelsettlement>Pacmp',type: 'sap.ui.model.type.Float', -->
+<!--                 formatOptions: { -->
+<!-- 				                maxFractionDigits: 2, -->
+<!-- 				                groupingEnabled: true,  -->
+<!-- 				                groupingSeparator: ','}}" -->
+<!-- 									textAlign="Center" class="label_small_bold"></c:Label> -->
+<!-- 								<c:Label width="7rem" text="{travelsettlement>Waers}" -->
+<!-- 									tooltip="Currency" textAlign="Center" class="label_small_bold"></c:Label> -->
+<!-- 								<ToolbarSpacer width="7rem" /> -->
+<!-- 							</items> -->
+<!-- 						</FlexBox> -->
+<!-- 					</items> -->
+<!-- 				</FlexBox> -->
+			</ScrollContainer>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

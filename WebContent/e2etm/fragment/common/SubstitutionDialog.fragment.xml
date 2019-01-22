@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+	<c:Dialog modal="true" title="SUBSTITUTION" type="Standard"
+		class="dialog" width="70%" id="substitutionDialog">
+		<t:Table id="tableDialogBoxes" selectionMode="Single"
+			visibleRowCount="{/view/length}" columnHeaderHeight="40" showNoData="false">
+			<t:toolbar>
+				<c:Toolbar design="Transparent">
+					<c:Button text="Add row" icon="sap-icon://add" press="onSubstitutionAddPress"></c:Button>
+					<c:Button text="Delete row" icon="sap-icon://less"	press="onSubStitutionDeletePress"></c:Button>
+				</c:Toolbar>
+			</t:toolbar>
+			<t:columns> 
+				<t:Column>
+					<c:Label text="YOUR ACCOUNT"></c:Label>
+					<t:template>
+						<c:TextField value="{US_NAME}" editable="false"></c:TextField>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<c:Label text="ASSIGNED ACCOUNT" class="required"></c:Label>
+					<t:template>
+						<c:TextField value="{REP_NAME}" valueState="{REP_NAME_ERROR}" editable="{isNew}"></c:TextField>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<c:Label text="START DATE" class="required"></c:Label>
+					<t:template>
+						<c:DatePicker yyyymmdd="{BEGDA}"
+							value="{path: 'BEGDA_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							valueState="{BEGDA_ERROR}" editable="{isNew}"/>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<c:Label text="END DATE" class="required"></c:Label>
+					<t:template>
+						<c:DatePicker yyyymmdd="{ENDDA}"
+							value="{path: 'ENDDA_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+							valueState="{ENDDA_ERROR}" />
+					</t:template>
+				</t:Column>
+				<t:Column  visible ="false">
+					<c:Label text="SUBSTITUTION PROFILE"></c:Label>
+					<t:template>
+						<c:ComboBox items="{ path: '/profile'}" selectedKey="{REPPR}"
+							class="width_auto">
+							<core:ListItem key="{FIELD2}" text="{FIELD3}" />
+						</c:ComboBox>
+					</t:template>
+				</t:Column>
+				<t:Column>
+					<c:Label text="ACTIVE"></c:Label>
+					<t:template>
+						<c:ComboBox items="{ path: '/active'}" selectedKey="{ACTIVE}"
+							class="width_auto">
+							<core:ListItem key="{key}" text="{text} " />
+						</c:ComboBox>
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+		<c:buttons>
+			<c:Button text="Save" press="onSubstitutionSavePress" width="60px"
+				height="30px" />
+		</c:buttons>
+	</c:Dialog>
+</core:FragmentDefinition>

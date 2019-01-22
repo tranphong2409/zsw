@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<FlexBox width="450px" class="" justifyContent="SpaceBetween" alignItems="Center">
+		<Label text="Customer Type" width="200px" class="required line_height_30 margin_right_10" tooltip="Customer Type"></Label>
+		<ComboBox selectedKey="{ZZ_CI_CUSTTYP}"  valueState="{ZZ_CI_CUSTTYP_ERROR}" editable="{/view/isFuture}" change="onCustomerTypeChange"
+			width="250px">
+			<items>
+				<core:Item text="Bosch" key="BSCH" />
+				<core:Item text="Non Bosch" key="NBSCH" />
+			</items>
+		</ComboBox>
+	</FlexBox>
+</core:FragmentDefinition>

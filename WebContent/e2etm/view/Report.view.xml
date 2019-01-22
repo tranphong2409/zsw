@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table" xmlns="sap.m" xmlns:commons="sap.ui.commons"
+	xmlns:l="sap.ui.layout" xmlns:view="sap.ui.core.mvc" xmlns:table="sap.ui.table"
+	controllerName="sap.ui.project.e2etm.controller.Report" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="REPORT" height="100%" showNavButton="true" id="pageReport"
+		class="pageProfile" showHeader="false" navButtonPress="backPress">
+		<content>
+			<FlexBox alignItem="SpaceBetween"
+				class="landing_flexbox_top_container margin_top_10" visible="false"
+				id="flexboxDeputationBoxes">
+				<items>
+					<Panel class="landing_panel_box" headerText="DEPUTATION DETAILS OF EMPLOYEE">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aa1">
+									<Image src="./images/Total.png" width="50px" tooltip="{/0/Description}"
+										press="onManagerMorePress" id="AA1" />
+									<commons:TextView text="{/0/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aa2">
+									<Image src="./images/visa-issued.png" width="50px"
+										tooltip="{/1/Description}" press="onManagerMorePress" id="BB1" />
+									<commons:TextView text="{/1/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aa3">
+									<Image src="./images/COC.png" width="50px" tooltip="{/2/Description}"
+										press="onManagerMorePress" id="CC1" />
+									<commons:TextView text="{/2/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="DD1"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<Panel class="landing_panel_box" headerText="ASSIGNMENT MODEL WISE">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="bb1">
+									<Image src="./images/TravelRequest.gif" width="50px"
+										tooltip="{/5/Description}" press="onManagerMorePress" id="AA2" />
+									<commons:TextView text="{/5/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="bb2">
+									<Image src="./images/TravelRequest.gif" width="50px"
+										tooltip="{/6/Description}" press="onManagerMorePress" id="BB2" />
+									<commons:TextView text="{/6/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="bb3">
+									<Image src="./images/TravelRequest.gif" width="50px"
+										tooltip="{/7/Description}" press="onManagerMorePress" id="CC2" />
+									<commons:TextView text="{/7/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<!-- <FlexBox direction="Column" alignItems="Center" justifyContent="SpaceAround" 
+									id="bb4"> <Image src="./images/TravelRequest.gif" width="50px" tooltip="{/9/Description}" 
+									press="onManagerMorePress" id="DD2" /> <commons:TextView text="{/9/TotalCount}" 
+									class="manager_status_counts"></commons:TextView> </FlexBox> -->
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="EE2"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<Panel class="landing_panel_box" headerText="DEPUTED COUNTRY WISE">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cc1">
+									<Image
+										src="./images/country/{path: '/8/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/8/Description}"
+										tooltip="{path: '/8/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="AA3" />
+									<commons:TextView text="{/8/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cc2">
+									<Image
+										src="./images/country/{path: '/9/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/9/Description}"
+										tooltip="{path: '/9/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="BB3" />
+									<commons:TextView text="{/9/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cc3">
+									<Image
+										src="./images/country/{path: '/10/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/10/Description}"
+										tooltip="{path: '/10/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="CC3" />
+									<commons:TextView text="{/10/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cc4">
+									<Image
+										src="./images/country/{path: '/11/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/11/Description}"
+										tooltip="{path: '/11/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="DD3" />
+									<commons:TextView text="{/11/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="EE3"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+				</items>
+			</FlexBox>
+			<FlexBox alignItem="SpaceBetween"
+				class="landing_flexbox_top_container margin_top_10" visible="false"
+				id="flexboxTAXBoxes" fitContainer="true">
+				<items>
+					<Panel class="landing_panel_box" headerText="{i18n>team_deputation_status}">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aaaa1">
+									<Image src="./images/PE.jpg" width="50px" tooltip="{/0/Description}"
+										press="onManagerMorePress" id="AAAA1" />
+									<commons:TextView text="{/0/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aaaa2">
+									<Image src="./images/Accept.png" width="50px" tooltip="{/1/Description}"
+										press="onManagerMorePress" id="BBBB1" />
+									<commons:TextView text="{/1/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aaaa3">
+									<Image src="./images/Reject.jpg" width="50px" tooltip="{/2/Description}"
+										press="onManagerMorePress" id="CCCC1" />
+									<commons:TextView text="{/2/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="DDDD1"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<!-- <Panel class="landing_panel_box" headerText="{i18n>team_application_status}"> 
+						</Panel> -->
+					<Panel class="landing_panel_box" headerText="{i18n>team_location_worldwide}">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cccc1">
+									<Image
+										src="./images/country/{path: '/3/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/3/Description}"
+										tooltip="{path: '/3/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="AAAA3" />
+									<commons:TextView text="{/3/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cccc2">
+									<Image
+										src="./images/country/{path: '/4/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/4/Description}"
+										tooltip="{path: '/4/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="BBBB3" />
+									<commons:TextView text="{/4/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cccc3">
+									<Image
+										src="./images/country/{path: '/5/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/5/Description}"
+										tooltip="{path: '/5/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="CCCC3" />
+									<commons:TextView text="{/5/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="cccc4">
+									<Image
+										src="./images/country/{path: '/6/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/6/Description}"
+										tooltip="{path: '/6/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="DDDD3" />
+									<commons:TextView text="{/6/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="EEEE3"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+				</items>
+			</FlexBox>
+			<FlexBox alignItem="SpaceBetween"
+				class="landing_flexbox_top_container margin_top_10" visible="false"
+				id="flexboxECOBoxes" fitContainer="true">
+				<items>
+					<Panel class="landing_panel_box" headerText="GREEN LISTED REPORTS">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aaa1">
+									<Image src="./images/Green.jpg" width="50px" tooltip="{/0/Description}"
+										press="onManagerMorePress" id="AAA1" />
+									<commons:TextView text="{/0/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aaa2">
+									<Image src="./images/Accept.png" width="50px" tooltip="{/1/Description}"
+										press="onManagerMorePress" id="BBB1" />
+									<commons:TextView text="{/1/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="aaa3">
+									<Image src="./images/Reject.jpg" width="50px" tooltip="{/2/Description}"
+										press="onManagerMorePress" id="CCC1" />
+									<commons:TextView text="{/2/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="DDD1"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<Panel class="landing_panel_box" headerText="YELLOW LISTED REPORTS">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="bbb1">
+									<Image src="./images/Yellow.jpg" width="50px" tooltip="{/3/Description}"
+										press="onManagerMorePress" id="AAA2" />
+									<commons:TextView text="{/3/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="bbb2">
+									<Image src="./images/Accept.png" width="50px" tooltip="{/4/Description}"
+										press="onManagerMorePress" id="BBB2" />
+									<commons:TextView text="{/4/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="bbb3">
+									<Image src="./images/Reject.jpg" width="50px" tooltip="{/5/Description}"
+										press="onManagerMorePress" id="CCC2" />
+									<commons:TextView text="{/5/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<!-- <FlexBox direction="Column" alignItems="Center" -->
+								<!-- justifyContent="SpaceAround" id="bb4"> -->
+								<!-- <Image src="./images/TravelRequest.gif" width="50px" tooltip="{/9/Description}" -->
+								<!-- press="onManagerMorePress" id="DD2" /> -->
+								<!-- <commons:TextView text="{/9/TotalCount}" class="manager_status_counts"></commons:TextView> -->
+								<!-- </FlexBox> -->
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="EEE2"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<Panel class="landing_panel_box" headerText="{i18n>team_location_worldwide}">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="ccc1">
+									<Image
+										src="./images/country/{path: '/6/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/6/Description}"
+										tooltip="{path: '/6/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="AAA3" />
+									<commons:TextView text="{/6/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="ccc2">
+									<Image
+										src="./images/country/{path: '/7/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/7/Description}"
+										tooltip="{path: '/7/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="BBB3" />
+									<commons:TextView text="{/7/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="ccc3">
+									<Image
+										src="./images/country/{path: '/8/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/8/Description}"
+										tooltip="{path: '/8/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="CCC3" />
+									<commons:TextView text="{/8/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="ccc4">
+									<Image
+										src="./images/country/{path: '/9/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/9/Description}"
+										tooltip="{path: '/9/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="DDD3" />
+									<commons:TextView text="{/9/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="EEE3"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+				</items>
+			</FlexBox>
+			<FlexBox alignItem="SpaceBetween"
+				class="landing_flexbox_top_container margin_top_10" id="flexboxManagerBoxes"
+				visible="false" fitContainer="true">
+				<items>
+					<Panel class="landing_panel_box" headerText="{i18n>team_deputation_status}">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="a1">
+									<Image src="./images/pre-travel.png" width="50px"
+										tooltip="{/0/Description}" press="onManagerMorePress" id="A1" />
+									<commons:TextView text="{/0/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="a2">
+									<Image src="./images/on-travel.png" width="50px"
+										tooltip="{/1/Description}" press="onManagerMorePress" id="B1" />
+									<commons:TextView text="{/1/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="a3">
+									<Image src="./images/post-travel.png" width="50px"
+										tooltip="{/2/Description}" press="onManagerMorePress" id="C1" />
+									<commons:TextView text="{/2/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="D1"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<Panel class="landing_panel_box" headerText="{i18n>team_application_status}">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="b1">
+									<Image src="./images/new.png" width="50px" tooltip="{/3/Description}"
+										press="onManagerMorePress" id="A2" />
+									<commons:TextView text="{/3/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="b2">
+									<Image src="./images/processing.png" width="50px"
+										tooltip="{/4/Description}" press="onManagerMorePress" id="B2" />
+									<commons:TextView text="{/4/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="b3">
+									<Image src="./images/visa-issued.png" width="50px"
+										tooltip="{/5/Description}" press="onManagerMorePress" id="C2" />
+									<commons:TextView text="{/5/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="b4">
+									<Image src="./images/COC.png" width="50px" tooltip="{/6/Description}"
+										press="onManagerMorePress" id="D2" />
+									<commons:TextView text="{/6/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="E2"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+					<Panel class="landing_panel_box" headerText="{i18n>team_location_worldwide}">
+						<content>
+							<FlexBox justifyContent="SpaceAround" height="80%">
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="c1">
+									<Image
+										src="./images/country/{path: '/7/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/7/Description}"
+										tooltip="{path: '/7/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="A3" />
+									<commons:TextView text="{/7/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="c2">
+									<Image
+										src="./images/country/{path: '/8/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/8/Description}"
+										tooltip="{path: '/8/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="B3" />
+									<commons:TextView text="{/8/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="c3">
+									<Image
+										src="./images/country/{path: '/9/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/9/Description}"
+										tooltip="{path: '/9/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="C3" />
+									<commons:TextView text="{/9/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+								<FlexBox direction="Column" alignItems="Center"
+									justifyContent="SpaceAround" id="c4">
+									<Image
+										src="./images/country/{path: '/10/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}.png"
+										width="50px" alt="{/10/Description}"
+										tooltip="{path: '/10/Description', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+										press="onManagerMorePress" id="D3" />
+									<commons:TextView text="{/10/TotalCount}"
+										class="manager_status_counts"></commons:TextView>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox justifyContent="End">
+								<Link text="More" tooltip="More" press="onManagerMorePress"
+									id="E3"></Link>
+							</FlexBox>
+						</content>
+					</Panel>
+				</items>
+			</FlexBox>
+			<FlexBox id="DialogBoxes" class="margin_top_10 flexBoxReport">
+				<FlexBox alignItem="Start" visible="false" width="630px"
+					direction="Column" class="margin_bottom_10 margin_left_10" id="flexboxDialogBoxes">
+					<commons:TextView text="The report only displays deputation request(s)!"
+						class="color_red margin_bottom_10"></commons:TextView>
+					<FlexBox class="reportBoder" width="200px">
+						<List />
+					</FlexBox>
+					<Link text="Download in excel" press="onDownloadExcel"
+						class="margin_right_10 margin_top_10 details_link"></Link>
+				</FlexBox>
+				<FlexBox class="overflow_x margin_left_10 margin_right_10">
+					<table:Table id="tableDialogBoxes" selectionMode="None"
+						visibleRowCount="17" width="210em" columnHeaderHeight="40"
+						showNoData="true"
+						noDataText="Please click on the status or country above to show the data"
+						navigationMode="Scrollbar">
+						<table:columns>
+							<table:Column resizable="false" hAlign="Center"
+								filterProperty="ZZ_DEP_REQ" sortProperty="ZZ_DEP_REQ" sorted="true"
+								sortOrder="Descending">
+								<table:label>
+									<Label text="REQ NO" class="label_bold" tooltip="Request Number"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_REQ}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_PERNR" filterProperty="ZZ_DEP_PERNR">
+								<table:label>
+									<Label text="EMP NO" class="label_bold" tooltip="Employee No"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_PERNR}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_NAME" filterProperty="ZZ_DEP_NAME" width="220px">
+								<table:label>
+									<Label text="NAME" class="label_bold" tooltip="Name"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_NAME}" tooltip="{ZZ_DEP_NAME}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center" width="130px"
+								sortProperty="ZZ_TRV_REQ" filterProperty="ZZ_TRV_REQ">
+								<table:label>
+									<Label text="TRAVEL REQ" class="label_bold" tooltip="Travel Request"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_TRV_REQ}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center" width="120px"
+								sortProperty="ZZ_DEP_STDATE" filterProperty="ZZ_DEP_STDATE">
+								<table:label>
+									<Label text="START DATE" class="label_bold" tooltip="Start Date"></Label>
+								</table:label>
+								<table:template>
+									<Label
+										text="{ path: 'ZZ_DEP_STDATE', 
+                            formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center" width="100px"
+								sortProperty="ZZ_DEP_ENDATE" filterProperty="ZZ_DEP_ENDATE">
+								<table:label>
+									<Label text="END DATE" class="label_bold" tooltip="End Date"></Label>
+								</table:label>
+								<table:template>
+									<Label
+										text="{ path: 'ZZ_DEP_ENDATE', 
+                            formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center" width="100px"
+								sortProperty="ZZ_DEP_DAYS" filterProperty="ZZ_DEP_DAYS"
+								filterOperator="EQ">
+								<table:label>
+									<Label text="NO. OF DAYS" class="label_bold" tooltip="No. of days"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_DAYS}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_FRCNTRY_TXT" filterProperty="ZZ_DEP_FRCNTRY_TXT">
+								<table:label>
+									<Label text="FROM COUNTRY" class="label_bold" tooltip="From Country"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_FRCNTRY_TXT}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_FRM_LOC" filterProperty="ZZ_FRM_LOC">
+								<table:label>
+									<Label text="FROM LOCATION" class="label_bold" tooltip="From Location"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_FRM_LOC}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_TOCNTRY_TXT" filterProperty="ZZ_DEP_TOCNTRY_TXT">
+								<table:label>
+									<Label text="TO COUNTRY" class="label_bold" tooltip="To Country"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_TOCNTRY_TXT}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_TO_LOC" filterProperty="ZZ_TO_LOC">
+								<table:label>
+									<Label text="TO LOCATION" class="label_bold" tooltip="To Location"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_TO_LOC}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								width="200px" sortProperty="ZZ_STAT_FLAG_DESC" filterProperty="ZZ_STAT_FLAG_DESC">
+								<table:label>
+									<Label text="STATUS" class="label_bold" tooltip="Status"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_STAT_FLAG_DESC}" tooltip="{ZZ_STAT_FLAG_DESC}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								width="150px" sortProperty="ZZ_SERV_TYP" filterProperty="ZZ_SERV_TYP">
+								<table:label>
+									<Label text="SERVICE CONDITION" class="label_bold"
+										tooltip="Service Condition"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_SERV_TYP}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								width="7em" sortProperty="ZZ_ASG_TYP" filterProperty="ZZ_ASG_TYP">
+								<table:label>
+									<Label text="ASSIGNMENT MODEL" class="label_bold"
+										tooltip="Assignment Model"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_ASG_TYP}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_TRV_PUR" filterProperty="ZZ_TRV_PUR" width="15em">
+								<table:label>
+									<Label text="PURPOSE OF TRAVEL" class="label_bold"
+										tooltip="Purpose of travel"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_TRV_PUR}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_EMAIL" filterProperty="ZZ_DEP_EMAIL" width="20em">
+								<table:label>
+									<Label text="EMAIL" class="label_bold" tooltip="Email"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_EMAIL}" tooltip="{ZZ_DEP_EMAIL}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_LEVEL" filterProperty="ZZ_DEP_LEVEL">
+								<table:label>
+									<Label text="LEVEL" class="label_bold" tooltip="Level"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_LEVEL}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								sortProperty="ZZ_DEP_GROUP" filterProperty="ZZ_DEP_GROUP">
+								<table:label>
+									<Label text="GROUP" class="label_bold" tooltip="Group"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_GROUP}"></Label>
+								</table:template>
+							</table:Column>
+
+							<table:Column resizable="false" hAlign="Center"
+								width="150px" sortProperty="ZZ_DEP_DEPT" filterProperty="ZZ_DEP_DEPT">
+								<table:label>
+									<Label text="DEPARTMENT" class="label_bold" tooltip="Department"></Label>
+								</table:label>
+								<table:template>
+									<Label text="{ZZ_DEP_DEPT}"></Label>
+								</table:template>
+							</table:Column>
+						</table:columns>
+					</table:Table>
+				</FlexBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar class="actionBar">
+				<contentLeft>
+					<Button text="Back" icon="sap-icon://sys-cancel" type="Reject"
+						press="backPress" />
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

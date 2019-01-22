@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons" xmlns:table="sap.ui.table">
+	<c:Dialog modal="true" width="510px" title="ADVANCE DETAILS" class="dialog">
+	    <Table id="tableAdvance"  items="{/}">
+	    	<columns>
+      			<Column>
+        			<Text text="Boarding Allowances" />
+      			</Column>
+      			<Column>
+      				<Text text="Lodging Eligibility"/>
+      			</Column>
+      			<Column>
+      				<Text text="Conveyance Eligibility"/>
+      			</Column>
+      		</columns>
+      			<items>
+      				<ColumnListItem>
+        				<cells>
+        				 	<Text text="{ZE2E_BOAC_TEXT}: {ZE2E_BOAC_AMT} {ZE2E_BOAC_CURR}" />
+        				 </cells>
+        				 <cells>
+        				 	<Text text="{ZE2E_LODC_TEXT}: {ZE2E_LODC_AMT} {ZE2E_LODC_CURR}" />
+        				 </cells>
+        				 <cells>
+        				 	<Text text="{ZE2E_LODC_TEXT}: {ZE2E_CONC_AMT} {ZE2E_CONC_CURR}" />
+        				 </cells>        				
+        			</ColumnListItem>
+        		</items>
+	    </Table>
+	   <!--  <table:Table id="tableAdvance" showNoData="false" 
+			columnHeaderHeight="40"> 
+			<table:columns>
+				<table:Column>
+					<table:label>
+						<Label text="Country" width="10em" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{ZZ_CNTRY}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<table:label>
+						<Label text="Minimum Days" width="10em"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{MINDS}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<table:label>
+						<Label text="Maximum Days" width="10em"></Label>
+					</table:label>
+					<table:template>
+						<Label
+							text="{MAXDS}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<table:label>
+						<Label text="Currency" width="10em"></Label>
+					</table:label>
+					<table:template>
+						<Label
+							text="{ZZ_CURR}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<table:label>
+						<Label text="Advance Amount" width="10em"></Label>
+					</table:label>
+					<table:template>
+						<Label
+							text="{ZZ_ADV}"></Label>
+					</table:template>
+				</table:Column>
+			</table:columns>
+		</table:Table> -->
+	</c:Dialog>
+</core:FragmentDefinition>

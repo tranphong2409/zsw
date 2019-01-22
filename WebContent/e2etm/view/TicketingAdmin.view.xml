@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.commons" xmlns:view="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns:unified="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:layout="sap.ui.commons.layout" controllerName="sap.ui.project.e2etm.controller.Ticketing">
+	<Page id='tcktAdmin' class="pageTicketingAdmin" showHeader="false"
+		showFooter='true'>
+		<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+		<IconTabBar id="idIconTabBarTcktAdmin" class="icontabbaradmin sapUiSizeCompact"
+			select="onIconTabSelect">
+			<items>
+				<IconTabFilter icon="sap-icon://begin" text="New" key="NEWT"
+					tooltip="New" />
+				
+				
+				<IconTabFilter icon="sap-icon://travel-itinerary"
+					tooltip="Sent Itinerary" text="Sent Itinerary" key="SEND"/>
+				
+				
+				<IconTabFilter icon="sap-icon://accept" tooltip="Accepted Itinerary"
+					text="Accepted Itinerary" key="ACCT"/>
+					
+				
+				<IconTabFilter icon="sap-icon://arrow-left" tooltip="Sent Back" id="tabSBACK"
+					text="Sent Back" key="SBAK"/>		
+			
+	
+			
+				
+				<IconTabFilter icon="sap-icon://journey-change"
+					tooltip="Change in Dates" text="Change in Dates" key="CDAT"/>
+					
+				
+				<IconTabFilter icon="sap-icon://family-care" tooltip="Family Accompanied"
+					text="Family Accompanied" key="FACC"/>
+					
+				
+				<IconTabFilter icon="sap-icon://sys-cancel-2" tooltip="Cancelled"
+					text="Cancelled" key="CANC"/>
+					
+				
+				<IconTabFilter icon="sap-icon://business-card"
+					tooltip="Visa Plan" text="Visa Plan" key="VISA"/>
+				
+				
+				<IconTabFilter icon="sap-icon://home" tooltip="Home Trip"
+					text="Home Trip" key="HOME"/>
+					
+				
+				<IconTabFilter icon="sap-icon://home-share" tooltip="Secondary Trip"
+					text="Secondary Trip" key="STRP"/>
+				
+				
+				<IconTabFilter icon="sap-icon://status-completed"
+					tooltip="Closed" id="closetab" text="Closed" key="CLOS">
+			
+				
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://future" tooltip="Dummy Tickets"
+					id="dummytab" text="Dummy Tickets" key="DTCK"/>
+					
+				
+				<IconTabFilter icon="sap-icon://attachment-zip-file"
+					tooltip="Attachments" id="attachtab" text="Batch Upload" key="BUPL">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.ticketing.BatchUpload"
+						type="XML" />
+
+					<!-- <UploadCollection id="batchupload" -->
+					<!-- maximumFilenameLength="55" multiple="true" uploadUrl="" showSeparators="None" -->
+					<!-- change="onBatchUpload" fileDeleted="onFileDeleted" fileRenamed="onFileRenamed" -->
+					<!-- fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch" -->
+					<!-- uploadComplete="onBatchUploadComplete" class="uploadCollectionClass 
+						margin_top_10" -->
+					<!-- items="{batchupload>/Files}"> -->
+					<!-- <UploadCollectionItem fileName="{batchupload>FileName}" -->
+					<!-- mimeType="{ -->
+					<!-- path: 'batchupload>FileName', -->
+					<!-- formatter: 'sap.ui.project.e2etm.util.Formatter.getFileType' -->
+					<!-- }" -->
+					<!-- url="{batchupload>FileUrl}" visibleEdit="false" visibleDelete="false" -->
+					<!-- thumbnailUrl="" /> -->
+					<!-- </UploadCollection> -->
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://pdf-reader" tooltip="TravelPlan PDF"
+					text="View PDF" key="VPDF">
+					<FlexBox direction="Column" alignItems="Center"
+						justifyContent="Center">
+						<FlexBox direction="Row" alignItems="Center"
+							justifyContent="SpaceBetween">
+							<Label text="Travel Plan" width="100px" />
+							<Input id="linktpno" />
+						</FlexBox>
+						<FlexBox direction="Row" alignItems="Center"
+							justifyContent="SpaceBetween">
+							<Label text="Employee No" width="100px" />
+							<Input id="linkempno" />
+						</FlexBox>
+						<FlexBox direction="Row" alignItems="Center"
+							justifyContent="SpaceBetween">
+							<Label text="Travel Type" width="100px" />
+							<Input id="linkttype" />
+						</FlexBox>
+						<Button text="View PDF" type="Emphasized" press="onSubmitPDF" />
+					</FlexBox>
+
+
+
+
+				</IconTabFilter>
+			</items>
+			<content>
+					<Toolbar id="tlbCloseSearch" visible="false">
+						<Label text="Travel Plan" />
+						<!-- <Input width="200px" change="onCloseChange"/> -->
+						<SearchField width="200px" search="onCloseChange" />
+					</Toolbar>
+				<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.ticketing.TcktWorklist"
+						type="XML" />
+			</content>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button text="Refresh" icon="sap-icon://refresh" press="onRefresh" />
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+
+
+	<ViewSettingsDialog id="viewDialog">
+		<sortItems>
+			<ViewSettingsItem text="Travel Req No" />
+			<ViewSettingsItem text="Employee Id" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Employee Id" />
+			<ViewSettingsItem text="From Country" />
+		</groupItems>
+	</ViewSettingsDialog>
+
+	<core:Fragment id="custommenu"
+		fragmentName="sap.ui.project.e2etm.fragment.common.CustomMenu" type="XML" />
+
+	<!-- <unified:Menu id="menu_settings"> -->
+	<!-- <unified:MenuItem text="Sort Ascending" select="onMenuItemSelect"/> -->
+	<!-- <unified:MenuItem text="Sort Descending" select="onMenuItemSelect"/> -->
+	<!-- <unified:MenuTextFieldItem label="Filter" select="onMenuItemSelect"/> -->
+	<!-- </unified:Menu> -->
+</core:View>

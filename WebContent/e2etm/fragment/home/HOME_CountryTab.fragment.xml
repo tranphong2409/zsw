@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:table="sap.ui.table"
+	xmlns:suite="sap.suite.ui.commons">
+	<FlexBox fitContainer="true" class="countryGuideLines margin_10"
+		id="flexBoxCountriesGuideLine">
+		<html:div id="canvasMap"></html:div>
+		<FlexBox class="landing_flexbox_country_detail" id="flexBoxCountrySpecificGuideLines">
+			<FlexBox direction="Column" class="countryFlexBox" width="100%">
+				<FlexBox alignItems="Center" justifyContent="Start" class="margin_5">
+					<FlexBox direction="Column" fitContainer="true" class="class_margin_15">
+						<Label text="COUNTRY" class="margin_top_5"></Label>
+						<Label text="LOCATION" class="margin_top_20"></Label>
+					</FlexBox>
+					<FlexBox direction="Column">
+						<FlexBox>
+							<Select width="255px" change="onCountryGuideLineChange"
+								id="sltCountry">
+							</Select>
+						</FlexBox>
+						<Select width="255px" change="onLocationGuideLineChange"
+							id="sltLocation">
+						</Select>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox direction="Column" class="landing_flexbox_country_item"
+					fitContainer="true">
+					<FlexBox direction="Column" fitContainer="true">
+						<Label text="Contact Person:" class="label_bold"></Label>
+						<Label text="{/HRName}" tooltip="{/HRName}" class="margin_top_5"></Label>
+					</FlexBox>
+					<FlexBox class="margin_top_5" direction="Column"
+						fitContainer="true">
+						<Label text="Contact Email:" class="label_bold"></Label>
+						<Label text="{/Email}" tooltip="{/Email}" class="margin_top_5"></Label>
+					</FlexBox>
+					<FlexBox class="margin_top_5" direction="Column"
+						fitContainer="true">
+						<Label text="Contact:" class="label_bold"></Label>
+						<Label text="{/Contact}" tooltip="{/Contact}" class="margin_top_5"></Label>
+					</FlexBox>
+				</FlexBox>
+			</FlexBox>
+			<FlexBox direction="Column" width="60%" justifyContent="SpaceBetween">
+				<Label text="List of Guidelines" class="label_bold"></Label>
+				<commons:TextView text="Click on one of the below links for more details"
+					class="label_italics label_small"></commons:TextView>
+				<FlexBox direction="Column" fitContainer="true" class="margin_10">
+					<Link text="General" class="margin_10" href="{/General}"
+						target="_blank"
+						enabled="{path : '/General', formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"></Link>
+					<Link text="Visa Requirements" class="margin_10" href="{/VisaReq}"
+						target="_blank"
+						enabled="{path : '/VisaReq', formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"></Link>
+					<Link text="Working Etiquette" class="margin_10" href="{/WorkEtiq}"
+						target="_blank"
+						enabled="{path : '/WorkEtiq', formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"></Link>
+					<Link text="Culture" class="margin_10" href="{/Culture}"
+						target="_blank"
+						enabled="{path : '/Culture', formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"></Link>
+					<Link text="Others" class="margin_10" href="{/Others}" target="_blank"
+						enabled="{path : '/Others', formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"></Link>
+				</FlexBox>
+			</FlexBox>
+		</FlexBox>
+	</FlexBox>
+</core:FragmentDefinition>

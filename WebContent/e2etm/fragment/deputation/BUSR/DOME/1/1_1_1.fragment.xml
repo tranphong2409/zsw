@@ -1,0 +1,4 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:commons="sap.ui.commons"
+	xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:view="sap.ui.core.mvc">
+	<view:XMLView viewName='sap.ui.project.e2etm.view.TravelPlan' /> 
+</core:FragmentDefinition>

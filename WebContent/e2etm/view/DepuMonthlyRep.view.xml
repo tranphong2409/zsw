@@ -1,0 +1,231 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table"
+	controllerName="sap.ui.project.e2etm.controller.DepuMonthlyRep"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Monthly Report" class="sapUiSizeCompact">
+		<content>
+			<Toolbar>
+				<Label text="Month:" width="50px" />
+				<Select id="ipMonth">
+					<items>
+						<core:Item key="" text="Please select" />
+						<core:Item key="01" text="January" />
+						<core:Item key="02" text="February" />
+						<core:Item key="03" text="March" />
+						<core:Item key="04" text="April" />
+						<core:Item key="05" text="May" />
+						<core:Item key="06" text="June" />
+						<core:Item key="07" text="July" />
+						<core:Item key="08" text="August" />
+						<core:Item key="09" text="September" />
+						<core:Item key="10" text="October" />
+						<core:Item key="11" text="November" />
+						<core:Item key="12" text="December" />
+					</items>
+				</Select>
+
+				<Input id="ipYear" placeholder="Year" width="150px" />
+				<ToolbarSpacer />
+				<Label text="Assignment Model" tooltip="Assignment Model"
+					width="150px" />
+				<Select id="ipAsgtyp">
+					<items>
+					    <core:Item text="Please select" key="" />
+						<core:Item text="STVA" key="STVA" />
+						<core:Item text="VA" key="VA" />
+						<core:Item text="VN" key="VN" />
+						<core:Item text="National Contract" key="NC" />
+					</items>
+				</Select>
+				<CheckBox text="Onward" id="rbtnOn" selected="true"/>
+				<CheckBox text="Return" id="rbtnRt"/>
+				<ToolbarSpacer />
+				<Button text="Search" width="100px" press="onSearch" icon="sap-icon://search"
+					class="resMBtnBlack formButtonMargin" />
+				<Button text="Export"  press="onExportCSV" icon="sap-icon://excel-attachment"
+					class="resMBtnBlack formButtonMargin" />
+			</Toolbar>
+
+			<table:Table rows="{asgReport>/}" id="tblList"
+				navigationMode="Paginator"
+				visibleRowCount="15" ariaLabelledBy="title">
+				<table:toolbar>
+					<Toolbar>
+						<ToolbarSpacer />
+						<SearchField width="200px" liveChange="onLiveSearch"
+							selectOnFocus="false" />
+					</Toolbar>
+				</table:toolbar>
+				<table:columns>
+
+
+					<table:Column sortProperty="Pernr" width="10rem">
+						<Label text="Employee No" />
+						<table:template>
+							<Text text="{asgReport>Pernr}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Name" width="10rem">
+						<Label text="Name" />
+						<table:template>
+							<Text text="{asgReport>Name}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="GID" width="10rem">
+						<Label text="Global Id" />
+						<table:template>
+							<Text text="{asgReport>GID}" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Department" width="10rem">
+						<Label text="Department" />
+						<table:template>
+
+							<Text text="{asgReport>Department}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Section" width="10rem">
+						<Label text="Section" />
+						<table:template>
+							<Text text="{asgReport>Section}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="BU" width="10rem">
+						<Label text="BU" />
+						<table:template>
+							<Text text="{asgReport>BU}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+					<table:Column width="10rem">
+						<Label text="Contract Type" />
+						<table:template>
+							<Text text="{asgReport>AsgType}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Job Level in Home Country" />
+						<table:template>
+							<Text text="{asgReport>Level}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Host Country" />
+						<table:template>
+							<Text text="{asgReport>Tocntry}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Host Location" />
+						<table:template>
+							<Text text="{asgReport>Toloc}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Host Entity name" />
+						<table:template>
+							<Text text="{asgReport>HostEntity}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Start Date" />
+						<table:template>
+							<Text text="{asgReport>Begda}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="End Date" />
+						<table:template>
+							<Text text="{asgReport>Endda}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Assignment Duration" />
+						<table:template>
+							<Text text="{asgReport>Duration}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Status" />
+						<table:template>
+							<Text text="{asgReport>Status}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Mentor’s E.No" />
+						<table:template>
+							<Text text="{asgReport>Mno}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Mentor’s Name" />
+						<table:template>
+							<Text text="{asgReport>Mname}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Onsite Address" />
+						<table:template>
+							<Text text="{asgReport>OAddress}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="No of Dependents" />
+						<table:template>
+							<Text text="{asgReport>Dependents}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Analage acceptance" />
+						<table:template>
+							<Text text="{asgReport>Andate}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="CL Acceptance" />
+						<table:template>
+							<Text text="{asgReport>Cldate}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Invitation Received" />
+						<table:template>
+							<Text text="{asgReport>Invdate}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Pre approval received" />
+						<table:template>
+							<Text text="{asgReport>Predate}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Stage2 Uploaded on" />
+						<table:template>
+							<Text text="{asgReport>S2Docs}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Visa Clearance" />
+						<table:template>
+							<Text text="{asgReport>AsgType}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Address of Stay" />
+						<table:template>
+							<Text text="{asgReport>OAddress}" />
+						</table:template>
+					</table:Column>
+					<table:Column width="10rem">
+						<Label text="Contact Number" />
+						<table:template>
+							<Text text="{asgReport>Contact}" />
+						</table:template>
+					</table:Column>
+
+				</table:columns>
+			</table:Table>
+		</content>
+	</Page>
+</core:View>

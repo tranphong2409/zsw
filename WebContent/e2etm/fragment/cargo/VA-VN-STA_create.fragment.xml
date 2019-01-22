@@ -1,0 +1,146 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Panel expandable="true" expanded="true">
+		<headerToolbar>
+			<Toolbar>
+				<Text text="Address and Family Detail	" />
+			</Toolbar>
+		</headerToolbar>
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto">
+				<l:content>
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+						editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+						labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+						columnsM="2" class="editableForm">
+						<f:content>
+							<core:Title text="Address" level="H4" />
+							<Label text="* Present Address" />
+							<TextArea value="{new>/Detail/ZZ_ADD_LOC}" maxLength="255"
+								id="idPresentAddressInput" editable="{new>/mode/editMode}" />
+							<Label text="Future Residence Addr" />
+							<TextArea value="{new>/Detail/ZZ_ADD_INT}" maxLength="255"
+								editable="{new>/mode/editMode}" />
+
+							<core:Title text="Family" />
+							<Label text="Present Contact Number" />
+							<Input value="{new>/Detail/ZZ_MOBILE}" maxLength="20"
+								id="idMobileInput" editable="{new>/mode/editMode}" />
+							<Label text="* Email Address" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/E_EMAIL}" type="Email"
+								maxLength="132" id="idEmailInput" editable="{new>/mode/editMode}" />
+							<Label text="* Family Members" />
+							<HBox>
+								<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_ADULT}"
+									description="Adults" fieldWidth="22%" maxLength="1" type="Number"
+									id="idAdultsInput" editable="{new>/mode/editMode}" />
+								<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CHILD}"
+									description="Children" fieldWidth="22%" maxLength="1" type="Number"
+									id="idChildrenInput" editable="{new>/mode/editMode}" />
+							</HBox>
+						</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+		</content>
+	</Panel>
+
+	<Panel expandable="true" expanded="true">
+		<headerToolbar>
+			<Toolbar>
+				<Text text="Further detail" />
+			</Toolbar>
+		</headerToolbar>
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto">
+				<l:content>
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+						editable="true" labelSpanL="4" layout="ResponsiveGridLayout"
+						labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+						columnsM="2" class="editableForm">
+						<f:content>
+							<core:Title text="Further Details" level="H4" />
+							<Label text="Loading Place" />
+							<RadioButton groupName="LoadingPlace" text="Yes"
+								class="custom_radiobutton" id="idRB_LoadingPlace_yes" editable="{new>/mode/editMode}"
+								selected="{new>/LoadingPlace}" />
+							<RadioButton groupName="LoadingPlace" text="No"
+								selected="true" class="custom_radiobutton" editable="{new>/mode/editMode}" />
+
+							<Label text="* Street and floor" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_STR_F}"
+								maxLength="60" id="idHomeStreetInput" editable="{new>/mode/editMode}" />
+							<Label text="* Country" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_CON_F}"
+								maxLength="3" id="idHomeCountryInput" editable="{new>/mode/editMode}" />
+							<Label text="* City" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_CITY_F}"
+								maxLength="40" id="idHomeCityInput" editable="{new>/mode/editMode}" />
+							<Label text="* ZIP code" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_ZIP_F}"
+								maxLength="10" id="idHomeZIPCodeInput" editable="{new>/mode/editMode}" />
+
+							<core:Title text="Future Work Address" />
+							<Label text="* Company" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_COM_W}"
+								maxLength="32" id="idWorkCompanyInput" editable="{new>/mode/editMode}" />
+							<Label text="* Country" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_CON_W}"
+								maxLength="3" id="idWorkCountryInput" editable="{new>/mode/editMode}" />
+							<Label text="* City" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_CITY_W}"
+								maxLength="40" id="idWorkCityInput" editable="{new>/mode/editMode}" />
+							<Label text="* Division being debited" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_DIV_W}"
+								maxLength="63" id="idDivisionDebitedInput" editable="{new>/mode/editMode}" />
+
+							<core:Title text=""></core:Title>
+							<Label text="Long Term storage" />
+
+							<RadioButton groupName="LongtermStorage" text="Yes"
+								class="custom_radiobutton" id="idRB_Longterm_yes" editable="{new>/mode/editMode}"
+								selected="{new>/LongTermStorage}" />
+							<RadioButton groupName="LongtermStorage" text="No"
+								class="custom_radiobutton" editable="{new>/mode/editMode}"
+								selected="{new>/NotLongTermStorage}" />
+							<Label visible="{new>/LongTermStorage}" text="* Period" />
+							<Input visible="{new>/LongTermStorage}" value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_PER}"
+								fieldWidth="13%" description="months" maxLength="2" id="idPeriodInput"
+								type="Number" editable="{new>/mode/editMode}" />
+							<Label text="Role out existing storage" />
+							<RadioButton groupName="RoleOut" text="Yes"
+								class="custom_radiobutton" id="idRB_RoleOut_yes" editable="{new>/mode/editMode}"
+								selected="{new>/RoleOut}" />
+							<RadioButton groupName="RoleOut" text="No" selected="true"
+								class="custom_radiobutton" editable="{new>/mode/editMode}" />
+
+							<Label text="Preferred Moving Time" />
+							<HBox>
+								<DateTimeInput type="Time" placeholder="Enter Time ..."
+									value="{new>/Detail/ZE2E_CARGO_E/ZZ_CAR_MOV_TIME}"
+									displayFormat="hh:mm a" valueFormat="HHmmss" id="idTimeInput"
+									editable="{new>/mode/editMode}" />
+								<Button icon="sap-icon://delete" press="onDeleteDate"
+									visible="{new>/mode/editMode}" />
+							</HBox>
+							<Label text="Additional instruction"></Label>
+							<TextArea value="{new>/Detail/ZZ_COMMENT}" maxLength="1000"
+								editable="{new>/mode/editMode}" />
+
+							<core:Title text="Volume of current household" />
+							<Label text="No of Rooms" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_ROOM_NO}"
+								maxLength="1" id="idRoomNoInput" editable="{new>/mode/editMode}" />
+							<Label text="M2 Living space" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_LIV_SPA}"
+								maxLength="3" id="idLivingSpaceInput" editable="{new>/mode/editMode}" />
+							<Label text="Others" />
+							<Input value="{new>/Detail/ZE2E_CARGO_E/ZZ_COMMENT}" type="Number"
+								maxLength="15" editable="{new>/mode/editMode}" />
+						</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

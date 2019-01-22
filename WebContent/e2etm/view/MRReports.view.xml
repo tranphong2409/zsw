@@ -1,0 +1,65 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:view="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="sap.ui.project.e2etm.controller.MRReports" xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page title="Title" class="sapUiSizeCompact">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://menu2" press="onChangeMode" />
+				</contentLeft>
+				<contentMiddle>
+				
+					<Title text="Reports"  titleStyle="H3"/>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+
+			<SplitApp id="splitapp">
+				<masterPages>
+					<Page showHeader="false">
+						<content>
+							<List id="masterlist" mode="SingleSelectMaster" itemPress="onItemPress">
+								<items>
+								  <GroupHeaderListItem title = "Accommodation"/>
+								    <StandardListItem id="accMrRep" type="Active" title="Monthly Rent" />
+								    <StandardListItem id="accSetlRep" type="Active" title="Settlement" />
+								   <GroupHeaderListItem title = "Other Reports"/>  
+									<StandardListItem id="0009Rep" type="Active" title="Bank Changes" />
+									<StandardListItem id="9907Rep" type="Active" title="New Initiation" />
+									<StandardListItem id="9908IRep" type="Active" title="Travel Advance" />
+									<StandardListItem id="primaryRep" type="Active" title="Primary TP Advance" />
+									<StandardListItem id="exceptionRep" type="Active" title="Exception Report" />
+								    <StandardListItem id="9908Rep" type="Active" title="9908_changes" />
+								  
+								</items>
+							</List>
+						</content>
+					</Page>
+				</masterPages>
+				<detailPages>
+					<Page id="detailpage" showHeader="false">
+						<!-- <content> -->
+						<!-- <core:Fragment fragmentName="sap.ui.project.e2etm.fragment.MonthlyRemittance.BankDetailsReport" -->
+						<!-- type="XML" /> -->
+						<!-- </content> -->
+
+					</Page>
+				</detailPages>
+			</SplitApp>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+				<Button id="btnProcess" text="Process" icon="sap-icon://response" press="onProcess"
+						type="Reject" />
+					<Button id="btnDownload" text="Download" icon="sap-icon://download" press="onDataExport"
+						type="Accept" />
+
+
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

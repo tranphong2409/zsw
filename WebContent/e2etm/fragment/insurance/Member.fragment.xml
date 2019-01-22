@@ -1,0 +1,126 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<f:SimpleForm minWidth="1024" maxContainerCols="1"
+		editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+		class="editableForm">
+		<f:content>
+			<l:VerticalLayout>
+				<l:HorizontalLayout>
+					<Text text="Travelling member(s)" class="font_size_16" />
+					<Text text="* Travelling member's name must be as per passport"
+						class="color_red smalltext margin_top_2 margin_left_5 font_size_14"></Text>
+				</l:HorizontalLayout>
+				<ScrollContainer class="padding_top_5">
+					<Text text="Previous Version"
+						visible="{	path: 'new>/ZE2E_INS_HDR/ZE2E_REQ_STATUS/ZZ_REASON',
+				   					formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}"></Text>
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.insurance.MemberOldVersion"
+						type="XML" />
+					<Text text="Current Version" class="padding_top_20"
+						visible="{ 	path: 'new>/ZE2E_INS_HDR/ZE2E_REQ_STATUS/ZZ_REASON',
+				   					formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}"></Text>
+					<Table items="{new>/ZE2E_INS_HDR/ZE2E_INS_DETAILSet}" mode="None"
+						id="dependentTableId" class="memberTable">
+						<columns>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="8em">
+								<Label text="Name" required="true" />
+							</Column>
+							<!-- <Column demandPopin="true" minScreenWidth="Desktop" width="5em"> -->
+							<!-- <Label text="Gender" required="true" /> -->
+							<!-- </Column> -->
+							<Column demandPopin="true" minScreenWidth="Desktop" width="7em">
+								<Label text="Relation" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="10em">
+								<Label text="Visa Type" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="14.8em">
+								<Label text="Payment Details(Cost for family)" />
+							</Column>
+							
+							<Column demandPopin="true" minScreenWidth="Desktop" width="8em">
+								<Label text="Ins. No" required="true" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="7.5em">
+								<Label text="DOB" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="8em">
+								<Label text="Passport" required="true" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="7.5em">
+								<Label text="Start Date" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="7.5em">
+								<Label text="End Date" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Input value="{new>ZZ_DEP_NAME}"
+										editable="{	path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+									<!-- <Input value="{new>ZZ_DEP_GENDER}" editable="false" /> -->
+
+<!-- 									<Select items="{new>/DEPENDENT_TYPE/results}" enabled="{path: 'global>/action', -->
+<!-- 													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" -->
+<!-- 										selectedKey="{new>ZZ_DEPNDT_TYP}" change="onDPNDChange"> -->
+<!-- 										<core:Item key="{new>DOMVALUE_L}" text="{new>DDTEXT}" /> -->
+<!-- 									</Select> -->
+                                    <Input value="{path:'new>ZZ_DEPNDT_TYP',
+                                                   formatter:'sap.ui.project.e2etm.util.Formatter.formatFamilyType'}" editable="false" />
+									<Select selectedKey="{new>ZZ_VISA_TYPE}" enabled="{path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" change="OnItemPress">
+										<core:Item key=" " text="Please Select" tooltip="Select Value" />
+										<core:Item key="BUSR" text="Business" tooltip="Business" 
+										      enabled="{parts:[{path:'new>/ZZ_TRV_TYP'},{path:'new>ZZ_DEPNDT_TYP'}],
+										      formatter:'sap.ui.project.e2etm.util.Formatter.enableBusinessOption' }"/>
+										<core:Item key="DPND" text="Dependent" tooltip="Dependent" 
+										  enabled="{parts:[{path:'new>/ZZ_TRV_TYP'},{path:'new>ZZ_DEPNDT_TYP'}],
+										      formatter:'sap.ui.project.e2etm.util.Formatter.enableDPNDOption' }"/>
+										<core:Item key="TOUR" text="Tourist" tooltip="Tourist" 
+										  enabled = "{parts:[{path:'new>/ZZ_TRV_TYP'},{path:'new>ZZ_DEPNDT_TYP'},{path:'new>/ZE2E_INS_HDR/ZZ_SPONSOR'}],
+										      formatter:'sap.ui.project.e2etm.util.Formatter.enableTouristOption' }"/>
+										<core:Item key="TRNG" text="Training" tooltip="Training" 
+										 enabled="{parts:[{path:'new>/ZZ_TRV_TYP'},{path:'new>ZZ_DEPNDT_TYP'}],
+										      formatter:'sap.ui.project.e2etm.util.Formatter.enableTRNGOption' }" />
+										<core:Item key="WRKP" text="Work permit" tooltip="Work permit" 
+										 enabled="{parts:[{path:'new>/ZZ_TRV_TYP'},{path:'new>ZZ_DEPNDT_TYP'}],
+										      formatter:'sap.ui.project.e2etm.util.Formatter.enableWRKPOption' }"/>
+									</Select>
+									<Select selectedKey="{new>ZZ_PAY_TYP}" enabled="{parts:[{path: 'global>/action'},{path:'new>/ZZ_TRV_TYP'}],
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editablePayType'}">
+									<items>
+										<core:Item key="" text="Please Select"/>
+										<core:Item key="PBRB" text="Paid By RBEI" tooltip="Paid By RBEI" 
+										           enabled="{= ${new>/ZZ_TRV_TYP} === 'DEPU' ? false : true }"/>
+										<core:Item key="PBEM" text="Paid By Associate" tooltip="Paid By Associate"
+										           enabled="{= ${new>ZZ_DEPNDT_TYP} === '00' ? false : true }" />
+										</items>
+									   </Select>
+									<Input value="{new>ZZ_INS_NO}" placeholder="Entered by Admin"
+									    tooltip="Entered by Admin" maxLength="15"
+										editable="{	path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdmin'}" />
+									<DatePicker value="{new>ZZ_DOB}" valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy" change="handleChange" editable="false" />
+									<Input value="{new>ZZ_PASSPORT}" maxLength="15"
+										editable="{	path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+									<DatePicker value="{new>ZZ_BEGDA}" valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy" change="handleChange" editable="{path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+									<DatePicker value="{new>ZZ_ENDDA}" valueFormat="yyyyMMdd"
+										displayFormat="dd/MM/yyyy" change="handleChange" editable="{path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+			</l:VerticalLayout>
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

@@ -1,0 +1,192 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.TrstDailyReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Daily Report">
+		<content>
+			<Panel width="auto" class="panelBorderTrSettle sapUiSizeCompact">
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Details" />
+						<ToolbarSpacer />
+						<Button text="Download" type="Emphasized" press="onExport" />
+
+					</Toolbar>
+
+				</headerToolbar>
+				<content>
+					<ScrollContainer horizontal="true" vertical="true"
+						focusable="true">
+						<Table id="dailyRep" inset="false" growing="true"
+							class="tableclass table_ticket_admin sapUiSizeCompact"
+							growingScrollToLoad="true" noDataText="{No Data}" items="{/TrstDailyReportSet}"
+							fixedLayout="true">
+
+							<columns>
+								<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Travel Plan Number" />
+								</Column>
+								<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+									width="60px">
+									<Text text="Trvl Stlmnt recd at Cob(BSA)" />
+								</Column>
+								<Column id="txtAwt" minScreenWidth="Tablet" demandPopin="true"
+									width="150px">
+									<Text text="Awaiting Surrender Date" />
+								</Column>
+								<!-- <Column id="col4" minScreenWidth="Tablet" demandPopin="true" -->
+								<!-- width="50px"> -->
+								<!-- <Text text="Visa Type" /> -->
+								<!-- </Column> -->
+								<Column id="txtSur" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Encashment receipt recd at Cob(BSA)" />
+								</Column>
+<!-- 								<Column id="txtScn" minScreenWidth="Tablet" demandPopin="true" -->
+<!-- 									width="100px"> -->
+<!-- 									<Text text="Scanning Date" /> -->
+<!-- 								</Column> -->
+								<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Emp No" />
+								</Column>
+								<Column id="col6" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Emp Name" />
+								</Column>
+								<Column id="col7" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Fund Center" />
+								</Column>
+								<Column id="col8" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Commitment Code" />
+								</Column>
+								<Column id="txtBegda" minScreenWidth="Tablet"
+									demandPopin="true" width="100px">
+									<Text text="Travel Start Date" />
+								</Column>
+								<Column id="txtEndda" minScreenWidth="Tablet"
+									demandPopin="true" width="100px">
+									<Text text="Travel End Date" />
+								</Column>
+								<Column id="col11" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Place of Travel" />
+								</Column>
+								<Column id="col12" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Days" />
+								</Column>
+								<Column id="col13" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Type of Travel" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Category" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Status" />
+								</Column>
+								<Column id="col14" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Advance Amount" />
+								</Column>
+								<Column id="col15" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Advance Currency" />
+								</Column>
+								<Column id="col16" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Total Expense" />
+								</Column>
+								<Column id="col17" minScreenWidth="Tablet" demandPopin="true"
+									width="150px">
+									<Text text="Currency" />
+								</Column>
+								<Column id="col18" minScreenWidth="Tablet" demandPopin="true"
+									width="45px">
+									<Text text="Payable to Company" />
+								</Column>
+								<Column id="col19" minScreenWidth="Tablet" demandPopin="true"
+									width="50px">
+									<Text text="Receivable to employee" />
+								</Column>
+								<Column id="col20" minScreenWidth="Tablet" demandPopin="true"
+									width="50px">
+									<Text text="Verified by TS Team" />
+								</Column>
+
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Reinr}" wrapping="false" tooltip="{Reinr}" />
+										<Text text="" />
+
+
+										<Text wrapping="false"
+											tooltip="{path:'Awsurdt', type: 'sap.ui.model.type.Date',formatOptions: {
+				                style:'short'
+				               }}"
+											text="{path:'Awsurdt', type: 'sap.ui.model.type.Date',formatOptions: {
+				                 pattern:'dd.MM.yyyy'
+				               }}" />
+										<Text wrapping="false"
+											text="{path:'Surrdt',type: 'sap.ui.model.type.Date',formatOptions: {
+				                pattern:'dd.MM.yyyy'
+				               }}"
+											tooltip="{path:'Surrdt',type: 'sap.ui.model.type.Date',formatOptions: {
+				                style:'short'
+				               }}" />
+<!-- 				               	<Text wrapping="false" -->
+<!-- 											text="{path:'Scndt',type: 'sap.ui.model.type.Date',formatOptions: { -->
+<!-- 				                pattern:'dd.MM.yyyy' -->
+<!-- 				               }}" -->
+<!-- 											tooltip="{path:'Scndt',type: 'sap.ui.model.type.Date',formatOptions: { -->
+<!-- 				                style:'short' -->
+<!-- 				               }}" /> -->
+										<Text text="{path:'Pernr'}" tooltip="{path:'Pernr'}"
+											wrapping="false" />
+										<Text text="{Ename}" tooltip="{Ename}" wrapping="false" />
+										<Text text="{Geber}" tooltip="{Geber}" wrapping="false" />
+										<Text text="{path:'Fipex'}" tooltip="{path:'Fipex'}"
+											wrapping="false" />
+										<Text wrapping="false"
+											text="{path:'Begda',type: 'sap.ui.model.type.Date',formatOptions: {
+				              pattern:'dd.MM.yyyy'
+				               }}"
+											tooltip="{path:'Begda',type: 'sap.ui.model.type.Date',formatOptions: {
+				                style:'short'
+				               }}" />
+										<Text wrapping="false"
+											text="{path:'Endda',type: 'sap.ui.model.type.Date',formatOptions: {
+				                pattern:'dd.MM.yyyy'
+				               }}"
+											tooltip="{path:'Endda',type: 'sap.ui.model.type.Date',formatOptions: {
+				                style:'short'
+				               }}" />
+										<Text text="{ZzToCnty}" tooltip="{ZzToCnty}" wrapping="false" />
+										<Text text="{Duration}" tooltip="{Duration}" wrapping="false" />
+										<Text text="{Zvisatxt}" wrapping="false" />
+										<Text text="{Category}" tooltip="{Category}" wrapping="false" />
+										<Text text="{Status}" tooltip="{Status}" wrapping="false" />
+										<Text text="{Advamt}" tooltip="{Advamt}" wrapping="false" />
+										<Text text="{Advcur}" tooltip="{Advcur}" wrapping="false" />
+										<Text text="{Totalexp}" tooltip="{Totalexp}" wrapping="false" />
+										<Text text="{Totalcur}" tooltip="{Totalcur}" wrapping="false" />
+										<Text text="{Paytocmp}" tooltip="{Paytocmp}" wrapping="false" />
+										<Text text="{Rectoemp}" tooltip="{Rectoemp}" wrapping="false" />
+										<Text text="" />
+
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Panel>
+
+		</content>
+	</Page>
+</core:View>

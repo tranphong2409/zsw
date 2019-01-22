@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+	<ScrollContainer width="100%">
+		<Table width="100%" id="transferrep" items="{path:'transfer>/'}" class="tableclass sapUiSizeCompact">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="Details" level="H2" />
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="6.5rem">
+				<Button id="empname" text="Employee Name" icon="sap-icon://sort" class="button_header" press="onMenu"/>
+				
+				</Column>
+
+				<Column width="6rem">
+					<Button id="empno" text="Employee No" icon="sap-icon://sort" class="button_header" press="onMenu" />
+				</Column>
+
+
+				<Column width="6rem">
+					<Button id="dept" text="Department" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Department" />
+				</Column>
+
+				<Column width="6rem">
+					<Button id="section" text="Section" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Section" />
+				</Column>
+		    	<Column width="6rem">
+					<Button id="bu" text="BU" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="BU" />
+				</Column>
+				<Column width="6rem">
+					<Button id="ctype" text="Contract Type" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Contract Type" />
+				</Column>			
+				<Column width="6rem">
+					<Button id="level" text="Level" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Level"
+						textAlign="Center" />
+				</Column>
+				<Column width="6rem" id="country">
+					<Button id="cntry" text="Country" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Country"
+						/>
+				</Column>
+				<Column width="6rem" id="location" visible="false">
+					<Button id="loc" text="Location" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Location"
+						 />
+				</Column>
+				<Column width="7.5rem">
+					<Button id="depsdate" text="Dep.Start Date" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Deputation Start Date"
+						/>
+				</Column>
+				<Column width="7.5rem">
+					<Button id="depedate" text="Dep. End Date" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Deputation End Date"
+						/>
+				</Column>
+				<Column width="8rem">
+					<Button id="aduration" text="Assignment Duration(in Days)" icon="sap-icon://sort" class="button_header" press="onMenu" tooltip="Assignment Duration(in Days)"
+						/>
+				</Column>
+
+
+			</columns>
+			<items>
+				<ColumnListItem height="10px">
+					<cells>
+						<Text text="{transfer>EmpName}" />
+						<Text text="{transfer>EmpNo}" />
+						<Text text="{transfer>Department}" />
+						<Text text="{transfer>Section}" />
+						<Text text="{transfer>BU}" />
+						<Text text="{transfer>ContractType}" />
+						<Text text="{transfer>Level}" />
+						<Text text="{transfer>ToCountryText}" />
+						<Text text="{transfer>ToLoc}" />						
+						<Text
+							text="{path:'transfer>StartDate',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<Text
+							text="{path:'transfer>EndDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<Text text="{transfer>Duration}" />						
+						
+					
+				
+					
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

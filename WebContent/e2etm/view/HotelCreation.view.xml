@@ -1,0 +1,156 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.HotelCreation"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Panel headerText="Add" class="resPanelNoBackground">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://nav-back" press="onNavBack" />
+				<ToolbarSpacer />
+				<Label text="Apartment Details" design="Bold" />
+				<ToolbarSpacer />
+
+			</Toolbar>
+		</headerToolbar>
+
+		<content>
+			<Panel headerText="Details" class="resFilterPanel resPanelBorder" expandable="true" expanded="true">
+				<f:SimpleForm id="hotelDet" editable="true"
+					layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+					labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+					emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+					columnsL="3" columnsM="2" columnsS="1" singleContainerFullSize="false">
+					<f:content>
+						<core:Title />
+						<Label text="Apartment Code" />
+						<Input value="{hotelDet>Hcode}" id="ipHcode" maxLength="4">
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</Input>
+						<Label text="Contract Start Date." />
+						<DatePicker id="ipBegda" value="{hotelDet>Begda}" displayFormat="dd.MM.yyyy" valueFormat="yyyyMMdd">
+<!-- 							value="{path:'hotelDet>Begda',type: 'sap.ui.model.type.Date',formatOptions: { -->
+<!-- 				                pattern:'dd.MM.yyyy', -->
+<!-- 				                UTC:true			                 -->
+<!-- 				               }}"> -->
+							<layoutData>
+								<l:GridData span="L4 M3 S4" />
+							</layoutData>
+						</DatePicker>
+						<Label text="Address" />
+						<TextArea value="{hotelDet>Hlocn}" id="ipHlocn" />
+						<Label text="Email" />
+						<Input value="{hotelDet>Email}" id="ipEmail" type="Email"/>
+						<Label text="Apartment Rules" />
+						<TextArea width="100%" value="{hotelDet>Hruls}" maxLength="512" rows="8"/>
+
+						<core:Title />
+
+						<Label text="Apartment Name" />
+						<Input value="{hotelDet>Hname}" id="ipHname" />
+						<Label text="Contract End Date" />
+						<DatePicker id="ipEndda" value="{hotelDet>Endda}" displayFormat="dd.MM.yyyy" valueFormat="yyyyMMdd">
+<!-- 							value="{path:'hotelDet>Endda',type: 'sap.ui.model.type.Date',formatOptions: { -->
+<!-- 				                pattern:'dd.MM.yyyy', -->
+<!-- 				                UTC:true			                 -->
+<!-- 				               }}"> -->
+							<layoutData>
+								<l:GridData span="L4 M3 S4" />
+							</layoutData>
+						</DatePicker>
+						<Label text="Country" />
+						<ComboBox id="ipHcnty" selectedKey="{hotelDet>Hcnty}"
+							items="{path:'global>/country'}" change="onCountryChange">
+							<items>
+								<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+							</items>
+						</ComboBox>
+						<Label text="Phone" />
+						<Input id="ipPhone" value="{hotelDet>Phone}"/>
+
+						<core:Title text="" />
+
+						<Label text="Contact Person" />
+						<Input value="{hotelDet>Cpers}" maxLength="50" />
+						<Label text="Rent" />
+						<Input value="{hotelDet>Mrent}" id="ipMrent">
+							<layoutData>
+								<l:GridData span="L2 M3 S4" />
+							</layoutData>
+						</Input>
+						<ComboBox id="ipWaers" selectedKey="{hotelDet>Waers}"
+							placeholder="Currency" items="{path:'currency>/'}">
+							<items>
+								<core:Item key="{currency>FIELD1}" text="{currency>FIELD1}" />
+							</items>
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</ComboBox>
+								
+						
+						<ComboBox id="ipRfreq" selectedKey="{hotelDet>Rfreq}"
+							placeholder="Period" items="{period>/}">
+							<items>
+								<core:Item text="{period>DDTEXT}" key="{period>DOMVALUE_L}" />
+							</items>
+							<layoutData>
+								<l:GridData span="L3 M3 S4" />
+							</layoutData>
+						</ComboBox>
+						<Label text="City" />
+						<ComboBox id="ipHcity" selectedKey="{hotelDet>Hcity}"
+							items="{path: '/DEP_LOCATIONSSet'}">
+							<items>
+								<core:Item key="{MOLGA}" text="{BLAND}" />
+							</items>
+						</ComboBox>
+						<Label text="Notes" />
+						<Input value="{hotelDet>Notes}" />
+
+
+					</f:content>
+				</f:SimpleForm>
+			</Panel>
+			<Panel expandable="true" class="resFilterPanel resPanelBorder">
+			
+					<headerToolbar>
+						<Toolbar>
+							<Label text="Upload Documents" design="Bold"/>
+							<ToolbarSpacer />
+							<unified:FileUploader class="button_bgcolor" icon="sap-icon://upload" uploadUrl="proxy/sap/opu/odata/sap/ZE2E_RES_NWGS_SRV/DmsDocs4ResSet"
+								id="btnFormsUploader" buttonText="Upload" buttonOnly="true" uploadOnChange="FALSE"
+								change="onFormsUpload" uploadComplete="onUploadComplete" />
+							<Button text="Remove" class="button_bgcolor" id="btnFormsRemove"
+								press="onRemoveForms" icon="sap-icon://delete" />
+
+						</Toolbar>
+					</headerToolbar>
+
+					<HBox id="docsSet" items="{path:'hotelDet>/DmsDocs4ResSet'}">
+						<FlexBox direction="Column" class="margin_right_20">
+							<Image src="{path:'hotelDet>FileName',formatter:'.getIcon'}" width="50px" height="50px"></Image>
+							<Link text="{hotelDet>FileName}" tooltip="{hotelDet>FileName}"
+								href="{hotelDet>FileUrl}" target="_blank" class="viewRepeatURL"></Link>
+							<CheckBox selected="{=${hotelDet>Checked} === 'X'}"/>
+						</FlexBox>
+					</HBox>
+
+	
+			</Panel>
+
+			<Bar>
+				<contentMiddle>
+					<Button text="Save" press="onSave" type="Accept"/>
+				</contentMiddle>
+			</Bar>
+
+
+
+		</content>
+
+	</Panel>
+
+</core:View>

@@ -1,0 +1,151 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<FlexBox class="dep_customer_flexbox">
+		<t:Table rows="{/advance/}" visibleRowCount="3" selectionMode="None"
+			columnHeaderHeight="40">
+			<t:toolbar>
+				<c:Toolbar design="Transparent">
+					<c:Button text="Advances as Per Policy" press="onAdvancePress"></c:Button>
+					<Label text="Please click on the button to know the advance eligibility as per policy" class="advance_text"></Label>
+				</c:Toolbar>
+			</t:toolbar>
+			<t:Column>
+				<c:Label text="CURRENCY" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:ComboBox items="{ path: '/currency'}" selectedKey="{currency_key}"
+						enabled="{/view/isFuture}" class="width_auto"
+						change="onCurrencyChange"
+						valueState="{currency_key_error}">
+						<core:ListItem key="{FIELD1}" text="{FIELD1}" />
+					</c:ComboBox>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<c:Label text="BOARDING" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{boarding}" change="onAdvanceMoneyChange"
+						enabled="{/view/isFuture}" class="width_100pc"
+						valueState="{boarding_error}"
+						id="boardingId"></c:TextField>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<c:Label text="LODGING" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{lodging}" change="onAdvanceMoneyChange"
+						enabled="{/view/isFuture}" class="width_100pc"
+						valueState="{lodging_error}"
+						id="lodgingId"></c:TextField>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<c:Label text="CONVEYANCE AND OTHERS" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{surface}" change="onAdvanceMoneyChange"
+						enabled="{/view/isFuture}" class="width_100pc"
+						valueState="{surface_error}"
+						id="surfaceId"></c:TextField>
+				</t:template>
+			</t:Column>
+<!-- 			<t:Column> -->
+<!-- 				<c:Label text="OTHERS" class="label_small_bold"></c:Label> -->
+<!-- 				<t:template> -->
+<!-- 					<c:TextField value="{others}" change="onAdvanceMoneyChange" -->
+<!-- 						enabled="{/view/enabled}" class="width_100pc" -->
+<!-- 						valueState="{others_error}" -->
+<!-- 						id="othersId"></c:TextField> -->
+<!-- 				</t:template> -->
+<!-- 			</t:Column> -->
+			<t:Column>
+				<c:Label text="TOTAL" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{total}" enabled="false" class="width_100pc"></c:TextField>
+				</t:template>
+			</t:Column>
+			<!-- <t:Column> -->
+			<!-- <c:Label text="Currency Name"></c:Label> -->
+			<!-- <t:template> -->
+			<!-- <c:TextField value="{currency_text}" enabled="false" class="width_100pc"></c:TextField> -->
+			<!-- </t:template> -->
+			<!-- </t:Column> -->
+		</t:Table>
+	</FlexBox>
+<!-- Start-Secondary Travel Advance Changes -->
+
+     
+     			<FlexBox id="bankCardFlexBox" justifyContent="SpaceAround" class="border_lightgray background_gray_linear">
+				<VBox>
+				  <RadioButton id="rbBtnBank" editable="{/view/isFuture}" text="Bank Transfer" selected="{path:'/bankcarddetails/Bank',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}" class="margin_left_80_advance"/>
+				    <ToolbarSpacer/>
+				    <ToolbarSpacer/>
+					<HBox>
+						<Label text="Name of the Bank: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Nofbk}" />
+					</HBox>
+					<HBox>
+						<Label text="Bank Account Number: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Bkact}" />
+					</HBox>
+					<HBox>
+						<Label text="Bank Code: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Bkcbr}" />
+					</HBox>
+					<HBox>
+						<Label text="Branch Code: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Brncd}" />
+					</HBox>
+					<HBox>
+						<Label text="Routing Code: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Rcode}" />
+					</HBox>
+					<HBox>
+						<Label text="IBAN No: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Ibano}" />
+					</HBox>
+					<HBox>
+						<Label text="Swift Code: "  width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Swbic}" />
+					</HBox>
+					<HBox>
+						<Label text="Street/Area/PostBox Number: " width="200px" tooltip="Street/Area/PostBox Number"
+							class="font_size_14" />
+						<Text text="{/bankcarddetails/Starp}" />
+					</HBox>
+					<HBox>
+						<Label text="Pin Code: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Porct}" />
+					</HBox>
+					<HBox>
+						<Label text="City: " width="200px" class="font_size_14" />
+						<Text text="{/bankcarddetails/City}" />
+					</HBox>
+				</VBox>
+				<VBox>
+				<RadioButton id="rbBtnCard" editable="{/view/isFuture}" text="Card Reload" selected="{path:'/bankcarddetails/Card',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}" class="margin_left_80_advance" />
+				<ToolbarSpacer/>
+				    <ToolbarSpacer/>
+					<HBox>
+						<Label text="Card Number: " width="120px" class="font_size_14" />
+						<Text text="{/bankcarddetails/CardNo}" />
+					</HBox>
+					<HBox>
+						<Label text="Issued Banker: " width="120px" class="font_size_14" />
+						<Text text="{/bankcarddetails/IssuedBanker}" />
+					</HBox>
+					<HBox>
+						<Label text="Card Validupto: " width="120px" class="font_size_14" />
+						<Text text="{path: '/bankcarddetails/CardValidity',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					</HBox>
+					<HBox>
+						<Label text="Currency: " width="120px" class="font_size_14" />
+						<Text text="{/bankcarddetails/Currency}" />
+					</HBox>
+				</VBox>
+				<VBox>
+				<RadioButton id="rbBtnNone" editable="{/view/isFuture}" text="None" selected="{path:'/bankcarddetails/None',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}" class="margin_left_80_advance"/>
+				</VBox>
+
+			</FlexBox>
+<!-- End-Secondary Travel Advance Changes -->
+</core:FragmentDefinition>

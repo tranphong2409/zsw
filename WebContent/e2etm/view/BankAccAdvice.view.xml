@@ -1,0 +1,118 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:c="sap.ui.commons" controllerName="sap.ui.project.e2etm.controller.BankAccAdvice"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Bank Advice Form" class="monthrem">
+		<content>
+			<ObjectHeader id='objhdr' class="forexObjHeader"
+				title="{='Travel Plan:' + ${general>/ZZ_TRV_REQ}}" />
+			<!-- title="{='Travel Plan:70000380'}"> -->
+
+			<FlexBox direction="Column" justifyContent="SpaceBetween"
+				alignItems="Center">
+
+				
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label text="Employee No" class="{= ${bankadv>/BKACT} ? 'required' : '' }"/>
+					
+					<Input value="{general>/ZZ_DEP_PERNR}" editable="false" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<c:Label id="lblNAIBK" width="120px" wrapping="true"
+						text="Name as in the Bank Account"
+						class="{path:'bankadv>/NAIBK',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_NAME}" editable="{/view/emp}" 
+						></Input> -->
+					<Input id="NAIBK" value="{/Naibk}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblNOFBK" text="Name of the Bank"
+						class="{path:'bankadv>/NOFBK',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_DEPT}" editable="{/view/emp}" 
+						></Input> -->
+					<Input id="NOFBK" value="{/Nofbk}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblSTARP" text="Street/Area/Postbox Number"
+						class="{path:'bankadv>/STARP',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input> -->
+					<Input id="STARP" value="{/Starp}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblCITY" text="City" class="{path:'bankadv>/CITY',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}"/>
+						
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input> -->
+					<Input id="CITY" value="{/City}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblPORCT" text="Pin Code"
+						class="{path:'bankadv>/PORCT',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input> -->
+					<Input id="PORCT" value="{/Porct}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<!-- <Label text="Bank Account Number" class="{path:'bankadv>/BKACT',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}"/> -->
+					<Label id="lblBKACT" text="Bank Account Number"
+						class="{=${bankadv>/BKACT}=='X'?'required':''}" />
+					<Input id="BKACT" value="{/Bkact}" type="Number"
+						editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblRCODE" text="Routing Code"
+						class="{path:'bankadv>/RCODE',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+
+					<Input id="RCODE" value="{/Rcode}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblSWBIC" text="SWIFT Code/BIC"
+						class="{path:'bankadv>/SWBIC',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+
+					<Input id="SWBIC" value="{/Swbic}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblIBANO" text="IBAN Number"
+						class="{path:'bankadv>/IBANO',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+
+					<Input id="IBANO" value="{/Ibano}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblSSNNO" text="SSN Number(if applicable)"
+						class="{path:'bankadv>/SSNNO',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input> -->
+					<Input id="SSNNO" value="{/Ssnno}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblBKCBR" text="Bank Code"
+						class="{path:'bankadv>/BKCBR',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input> -->
+					<Input id="BKCBR" value="{/Bkcbr}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select">
+					<Label id="lblBRNCD" text="Branch Code"
+						class="{path:'bankadv>/BRNCD',formatter:'sap.ui.project.e2etm.util.Formatter.formatStyleClass'}" />
+					<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input> -->
+					<Input id="BRNCD" value="{/Brncd}" editable="{fieldproperties>/editable}" />
+				</FlexBox>
+			</FlexBox>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="back" text="Back" type="Emphasized" press="onBackPress"
+						icon="sap-icon://home" />
+				</contentLeft>
+				<contentMiddle>
+					<!-- icon="sap-icon://home"></Button> -->
+				</contentMiddle>
+				<contentRight>
+					<Button text="Edit" id="reject" icon="sap-icon://request"
+						type="Reject" press="onEditPress" visible="{bProperties>/rVisible}" />
+					<Button id="btnSubmit" text="Submit" type="Accept" press="onSubmitPress"
+						icon="sap-icon://sys-enter" visible="{properties>/submitvisible}" />
+
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

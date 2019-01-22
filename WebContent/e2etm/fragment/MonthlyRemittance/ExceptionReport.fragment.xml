@@ -1,0 +1,111 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:table="sap.ui.table">
+	<Panel width="auto" id="reportexceptionspanel" class="panelBorderTrSettle sapUiSizeCompact">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Details" />
+
+			</Toolbar>
+
+		</headerToolbar>
+		<content>
+		  
+			<ScrollContainer id="reportexceptionsscroll" horizontal="true" vertical="true"
+				focusable="true" height="500px">
+				<Table id="reportexceptions" inset="false" growing="true"
+					class="tableclass table_ticket_admin sapUiSizeCompact"
+					growingScrollToLoad="true" noDataText="{No Data}" items="{/RemittanceExceptionRepSet}"
+					fixedLayout="true">
+
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Employee No" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+							<Text text="Travel Plan" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="150px">
+							<Text text="Name" />
+						</Column>
+						<!-- <Column id="col4" minScreenWidth="Tablet" demandPopin="true" -->
+						<!-- width="50px"> -->
+						<!-- <Text text="Visa Type" /> -->
+						<!-- </Column> -->
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Description" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Item" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Month" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Year" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Approved Amount" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Currency" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Ohaal" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Request Recd Date" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Date of Payment" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Department" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Section" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="BU" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+							<Text text="Country" />
+						</Column>
+
+
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{Pernr}" wrapping="false" tooltip="{Pernr}" />
+								<Text text="{Reinr}" />
+								<Text wrapping="false" tooltip="{Name}" text="{Name}" />
+								<Text wrapping="false" text="{Description}" tooltip="{Description}" />
+								<Text text="{Item}" tooltip="{Item}" wrapping="false" />
+								<Text text="{Zmonth}" tooltip="{Zmonth}" wrapping="false" />
+								<Text text="{Zyear}" tooltip="{Zyear}" wrapping="false" />
+								<Text text="{Apamt}" tooltip="{Apamt}" wrapping="false" />
+								<Text text="{Currency}" tooltip="{Currency}" wrapping="false" />
+								<Text text="{Ohaal}" tooltip="{Ohaal}" wrapping="false" />
+								<Text wrapping="false"
+									text="{path:'Recdt',type: 'sap.ui.model.type.Date',formatOptions: {
+				                 pattern:'dd.MM.yyyy'
+				               }}"
+									tooltip="{path:'Recdt',type: 'sap.ui.model.type.Date',formatOptions: {
+				                style:'short'
+				               }}" />
+								<Text text="" tooltip="" wrapping="false" />
+								<Text text="{Department}" tooltip="{Department}" wrapping="false" />
+
+								<Text wrapping="false" text="{Section}" tooltip="{Section}" />
+								<Text text="{Bu}" tooltip="{Bu}" wrapping="false" />
+								<Text text="{Country}" wrapping="false" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		
+		</content>
+	</Panel>
+</core:FragmentDefinition>

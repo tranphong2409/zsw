@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+<!-- <ScrollContainer> -->
+	<Table  itemPress="onItemPress" inset="false" class="tableclass table_ticket_admin"	 
+		items="{path: '/'}" growing="true" growingThreshold="100" fixedLayout="true" mode="MultiSelect">
+		<headerToolbar>
+			<Toolbar visible="false">
+				<Label text="Assign Request" class="font_size_14" />
+				<c:TextField width="200px"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="20%">
+				<Button text="Travel Req" icon="sap-icon://sort"  class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="20%">
+				<Button text="Employee No" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="20%">
+				<Button text="Name" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="20%">
+				<Button text="Start Date" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="20%">
+				<Button text="Location" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+		
+			<Column width="20%">
+				<Button text="Request Type" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+				
+			</Column>
+			<Column width="20%">
+				<Button text="{path:'pepayroll>/role',formatter:'sap.ui.project.e2etm.util.Formatter.changeTableText'}" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="20%">
+				<Button text="Request With" icon="sap-icon://sort" class="button_header" type="Transparent" press="onMenu" />
+			</Column>
+		   
+			<Column  width="20%" visible="{pepayroll>/spvisible}">
+<!-- 				<Button text="Send to PayrollTeam" tooltip="Send to Payroll Team"  class="button_header"/> -->
+				<Text text="Send to PayrollTeam" tooltip="Send to PayrollTeam" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+			</Column>
+		<Column  width="20%" visible="{pepayroll>/auvisible}">
+<!-- 				<Button text="Advance Updated" tooltip="Advance Updated"  class="button_header"/> -->
+	<Text text="Advance Updated" tooltip="Advance Updated" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+			</Column>
+		<Column  visible="{pepayroll>/bankvisible}" width="20%">
+
+      	  <Text text="BankName" tooltip="Bank Name" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+		</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" height="10px" >
+				<cells>
+					<Text text="{TravelPlan}" />
+					<Text text="{EmpNo}" />
+					<Text text="{EmpName}" wrapping="false" tooltip="{EmpName}"/>
+					<Text
+						text="{path:'StartDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{Location}" />
+					
+					<Text text="{RequestType}" />
+					<Text text="{path:'ReceivedDt',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{ForexResp}"  wrapping="false" tooltip="{ForexResp}"/>
+					<CheckBox editable="false" selected="{path:'PePayroll',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}"/>
+					<CheckBox editable="false" selected="{path:'AdvUpdated',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}"/>
+					<Text text="{BankName}"  wrapping="false" tooltip="{BankName}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+<!-- 	</ScrollContainer> -->
+</core:FragmentDefinition>

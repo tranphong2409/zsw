@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+		<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.insurance.TravelInfo"
+			type="XML" />
+		<IconTabBar class="margin_bottom_100" id="iconTabBarId"
+			select="onTabBarSelect" expandable="false">
+						
+			<items>
+				<IconTabFilter icon="sap-icon://hint" tooltip="Request Details"
+					id="idIconTabFilter0">
+					<commons:Panel text="REQUEST DETAILS" id="memberPanelId" class="panelCollapse">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.insurance.HeaderInfo"
+							type="XML" />
+
+						<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.insurance.Member"
+							type="XML" />
+					</commons:Panel>
+					<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.insurance.Questionnaire"
+							type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://attachment" tooltip="Attachment"
+					id="idIconTabFilter1">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://group" tooltip="History"
+					id="idIconTabFilter2">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter id="idIconTabFilter3" icon="sap-icon://accept"
+					tooltip="Medical Instruction"
+					visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isEmployee'
+						}">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.insurance.Medical"
+						type="XML" />
+				</IconTabFilter>
+			
+			
+			</items>
+		</IconTabBar>
+</core:FragmentDefinition>

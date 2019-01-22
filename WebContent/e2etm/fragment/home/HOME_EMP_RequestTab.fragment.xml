@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:table="sap.ui.table">
+	<FlexBox fitContainer="true" direction="Column"
+		class="refreshEmployeeRequestFlexBox">
+		<table:Table id="tableEmployeeMyRequests" selectionMode="None"
+			filter="onTableCentralFilter" visibleRowCount="10"
+			class="compact_table margin_10" navigationMode="Paginator"
+			showNoData="false">
+			<table:columns>
+				<table:Column resizable="false" width="80px"
+					sortProperty="ZZ_REQ_TYP" sorted="true" filterProperty="ZZ_REQ_TYP"
+					hAlign="Center">
+					<table:label>
+						<Label text="TYPE" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{ZZ_REQ_TYP}"
+							tooltip="{path: 'ZZ_REQ_TYP', formatter: 'sap.ui.project.e2etm.util.Formatter.formatReqType'}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" sortProperty="ZZ_DEP_REQ"
+					width="150px" sorted="true" sortOrder="Descending" filterProperty="ZZ_DEP_REQ"
+					hAlign="Center">
+					<table:label>
+						<Label text="REQUEST ID" class="label_bold" tooltip="Request number"></Label>
+					</table:label>
+					<table:template>
+						<Link text="{ZZ_DEP_REQ}" press="onDeputationClick"></Link>
+					</table:template>
+				</table:Column>
+				<!-- filterType="sap.ui.project.e2etm.util.Formatter.sapDateType" -->
+				<table:Column resizable="false" sortProperty="ZZ_DEP_STDATE"
+					sorted="true" filterProperty="ZZ_DEP_STDATE" hAlign="Center">
+					<table:label>
+						<Label text="ST.DATE" class="label_bold" tooltip="Start date"></Label>
+					</table:label>
+					<table:template>
+						<Label
+							text="{path: 'ZZ_DEP_STDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" sortProperty="ZZ_DEP_ENDATE"
+					sorted="true" filterProperty="ZZ_DEP_ENDATE" hAlign="Center">
+					<table:label>
+						<Label text="END DATE" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label
+							text="{path: 'ZZ_DEP_ENDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" sortProperty="ZZ_DEP_TOCNTRY_TXT"
+					sorted="true" filterProperty="ZZ_DEP_TOCNTRY_TXT" hAlign="Center">
+					<table:label>
+						<Label text="COUNTRY" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{path: 'ZZ_DEP_TOCNTRY_TXT'}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" width="250px"
+					sortProperty="ZZDEP_SF_TEXT" sorted="true" filterProperty="ZZDEP_SF_TEXT"
+					hAlign="Begin">
+					<table:label>
+						<Label text="CURRENT STATUS" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{ path: 'ZZDEP_SF_TEXT'}" tooltip="{ path: 'ZZDEP_SF_TEXT'}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" width="150px"
+					sortProperty="ZZ_NEXT_APPROVER" sorted="true" filterProperty="ZZ_NEXT_APPROVER"
+					hAlign="Begin">
+					<table:label>
+						<Label text="NEXT APPROVER" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{ path: 'ZZ_NEXT_APPROVER'}" tooltip="{ path: 'ZZ_NEXT_APPROVER'}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" hAlign="Center" width="52px">
+					<table:label>
+						<Label text="" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<FlexBox>
+							<!-- <commons:Button icon="./images/cancel_request.png" tooltip="Cancel 
+								Request" class="margin_right_5" enabled="{parts : [{path : 'ZZ_DEP_REQ'}, 
+								{path : 'ZZ_DEP_TYPE'}, {path : 'ZZ_TRV_REQ'}, {path : 'ZZ_REQ_TYP'}, {path 
+								: 'ZZ_STAT_FLAG'}, {path : 'ZZ_STAGE'}, {path : 'ZZ_SET'}, {path : 'ZZ_SUBSUBSET'}, 
+								{path : 'ZZ_DEP_STDATE'}], formatter: 'sap.ui.project.e2etm.util.Formatter.cancelEmployeeRequestButton'}" 
+								press="onCancelEMPRequest"> </commons:Button> <commons:Button icon="./images/edit.png" 
+								tooltip="Change Request" class="margin_right_5" enabled="{parts : [{path 
+								: 'ZZ_DEP_REQ'}, {path : 'ZZ_DEP_TYPE'}, {path : 'ZZ_TRV_REQ'}, {path : 'ZZ_REQ_TYP'}, 
+								{path : 'ZZ_STAT_FLAG'}, {path : 'ZZ_STAGE'}, {path : 'ZZ_SET'}, {path : 
+								'ZZ_SUBSUBSET'}], formatter: 'sap.ui.project.e2etm.util.Formatter.changeRequestButton'}" 
+								press="onChangeEMPRequest"> </commons:Button> <commons:Button icon="./images/add.png" 
+								tooltip="Create Request" class="margin_right_5" enabled="{parts : [{path 
+								: 'ZZ_REQ_TYP'},{path : 'ZZ_STAT_FLAG'},{path : 'ZZ_TRV_CAT'}], formatter: 
+								'sap.ui.project.e2etm.util.Formatter.createRequestButton'}" press="onCreateEMPRequest"> 
+								</commons:Button> -->
+							<commons:Button icon="sap-icon://menu2" tooltip="menu"
+								height="24px" class="margin_top_2" press="onOpenActionList">
+							</commons:Button>
+						</FlexBox>
+					</table:template>
+				</table:Column>
+			</table:columns>
+		</table:Table>
+		<commons:Button id="btnEmployeeRefreshMyRequestTable"
+			class="refresh_button margin_left_10" icon="sap-icon://refresh"
+			tooltip="Refresh" press="onRefreshData"></commons:Button>
+		<FlexBox class="margin_top_2">
+			<Label text="Please check the following link for Old Travel Requests: "
+				class="margin_top_2"></Label>
+			<commons:Link id="linkOldTravelLink" text="Link"
+				class="margin_left_5 margin_top_1 label_bold" target="_blank"></commons:Link>
+		</FlexBox>
+	</FlexBox>
+</core:FragmentDefinition>

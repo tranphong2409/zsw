@@ -1,0 +1,19 @@
+<core:View controllerName="sap.ui.project.e2etm.static-controller.Login"
+	xmlns:form="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="End To End Travel Management" height="100%" enableScrolling="false" class="login" showHeader="false">
+		<content>
+			<FlexBox alignItems="Center" justifyContent="Center"
+				direction="Column" fitContainer="true">
+				<items>
+					<Panel>
+						<Label text="Sorry! Your resource cannot be found." ></Label>
+						<html:Div>
+						    <html:a href="./">Click here to return to home page</html:a>
+						</html:Div>
+					</Panel>
+				</items>
+			</FlexBox>
+		</content>
+	</Page>
+</core:View>

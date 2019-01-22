@@ -1,0 +1,286 @@
+<mvc:View controllerName="sap.ui.project.e2etm.controller.travelrequest.SponsorsDetail" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table"
+	xmlns="sap.m">
+	<FlexBox alignItems="Center" class="sponsorshipHeader " direction="Row">
+		<Label class="green_bold_text" id="spHeader" text="Summary: {trvRequestDtl>/sponsorshipText}"/>
+	</FlexBox>
+	<FlexBox alignItems="Center" class="sponsorshipDtl font-size-18" direction="Row">
+		<l:VerticalLayout >
+			<l:content>
+				<Label class="label_bold" text="Fund"/>
+				<!--<SelectList selectedKey="{trvRequestDtl>/ZZ_SP_FUND_KEY}" selectionChange="onChangeFundCenter">-->
+				<!--	<core:Item key="F01" text="F01 RBEI Department"/>-->
+				<!--	<core:Item key="F02" text="F02 VKM "/>-->
+				<!--	<core:Item key="F03" text="F03 Customer At Actuals"/>-->
+				<!--	<core:Item key="F04" text="F04 Customer consolidated"/>-->
+				<!--	<core:Item key="F07" text="F07 Third Party"/>-->
+				<!--</SelectList>-->
+				<SelectList class="font-size-18 fund_list" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" items="{ path: 'trvRequestDtl>/aFunds'}"
+					selectedKey="{trvRequestDtl>/ZZ_SP_FUND_KEY}" selectionChange="onChangeFundCenter">
+					<core:Item key="{trvRequestDtl>fincode}" text="{trvRequestDtl>fincode} {trvRequestDtl>beschr}"/>
+				</SelectList>
+			</l:content>
+		</l:VerticalLayout>
+		<l:VerticalLayout class="sapUiContentPadding ">
+			<l:content>
+				<VBox id="spsDetail" items="{ path: 'trvRequestDtl>/aSponsorshipDtl'}">
+					<HBox id="spDetailBox">
+						<Panel class="sapUiResponsiveMargin sponsorshipDtlPnl font-size-18" expand="onSponsorshipExpand" expandable="true"
+							expanded="{trvRequestDtl>ZZ_EXPANDED}"
+							headerText="{trvRequestDtl>ZZ_HEAD_TITLE},{trvRequestDtl>ZZ_PERCENT} %, BudgetCode: {trvRequestDtl>ZZ_FISTL} "
+							visible="{trvRequestDtl>ZZ_FUND_ITEMS_VISIBLE}">
+							<content>
+								<!-- allocation-->
+								<HBox>
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="%Allocation"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<Input change="_handleFieldChange" class="minWidthSpField spInputBgFund" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="allocationId"
+													maxLength="3" submit="_handleFieldChange" type="Number" value="{trvRequestDtl>ZZ_PERCENT}" valueState="{trvRequestDtl>ZZ_PERCENT_ERROR}"/>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text=""/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!-- Sponsored By-->
+								<HBox>
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Sponsored By"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<c:ValueHelpField change="_handleFieldChange" class="minWidthSpField spInputBgFund spValueHelp" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+													id="sponsoredId" submit="_handleFieldChange" value="{trvRequestDtl>ZZ_FISTL}" valueHelpRequest="onValueHelpRequest"
+													valueState="{trvRequestDtl>ZZ_FISTL_ERROR}"></c:ValueHelpField>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text="{trvRequestDtl>ZZ_FISTL_TEXT}" tooltip="{trvRequestDtl>ZZ_FISTL_TEXT}"/></items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--cos center-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCostFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Cost Center Name"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<c:ValueHelpField change="_handleFieldChange" class="minWidthSpField spInputBgFund spValueHelp" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+													id="costCenterId" submit="_handleFieldChange" value="{trvRequestDtl>ZZ_KOSTL}" valueHelpRequest="onValueHelpRequest"
+													valueState="{trvRequestDtl>ZZ_KOSTL_ERROR}"></c:ValueHelpField>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text="{trvRequestDtl>ZZ_KOSTL_TEXT}" tooltip="{trvRequestDtl>ZZ_KOSTL_TEXT}"/></items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--project id-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorProjFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Project Id"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<c:ValueHelpField change="_handleFieldChange" class="minWidthSpField spInputBgFund spValueHelp" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+													id="projectId" submit="_handleFieldChange" value="{trvRequestDtl>ZZ_FIPOS}" valueHelpRequest="onValueHelpRequest"
+													valueState="{trvRequestDtl>ZZ_FIPOS_ERROR}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorProjFieldVisible' }"></c:ValueHelpField>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text="{trvRequestDtl>ZZ_FIPOS_TEXT}" tooltip="{trvRequestDtl>ZZ_FIPOS_TEXT}"/></items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--expense type-->
+								<HBox>
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Expense type"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<c:ValueHelpField change="_handleFieldChange" class="minWidthSpField spInputBgFund spValueHelp" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+													id="expenseId" submit="_handleFieldChange" tooltip="{trvRequestDtl>ZZ_FIPEX_TOOLTIP}" value="{trvRequestDtl>ZZ_FIPEX}"
+													valueHelpRequest="onValueHelpRequest" valueState="{trvRequestDtl>ZZ_FIPEX_ERROR}"></c:ValueHelpField>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text="{trvRequestDtl>ZZ_FIPEX_TEXT}" tooltip="{trvRequestDtl>ZZ_FIPEX_TEXT}"/></items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--customer legacy type disable temp TinhtD 2018/11/14
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Customer Legal Entity"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<c:ValueHelpField change="onBudgetCodeChange" class="minWidthSpField spInputBgFund spValueHelp" enabled="{/view/isFuture}" id="cusLegal"
+													tooltip="{sponsorDetail>ZZ_FIPEX_TOOLTIP}" value="{sponsorDetail>ZZ_FIPEX}" valueHelpRequest="onValueHelpRequest"
+													valueState="{sponsorDetail>ZZ_FIPEX_ERROR}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }"></c:ValueHelpField>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text="{sponsorDetail>ZZ_FIPEX_TEXT}"/></items>
+										</VBox>
+									</items>
+								</HBox>-->
+								<!--customer name-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Customer Coordinator Name*"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<Input class="minWidthSpField spInputBgFund" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="cusName" value="{trvRequestDtl>ZZ_CCNAME}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }"/>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text=""/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--customer dep-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Customer Coordinator Dept*"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<Input class="minWidthSpField spInputBgFund" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="cusDep" value="{trvRequestDtl>ZZ_CCDEPT}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }"/>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text=""/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--EA No-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="EA/DO "/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<Input class="minWidthSpField spInputBgFund" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="cusEANO" value="{trvRequestDtl>ZZ_EANO}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }"/>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text=""/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--PO No-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="PO No"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<Input class="minWidthSpField spInputBgFund" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="cusPONo" value="{trvRequestDtl>ZZ_PONO}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }"/>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text=""/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--customer center-->
+								<HBox visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }">
+									<items>
+										<VBox class="spFirstClm">
+											<items>
+												<Label design="Bold" text="Customer Center Cost"/>
+											</items>
+										</VBox>
+										<VBox class="spSecClm">
+											<items>
+												<Input class="minWidthSpField spInputBgFund" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="cusCenterCos" value="{trvRequestDtl>ZZ_CCOST}"
+													visible="{path: 'trvRequestDtl>ZZ_GEBER',formatter: 'sap.ui.project.e2etm.util.Formatter.sponsorCusFieldVisible' }"/>
+											</items>
+										</VBox>
+										<VBox class="spLastClm">
+											<items>
+												<Label text=""/>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!--toolbar-->
+								<Toolbar class="sponsorToolbarInf" visible="{trvRequestDtl>ZZ_TB_VISIBLE}">
+									<Button class="clearSponsorInfBtn mxWidth100" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://clear-filter"
+										press="clearSponsorInfoHandl" text="Clear" type="Emphasized"/>
+									<Button class="addSponsorInfBtn mxWidth100" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://add" press="addSponsorInfoHandl"
+										text="Add" type="Emphasized"/>
+								</Toolbar>
+							</content>
+						</Panel>
+						<HBox class="spsRighSideButton">
+							<Button class="addSponsorDtlBtn" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://add" press="addSponsorshipDtl" tooltip="Add Row"
+								type="Emphasized" visible="{trvRequestDtl>ZZ_VISIBLE}"/>
+							<Button class="remSponsorDtlBtn" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://less" press="remSponsorshipDtl"
+								tooltip="Remove Row" type="Emphasized" visible="{trvRequestDtl>ZZ_VISIBLE}"/>
+						</HBox>
+					</HBox>
+				</VBox>
+			</l:content>
+		</l:VerticalLayout>
+	</FlexBox>
+</mvc:View>

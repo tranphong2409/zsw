@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<FlexBox direction="Column" alignItems="Center"  justifyContent="Center">
+		<FlexBox direction="Row" alignItems="Center" justifyContent="SpaceBetween">
+			<Label text="Travel Plan"  width="100px" />
+			<Input id="srchTp" type="Number"/>
+		</FlexBox>
+		<FlexBox direction="Row" visible="false" alignItems="Center" justifyContent="SpaceBetween">
+			<Label text="Module" width="100px" />
+			<ComboBox id="srchModule">
+				<items>
+					<core:Item key="TRST" text="Travel Settlement" />
+					<core:Item key="PYVR" text="Payment Voucher" />
+					<core:Item key="INRA" text="INR Advance" />
+				</items>
+			</ComboBox>
+		</FlexBox>
+
+		<Button text="View Request" type="Emphasized" press="onViewRequest" class="sapUiSmallMarginTop" />
+	</FlexBox>
+
+</core:FragmentDefinition>

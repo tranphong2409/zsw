@@ -1,0 +1,171 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	controllerName="sap.ui.project.e2etm.controller.RoomReservation"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel class="resFilterPanel">
+		<content>
+
+			<f:SimpleForm id="roomDet" editable="true"
+				layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+				labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="4"
+				columnsM="2" columnsS="1" singleContainerFullSize="false">
+				<f:content>
+					<core:Title />
+					<Label text="Country Name" required="true" />
+					<ComboBox id="ipHcnty" selectedKey="{hotelDet>Hcnty}"
+						items="{path:'global>/country'}" change="onCountryChange">
+						<items>
+							<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+						</items>
+					</ComboBox>
+					<Label text="Room Size" />
+					<Input id="ipSizeFrm" placeholder="From">
+						<layoutData>
+							<l:GridData span="L2 M3 S4" />
+						</layoutData>
+					</Input>
+					<Input id="ipSizeTo" placeholder="To">
+						<layoutData>
+							<l:GridData span="L2 M3 S4" />
+						</layoutData>
+					</Input>
+					<Select id="ipRunit" selectedKey="Sq.ft" placeholder="Unit">
+						<items>
+							<core:Item key="Sq.ft" text="Sq.ft" />
+							<core:Item key="Sq.Mtr" text="Sq.Mtr" />
+						</items>
+						<layoutData>
+							<l:GridData span="L3 M3 S4" />
+						</layoutData>
+					</Select>
+
+					<core:Title />
+
+					<Label text="City" required="true" />
+					<ComboBox id="ipHcity" selectedKey="{hotelDet>Hcity}"
+						items="{path: '/DEP_LOCATIONSSet'}" change="onCityChange">
+						<items>
+							<core:Item key="{MOLGA}" text="{BLAND}" />
+						</items>
+					</ComboBox>
+
+					<Label text="Start Date" required="true" />
+					<DatePicker id="ipBegda" displayFormat="dd.MM.yyyy"
+						valueFormat="yyyyMMdd" />
+					<core:Title />
+					<Label text="Select Apartment" tooltip="Select Apartment" />
+					<ComboBox id="ipHotel" valueStateText="Hotels based on country and city">
+					</ComboBox>
+					<Label text="End Date" required="true" />
+					<DatePicker id="ipEndda" displayFormat="dd.MM.yyyy"
+						valueFormat="yyyyMMdd" />
+					<core:Title />
+					<Label text="No Of Persons" />
+					<Input id="ipNoP" />
+					<!-- </Input> -->
+					<!-- <Label visible="false" text="Room Location" /> -->
+					<!-- <Input visible="false"/> -->
+				</f:content>
+			</f:SimpleForm>
+			<HBox justifyContent="Center">
+				<Button text="Search" press="onSearch" class="resMBtnBlack" />
+			</HBox>
+
+
+		</content>
+	</Panel>
+
+	<Panel id="resView" width="auto" content="{path:'resStatusModel>/'}"
+		class="resRoomView">
+<!-- 		 <List id="resView" width="auto" items="{path:'resStatusModel>/'}"  -->
+<!-- 			growing="true" growingThreshold="3"  -->
+<!-- 		class="resRoomView"> -->
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Details" design="Bold" />
+				<ToolbarSpacer />
+				<core:HTML id="resHtmlGreen" />
+				<ToolbarSpacer width="5px" />
+				<core:HTML id="resHtmlYellow" />
+				<ToolbarSpacer width="5px" />
+				<core:HTML id="resHtmlGray" />
+				<ToolbarSpacer width="5px" />
+				<core:HTML id="resHtmlRed" />
+				<ToolbarSpacer width="5px" />
+
+			</Toolbar>
+
+		</headerToolbar>
+<!-- 		<items> -->
+<!-- 		<CustomListItem> -->
+		<List items="{resStatusModel>HotelToRoomListNav/results}"
+			headerText="Apartment-{resStatusModel>Hname}({resStatusModel>Hcode})"
+			class="resHotelList">
+			<headerToolbar>
+			<Toolbar>
+			<Label text="Apartment-{resStatusModel>Hname}({resStatusModel>Hcode})" design="Bold"/>
+			<ToolbarSpacer/>
+			<Label text="Rooms: " design="Bold"/>
+			<ComboBox selectionChange="onRoomSelect"/>
+<!-- 			<Button icon="sap-icon://navigation-left-arrow" press="onPrevious"/> -->
+<!-- 			<Button icon="sap-icon://navigation-right-arrow" press="onNext"/> -->
+			</Toolbar>
+			</headerToolbar>
+			<items>
+				<CustomListItem>
+					<content>
+						<l:Grid>
+							<HBox justifyContent="Center" class="sapUiSmallMarginTop">
+								<Link text="Room No.{resStatusModel>Romno}" emphasized="true"
+									press="onRoomPress" app:RoomDetls="{resStatusModel>/}" />
+
+
+								<layoutData>
+									<l:GridData span="L1 M3 S12" />
+								</layoutData>
+							</HBox>
+							<VBox items="{resStatusModel>RoomListToMonthNav/results}">
+								<!-- <l:ResponsiveFlowLayout minWidth="1024"> -->
+								<Panel width="100%" content="{resStatusModel>RoomDetlsByDateNav/results}">
+
+									<Link class="resMLinks"
+										press="onDateSelect" app:Status="{resStatusModel>Status}"
+										app:Reinr="{resStatusModel>Reinr}" app:Date="{resStatusModel>Date}"
+										app:Time="{resStatusModel>RoomDetlsByDateToTimeNav}"
+										app:Begda="{resStatusModel>Begda}" app:Endda="{resStatusModel>Endda}"
+										text="{path:'resStatusModel>Date',formatter:'sap.ui.project.e2etm.util.Formatter.formatResvDate'}">
+										<!-- <layoutData> -->
+										<!-- <l:ResponsiveFlowLayoutData -->
+										<!-- linebreak="true"></l:ResponsiveFlowLayoutData> -->
+										<!-- </layoutData> -->
+										<customData>
+											<core:CustomData key="Status" value="{resStatusModel>Status}"
+												writeToDom="true" />
+										</customData>
+									</Link>
+								</Panel>
+								<!-- </l:ResponsiveFlowLayout> -->
+								<layoutData>
+									<l:GridData span="L11 M12 S12" linrbreakM="true"
+										linebreakS="true" />
+								</layoutData>
+
+							</VBox>
+
+						</l:Grid>
+					</content>
+				</CustomListItem>
+			</items>
+
+<!-- 		</List> -->
+<!-- 		</CustomListItem> -->
+<!-- 		</items> -->
+		</List>
+	</Panel>
+	<HBox>
+<!-- 	<Button text="More" icon="sap-icon://display-more" type="Emphasized" press="onMore"/> -->
+	</HBox>
+
+</core:View>

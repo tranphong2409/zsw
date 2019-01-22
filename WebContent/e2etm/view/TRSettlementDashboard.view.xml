@@ -1,0 +1,90 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:view="sap.ui.core.mvc"
+	controllerName="sap.ui.project.e2etm.controller.TRSettlementDashboard"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false" title="Travel Settlement"
+		enableScrolling="true">
+		<content>
+			<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+			<!-- <Button text="Download" class="trstButton" type="Emphasized" press="onDownloadXls" 
+				icon="sap-icon://excel-attachment"/> -->
+			<IconTabBar id="icontabbaradmin" class="sapUiSizeCompact"
+				select="onIconTabSelectAdmin" expandable="false">
+				<items>
+					<IconTabFilter icon="sap-icon://begin" text="Domestic"
+						id="tabDomestic" tooltip="Domestic" key="DOME">
+						<core:Fragment id="domestic"
+							fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.DomeIntlActions"
+							type="XML" />
+					</IconTabFilter>
+
+					<IconTabFilter icon="sap-icon://flight" text="International"
+						id="tabInternational" tooltip="International" key="INTL">
+						<core:Fragment id="international"
+							fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.DomeIntlActions"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://approvals" text="Payment Voucher"
+						id="tabPvoucher" visible="true" tooltip="Payment Voucher" key="PYVR">
+						<core:Fragment id="payment"
+							fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.DomeIntlActions"
+							type="XML" />
+					</IconTabFilter>
+
+
+					<IconTabFilter icon="sap-icon://approvals" text="Initial Advance"
+						id="tabInradvance" visible="true" tooltip="Initial Advance" key="INRA">
+						<core:Fragment id="inra"
+							fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.DomeIntlActions"
+							type="XML" />
+					</IconTabFilter>
+
+					<!-- tab filter for reimbursement -->
+					<IconTabFilter id="reimIcon" icon="sap-icon://employee-rejections"
+						key="REIM" text="Reimbursement" tooltip="Rejected">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.reimbursement.ReimbursementContent"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://pdf-reader" tooltip="TravelPlan PDF"
+						text="View TP PDF" key="VPDF">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.ViewPdf"
+							type="XML" />
+
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://search" tooltip="Search Travel Settlement"
+						text="Search Travel Settlement" key="SRCH">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.SearchRequest"
+							type="XML" />
+
+					</IconTabFilter>
+				</items>
+				<content>
+
+				</content>
+			</IconTabBar>
+
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+
+					<Button text="Refresh" press="onRefresh" icon="sap-icon://refresh" />
+				</contentLeft>
+				<contentRight>
+					<Button text="Account" id="btnAccount" icon="sap-icon://status-completed"
+						press="onMassAccount" type="Accept" visible="false" />
+					<Button id="btnReimDownload" text="Download" visible="false"
+						press="onExport" icon="sap-icon://download" />
+				</contentRight>
+				<contentRight>
+					<Button id="btnSendMail" text="Send Mail" visible="false"
+						press="onSendMail" icon="sap-icon://email" />
+				</contentRight>
+
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

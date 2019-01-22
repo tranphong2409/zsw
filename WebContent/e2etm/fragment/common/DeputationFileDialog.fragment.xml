@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<Dialog title="SELECT FILE" type="Standard" horizontalScrolling="false"
+		verticalScrolling="false">
+		<endButton>
+			<Button text="{i18n>clo}" press="onDeputationFileDialogClose" icon="sap-icon://sys-cancel"/>
+		</endButton>
+		<beginButton>
+			<Button text="Upload" press="onDeputationFileDialogUpload" icon="sap-icon://upload"/>
+		</beginButton>
+		<FlexBox class="dep_customer_flexbox">
+			<FlexBox direction="Column">
+				<FlexBox class="dep_customer_flexbox_select"> 
+					<Label text="Document Type">
+					</Label>
+					<Select selectedItem="{/SelectedDocumentType}" change="onDocumentTypeSelect"
+						items="{	path: '/DocumentType',
+							            sorter: { path: 'DDTEXT' }
+						          }">
+						<core:Item key="{DOMVALUE_L}" text="{DDTEXT}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label text="Document Name">
+					</Label>
+					<Select change="onChangeDocName"
+						items="{path: '/DocumentName'}">
+						<core:Item key="{DocName}" text="{DocName}" tooltip="{DocName}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="dep_customer_flexbox_select">
+					<Label text="File Upload">
+					</Label>
+					<c:FileUploader maximumFileSize="5s" fileSizeExceed="onFileSizeExceed" change="onAdditionalFileChange"
+					    typeMissmatch="onTypeMissmatch">
+					</c:FileUploader>
+				</FlexBox>
+			</FlexBox>
+		</FlexBox>
+	</Dialog>
+</core:FragmentDefinition>

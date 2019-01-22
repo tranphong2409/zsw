@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"  
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons" >
+	
+	<FlexBox class="dep_customer_flexbox">
+				<FlexBox direction="Column">
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Employee Name"></Label>
+						<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_NAME}" editable="{/view/emp}" ></Input> -->
+						<Input value="{ZZ_DEP_NAME}" editable="{/view/emp}" ></Input>										
+					</FlexBox> 
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Employee Number"></Label>
+						<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_PERNR}" editable="{/view/emp}" ></Input> -->
+						<Input value="{ZZ_DEP_PERNR}" editable="{/view/emp}" ></Input>										
+					</FlexBox> 
+					
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Department"></Label>
+						<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_DEPT}" editable="{/view/emp}" ></Input> -->
+						<Input value="{ZZ_DEP_DEPT}" editable="{/view/emp}" ></Input>						
+					</FlexBox> 				
+					
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Email Address"></Label>
+						<!-- <Input value="{profile1>/employeeDetail/ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input>	 -->
+						<Input value="{ZZ_DEP_EMAIL}" editable="{/view/emp}"></Input>		
+					</FlexBox> 
+				</FlexBox>
+				<FlexBox direction="Column">
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Date of Birth" width="150px" ></Label>
+						<!-- <Input value="{path:'profile1>/employeeDetail/ZZ_DEP_DOB',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" editable="{/view/emp}"></Input> -->
+						<Input value="{path:'ZZ_DEP_DOB',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" editable="{/view/emp}"></Input>
+						<!-- <c:DatePicker enabled="false" yyyymmdd="{global>/screenData/ZZ_DEP_ENDATE}"
+					value="{path:'profile1>/employeeDetail/ZZ_DEP_DOB', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"/> -->
+					</FlexBox> 		
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Office Tel(extn)"></Label>
+						<Input value="{ZZ_OFF_NUM}" editable="{properties>/editable}"></Input>				
+					</FlexBox> 	
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="Mobile Number"></Label>
+						<Input value="{ZZ_MOBILE}" editable="{properties>/editable}"></Input>				
+					</FlexBox> 								
+				</FlexBox>
+			</FlexBox>
+	</core:FragmentDefinition>

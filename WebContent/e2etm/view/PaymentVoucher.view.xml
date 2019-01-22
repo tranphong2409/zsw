@@ -1,0 +1,258 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="sap.ui.project.e2etm.controller.PaymentVoucher" xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns:l="sap.ui.commons.layout">
+	<Page title="Payment Voucher">
+	<customHeader>
+		<Bar>
+			<contentMiddle>
+				<Text text="Payment Voucher" />
+			</contentMiddle>
+			<contentRight>
+				<Button icon="sap-icon://download" text="Payment Voucher PDF"
+					press="onDownload" />
+			</contentRight>
+		</Bar>
+	</customHeader>
+		<content>
+	<FlexBox direction="Row" width="100%" justifyContent="SpaceBetween" class="trsettlemargintop">
+				<FlexBox direction="Column" justifyContent="SpaceBetween"
+					class="objFlex1">
+					<l:MatrixLayout width="auto">
+						<l:rows>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Title titleStyle="H4" text="Travel Plan:"/>
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Title titleStyle="H4" text="{travelsettlement>/traveldetails/TravelPlan}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Employee No:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/EmpNo}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Employee Name:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/EmpName}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Department:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/Department}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Level:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/Level}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Email Id:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Text width="200px" class="mtextColor" text="{travelsettlement>/traveldetails/OfcEmailId}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+						</l:rows>
+					</l:MatrixLayout>
+				</FlexBox>
+				<FlexBox direction="Column" justifyContent="SpaceBetween">
+					<l:MatrixLayout width="auto">
+						<l:rows>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Title titleStyle="H4" text="Request With:"/>
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Title titleStyle="H4" text="{travelsettlement>/traveldetails/NextAction}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Travelling from country:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/FromCountryText}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Travelling from location:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/FromLoc}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Start Date:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{path:'travelsettlement>/traveldetails/StartDate',
+										formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Visa Type:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/VisaType}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+						</l:rows>
+					</l:MatrixLayout>
+				</FlexBox>
+				<FlexBox direction="Column" justifyContent="SpaceBetween"
+					class="objFlex3">
+					<l:MatrixLayout width="auto">
+						<l:rows>
+						<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Title titleStyle="H4" text="Status:"/>
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Title titleStyle="H4" text="{travelsettlement>/traveldetails/StatusText}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label design="Bold" text="Travelling to country:" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/ToCountryText}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label design="Bold" text="Travelling to location:" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/ToLoc}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="End Date:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{path:'travelsettlement>/traveldetails/EndDate',
+										formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+							<l:MatrixLayoutRow>
+								<l:cells>
+									<l:MatrixLayoutCell>
+										<Label text="Duration:" design="Bold" />
+									</l:MatrixLayoutCell>
+									<l:MatrixLayoutCell>
+										<Label text="{travelsettlement>/traveldetails/Duration}" />
+									</l:MatrixLayoutCell>
+								</l:cells>
+							</l:MatrixLayoutRow>
+						</l:rows>
+					</l:MatrixLayout>
+				</FlexBox>
+			</FlexBox>
+				<IconTabBar id="idIconTabBar" select="onIconTabBarSelect">
+				<items>
+					<IconTabFilter icon="sap-icon://message-information"
+						tooltip="Details">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.paymentvoucher.PaymentVoucher"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://attachment" tooltip="Attachment">
+						<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+					type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://comment" tooltip="Comments">
+						<core:Fragment id="AppoveInfo"
+							fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+							type="XML" />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+				<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="back" text="Back" type="Reject" press="onBackPress"
+						icon="sap-icon://home" />
+				</contentLeft>
+				<contentMiddle>
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSave" enabled="{travelsettlement>/fieldproperties/enabled}"
+						icon="sap-icon://save" visible="{travelsettlement>/fieldproperties/savisible}" />
+				
+				<Button text="Send Back" type="Emphasized" press="onSendBack"
+						icon="sap-icon://save" visible="{travelsettlement>/fieldproperties/sbvisible}" />
+					<Button text="Send to Forex" type="Emphasized" press="onSendtoForex"
+						icon="sap-icon://save" visible="{travelsettlement>/fieldproperties/sfvisible}" />
+					<Button text="INR Receivable" type="Emphasized" press="onINRReceivable"
+						icon="sap-icon://save" visible="{travelsettlement>/fieldproperties/inrreceivable}" />
+					<Button text="Change" type="Emphasized" press="onForexChange"
+						icon="sap-icon://save" visible="{travelsettlement>/fieldproperties/awfvisible}" />
+				</contentMiddle>
+				<contentRight>
+				
+				<Button  text="Surrender Forex" type="Accept" press="onSurrender" enabled="{travelsettlement>/fieldproperties/enabled}"
+						icon="sap-icon://sys-enter" visible="{travelsettlement>/fieldproperties/surfvisible}" />
+					<Button  text="Submit" type="Accept" press="onSubmit" enabled="{travelsettlement>/fieldproperties/enabled}"
+						icon="sap-icon://sys-enter" visible="{travelsettlement>/fieldproperties/smvisible}" />
+					<Button  text="Approve" type="Accept" press="onApprove"
+						icon="sap-icon://sys-enter" visible="{travelsettlement>/fieldproperties/apvisible}" />
+					<Button  text="Review" type="Accept" press="onReview"
+						icon="sap-icon://sys-enter" visible="{travelsettlement>/fieldproperties/rvvisible}" />
+						<Button  text="Close" type="Accept" press="onClose"
+						icon="sap-icon://sys-enter" visible="{travelsettlement>/fieldproperties/clvisible}" />
+				</contentRight>
+			</Bar>
+		</footer>
+		
+	</Page>
+</core:View>

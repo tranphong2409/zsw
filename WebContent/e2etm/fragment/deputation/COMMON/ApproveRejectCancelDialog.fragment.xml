@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<c:Dialog modal="true" width="510px" title="CANCEL REQUEST" class="dialog">
+	    <FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_textarea">
+				<Label text="Your Comment" class="required"></Label>
+				<TextArea id="txtCancelRequestComment" maxLength="254"></TextArea>
+			</FlexBox>
+		</FlexBox>
+		<c:buttons> 
+		    <c:Button id="btnDialogRejectCancel" type="Reject" height="30px"
+		        text="Reject Cancel Request" press="onRejectCancelRequest" />
+			<c:Button id="btnDialogApproveCancel" text="Approve Cancel Request" height="30px"
+			    type="Accept" press="onApproveCancelRequest" />
+		</c:buttons>
+	</c:Dialog>
+</core:FragmentDefinition>

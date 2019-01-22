@@ -1,0 +1,241 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+	<Panel headerText="Forex Surrender Amount" class="panelBorderTrSettle">
+
+		<Table items="{forexsurrender>/amount/}" class="tableclass table_ticket_admin sapUiSizeCompact"
+			id="forexsurramount">
+
+			<!-- <t:noData> -->
+			<!-- <c:Label text=""></c:Label> -->
+			<!-- </t:noData> -->
+			<columns>
+				<Column width="120px">
+					<c:Label text="Amount" class="label_small_bold"></c:Label>
+					<footer>
+						<FlexBox direction="Column" items="{forexsurrender>/subtotal/}">
+							<items>
+<!-- 							<FlexBox direction="Row"> -->
+<!-- 							<Label text="Subtotal:"/> -->
+							
+								<Label text="{='Subtotal:     ' + ${forexsurrender>Amount}}" />
+<!--                             <Label text="{forexsurrender>Amount}" /> -->
+<!-- 								</FlexBox> -->
+							</items>
+						</FlexBox>
+					</footer>
+				</Column>
+
+
+
+				<Column width="120px">
+					<c:Label text="Currency" textAlign="Center" class="label_small_bold"></c:Label>
+					<footer>
+						<FlexBox direction="Column" items="{forexsurrender>/subtotal/}">
+							<items>
+								<Label text="{forexsurrender>Currency}" />
+							</items>
+						</FlexBox>
+					</footer>
+				</Column>
+
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Label textAlign="Right"
+							text="{path:'forexsurrender>Total',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 4,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+						<Label textAlign="Right" text="{forexsurrender>TotalCurrency}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+
+		</Table>
+
+
+	</Panel>
+	<Panel headerText="Card Details" class="panelBorderTrSettle"
+		expandable="false" expandAnimation="false">
+
+		<t:Table rows="{forexsurrender>/cardtable/}" id="forexsurrcard"
+			columnHeaderHeight="40" visibleRowCount="1"
+			class="sapUiSizeCompact margin_bottom_10">
+			<t:toolbar>
+				<Toolbar>
+					<c:Button id="surcardadd" text="Add row"
+						enabled="{fieldproperties>/sureditable}" icon="sap-icon://add"
+						press="onSurrAdd"></c:Button>
+					<c:Button id="surcarddel" text="Delete row"
+						enabled="{fieldproperties>/sureditable}" icon="sap-icon://less"
+						class="margin_left_10" press="onSurrDel"></c:Button>
+				</Toolbar>
+			</t:toolbar>
+			<t:noData>
+				<c:Label text=""></c:Label>
+			</t:noData>
+
+			<t:Column width="110px">
+				<c:Label text="Type of Currency" tooltip="Type of Currency"
+					textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<!-- <c:ComboBox editable="{fieldproperties>/sureditable}" -->
+					<!-- change="onCardsAllChange" value="{forexsurrender>Currency}" -->
+					<!-- displaySecondaryValues="true" items="{forexmodel>/cardsAll/}"> -->
+
+					<!-- <c:items> -->
+					<!-- <core:ListItem additionalText="{forexmodel>Currency}" -->
+					<!-- text="{forexmodel>Currency}" /> -->
+
+					<!-- </c:items> -->
+					<!-- </c:ComboBox> -->
+					<c:ComboBox editable="{fieldproperties>/sureditable}"
+						change="onCardsAllChange" value="{forexsurrender>Currency}"
+						displaySecondaryValues="true" items="{curModel>/}">
+
+						<c:items>
+							<core:ListItem additionalText="{curModel>FIELD2}"
+								text="{curModel>FIELD1}" />
+
+						</c:items>
+					</c:ComboBox>
+
+				</t:template>
+			</t:Column>
+			<t:Column width="100px">
+				<c:Label text="	Issued Banker" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+
+					<c:ComboBox editable="{fieldproperties>/sureditable}" 
+						value="{forexsurrender>IssuerBank}" displaySecondaryValues="true"
+						items="{Bank>/}">
+
+						<c:items>
+							<core:ListItem additionalText="{Bank>FIELD3}" text="{Bank>FIELD2}"
+								key="{Bank>FIELD2}" />
+
+						</c:items>
+					</c:ComboBox>
+				</t:template>
+			</t:Column>
+			<t:Column width="120px">
+				<c:Label text="Card no" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{forexsurrender>CardNo}" editable="{fieldproperties>/sureditable}" />
+
+				</t:template>
+			</t:Column>
+			<t:Column width="130px">
+				<c:Label text="Card Validity" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<DatePicker value="{path:'forexsurrender>CardValidity'}"
+						displayFormat="dd.MM.yyyy" editable="{fieldproperties>/sureditable}"
+						valueFormat="yyyyMMdd" />
+				</t:template>
+			</t:Column>
+
+			<t:Column width="120px">
+				<c:Label text="Amount" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<!-- <c:TextField value="{path:'Amount'}" change="onCalculate" -->
+					<!-- editable="{fieldproperties>/editable}" /> -->
+					<Input editable="{fieldproperties>/sureditable}"
+						value="{path:'forexsurrender>Amount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						change="onForexSurrCalculate" />
+				</t:template>
+			</t:Column>
+
+
+
+			<t:Column width="120px">
+				<c:Label text="Payment Type" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+
+					<c:ComboBox editable="{fieldproperties>/sureditable}"
+						change="onForexSurrChange" value="{forexsurrender>PaymentType}"
+						displaySecondaryValues="true" items="{Payment>/}">
+
+						<c:items>
+							<core:ListItem additionalText="{Payment>FIELD3}"
+								text="{Payment>FIELD2}" key="{Payment>FIELD2}" />
+
+						</c:items>
+					</c:ComboBox>
+
+				</t:template>
+			</t:Column>
+			<t:Column width="120px">
+				<c:Label text="Exchange Rate" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+
+					<c:TextField
+						editable="{parts:[{path:'forexsurrender>PaymentType'},{path:'general>/subkey'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatExchangeEdit'}"
+						value="{path:'forexsurrender>ExchangeRate',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						change="onForexSurrCalculate" />
+				</t:template>
+			</t:Column>
+			<t:Column width="120px">
+				<c:Label text="Tax Amount" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField
+						value="{path:'forexsurrender>Tax',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						editable="{fieldproperties>/sureditable}" change="onForexSurrCalculate" />
+				</t:template>
+			</t:Column>
+
+			<t:Column width="80px">
+				<c:Label text="Total" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<Input
+						value="{path:'forexsurrender>Total',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						editable="false" />
+				</t:template>
+			</t:Column>
+
+
+
+			<t:Column width="120px">
+				<c:Label text="Invoice No" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{forexsurrender>InvoiceNo}"
+						editable="{fieldproperties>/surineditable}" />
+				</t:template>
+			</t:Column>
+			<t:Column width="130px">
+				<c:Label text="Invoice Date" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<DatePicker value="{path:'forexsurrender>Invoicedate'}"
+						displayFormat="dd.MM.yyyy" editable="{fieldproperties>/surineditable}"
+						valueFormat="yyyyMMdd" />
+				</t:template>
+			</t:Column>
+			<t:Column width="130px">
+				<c:Label text="Remarks" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<Input value="{path:'forexsurrender>Remarks'}" editable="{fieldproperties>/sureditable}" />
+				</t:template>
+			</t:Column>
+
+		</t:Table>
+		<!-- </c:Panel> -->
+	</Panel>
+</core:FragmentDefinition>

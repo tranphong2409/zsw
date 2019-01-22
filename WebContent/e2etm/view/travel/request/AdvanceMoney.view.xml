@@ -1,0 +1,64 @@
+<mvc:View controllerName="sap.ui.project.e2etm.controller.travelrequest.AdvanceMoney" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns="sap.m">
+	<Link class="font-size-18 adv_link_righ_side" press="onAdvancePolicyPress" text="Advances as Per Policy"></Link>
+	<HBox>
+		<l:VerticalLayout >
+			<l:content>
+				<Label class="label_bold font-size-18" text="Do you need advance ?"/>
+			</l:content>
+		</l:VerticalLayout>
+		<l:VerticalLayout>
+			<l:content>
+				<Switch change="onAdvanceMoneySwitch" class="cm_switch" customTextOff="No" customTextOn="Yes" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+					id="advMoney" state="{trvRequestDtl>/ZZ_ADVM_REQ_ENB}">
+					<layoutData>
+						<FlexItemData growFactor="1"/>
+					</layoutData>
+				</Switch>
+				<!--<Label class="advance_text" text="Please click on the button to know the advance eligibility as per policy"></Label>-->
+			</l:content>
+		</l:VerticalLayout>
+		<l:VerticalLayout class="sapUiContentPadding">
+			<l:content></l:content>
+		</l:VerticalLayout>
+	</HBox>
+	<HBox>
+		<t:Table class="font-size-18 tblNoBorderCm" id="advMoneyDetail" rows="{ path: 'trvRequestDtl>/aAdvMoney'}" selectionMode="None"
+			visible="{trvRequestDtl>/ZZ_ADVM_REQ_ENB}" visibleRowCount="{trvRequestDtl>/aAdvMoneyLenght}">
+			<!--<t:toolbar>-->
+			<!--	<c:Toolbar design="Transparent">-->
+			<!--		<Button class="addBtnInsTable" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://add" press="addAdvMoneyRow" text="Add Row"-->
+			<!--			type="Emphasized" visible="{trvRequestDtl>/ZZ_ADV_INTL}"/>-->
+			<!--	</c:Toolbar>-->
+			<!--</t:toolbar>-->
+			<t:noData>
+				<c:Label text=""></c:Label>
+			</t:noData>
+			<t:Column class="concac">
+				<c:Label class="label_small_bold lbl_head_dtl" text="Amount"></c:Label>
+				<t:template>
+					<Input change="onAdvanceMoneyChange" class="width_100pc cm_input_border_bottom" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="advAmount"
+						value="{trvRequestDtl>ZZ_BODVL1}" valueState="{trvRequestDtl>ZZ_BODVL1_ERROR}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<c:Label class="label_small_bold lbl_head_dtl" text="Currency"></c:Label>
+				<t:template>
+					<HBox class="actionClm">
+						<ComboBox change="onAdvCurrencyChange" class="cm_input_border_bottom" enabled="{trvRequestDtl>enabled}" filterSecondaryValues="true"
+						items="{ path: 'trvRequestDtl>/aCurrencies'}" selectedKey="{trvRequestDtl>ZZ_CUR1}" showSecondaryValues="true"
+						valueState="{trvRequestDtl>adv_curr_key_error}">
+						<core:ListItem additionalText="{trvRequestDtl>FIELD2}" key="{trvRequestDtl>FIELD1}" text="{trvRequestDtl>FIELD1}"/>
+					</ComboBox>
+						<Button class="addBtnInsTable" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://delete" press="deleteAdvMoneyRow"
+							tooltip="Remove Row" type="Emphasized" visible="{trvRequestDtl>enabled}"/>
+						<Button class="addBtnInsTable" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://add" press="addAdvMoneyRow" tooltip="Add Row"
+							type="Emphasized" visible="{trvRequestDtl>/ZZ_ADV_INTL}"/>
+					</HBox>
+					
+				</t:template>
+			</t:Column>
+		
+		</t:Table>
+	</HBox>
+</mvc:View>

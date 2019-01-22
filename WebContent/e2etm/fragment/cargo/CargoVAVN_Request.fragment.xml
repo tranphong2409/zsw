@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page title="{new>/CargoName}">
+		<content>
+			<ObjectHeader id="oh1" responsive="true"
+				icon="sap-icon://cargo-train" title="Cargo Information"
+				backgroundDesign="Translucent">
+				<attributes>
+					<ObjectAttribute title="Employee Name" text="{new>/DEP_EMP/ZZ_DEP_NAME}" />
+					<ObjectAttribute title="Employee Number"
+						text="{new>/DEP_EMP/ZZ_DEP_PERNR}" />
+					<ObjectAttribute title="Department" text="{new>/DEP_EMP/ZZ_DEP_DEPT}" />
+					<ObjectAttribute title="Travel Plan No. " text="{new>/ZZ_REINR}" />
+					<ObjectAttribute title="Start Date"
+						text="{path:'new>/ZZ_DATV1' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<ObjectAttribute title="End Date"
+						text="{path:'new>/ZZ_DATB1', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<ObjectAttribute title="Deputation Country" text="{new>/ZZ_FMCNTRY}" />
+					<ObjectAttribute text="     " />
+				</attributes>
+				<headerContainer>
+					<IconTabBar id="idIconTabBarMulti" class="sapUiResponsiveContentPadding"
+						expandable="false">
+						<items>
+							<IconTabFilter icon="sap-icon://hint">
+								<core:Fragment
+									fragmentName="sap.ui.project.e2etm.fragment.cargo.VA-VN-STA_create"
+									type="XML" />
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://attachment">
+								<core:Fragment
+									fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+									type="XML" />
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://group">
+								<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+									type="XML" />
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</headerContainer>
+			</ObjectHeader>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="btnSubmit" text="Submit" type="Accept" press="onSubmit"></Button>
+				</contentRight>
+				<contentMiddle>
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSave"></Button>
+				</contentMiddle>
+				<contentLeft>
+					<Button id="btnCancel" text="Cancel" type="Reject" press="onCancel"></Button>
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+</core:FragmentDefinition>

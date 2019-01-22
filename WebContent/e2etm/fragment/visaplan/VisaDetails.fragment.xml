@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<FlexBox class="dep_customer_flexbox">
+		<FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_select">
+				<Label text="Visa Type"></Label>
+				<Input value="Business VISA" editable="false"></Input>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select">
+				<Label text="Visa Proposed Start Date" class="required"></Label>				
+				<DatePicker id="visaStartDate" editable="{properties>/editable}" value="{ZZ_VISA_PSDATE}" displayFormat="dd/MM/yyyy" placeholder="DD/MM/YYYY" valueFormat="yyyyMMdd"   change="VisaDateChange" />
+			</FlexBox>
+		</FlexBox>
+		<FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_select">
+				<Label text="Visa For Country" class="required"></Label>
+				<Select autoAdjustWidth="true" id="VisaCountry"  change="onCountryChange" selectedKey="{ZZ_VISA_TOCNTRY}"
+					items="{ path: 'global1>/country'}" enabled="{properties>/editable}" ><!-- selectedKey="{ZZ_VISA_TOCNTRY}" -->
+					<core:Item key="{global1>MOLGA}" text="{global1>LTEXT}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select">
+				<Label text="Visa Proposed End Date" class="required"></Label>
+				<DatePicker id="visaEndDate" value="{ZZ_VISA_PEDATE}" editable="{properties>/editable}" 
+				displayFormat="dd/MM/yyyy" placeholder="DD/MM/YYYY" valueFormat="yyyyMMdd" change="VisaDateChange"/>
+			</FlexBox>
+		</FlexBox>
+	</FlexBox>
+</core:FragmentDefinition>

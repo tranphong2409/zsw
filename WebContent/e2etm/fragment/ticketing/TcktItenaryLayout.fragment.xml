@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+	<l:HorizontalLayout class="hor_layout_margin_left" id="h1">
+		<TextArea  id="txtarea" width="600px" height="200px"
+			wrapping="Hard" class="flb_margin_left" value="{/Pernr}" editable="{properties>/txteditable}">
+
+
+		</TextArea>
+		<l:VerticalLayout>
+			<FlexBox direction="Row" justifyContent="Start" alignItems="Center"
+				class="flb_margin_bottom">
+				<Label width="100px" text="PNR Number"></Label>
+				<c:TextField id="t1" width="200px" value="{/Optionpnr}" editable="{properties>/txteditable}"></c:TextField>
+			</FlexBox>
+			<FlexBox direction="Row" justifyContent="Start" alignItems="Center"
+				class="flb_margin_bottom">
+				<Label width="100px" text="Total Fare"></Label>
+				<c:TextField width="200px" id="t2" value="{/Tfare}" editable="{properties>/txteditable}"></c:TextField>
+			</FlexBox>
+			<FlexBox direction="Row" justifyContent="Start" alignItems="Center"
+				class="flb_margin_bottom">
+				<c:Label width="100px" wrapping="true" text="Ticket Time Limit"></c:Label>
+				<c:TextField width="200px" id="t3" value="{/Tlimit}" editable="{properties>/txteditable}"></c:TextField>
+			</FlexBox>
+			<FlexBox direction="Row" justifyContent="Start" alignItems="Center"
+				class="flb_margin_bottom">
+				<c:Label width="100px" wrapping="true" text="Special Notes"></c:Label>
+				<TextArea width="200px" height="100px" id="t4"
+			wrapping="Hard" class="flb_margin_left" value="{/Spnotes}" editable="{properties>/txteditable}"/>
+			</FlexBox>
+		</l:VerticalLayout>
+
+	</l:HorizontalLayout>
+
+</core:FragmentDefinition>

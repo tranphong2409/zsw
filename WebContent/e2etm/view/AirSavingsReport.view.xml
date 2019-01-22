@@ -1,0 +1,101 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.AirSavingsReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Air Savings">
+		<content>
+			<Panel width="auto" class="panelBorderTrSettle sapUiSizeCompact">
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Filter By" />
+						<DatePicker valueFormat="yyyy-MM-dd" width="150px"
+							placeholder="From Date" displayFormat="dd/MM/yyyy" id="idFromDate" />
+						<DatePicker valueFormat="yyyy-MM-dd" width="150px"
+							placeholder="To Date" displayFormat="dd/MM/yyyy" id="idToDate" />
+						<Button text="Search" type="Emphasized" icon="sap-icon://search"
+							class="margin_left_10" press="onSearch"></Button>
+						<ToolbarSpacer />
+
+						<Button text="Download" type="Emphasized" press="onExport" />
+
+					</Toolbar>
+
+				</headerToolbar>
+				<content>
+					<ScrollContainer horizontal="true" vertical="true"
+						focusable="true">
+						<Table id="airSavings" inset="false" growing="true"
+							class="tableclass table_ticket_admin sapUiSizeCompact"
+							growingScrollToLoad="true" noDataText="{No Data}" items="{/}"
+							fixedLayout="true">
+
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Travel Plan Number" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="150px">
+									<Text text="Employee No" />
+								</Column>
+
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Name" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Department" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Lowest Fare" />
+								</Column>
+								<Column id="lAirline" minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Airline" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Preferred Fare" />
+								</Column>
+								<Column id="pAirline" minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Airline" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Difference" />
+								</Column>
+								
+								<Column id="status" minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Status" />
+								</Column>
+								<Column id="remarks" minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Remarks" />
+								</Column>
+
+
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Reinr}" wrapping="false" tooltip="{Reinr}" />
+
+										<Text text="{path:'Pernr'}" tooltip="{path:'Pernr'}"
+											wrapping="false" />
+
+										<Text text="{Ename}" tooltip="{Ename}" wrapping="false" />
+										<Text text="{Department}" tooltip="{Department}"
+											wrapping="false" />
+										<Text wrapping="false" tooltip="{path:'Lfare'}" text="{path:'Lfare'}" />
+										<Text text="{path:'Lairline'}" tooltip="{Lairline}"
+											wrapping="false" />
+										<Text wrapping="false" text="{path:'Pfare'}" tooltip="{path:'Pfare'}" />
+										<Text text="{path:'Pairline'}" tooltip="{Pairline}"
+											wrapping="false" />
+										<Text wrapping="false" text="{path:'Dfare'}" tooltip="{path:'Dfare'}" />
+										<Text text="{Status}" tooltip="{Status}" wrapping="false" />
+										<Text wrapping="false" text="{path:'Remarks'}" tooltip="{path:'Remarks'}" />
+
+
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:View>

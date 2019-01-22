@@ -1,0 +1,20 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<!-- <FlexBox id="flexBoxContractLetter" width="100%"> -->
+	
+	<c:Panel text="CONTRACT LETTERS" visible="true" class="panelCollapse">
+		<c:Carousel id="flexBoxContractLetter" content="{/}"
+			defaultItemHeight="100px" defaultItemWidth="150px">
+			<c:content>
+				<FlexBox direction="Column" class="margin_right_20">
+					<Image src="./images/contract.png" width="50px" height="50px"></Image>
+					<Link text="{ZZ_DOC_NAME}" href="{ZZ_DOC_PATH}" target="_blank" />
+				</FlexBox>
+			</c:content>
+		</c:Carousel>
+	</c:Panel>
+
+	<!-- </FlexBox> -->
+</core:FragmentDefinition>

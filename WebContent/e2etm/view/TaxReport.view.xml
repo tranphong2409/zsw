@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table" xmlns="sap.m" xmlns:commons="sap.ui.commons"
+	xmlns:l="sap.ui.layout" xmlns:view="sap.ui.core.mvc" xmlns:table="sap.ui.table"
+	controllerName="sap.ui.project.e2etm.controller.TaxReport" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page height="100%" showNavButton="true"
+		navButtonPress="backPress" title="TAX CLEARANCE REPORT" class="pageAccommodation">
+		<content>
+			<Table inset="false" class="table_ticket_admin tableclass sapUiSizeCompact" id="taxReportTable"
+				items="{/ZE2E_TAX_REPORTSet}" growing="true" growingScrollToLoad="true">
+				<headerToolbar>
+					<Toolbar>
+					    <Text text="From To" />
+						<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+							placeholder="From Date" displayFormat="dd/MM/yyyy" change="handleChange"
+							id="idFromDate" />
+						<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+							placeholder="To Date" displayFormat="dd/MM/yyyy" change="handleChange"
+							id="idToDate" />
+					    <Label text="Search Field" class="font_size_14" />
+						<SearchField search="onSearch" width="30%" id="idSearch" 
+						    placeholder="Request Number or Employee Number"
+							class="margin_left_10" tooltip="Request Number or Employee Number" />
+						<Button text="Export To Excel" type="Accept" icon="sap-icon://excel-attachment" 
+						    class="margin_left_10" press="onExportExcel"></Button>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Pers.no" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="EMP Name" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="DOB" class="button_header"  />
+					</Column>
+					<Column>
+						<Text text="Travel Req" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="Trip Dest." class="button_header" press="onMenu" />
+					</Column>
+					<Column>
+						<Text text="City" class="button_header" press="onMenu" />
+					</Column>
+					<Column>
+						<Text text="Travel type" class="button_header"  />
+					</Column>
+					<Column>
+						<Text text="Asgt Model" class="button_header"  />
+					</Column>
+					<Column>
+						<Text text="St.Date" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="E.Date" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="No. of days" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="Family Status" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="Tax status" class="button_header" />
+					</Column>
+					<Column>
+						<Text text="Esca. status" class="button_header" />
+					</Column>
+					<Column width="6rem">
+						<Text text="Date of last esca." class="button_header" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem height="10px">
+						<cells>
+						    <Text text="{ZZ_OWNER}" />
+						    <Text text="{ZZ_EMP_NAME}" />
+						    <Text text="{path:'ZZ_BIRTH_DATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						    <Text text="{ZZ_TRV_REQ}" />
+						    <Text text="{path:'ZZ_TOCNTRY', formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+						    <Text text="{ZZ_TOCITY}" />
+						    <Text text="{ZZ_TRV_CAT}" />
+						    <Text text="{ZZ_ASG_MODEL}" />
+						    <Text text="{path:'ZZ_DEP_STDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						    <Text text="{path:'ZZ_DEP_EDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						    <Text text="{ZZ_DEP_DAYS}" />
+						    <Text text="{path:'ZZ_DEP_FAMILY', formatter: 'sap.ui.project.e2etm.util.Formatter.formatNoFamilyMembers'}" />
+						    <Text text="{ZZ_TAX_STATUS}" />
+						    <Text text="{ZZ_MAILS_SENT}" />
+						    <Text text="{path:'ZZ_ESCA_DATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+
+	<Table itemPress="onMRItemPress" inset="false" id="mrtabledetails" growing="true" growingThreshold="100"
+		class="sapUiSizeCompact tableclass table_ticket_admin" items="{path: '/'}"
+		mode="MultiSelect">
+<!-- 		<headerToolbar> -->
+<!-- 			<Toolbar visible="false"> -->
+<!-- 				<Label text="Start Date"/> -->
+<!-- 				<DatePicker width="200px" displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY" valueFormat="yyyyMMdd" required="true"/> -->
+<!-- 				<ToolbarSpacer/> -->
+<!-- 				<Label text="End Date"/> -->
+<!-- 				<DatePicker width="200px" displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY" valueFormat="yyyyMMdd" required="true"/> -->
+<!-- 			</Toolbar> -->
+<!-- 		</headerToolbar> -->
+		<columns>
+			<Column width="3em">
+
+				<Button text="Employee No" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Employee Name" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Travel Plan" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Start Date" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="End Date" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Received Date" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+
+
+			<Column width="3em">
+
+				<Button text="To Country" class="button_header" type="Transparent" press="onMenu"/>
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" height="10px">
+				<cells>
+					<Text text="{EmpNo}" />
+					<Text text="{EmpName}" />
+					<Text text="{TravelPlan}" />
+					<Text
+						text="{path:'StartDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text
+						text="{path:'EndDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text
+						text="{path:'ReceivedDt',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{path:'ToCountryText'}" />
+
+
+
+
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+
+
+</core:FragmentDefinition>

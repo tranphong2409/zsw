@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+	<commons:Dialog modal="true" width="510px" title="WORKFLOW ACTION" class="dialog">
+	    <FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_select_short_with_to">
+				<Label text="Insurance expired after" class="required"></Label>
+				<commons:DatePicker id="dateInsuranceExpired" width="300px"/>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select_short_with_to" id="flexboxCOCId">
+				<Label text="COC expired after" class="required"></Label>
+				<commons:DatePicker id="dateCOCExpired" width="300px"/>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select_short_with_to">
+				<Label text="VISA expired after" class="required"></Label>
+				<commons:DatePicker id="dateVISAExpired" width="300px"/>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select_short_with_to">
+				<Label text="Ticket expired after" class="required"></Label>
+				<commons:DatePicker id="dateTicketExpired" width="300px"/>
+			</FlexBox>
+		</FlexBox> 
+		<commons:buttons>
+			<commons:Button text="Change" press="onEmployeeExtend" width="60px" height="30px" />
+		</commons:buttons>
+	</commons:Dialog>
+</core:FragmentDefinition>

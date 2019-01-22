@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html data-sap-ui-browser="ie11" data-sap-ui-os="win7">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta charset="UTF-8">
+<!-- https://sapui5.hana.ondemand.com -->
+<title>RBEI Travel Management</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<!--src="resources/sap-ui-cachebuster/sap-ui-core.js"-->
+<script id="sap-ui-bootstrap"
+  
+  src="https://sapui5.hana.ondemand.com/1.28.8/resources/sap-ui-cachebuster/sap-ui-core.js"
+  data-sap-ui-theme="sap_bluecrystal" data-sap-ui-language="en"
+  data-sap-ui-libs="sap.m, sap.ui.comp" data-sap-ui-xx-bindingSyntax="complex"
+  data-sap-ui-preload="auto" data-sap-ui-appCacheBuster="./"
+  data-sap-ui-resourceroots='{
+        "sap.ui.project" : "./"
+      }'>
+</script>
+<!-- <script src="./jszip/jszip.js"></script> -->
+<!-- <script src="./jszip/jsUtil.js"></script> -->
+<!-- <script src="./jszip/FileSaver.js"></script> -->
+<!-- <script src="./js/constants.js"></script> -->
+<!-- <script src="./js/Base64.js"></script> -->
+<!-- <script src="./jszip/jquery.base64.js"></script> -->
+<!-- <script src="./jszip/tableExport.js"></script> -->
+
+<script>
+  new sap.m.Shell({
+    backgroundImage : "images/map_background.jpg",
+    app : new sap.ui.core.ComponentContainer({
+      name : "sap.ui.project",
+      propagateModel:true
+    })
+  }).placeAt("content");
+</script>
+</head>
+<body class="sapUiBody">
+  <div id="content" style="position: relative;"></div>
+</body>
+</html>

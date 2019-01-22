@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+	<commons:Panel text="Statement of Declaration and Instructions" class="panelCollapse">
+		<!-- <headerToolbar>
+			<Toolbar>
+				<Text text="Statement of Declaration and Instructions" />
+				<ToolbarSpacer />
+			</Toolbar>
+		</headerToolbar> -->
+			<Text
+				text="- I have read the information regarding the extent of insurance cover" />
+			<Text
+				text="- I will intimate changes in dates at least 15 days in advance to ensure availability of appropriate insurance coverage" />
+			<Text
+				text="- Where applicable I will intimate travel details of dependent family members to ensure availability of appropriate insurance coverage" />
+	</commons:Panel>
+
+	<commons:Panel text="Acknowledgement" class="panelCollapse">
+		<!-- <headerToolbar>
+			<Toolbar>
+				<Text text="Acknowledgement" />
+				<ToolbarSpacer />
+			</Toolbar>
+		</headerToolbar> -->
+			<CheckBox text="I have read and understood the above statement, medical delcaration provided are correct as per my knowledge"
+				id="confirmCheckboxId"
+				editable="{	path: 'global>/action',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+				selected="{	path: 'global>/action',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.setAcknowledgementCheck'
+						  }"></CheckBox>
+	</commons:Panel>
+</core:FragmentDefinition>

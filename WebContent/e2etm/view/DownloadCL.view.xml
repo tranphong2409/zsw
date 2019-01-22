@@ -1,0 +1,147 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="sap.ui.project.e2etm.controller.DownloadCL" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Download CL/HPC Sheets">
+		<content>
+			<f:SimpleForm id="roomDet" editable="true"
+				layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+				labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="4"
+				columnsM="2" columnsS="1" singleContainerFullSize="false">
+				<f:content>
+					<core:Title />
+					<Label text="Deputation Request" tooltip="Deputation Request">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Input id="ipDepreq" />
+					<Label text="Department">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<ComboBox id="ipDept" items="{deptF4>/}">
+						<items>
+							<core:Item text="{deptF4>Department}" key="{deptF4>Id}" />
+						</items>
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+					</ComboBox>
+
+					<core:Title />
+					<Label text="Employee No">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Input id="ipPernr">
+
+					</Input>
+					<Label text="Assignment Model" tooltip="Assignment Model">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Select id="ipAsgtyp" items="{/AsgModelsF4Set}">
+						<items>
+							<core:Item text="{AsgType}" key="{Key}" />
+						</items>
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+					</Select>
+
+					<core:Title />
+
+					<Label text="Start Date" />
+					<DatePicker id="ipBegda" displayFormat="dd.MM.yyyy"
+						valueFormat="yyyyMMdd" />
+					<Label text="Letter Type" id="lbLtype" visible="true">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+
+					<Select id="ipLtype" visible="true" change="onLetterSelect">
+						<items>
+							<core:Item text="Please Select" key="" />
+							<core:Item text="Contract Letter" key="CL" />
+							<core:Item text="Calculation Sheet" key="CS" />
+							<core:Item text="Both" key="CC" />
+
+						</items>
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+
+					</Select>
+
+
+					<core:Title />
+
+					<Label text="End Date" />
+					<DatePicker id="ipEndda" displayFormat="dd.MM.yyyy"
+						valueFormat="yyyyMMdd" />
+					<Label text="" />
+					<Button text="Search" press="onSearch" class="resMBtnBlack" />
+
+
+				</f:content>
+			</f:SimpleForm>
+			<!-- <HBox justifyContent="Center"> -->
+			<!-- <Button text="Search" press="onSearch" class="resMBtnBlack" /> -->
+			<!-- </HBox> -->
+
+			<Table id="tblPdf" mode="MultiSelect" growing="true"
+				growingThreshold="50">
+				<headerToolbar>
+					<!-- <Toolbar> -->
+					<!-- <ToolbarSpacer /> -->
+					<!-- <SearchField id="ipSearch" width="200px" liveChange="onLiveSearch" -->
+					<!-- selectOnFocus="false" /> -->
+					<!-- </Toolbar> -->
+				</headerToolbar>
+				<columns>
+					<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Employee No" />
+					</Column>
+					<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Dep.Req" />
+					</Column>
+					<Column id="col3" minScreenWidth="Tablet" demandPopin="true"
+						width="150px">
+						<Text text="Version" />
+					</Column>
+
+					<Column id="col4" minScreenWidth="Tablet" demandPopin="true"
+						width="150px">
+						<Text text="Department" />
+					</Column>
+					<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+						width="150px">
+						<Text text="Assignment Model" tooltip="Assignment Model" />
+					</Column>
+
+					<Column id="col6" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="" />
+					</Column>
+				</columns>
+
+
+			</Table>
+
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="Download" icon="sap-icon://download" press="onDownload" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

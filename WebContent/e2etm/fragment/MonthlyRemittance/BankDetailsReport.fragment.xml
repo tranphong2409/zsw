@@ -1,0 +1,123 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:table="sap.ui.table">
+	<table:Table id="bankreport" selectionMode="MultiToggle"
+		rows="{path:'tableModel>/rep0009/'}" class="compact_table margin_10"
+		navigationMode="Paginator" filter="onTableCentralFilter" showNoData="true">
+
+
+		<table:columns>
+			<table:Column resizable="true" width="120px"
+				sortProperty="EmpNo" filterProperty="EmpNo" hAlign="Center">
+				<table:label>
+					<Label text="Employee No" tooltip="Employee No" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>EmpNo}" tooltip="{path: 'tableModel>EmpNo'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="StartDate"
+				width="80px" filterProperty="StartDate" hAlign="Center">
+				<table:label>
+					<Label text="Start Date" class="label_bold" tooltip="Start Date"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>StartDate',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="Btype"
+				width="80px" filterProperty="Btype" hAlign="Center">
+				<table:label>
+					<Label text="Bank Details Type" class="label_bold" tooltip="Bank Details Type"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Btype}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="EmpName"
+				width="120px" filterProperty="EmpName" hAlign="Center">
+				<table:label>
+					<Label text="Payee" class="label_bold" tooltip="Employee Name"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>EmpName}" 
+						tooltip="{tableModel>EmpName}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="Porct"
+				width="80px" filterProperty="Porct" hAlign="Center">
+				<table:label>
+					<Label text="Postal Code" tooltip="Postal Code" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label tooltip="{path: 'tableModel>Porct'}" text="{path: 'tableModel>Porct'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="City"
+				width="120px" filterProperty="City" hAlign="Center">
+				<table:label>
+					<Label text="City" tooltip="City" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path: 'tableModel>City'}" tooltip="{path: 'tableModel>City'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="ToCountryText"
+				width="120px" filterProperty="ToCountryText" hAlign="Center">
+				<table:label>
+					<Label text="Bank Country" tooltip="Bank Country" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path: 'tableModel>ToCountry'}" tooltip="{path: 'tableModel>ToCountryText'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="80px"
+				sortProperty="Bkcbr" filterProperty="Bkcbr" hAlign="Begin">
+				<table:label>
+					<Label text="Bank Key" tooltip="Bank Key" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{ path: 'tableModel>Bkcbr'}" tooltip="{path: 'tableModel>Bkcbr'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="150px"
+				sortProperty="Bkact" filterProperty="Bkact">
+				<table:label>
+					<Label text="Bank Account Number" tooltip="Bank Account Number"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Bkact}" tooltip="{tableModel>Bkact}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="150px"
+				sortProperty="Ibano" filterProperty="Ibano">
+				<table:label>
+					<Label text="IBAN Number" tooltip="IBAN Number" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Ibano}" tooltip="{tableModel>Ibano}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="150px"
+				sortProperty="Description" filterProperty="Description">
+				<table:label>
+					<Label text="Description" tooltip="Description" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Description}" tooltip="{tableModel>Description}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Curr" filterProperty="Curr">
+				<table:label>
+					<Label text="Payment Currency" tooltip="Payment Currency"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Curr}" tooltip="{tableModel>Curr}" />
+				</table:template>
+			</table:Column>
+		</table:columns>
+	</table:Table>
+</core:FragmentDefinition>

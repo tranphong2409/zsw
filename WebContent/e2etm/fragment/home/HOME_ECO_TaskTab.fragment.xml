@@ -1,0 +1,227 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:table="sap.ui.table">
+	<FlexBox class="landing_flexbox_my_task" id="flexboxECOMyTask">
+		<FlexBox direction="Column" class="refreshManagerFlexBox">
+			<commons:Button id="btnECORefreshMyTaskTable" icon="sap-icon://refresh"
+				tooltip="Refresh" press="onRefreshData" class="refresh_button refresh_button_mgr"
+				visible="false"></commons:Button>
+			<FlexBox id="lblECONodata">
+				<Label text="At the moment, there is no data in your Mytask box"
+					class="margin_20"></Label>
+				<commons:Button icon="sap-icon://refresh" tooltip="Refresh"
+					press="onRefreshData" class="refresh_button margin_top_20 margin_bottom_20"></commons:Button>
+			</FlexBox>
+			<table:Table id="tableECOMyTasks" visibleRowCount="15"
+				visible="false" selectionMode="Single" class="compact_table margin_10"
+				columnHeaderHeight="40" rowSelectionChange="onECOMyTaskTableChange"
+				filter="onTableCentralFilter" showNoData="false" navigationMode="Paginator"
+				selectionBehavior="RowOnly">
+				<table:columns>
+					<table:Column resizable="false" width="80px"
+						sortProperty="ZZ_REQ_TYP" sorted="true" filterProperty="ZZ_REQ_TYP"
+						hAlign="Center">
+						<table:label>
+							<Label text="TYPE" class="label_bold"></Label>
+						</table:label>
+						<table:template width="80px">
+							<Label text="{ZZ_REQ_TYP}"
+								tooltip="{path: 'ZZ_REQ_TYP', formatter: 'sap.ui.project.e2etm.util.Formatter.formatReqType'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="120px"
+						sortProperty="ZZ_DEP_REQ" sorted="true" sortOrder="Descending"
+						filterProperty="ZZ_DEP_REQ" hAlign="Center">
+						<table:label>
+							<Label text="REQ ID" class="label_bold" tooltip="Request Number"></Label>
+						</table:label>
+						<table:template width="100px">
+							<Label text="{ZZ_DEP_REQ}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_STDATE"
+						sorted="true" filterProperty="ZZ_DEP_STDATE" hAlign="Center">
+						<table:label>
+							<Label text="ST.DATE" class="label_bold" tooltip="Start Date"></Label>
+						</table:label>
+						<table:template>
+							<Label
+								text="{path : 'ZZ_DEP_STDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_ENDATE"
+						sorted="true" filterProperty="ZZ_DEP_ENDATE" hAlign="Center">
+						<table:label>
+							<Label text="E.DATE" class="label_bold" tooltip="End Date"></Label>
+						</table:label>
+						<table:template>
+							<Label
+								text="{path : 'ZZ_DEP_ENDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_TOCNTRY_TXT"
+						sorted="true" filterProperty="ZZ_DEP_TOCNTRY_TXT" hAlign="Center">
+						<table:label>
+							<Label text="COUNTRY" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{path: 'ZZ_DEP_TOCNTRY_TXT'}"></Label>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</FlexBox>
+		<FlexBox class="panel_gray employeeRightPanel" id="flexboxECOMyTaskDetail"
+			visible="false" direction="Column">
+			<html:Div class="arrow_gray_background"></html:Div>
+			<Bar class="landing_panel_mytask_detail_bar">
+				<contentLeft>
+					<Label
+						text="EMPLOYEE: {myECOSelectedTaskModel>/ZZ_DEP_NAME} ({myECOSelectedTaskModel>/ZZ_DEP_PERNR})"
+						class="label_bold margin_left_10 header_text"></Label>
+				</contentLeft>
+			</Bar>
+			<FlexBox direction="Column">
+				<FlexBox class="margin_top_10 margin_left_10">
+					<Label
+						text="{myECOSelectedTaskModel>/ZZ_DEP_FRMLOC_TXT} -
+				         {path: 'myECOSelectedTaskModel>/ZZ_DEP_FRCNTRY_TXT'}
+					                "
+						class="label_bold"></Label>
+					<Label text="to" class="margin_left_10 margin_right_10"></Label>
+					<Label
+						text="{myECOSelectedTaskModel>/ZZ_DEP_TOLOC_TXT} - 
+					    {path: 'myECOSelectedTaskModel>/ZZ_DEP_TOCNTRY_TXT'}"
+						class="label_bold"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail">
+					<Label text="Customer: " class="label_bold"></Label>
+					<Label text="{myECOSelectedTaskModel>/ZZ_CUST_NAME}" class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail">
+					<Label text="Deputation To" class="line_height_30"></Label>
+					<Select items="{path: 'myECOSelectedTaskModel>/subtype'}"
+						class="normal_select" selectedKey="{myECOSelectedTaskModel>/ZZ_DEP_SUB_TYPE}"
+						width="300px" enabled="false" placeholder="Please select">
+						<core:ListItem key="{myECOSelectedTaskModel>ZZ_DEP_SUB_TYPE}"
+							text="{myECOSelectedTaskModel>ZZ_SUB_DEP_DESC}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.inVisisbleTravelRequest'}">
+					<Label text="Assignment Model" class="line_height_30"></Label>
+					<Select items="{path: 'myECOSelectedTaskModel>/assmodel'}"
+						class="normal_select" width="300px" enabled="false" placeholder="Please select"
+						selectedKey="{myECOSelectedTaskModel>/ZZ_ASG_TYP}">
+						<core:ListItem key="{myECOSelectedTaskModel>ZZ_ASG_TYP}"
+							text="{myECOSelectedTaskModel>ZZ_ASG_DESC}" tooltip="{myECOSelectedTaskModel>ZZ_ASG_DESC}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.inVisisbleTravelRequest'}">
+					<Label text="Reason for travel" class="line_height_30"></Label>
+					<Select items="{path: 'myECOSelectedTaskModel>/purpose'}"
+						class="normal_select" selectedKey="{myECOSelectedTaskModel>/ZZ_TRV_PUR}"
+						width="300px" enabled="false" placeholder="Please select">
+						<core:ListItem key="{myECOSelectedTaskModel>ZZ_TRV_PUR}"
+							text="{myECOSelectedTaskModel>ZZ_TRV_DESC}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.inVisisbleTravelRequest'}">
+					<Label text="Service Conditions" class="line_height_30"></Label>
+					<Select items="{path: 'myECOSelectedTaskModel>/serviceType'}"
+						class="normal_select" selectedKey="{myECOSelectedTaskModel>/ZZ_SERV_TYP}"
+						width="300px" enabled="false" placeholder="Please select">
+						<core:ListItem key="{myECOSelectedTaskModel>ZZ_SERV_TYP}"
+							text="{myECOSelectedTaskModel>ZZ_SERV_TEXT}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.inVisisbleTravelRequest'}">
+					<Label text="" class="line_height_30"></Label>
+					<Input value="{path: 'myECOSelectedTaskModel>/ZZ_SRVTYP_MONTHS'}"
+						width="220px" class="normal_input" editable="false"></Input>
+					<Label text="Month(s)" class="margin_left_10 line_height_30"></Label>
+				</FlexBox>
+
+				<!-- For business request only -->
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="{i18n>tra_fro}"></Label>
+					<FlexBox>
+						<Label
+							text="{path: 'myECOSelectedTaskModel>/ZZ_DEP_FRCNTRY_TXT'} - 
+			                {myECOSelectedTaskModel>/ZZ_DEP_FRMLOC_TXT}"
+							class=""></Label>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="{i18n>tra_to}"></Label>
+					<FlexBox>
+						<Label
+							text="{path: 'myECOSelectedTaskModel>/ZZ_DEP_TOCNTRY_TXT'} - 
+			                {myECOSelectedTaskModel>/ZZ_DEP_TOLOC_TXT}"
+							class=""></Label>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Travel Request"></Label>
+					<FlexBox>
+						<Label
+							text="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_REQ_TYP'},
+									{path : 'myECOSelectedTaskModel>/ZZ_DEP_REQ'}], 
+								formatter: 'sap.ui.project.e2etm.util.Formatter.formatTravelRequest'}"></Label>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myECOSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myECOSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    	formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="{i18n>Date}"></Label>
+					<FlexBox>
+						<Label
+							text="{path : 'myECOSelectedTaskModel>/ZZ_DEP_STDATE', 
+                			formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+							class="margin_right_10"></Label>
+						<Label text="{i18n>to}"></Label>
+						<Label
+							text="{path : 'myECOSelectedTaskModel>/ZZ_DEP_ENDATE', 
+                			formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+							class="margin_left_10 margin_right_10"></Label>
+					</FlexBox>
+				</FlexBox>
+				<!-- For business request only -->
+
+				<FlexBox class="landing_dep_document">
+					<FlexBox class="commentBox" fitContainer="true" alignItems="Stretch"
+						width="100%">
+						<TextArea value="{myECOSelectedTaskModel>/ZZ_NEW_COMMENTS}"
+							class="margin_0" id="textAreaECOComment" maxLength="254" rows="4"
+							placeholder="Enter comment"></TextArea>
+						<TextArea value="{myECOSelectedTaskModel>/ZZ_COMMENTS}"
+							rows="4" tooltip="Display Comments from Others" class="margin_0 width_100pc"
+							editable="false"></TextArea>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox justifyContent="End">
+					<!-- <Button text="Sent back" icon="sap-icon://action" type="Emphasized" 
+						class="margin_right_10 margin_bottom_10 normal_button" press="onECOSentBackForChange" 
+						/> -->
+					<Button type="Reject" text="Reject" icon="sap-icon://employee-rejections"
+						class="margin_right_10 margin_bottom_10 normal_button" press="onECORejectRequest" />
+					<Button text="Approve" type="Accept" icon="sap-icon://employee-approvals"
+						class="margin_right_10 margin_bottom_10 normal_button" press="onECOApproveRequest" />
+				</FlexBox>
+			</FlexBox>
+		</FlexBox>
+	</FlexBox>
+</core:FragmentDefinition>

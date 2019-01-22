@@ -1,0 +1,440 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="sap.ui.project.e2etm.controller.IssueCL" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Contract Letters Generation" class="sapUiSizeCompact">
+		<content>
+			<f:SimpleForm id="roomDet" editable="true"
+				layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+				labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3"
+				columnsM="1" columnsS="1" singleContainerFullSize="false">
+				<f:content>
+					<core:Title />
+					<Label text="Travel Category" required="true">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+
+					<Select id="ipTrvcat" change="onFilterLetterValues">
+						<items>
+							<core:Item text="Please Select" key="" />
+							<core:Item text="Work Permit" key="WRKP" />
+							<core:Item text="Training" key="TRNG" />
+							<core:Item text="Transfer" key="TRFR" />
+
+						</items>
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+
+					</Select>
+					<Label text="Assignment Model" tooltip="Assignment Model"
+						required="true">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Select id="ipAsgtyp" change="onFilterLetterValues">
+						<!-- <items> -->
+						<!-- <core:Item text="{AsgType}" key="{Key}" /> -->
+						<!-- </items> -->
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+					</Select>
+
+					<Label text="Start Date From">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<DatePicker valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"
+						id="ipBegda">
+
+					</DatePicker>
+
+					<!-- dye5kor -->
+					<Label text="End Date From">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<DatePicker valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"
+						id="ipEnddaFrom">
+
+					</DatePicker>
+
+					<!-- dye5kor -->
+					<!-- <Label text="Year" id="lbLYear" visible="false"> <layoutData> <l:GridData 
+						span="L5 M3 S4" /> </layoutData> </Label> <Select id="ipLYear" visible="false" 
+						change="onAllowanceChange" items="{path:'yearModelData>/'}"> <core:Item key="{yearModelData>key}" 
+						text="{yearModelData>text}" /> <layoutData> <l:GridData span="L7 M3 S4" /> 
+						</layoutData> </Select> -->
+
+					<!-- dye5kor -->
+
+					<!-- dye5kor -->
+
+
+
+
+
+					<core:Title />
+					<Label text="Deputation Type" tooltip="Deputation Type">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+
+					<Select id="ipDepType" change="onFilterLetterValues">
+						<items>
+							<core:Item text="Please select" key="" />
+							<core:Item text="International" key="INTL" />
+							<core:Item text="Domestic" key="DOME" />
+						</items>
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+					</Select>
+
+					<Label text="Employee No">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Input id="ipPernr">
+
+					</Input>
+
+
+
+					<!-- dye5kor -->
+					<Label text="Start Date To">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<DatePicker valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"
+						id="ipStartDateTo">
+					</DatePicker>
+
+					<!-- dye5kor -->
+
+
+					<Label text="End Date To">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<DatePicker valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"
+						id="ipEndda">
+					</DatePicker>
+
+					<Label text="Contract Letter Format" id="lbFormat" visible="false">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<ComboBox id="ipFormat" items="{path:'/GetCLFormatsSet'}"
+						visible="false">
+						<items>
+							<core:Item key="{Selpar}" text="{Value}" />
+						</items>
+					</ComboBox>
+
+
+
+
+					<Label text="Allowance Amount" id="lbAllowanceAmt" visible="false">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<!-- <Input id="ipAllowanceAmt" visible="false" /> -->
+
+
+					<!-- <ComboBox id="ipCurrency" items="{ path:'currencyModelData>/'}" 
+						visible="false" selectionChange="onAllowanceChange1"> <core:ListItem key="{currencyModelData>FIELD1}" 
+						text="{currencyModelData>FIELD1}" /> </ComboBox> -->
+
+					<core:Title />
+					<Label text="To Country" required="true">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<ComboBox id="ipTocnty" items="{path:'global>/country'}"
+						change="onCountryChange">
+						<items>
+							<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+						</items>
+					</ComboBox>
+
+					<Label text="Deputation Request" tooltip="Deputation Request">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Input id="ipDepreq" />
+
+					<Label text="Letter Type:" id="lbLtype" visible="true">
+						<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+
+					<Select id="ipLtype" visible="true" change="onLetterSelect"
+						items="{path:'LetterModelData>/'}">
+						<!-- <items> <core:Item text="Please Select" key="" /> <core:Item text="Contract 
+							Letter" key="CL" /> <core:Item text="Calculation Sheet" key="CS" /> <core:Item 
+							text="Both" key="CC" /> <core:Item text="STA Allowance Letter" key="CA" /> 
+							</items> -->
+
+						<core:Item key="{LetterModelData>key}" text="{LetterModelData>text}" />
+						<layoutData>
+							<l:GridData span="L7 M3 S4" />
+						</layoutData>
+
+					</Select>
+					<Label text="">
+					<layoutData>
+							<l:GridData span="L5 M3 S4" />
+						</layoutData>
+					</Label>
+					<Button text="Search" press="onSearch" class="resMBtnBlack" />
+					<!-- dye5ko -->
+					<!-- <Label text="Allowance Type" id="lbAllowanceTyp" visible="false"> -->
+					<!-- <layoutData> -->
+					<!-- <l:GridData span="L5 M3 S4" /> -->
+					<!-- </layoutData> -->
+					<!-- </Label> -->
+					<!-- <MultiComboBox id="ipAllowanceTyp" items="{path:'/STAAllowanceSet'}" -->
+					<!-- visible="false" selectionChange="onAllowanceChange"> -->
+					<!-- <items> -->
+					<!-- <core:Item key="{AllowanceKey}" text="{AllowanceText}" /> -->
+					<!-- </items> -->
+					<!-- </MultiComboBox> -->
+
+
+
+
+
+				</f:content>
+			</f:SimpleForm>
+<!-- 			<HBox justifyContent="Center"> -->
+<!-- 				<Button text="Search" press="onSearch" class="resMBtnBlack" /> -->
+<!-- 			</HBox> -->
+			<ToolbarSpacer />
+
+
+			<!-- <Panel id="pnlAllowances"> -->
+			<!-- <headerToolbar> -->
+			<!-- <Toolbar> -->
+
+			<!-- <ToolbarSpacer width="80px" /> -->
+			<!-- <Label text="Type" width="80px"> -->
+
+			<!-- </Label> -->
+			<!-- <MultiComboBox items="{path:'/STAAllowanceSet'}" id="ipAllowanceTyp" -->
+			<!-- width="200px"> -->
+			<!-- <items> -->
+			<!-- <core:Item key="{AllowanceKey}" text="{AllowanceText}" /> -->
+			<!-- </items> -->
+			<!-- </MultiComboBox> -->
+			<!-- <ToolbarSpacer width="80px" /> -->
+			<!-- <Label text="Year" width="80px" /> -->
+
+			<!-- <Select width="150px" id="ipLYear" items="{path:'yearModelData>/'}"> -->
+			<!-- <core:Item key="{yearModelData>key}" text="{yearModelData>text}" 
+				/> -->
+			<!-- <layoutData> -->
+			<!-- <l:GridData span="L7 M3 S4" /> -->
+			<!-- </layoutData> -->
+
+			<!-- </Select> -->
+			<!-- <ToolbarSpacer width="80px" /> -->
+			<!-- <Button icon="sap-icon://icon-manage-budget" text="Get" -->
+			<!-- press="onAllowanceChange" /> -->
+			<!-- </Toolbar> -->
+			<!-- </headerToolbar> -->
+
+			<!-- <VBox id="ipAllowanceAmt" items="{allwAmounts>/}" visible="false" -->
+			<!-- width="100%"> -->
+			<!-- <HBox justifyContent="SpaceBetween" width="100%"> -->
+			<!-- <HBox justifyContent="SpaceBetween" alignItems="Center" -->
+			<!-- width="50%"> -->
+			<!-- <Text wrapping="true" text="{allwAmounts>AllowanceTyp1}" -->
+			<!-- app:key="{allwAmounts>AllowanceKey}" /> -->
+
+			<!-- <Input value="{allwAmounts>AllowanceAmount1}" /> -->
+			<!-- <ComboBox selectedKey="{allwAmounts>Currency1}" items="{ path:'currencyModelData>/'}" -->
+			<!-- width="100px" selectionChange="onAllowanceChange1"> -->
+			<!-- <core:ListItem key="{currencyModelData>FIELD1}" -->
+			<!-- text="{currencyModelData>FIELD1}" /> -->
+			<!-- </ComboBox> -->
+			<!-- </HBox> -->
+			<!-- <HBox justifyContent="SpaceBetween" alignItems="Center" -->
+			<!-- width="50%"> -->
+			<!-- <Text wrapping="true" text="{allwAmounts>AllowanceTyp2}" -->
+			<!-- app:key="{allwAmounts>AllowanceKey}" /> -->
+
+			<!-- <Input value="{allwAmounts>AllowanceAmount2}" /> -->
+			<!-- <ComboBox selectedKey="{allwAmounts>Currency2}" items="{ path:'currencyModelData>/'}" -->
+			<!-- width="100px" selectionChange="onAllowanceChange1"> -->
+			<!-- <core:ListItem key="{currencyModelData>FIELD1}" -->
+			<!-- text="{currencyModelData>FIELD1}" /> -->
+			<!-- </ComboBox> -->
+			<!-- </HBox> -->
+
+			<!-- </HBox> -->
+			<!-- </VBox> -->
+
+
+			<!-- </Panel> -->
+
+			<Table id="ipAllowanceAmt" items="{allwAmounts>/}" visible="false"
+				headerText="Allowances">
+				<headerToolbar>
+					<Toolbar>
+						
+						<Label text="Allowance Type" width="120px">
+
+						</Label>
+						<MultiComboBox items="{path:'/STAAllowanceSet'}" id="ipAllowanceTyp"
+							width="200px">
+							<items>
+								<core:Item key="{AllowanceKey}" text="{AllowanceText}" />
+							</items>
+						</MultiComboBox>
+						<ToolbarSpacer width="40px" />
+						<Label text="Year" width="40px" />
+
+						<Select width="150px" id="ipLYear" items="{path:'yearModelData>/'}">
+							<core:Item key="{yearModelData>key}" text="{yearModelData>text}" />
+							<layoutData>
+								<l:GridData span="L7 M3 S4" />
+							</layoutData>
+
+						</Select>
+						<ToolbarSpacer width="40px" />
+						<Label text="Effective Date" width="120px"/>
+
+				
+						<DatePicker id="ipEffDate" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"/>
+						
+						<ToolbarSpacer width="80px" />
+						<Button icon="sap-icon://refresh" text="Get" type="Accept"
+							press="onAllowanceChange" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+						<Text text="Allowance" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+						<Text text="Amount" />
+					</Column>
+
+					<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+						<Text text="Currency" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+						<Text text="Allowance" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+						<Text text="Amount" />
+					</Column>
+
+					<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+						<Text text="Currency" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Label text="{allwAmounts>AllowanceTyp1}" app:key="{allwAmounts>AllowanceKey}">
+
+							</Label>
+							<Input value="{allwAmounts>AllowanceAmount1}" />
+							<ComboBox selectedKey="{allwAmounts>Currency1}" items="{ path:'currencyModelData>/'}"
+								selectionChange="onAllowanceChange1">
+								<core:ListItem key="{currencyModelData>FIELD1}"
+									text="{currencyModelData>FIELD1}" />
+							</ComboBox>
+								<Label text="{allwAmounts>AllowanceTyp2}" app:key="{allwAmounts>AllowanceKey}">
+
+							</Label>
+							<Input value="{allwAmounts>AllowanceAmount2}" visible="{= ${allwAmounts>AllowanceTyp2} !== undefined}"/>
+							<ComboBox selectedKey="{allwAmounts>Currency2}" items="{ path:'currencyModelData>/'}"
+								selectionChange="onAllowanceChange1" visible="{= ${allwAmounts>AllowanceTyp2} !== undefined}">
+								<core:ListItem key="{currencyModelData>FIELD1}"
+									text="{currencyModelData>FIELD1}" />
+							</ComboBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+			<Table id="tblIssue" mode="MultiSelect" growing="true"
+				growingThreshold="50">
+				<headerToolbar>
+					<Toolbar>
+						<ToolbarSpacer />
+
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Employee No" />
+					</Column>
+					<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Dep.Req" />
+					</Column>
+
+
+
+					<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+						width="150px">
+						<Text text="Assignment Model" tooltip="Assignment Model" />
+					</Column>
+
+					<Column id="col3" minScreenWidth="Tablet" demandPopin="true"
+						width="150px">
+						<Text text="To Country" tooltip="To Country" />
+					</Column>
+
+					<Column id="col6" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Start Date" />
+					</Column>
+					<Column id="col7" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="End Date" />
+					</Column>
+					<Column id="col8" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Last Changed" />
+					</Column>
+				</columns>
+
+
+			</Table>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button text="Details" type="Reject" press="onLogPress"
+						icon="sap-icon://log" id="btnLog" visible="true" />
+				</contentLeft>
+				<contentRight>
+					<Button text="Issue Letters" type="Emphasized" press="onGenerateCL"
+						icon="sap-icon://generate-shortcut" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

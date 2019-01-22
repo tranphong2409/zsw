@@ -1,0 +1,172 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.TrstQmmReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="reportPage" title="QMM-SLA Compliance">
+		<content>
+			<Panel class="sapUiSizeCompact" headerText="Filter By:">
+				<VBox class="sapUiLargeMarginBeginEnd">
+					<HBox justifyContent="SpaceBetween">
+						<HBox alignItems="Center">
+							<Label width="160px" text="Initiation Start Date" />
+							<DatePicker id="fromdate" width="160px" displayFormat="dd-MM-yyyy"
+								placeholder="DD-MM-YYYY" editable="{travelsettlement>/fieldproperties/editable}"
+								value="{Scndt}" valueFormat="yyyyMMdd" />
+
+						</HBox>
+						<HBox alignItems="Center">
+							<Label width="160px" text="Initiation End Date" />
+							<DatePicker id="todate" width="160px" displayFormat="dd-MM-yyyy"
+								placeholder="DD-MM-YYYY" editable="{travelsettlement>/fieldproperties/editable}"
+								value="{Scndt}" valueFormat="yyyyMMdd" />
+						</HBox>
+					</HBox>
+					<HBox id="flxTpEmp" justifyContent="SpaceBetween">
+						<HBox alignItems="Center">
+							<Label width="160px" text="Travel Plan" />
+							<Input id="tpno" width="160px" />
+						</HBox>
+						<HBox alignItems="Center">
+							<Label width="160px" text="Employee No" />
+							<Input id="empno" width="160px" />
+						</HBox>
+					</HBox>
+					<HBox id="flxTkMod" justifyContent="SpaceBetween">
+						<HBox alignItems="Center">
+							<Label width="160px" text="Travel Type" />
+							<Input id="traveltype" width="160px" />
+						</HBox>
+						<HBox alignItems="Center">
+							<Label width="160px" text="Module" />
+							<Input id="module" width="160px" />
+						</HBox>
+					</HBox>
+					<HBox justifyContent="Center">
+						<Button text="Search" type="Accept" press="onSubmit" />
+					</HBox>
+				</VBox>
+			</Panel>
+			<Panel width="auto" class="panelBorderTrSettle sapUiSizeCompact">
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Details" />
+						<ToolbarSpacer />
+						<Button text="Download" type="Emphasized" press="onExport" />
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<ScrollContainer horizontal="true" vertical="true"
+						focusable="true">
+						<Table id="qmmRep" inset="false" growing="true"
+							class="tableclass table_ticket_admin sapUiSizeCompact"
+							growingScrollToLoad="true" noDataText="{No Data}" items="{/}"
+							fixedLayout="true">
+
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="80px">
+									<Text text="Employee No" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="80px">
+									<Text text="Name" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="80px">
+									<Text text="Travel Plan" />
+								</Column>
+								<!-- <Column id="col4" minScreenWidth="Tablet" demandPopin="true" -->
+								<!-- width="50px"> -->
+								<!-- <Text text="Visa Type" /> -->
+								<!-- </Column> -->
+								<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+									<Text text="Travel Type" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+									<Text text="Module" />
+								</Column>
+								<Column id="txtInidt" minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Initiation Date" />
+								</Column>
+								<Column id="txtClsdt" minScreenWidth="Tablet" demandPopin="true" width="100px">
+									<Text text="Closed Date" />
+								</Column>
+								<Column id="txtPlace" minScreenWidth="Tablet" demandPopin="true"
+									width="120px">
+									<Text text="Place" />
+								</Column>
+								<Column id="txtScndt" minScreenWidth="Tablet" demandPopin="true" width="120px">
+									<Text text="Scanning Date" />
+								</Column>
+								<Column id="txtAccdt" minScreenWidth="Tablet" demandPopin="true" width="120px">
+									<Text text="Accounting Date" />
+								</Column>
+								<Column id="txtPaydt" minScreenWidth="Tablet" demandPopin="true" width="120px">
+									<Text text="Payment Date" />
+								</Column>
+								<Column id="txtDocno" minScreenWidth="Tablet" demandPopin="true"
+									width="120px">
+									<Text text="Document No" />
+								</Column>
+								<Column id="txtLtime" minScreenWidth="Tablet" demandPopin="true"
+									width="120px">
+									<Text text="Net Lead Time" />
+								</Column>
+								<Column id="txtSLA" minScreenWidth="Tablet" demandPopin="true"
+									width="120px">
+									<Text text="Within/Outside SLA" />
+								</Column>
+								
+
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Pernr}" wrapping="false" tooltip="{Pernr}" />
+										<Text text="{Name}" wrapping="false" tooltip="{Name}"/>
+										<Text wrapping="false" text="{Reinr}" tooltip="{path:'Reinr'}" />
+										<Text wrapping="false" text="{path:'Trvky'}" />
+										<Text text="{path:'Modid'}" tooltip="{path:'Modid'}"
+											wrapping="false" />
+										<Text
+											text="{path:'Inidt',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+											wrapping="false" />
+										<Text
+											text="{path:'Clsdt',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+											wrapping="false" />
+									    <Text text="{ToLoc}" wrapping="false" tooltip="{ToLoc}"/>
+										<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+											editable="{path:'Scndt',formatter:'sap.ui.project.e2etm.util.Formatter.editQmmScndt'}"
+											change="onChange" value="{Scndt}"  valueFormat="yyyyMMdd"
+											required="true" />
+										<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+											
+											change="onChange" value="{Accdt}"  valueFormat="yyyyMMdd"
+											required="true" />
+										<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+											editable="{travelsettlement>/fieldproperties/editable}"
+											change="onChange" value="{Paydt}"  valueFormat="yyyyMMdd"
+											required="true" />
+										<Text text="{Docno}" wrapping="false"/>
+										<Text text="{LeadTime}" wrapping="false"/>
+										<Text text="{SLA}" tooltip="{SLA}" wrapping="false"/>
+
+
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<Bar>
+
+				<contentRight>
+
+					<Button text="Save" type="Accept" press="onSave"
+						icon="sap-icon://sys-enter" />
+
+				</contentRight>
+			</Bar>
+		</footer>
+
+	</Page>
+</core:View>

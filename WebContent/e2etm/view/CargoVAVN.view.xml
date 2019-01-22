@@ -1,0 +1,6 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.Cargo"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.cargo.CargoVAVN_Request"
+		type="XML" />
+</core:View>

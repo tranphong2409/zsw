@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.commons" xmlns:view="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns:unified="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:suite="sap.suite.ui.commons" xmlns:layout="sap.ui.commons.layout"
+	controllerName="sap.ui.project.e2etm.controller.Ticketing">
+	<Page id='Ticketing' title='TICKETING' class="pageTicketing">
+		<!-- Header -->
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="TICKETING" design="Bold" />
+				</contentMiddle>
+				<contentRight>
+					<Link text="Help"
+						href="http://sgpvm070:8080/pkit/go/pelement.do?id=228390&amp;type=Activity&amp;anon=1"
+						target="_blank" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<ObjectHeader id='objhdr' titleActive="false" titlePress="onTitlePress"
+			class="objhdr" number="" numberUnit="INR">
+			<statuses>
+				<ObjectStatus text="{generalmodel>/StatusText}" state="Success" />
+				<ObjectStatus id="status1" state="Success" />
+			</statuses>
+			<attributes>
+				<ObjectAttribute text="{generalmodel>/EmpName}" />
+				<ObjectAttribute text="{generalmodel>/EmpNo}" />
+				<ObjectAttribute text="{generalmodel>/Department}" />
+				<ObjectAttribute text="{generalmodel>/OfcEmailId}"
+					active="true" press="handleLinkEmailPress" />
+			</attributes>
+		</ObjectHeader>
+
+		<!-- General Information -->
+		<FlexBox class="padding_10" direction="Column">
+			<c:Panel text="GENERAL INFORMATION" class="panelCollapse">
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+					class="employeeGeneralInfo">
+					<f:content>
+						<core:Title text="From location info"></core:Title>
+
+						<Label text="Travelling From Country" class="font_size_14" />
+						<Text text="{generalmodel>/FromCountryText}" />
+						<Label text="Start Date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'generalmodel>/StartDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Contact no." class="font_size_14" />
+						<Text text="{generalmodel>/ContactNo}" />
+						<Label text="Meal Preference" class="font_size_14" />
+						<Text text="{generalmodel>/Meal}" />
+						<Label text="Seat Preference" class="font_size_14" />
+						<Text text="{generalmodel>/Seat}" />
+						<Label text="Visa Type" class="font_size_14" />
+						<Text text="{generalmodel>/VisaType}" />
+
+						<core:Title text="To location info"></core:Title>
+						<Label text="Travelling to Country" class="font_size_14" />
+						<Text text="{generalmodel>/ToCountryText}" />
+
+						<Label text="End date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'generalmodel>/EndDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Destination Contact No" class="font_size_14" />
+						<Text text="" />
+						<Label text="Personal Mail Id" class="font_size_14" />
+						<Text text="{generalmodel>/PersonalEmailId}" />
+						<Label text="Frequent Flyer No." class="font_size_14" />
+						<Text text="" />
+						<Label text="Assignment Model" class="font_size_14" />
+						<Text text="{generalmodel>/AssgnModel}" />
+
+					</f:content>
+				</f:SimpleForm>
+			</c:Panel>
+
+			<c:Panel id="panel_html" text="TRAVEL PLAN PDF" class="panelCollapse"
+				collapsed="true">
+				<core:HTML id="html1"></core:HTML>
+			</c:Panel>
+		</FlexBox>
+
+		<IconTabBar id="icontabbar">
+			<items>
+				<IconTabFilter icon="sap-icon://message-information"
+					tooltip="Itenaries">
+					<c:Label id="empinfo" class="empinfo hor_rec_margin_left font_size_14"
+						wrapping="true" visible="false"
+						text="Please select one of the option and Submit it for Ticket confirmation. 
+Should you require specific itinerary, kindly enter the same in comments and send the request back. This may require additional approvals
+						" />
+					<l:VerticalLayout id="v1">
+						<l:HorizontalLayout class="">
+							<CheckBox id="c1" text="Option1" class="check_box_center"
+								select="onCheckSelect1" editable="{properties>/radeditable}" />
+							<TextArea width="600px" height="180px" id="txtarea1"
+								value="{itenary1>/collection1/Optiontxt}" wrapping="Hard"
+								class="margin_left_20 margin_right_20 margin_top_5" editable="{properties>/txteditable}">
+							</TextArea>
+							<l:VerticalLayout>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<Label width="100px" text="PNR Number" class="font_size_14"></Label>
+									<c:TextField width="200px" id="t1"
+										value="{itenary1>/collection1/Optionpnr}" editable="{properties>/txteditable}"></c:TextField>
+
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<Label width="100px" text="Total Fare" class="font_size_14"></Label>
+									<c:TextField width="200px" id="t2"
+										value="{itenary1>/collection1/Tfare}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<c:Label width="100px" wrapping="true" text="Ticket Time Limit"
+										class="font_size_14"></c:Label>
+									<c:TextField width="200px" id="t3"
+										value="{itenary1>/collection1/Tlimit}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<c:Label width="100px" wrapping="true" text="Special Notes"
+										class="font_size_14"></c:Label>
+									<TextArea width="200px" height="60px" id="t4"
+										value="{itenary1>/collection1/Spnotes}" wrapping="Hard"
+										class="flb_margin_left margin_top_5" editable="{properties>/txteditable}" />
+								</FlexBox>
+							</l:VerticalLayout>
+						</l:HorizontalLayout>
+					</l:VerticalLayout>
+					<l:VerticalLayout id="v2" class="margin_top_20">
+						<l:HorizontalLayout class="">
+							<CheckBox text="Option2" id="c2" class="check_box_center"
+								select="onCheckSelect2" editable="{properties>/radeditable}" />
+							<TextArea width="600px" height="180px" id="txtarea2"
+								editable="{properties>/txteditable}" value="{itenary2>/collection2/Optiontxt}"
+								wrapping="Hard" liveChange="onLive"
+								class="margin_left_20 margin_right_20 margin_top_5">
+							</TextArea>
+							<l:VerticalLayout>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<Label width="100px" text="PNR Number" class="font_size_14"></Label>
+									<c:TextField width="200px" id="t5"
+										value="{itenary2>/collection2/Optionpnr}" editable="{properties>/txteditable}"></c:TextField>
+
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<Label width="100px" text="Total Fare" class="font_size_14"></Label>
+									<c:TextField width="200px" id="t6"
+										value="{itenary2>/collection2/Tfare}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<c:Label width="100px" wrapping="true" text="Ticket Time Limit"
+										class="font_size_14"></c:Label>
+									<c:TextField width="200px" id="t7"
+										value="{itenary2>/collection2/Tlimit}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<c:Label width="100px" wrapping="true" text="Special Notes"
+										class="font_size_14"></c:Label>
+									<TextArea width="200px" height="60px" id="t8"
+										value="{itenary2>/collection2/Spnotes}" wrapping="Hard"
+										class="flb_margin_left margin_top_5" editable="{properties>/txteditable}" />
+								</FlexBox>
+							</l:VerticalLayout>
+						</l:HorizontalLayout>
+					</l:VerticalLayout>
+					<l:VerticalLayout id="v3" class="margin_top_20">
+						<l:HorizontalLayout class="">
+							<CheckBox id="c3" text="Option3" class="check_box_center"
+								select="onCheckSelect3" editable="{properties>/radeditable}" />
+							<TextArea id="txtarea3" width="600px" height="180px"
+								value="{itenary3>/collection3/Optiontxt}" wrapping="Hard"
+								class="margin_left_20 margin_right_20 margin_top_5" editable="{properties>/txteditable}">
+							</TextArea>
+							<l:VerticalLayout>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<Label width="100px" text="PNR Number" class="font_size_14"></Label>
+									<c:TextField width="200px" id="t9"
+										value="{itenary3>/collection3/Optionpnr}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<Label width="100px" text="Total Fare" class="font_size_14"></Label>
+									<c:TextField width="200px" id="t10"
+										value="{itenary3>/collection3/Tfare}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<c:Label width="100px" wrapping="true" text="Ticket Time Limit"
+										class="font_size_14"></c:Label>
+									<c:TextField width="200px" id="t11"
+										value="{itenary3>/collection3/Tlimit}" editable="{properties>/txteditable}"></c:TextField>
+								</FlexBox>
+								<FlexBox direction="Row" justifyContent="Start"
+									alignItems="Center" class="flb_margin_bottom">
+									<c:Label width="100px" wrapping="true" text="Special Notes"
+										class="font_size_14"></c:Label>
+									<TextArea width="200px" height="60px" id="t12"
+										value="{itenary3>/collection3/Spnotes}" wrapping="Hard"
+										class="flb_margin_left margin_top_5" editable="{properties>/txteditable}" />
+								</FlexBox>
+							</l:VerticalLayout>
+						</l:HorizontalLayout>
+					</l:VerticalLayout>
+
+					<FlexBox direction="Column" justifyContent="SpaceBetween">
+						<l:VerticalLayout id="v4" visible="false">
+							<CheckBox id="c4" text="Option4" class="check_box_center"
+								editable="{properties>/chkeditable}" select="onCheckSelect4" />
+							<l:VerticalLayout id="optionv4">
+								<FlexBox direction="Column" justifyContent="SpaceBetween">
+									<FlexBox width="300px" direction="Row" justifyContent="SpaceBetween"
+										alignItems="Center" class="hor_rec_margin_left">
+										<ToolbarSpacer width="115px" />
+										<Label text="Request Approval" class="font_size_14" />
+										<Switch id="switch" customTextOn="Yes" customTextOff="No"
+											enabled="{properties>/swteditable}" />
+									</FlexBox>
+
+									<!-- <core:Fragment id="opt4" fragmentName="sap.ui.project.e2etm.fragment.ticketing.TcktItenaryLayout" 
+										type="XML" /> -->
+									<l:HorizontalLayout>
+										<ToolbarSpacer width="95px" />
+										<TextArea width="600px" height="200px" id="txtarea4"
+											value="{itenary4>/collection4/Optiontxt}" wrapping="Hard"
+											class="margin_left_20 margin_right_20 margin_top_5" editable="{properties>/txteditable}">
+										</TextArea>
+										<l:VerticalLayout>
+											<FlexBox direction="Row" justifyContent="Start"
+												alignItems="Center" class="flb_margin_bottom">
+												<Label width="100px" text="PNR Number" class="font_size_14"></Label>
+												<c:TextField width="200px" id="t13"
+													value="{itenary4>/collection4/Optionpnr}" editable="{properties>/txteditable}"></c:TextField>
+											</FlexBox>
+											<FlexBox direction="Row" justifyContent="Start"
+												alignItems="Center" class="flb_margin_bottom">
+												<Label width="100px" text="Total Fare" class="font_size_14"></Label>
+												<c:TextField width="200px" id="t14"
+													value="{itenary4>/collection4/Tfare}" editable="{properties>/txteditable}"></c:TextField>
+											</FlexBox>
+											<FlexBox direction="Row" justifyContent="Start"
+												alignItems="Center" class="flb_margin_bottom">
+												<c:Label width="100px" wrapping="true" text="Ticket Time Limit"
+													class="font_size_14"></c:Label>
+												<c:TextField width="200px" id="t15"
+													value="{itenary4>/collection4/Tlimit}" editable="{properties>/txteditable}"></c:TextField>
+											</FlexBox>
+											<FlexBox direction="Row" justifyContent="Start"
+												alignItems="Center" class="flb_margin_bottom">
+												<c:Label width="100px" wrapping="true" text="Special Notes"
+													class="font_size_14"></c:Label>
+												<TextArea width="200px" height="100px" id="t16"
+													value="{itenary4>/collection4/Spnotes}" wrapping="Hard"
+													class="flb_margin_left margin_top_5" editable="{properties>/txteditable}" />
+											</FlexBox>
+										</l:VerticalLayout>
+									</l:HorizontalLayout>
+									<l:HorizontalLayout class="hor_rec_margin_left">
+										<ToolbarSpacer width="115px" />
+										<FlexBox direction="Row" justifyContent="SpaceBetween"
+											alignItems="Center" width="auto">
+											<Label width="120px" wrapping="true" text="Recovery Amount"
+												class="font_size_14"></Label>
+											<c:TextField id="t17" width="200px"
+												editable="{properties>/txteditable}" value="{generalmodel>/RecoveryAmt}"></c:TextField>
+											<Text text="INR"></Text>
+										</FlexBox>
+									</l:HorizontalLayout>
+									<CheckBox id="c5" text="Agree to Pay difference"
+										class="check_box_center" editable="{properties>/radeditable}" />
+								</FlexBox>
+							</l:VerticalLayout>
+						</l:VerticalLayout>
+						<l:VerticalLayout class="margin_top_20">
+							<FlexBox direction="Row" alignItems="Center">
+								<Label width="114px" text="Comments" class="label_bold font_size_14"></Label>
+								<TextArea width="468px" height="100px" id="txtarea5"
+									editable="{properties>/comtxteditbl}" wrapping="Hard">
+								</TextArea>
+							</FlexBox>
+						</l:VerticalLayout>
+					</FlexBox>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://attachment" tooltip="Attachment">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://comment" tooltip="Comments">
+					<core:Fragment id="AppoveInfo"
+						fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+						type="XML" />
+
+				</IconTabFilter>
+
+			</items>
+		</IconTabBar>
+		<!-- Dialog -->
+
+		<!-- Footer -->
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="back" text="Back" icon="sap-icon://sys-cancel"
+						type="Reject" press="onBack" />
+				</contentLeft>
+				<contentMiddle>
+					<Button id="submit" text="Save" type="Emphasized" press="onSave"
+						visible="false" icon="sap-icon://save" />
+				</contentMiddle>
+				<contentRight>
+					<Button id="senditenary" text="Send Itinerary" type="Accept"
+						visible="false" press="onSave" icon="sap-icon://travel-itinerary" />
+					<Button id="sendback" text="Send Back" type="Emphasized"
+						visible="false" press="onSave" />
+					<Button id="accept" text="Accept" type="Emphasized" visible="false"
+						press="onAccept" />
+					<Button id="issuetickets" text="Issue Tickets" type="Emphasized"
+						visible="false" press="onIssueTicket" />
+					<Button id="btnCloseTckt" text="Close" type="Emphasized" icon="sap-icon://decline"
+						visible="false" press="onSave" />
+
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

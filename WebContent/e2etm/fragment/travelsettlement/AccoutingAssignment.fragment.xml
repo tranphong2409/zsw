@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<Table items="{travelsettlement>/accass/}">
+		<columns>
+			<Column>
+				<c:Label text="PERCENT" class="label_small_bold"></c:Label>
+			</Column>
+			<Column>
+				<c:Label text="FUND" class="label_small_bold"></c:Label>
+			</Column>
+			<Column>
+				<c:Label text="BUDGET CENTER" class="label_small_bold"></c:Label>
+			</Column>
+			<Column>
+				<c:Label text="WBS ELEMENT" class="label_small_bold"></c:Label>
+			</Column>
+			<Column>
+				<c:Label text="COST CENTER" class="label_small_bold"></c:Label>
+			</Column>
+			<Column>
+				<c:Label text="BUDGET CODE" class="label_small_bold"></c:Label>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem height="10px">
+				<cells>
+					<Input value="{travelsettlement>ZZ_PERCENT}" editable="false" />
+					<Input value="{travelsettlement>ZZ_GEBER}" editable="false" />
+					<Input value="{travelsettlement>ZZ_FISTL}" editable="false" />
+					<Input value="{travelsettlement>ZZ_FIPOS}" editable="false" />
+					<Input value="{travelsettlement>ZZ_KOSTL}" editable="false" />
+					<Input value="{travelsettlement>ZZ_FIPEX}" editable="false"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	
+</core:FragmentDefinition>

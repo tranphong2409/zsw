@@ -1,0 +1,101 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:table="sap.ui.table"
+	xmlns="sap.m" xmlns:unified="sap.ui.unified" controllerName="sap.ui.project.e2etm.controller.HotelsList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel headerText="Hotel List">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Apartment List" design="Bold" />
+				<ToolbarSpacer />
+				
+				<unified:FileUploader class="button_bgcolor" icon="sap-icon://upload"  sameFilenameAllowed="true" 
+				                     fileType="xlsx,csv"  buttonText="Import" buttonOnly="true" uploadOnChange="false"
+								change="onImport" typeMissmatch="sap.ui.project.e2etm.util.StaticUtility.onTypeMissmatch"/>
+				<Button text="Export" icon="sap-icon://download" press="onExportCSV" class="button_bgcolor"/>
+				<Button text="Add" icon="sap-icon://add" press="onHotelAdd" class="button_bgcolor"/>
+				<Button text="Delete" icon="sap-icon://delete" press="onDelete" class="button_bgcolor"/>
+			</Toolbar>
+		</headerToolbar>
+		<table:Table rows="{reservation>/}"
+				id="tblHotelList" class="sapUiSizeCompact"				
+				selectionMode="MultiToggle" navigationMode="Paginator"
+				visibleRowCount="7"
+				ariaLabelledBy="title">
+				<table:toolbar>
+				<Toolbar>
+					<Label text="Show" />
+					<Select change="sap.ui.project.e2etm.util.StaticUtility.onEntriesDisplay">
+						<items>
+							<core:Item key="10" text="10" />
+							<core:Item key="25" text="25" />
+							<core:Item key="50" text="50" />
+							<core:Item key="100" text="100" />
+						</items>
+					</Select>
+					<Label text="Entries" />
+					<ToolbarSpacer/>
+					<SearchField width="200px" liveChange="onLiveSearch" selectOnFocus="false"/>
+				</Toolbar>
+				</table:toolbar>
+				<table:columns>
+				<table:Column sortProperty="Edit">
+					<Label text="Edit"/>
+						<table:template>
+							<Link text="Edit" press="onHotelEditPress" emphasized="true"/>
+						</table:template>
+					</table:Column>
+					
+					<table:Column sortProperty="Hname">
+					<Label text="Apartment Name"/>
+						<table:template>
+							<Text text="{reservation>Hname}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Hcity">
+						<Label text="City/Country" />
+						<table:template>
+							<Text text="{reservation>City} {reservation>Country}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Cpers">
+				<Label text="Contact Person" />
+						<table:template>
+						<Text text="{reservation>Cpers}"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Email">
+					<Label text="Email" />
+						<table:template>
+							
+							<Text text="{reservation>Email}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Phone">
+								<Label text="Phone" />
+						<table:template>
+							<Text text="{reservation>Phone}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Mrent">
+									<Label text="Avg.Room Cost" />
+						<table:template>
+							<Text text="{reservation>Mrent} {reservation>Waers}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+				
+					<table:Column>
+						<Label text="Rooms" />
+						<table:template>
+							<Link text="Edit" 	emphasized="true" press="onRoomsPress"/>
+						</table:template>
+					</table:Column>
+						<table:Column>
+						<Label text="Location" />
+						<table:template>
+							<Link text="Location" 	emphasized="true" press="onLocationPress"/>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+
+	</Panel>
+</core:View>

@@ -1,0 +1,227 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.SetlUsetlReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Report" showHeader="true" enableScrolling="false">
+		<customHeader>
+			<Bar>
+				<!-- <contentRight> -->
+				<!-- <Button icon="sap-icon://full-screen" press="onChangeMode" /> -->
+				<!-- </contentRight> -->
+				<contentMiddle>
+
+					<Title text="Settled/Unsettled Travel Report" titleStyle="H3" />
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel width="100%" height="100%" class="panelBorderTrSettle sapUiSizeCompact">
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Filter By:" />
+						<Select change="onChange">
+							<items>
+								<core:Item text="All" key="A" />
+								<core:Item text="Settled" key="S" />
+								<core:Item text="Unsettled" key="U" />
+								<core:Item text="In Process" key="I" />
+							</items>
+						</Select>
+						
+						<ToolbarSpacer />
+						<Button icon="sap-icon://action-settings" type="Emphasized"
+							press="onPersoButtonPressed" />
+						<Button text="Download" type="Emphasized" press="onExport" />
+
+					</Toolbar>
+
+				</headerToolbar>
+				<content>
+				  
+				    <Label id="lblCount" design="Bold"/>
+				  
+					<ScrollContainer horizontal="true" vertical="true" height="500px"
+						focusable="true">
+						<Table id="setlusetlrep" inset="false" growing="true"
+							growingTriggerText="More" updateFinished="onUpdateFinished"
+							class="growingTitle tableclass table_ticket_admin sapUiSizeCompact"
+							growingScrollToLoad="false" noDataText="{No Data}"
+							items="{path:'/TrstSetlUsetlSet'}" fixedLayout="true">
+
+							<columns>
+								<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Employee No" />
+								</Column>
+
+								<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Employee Name" />
+								</Column>
+								<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Level" />
+								</Column>
+								<Column id="txtAwt" minScreenWidth="Tablet" demandPopin="true"
+									width="6em">
+									<Text text="Travel Plan" />
+								</Column>
+								<!-- <Column id="col4" minScreenWidth="Tablet" demandPopin="true" -->
+								<!-- width="50px"> -->
+								<!-- <Text text="Visa Type" /> -->
+								<!-- </Column> -->
+								<Column id="txtSur" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Destination" />
+								</Column>
+
+								<Column id="col6" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Country" />
+								</Column>
+								<Column id="col7" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Region" />
+								</Column>
+								<Column id="col8" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Trip Type" />
+								</Column>
+								<Column id="reason" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Reason" />
+								</Column>
+								<Column id="lock" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Lock" />
+								</Column>
+								<Column id="col11" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Status" />
+								</Column>
+								<Column id="col12" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Settled" />
+								</Column>
+								<Column id="col13" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="FI" />
+								</Column>
+								<Column id="ccode" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Company Code" />
+								</Column>
+								<Column id="bcode" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Budget Code" />
+								</Column>
+								<Column id="col14" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Cost Center" />
+								</Column>
+								<Column id="col15" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="WBS Element" />
+								</Column>
+								<Column id="col16" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Fund Center" />
+								</Column>
+								<Column id="col17" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Fund" />
+								</Column>
+								<Column id="col18" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Duration" />
+								</Column>
+								<Column id="txtDate1" minScreenWidth="Tablet"
+									demandPopin="true" width="6em">
+									<Text text="Begins On" />
+								</Column>
+								<Column id="txtDate2" minScreenWidth="Tablet"
+									demandPopin="true" width="6em">
+									<Text text="Ends On" />
+								</Column>
+								<Column id="col21" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Currency" />
+								</Column>
+								<Column id="txtReim" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Reimbursement" />
+								</Column>
+								<Column id="txtPacmp" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Paid by Company" />
+								</Column>
+								<Column id="txtCost" minScreenWidth="Tablet" demandPopin="true"
+									width="5em">
+									<Text text="Total Cost" />
+								</Column>
+
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Pernr}" wrapping="false" tooltip="{Reinr}" />
+										<Text text="{Ename}" wrapping="true" tooltip="{Ename}" />
+
+
+										<Text wrapping="false" text="{path:'Zlevel'}" />
+										<Text wrapping="false" text="{path:'Reinr'}" tooltip="{path:'Reinr'}" />
+										<Text text="{path:'Zort1'}" tooltip="{path:'Zort1'}"
+											wrapping="true" />
+										<Text text="{Zland}" tooltip="{Zland}" wrapping="true" />
+										<Text text="{Hrgio}" tooltip="{Hrgio}" wrapping="true" />
+										<Text text="{path:'Trptyp'}" tooltip="{path:'Trptyp'}"
+											wrapping="true" />
+										<Text wrapping="true" text="{path:'Kunde'}" tooltip="{path:'Kunde'}" />
+										<Text wrapping="true" text="{path:'Tlock'}" tooltip="{path:'Tlock'}" />
+										<Text text="{Status}" tooltip="{Status}" wrapping="true" />
+										<Text text="{Abrec}" tooltip="{Abrec}" wrapping="true" />
+										<Text text="{Uebrf}" wrapping="true" />
+										<Text text="{Addccod}" tooltip="{Addccod}" wrapping="true" />
+										<Text text="{Addfipo}" tooltip="{Addfipo}" wrapping="true" />
+										<Text text="{Addcost}" tooltip="{Advamt}" wrapping="true" />
+										<Text text="{Addpsid}" tooltip="{Addpsid}" wrapping="true" />
+										<Text text="{Addfctr}" tooltip="{Addfctr}" wrapping="true" />
+										<Text text="{Addfund}" tooltip="{Addfund}" wrapping="true" />
+										<Text text="{Tripdur}" tooltip="{Tripdur}" wrapping="true" />
+										<Text
+											text="{path:'Datv1',type: 'sap.ui.model.type.DateTime',formatOptions: {
+				                pattern:'dd.MM.yyyy'
+				               }}" />
+										<Text
+											text="{path:'Datb1',type: 'sap.ui.model.type.DateTime',formatOptions: {
+				                pattern:'dd.MM.yyyy'
+				               }}" />
+										<Text text="{Currency}" />
+										<Text text="{path:'SumReimbu',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+										<Text text="{path:'SumPaidco',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+										<Text text="{path:'TripTotal',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				
+						<core:HTML id="html"/>
+				</content>
+			</Panel>
+
+		</content>
+	</Page>
+</core:View>

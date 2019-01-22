@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<Panel expandable="false" expandAnimation="false" width="100%"
+		class="panelBorderTrSettle" headerText="Total Expenses">
+	<ScrollContainer>
+	<Table id="totalexp" items="{travelsettlement>/currtotal/}" class="tableclass table_ticket_admin sapUiSizeCompact"
+		inset="false">
+
+
+		<columns>
+		<Column width="7rem">
+				<Text text="Advance/Allowance Received" tooltip="Advance/Allowance Received" wrapping="true"
+					textAlign="Center" class="label_small_bold"/>
+			</Column>
+			<Column width="6rem">
+				<Text text="Expenses Paid by Employee" tooltip="Expenses Paid by employee"
+					wrapping="true" textAlign="Center" class="label_small_bold"/>
+			</Column>
+			
+			<Column width="8rem">
+				<Text text="RBEI to Reimburse" tooltip="RBEI to Reimburse" wrapping="true"
+					textAlign="Center" class="label_small_bold"/>
+			</Column>
+			<Column width="6rem">
+				<Text text="Employee to Pay Back" tooltip="Employee to Pay Back" wrapping="true"
+					textAlign="Center" class="label_small_bold"/>
+			</Column>
+
+			<Column width="3rem">
+				<Text text="Currency" tooltip="Currency" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+			</Column>
+			
+			<Column width="3rem" id="texcrate">
+				<Text text="Exchange Rate" tooltip="ExchangeRate" wrapping="true"
+					textAlign="Center" class="label_small_bold"/>
+			</Column>
+			<Column width="3rem" id="texccur">
+				<Text text="Currency" tooltip="Currency" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+			</Column>
+			<Column width="4rem" id="ttotal">
+				<Text text="Total" tooltip="Total" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+			</Column>
+			<Column width="3rem" id="tcurrency">
+				<Text text="Total Currency" tooltip="Total Currency" textAlign="Center" wrapping="true"
+					class="label_small_bold"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem height="10px">
+				<cells>
+				    <Label text="{path:'travelsettlement>advance',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+					<Label text="{path:'travelsettlement>emppaid',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />					
+					<Label text="{path:'travelsettlement>payable',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+					<Label text="{path:'travelsettlement>receivable',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+					<Label text="{travelsettlement>currency}" />
+					
+					<Input value="{path:'travelsettlement>Rate',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 4,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" change="onTotalCal" />
+					<c:ComboBox width="100%" change="onTotalCal"
+						
+						value="{travelsettlement>Ratecur}" displaySecondaryValues="true"
+						items="{curModel>/}">
+						<c:items>
+							<core:ListItem additionalText="{curModel>FIELD2}"
+								text="{curModel>FIELD1}" />
+						</c:items>
+					</c:ComboBox>
+					<Label text="{path:'travelsettlement>Total',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 4,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}" />
+					<Label text="{travelsettlement>Tocur}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</ScrollContainer>
+	</Panel>
+</core:FragmentDefinition>

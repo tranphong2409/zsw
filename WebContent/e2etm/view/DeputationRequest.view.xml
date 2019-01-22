@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" xmlns:c="sap.ui.commons"
+	xmlns:view="sap.ui.core.mvc" controllerName="sap.ui.project.e2etm.controller.DeputationRequest"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false" id="pageDeputation" class="pageDeputation">
+		<FlexBox justifyContent="SpaceBetween" alignItems="Center" id="breadCrumbFlexbox" class="margin_top_10">
+		    <FlexBox alignItems="Center">
+		        <Label id="lblRequestType" class="requestType"></Label>
+		       
+		        <VBox>
+				<Label id="lblRequestNumber" class="request_breadcrumb"/>			
+				
+				<HBox>
+					
+				<Label id="lblTrvlRequestType" text = "Travel Request No" class="request_breadcrumb"></Label>
+		    	<Label id="lblTrvlRequestNumber"  class="request_breadcrumb_trvl request_breadcrumb"></Label>
+		    	</HBox>
+		    	</VBox>
+		    
+		    </FlexBox>
+			<FlexBox>
+			    <Link id="lnkDeputationContacts" text="Deputation Contacts"
+					visible="false" press="onViewDeputationContacts" class="margin_right_10 margin_top_2 details_link"></Link>
+			    <Link id="lnkViewOwnerProfile" text="Employee Profile"
+					visible="false" press="onViewOwnerProfile" class="margin_right_10 margin_top_2 details_link"></Link>
+				<Link id="lnkViewAllDates" text="All dates"
+					visible="false" press="onViewRequestDates" class="margin_right_10 margin_top_2 details_link"></Link>
+				<Link id="lnkViewPrimaryRequest" text="View Deputation Request"
+					visible="false" press="onViewMainRequest" class="margin_right_10 margin_top_2 details_link"></Link>
+				<Link id="lnkViewTravelPDF" text="View Travel PDF"
+					visible="false" press="onViewPDF" class="margin_right_10 margin_top_2 details_link"></Link>
+				<Link id="lnkHelpDeputation" target="_blank" class="margin_right_10 margin_top_2 details_link" 
+					text="Help" tooltip="Help" visible="true"></Link>
+			</FlexBox>
+		</FlexBox>
+		<FlexBox class="landing_flexbox_dep_detail_container margin_top_10"
+			justifyConten="Start" id="flexBoxProcess" visible="false">
+			<Label text="PROCESS" class="rotate"></Label>
+			<Label text="FLOW" class="rotate"></Label>
+			<!-- Dynamic Stages -->
+			<c:Carousel id="carouselProcessFlow" width="100%" class="carousel_process"
+				orientation="horizontal" height="75px" animationDuration="500">
+			</c:Carousel>
+			<!-- Dynamic Stages -->
+		</FlexBox>
+
+		<IconTabBar id="tabBar" expandable="false" class="deputation_itb_request margin_top_0"></IconTabBar>
+
+		<footer>
+			<Bar class="actionBar">
+				<contentLeft>
+					<Button id="btnHome" text="Back" icon="sap-icon://sys-cancel" type="Reject"
+						press="onHomePress" visible="false" />
+					<Button id="btnCommentHistory" text="Comments Log"
+						icon="./images/comment_icon.png" press="onCommentHistoryPress"
+						visible="false" />
+				</contentLeft>
+				<contentMiddle>
+					<!-- Employee Area -->
+					<Button id="btnSave" text="Save Request" icon="sap-icon://save" type="Emphasized"
+						press="onSavePress" visible="false" />
+					<Button id="btnSaveTravelPlan" text="Save Travel Request" icon="sap-icon://save" type="Emphasized"
+						press="onSubmitTravelPlan" visible="false" />
+					<Button id="btnUpdate" text="Update Request" icon="sap-icon://save" type="Emphasized"
+						visible="false" />
+					<Button id="btnDelete" text="Delete Request" icon="sap-icon://delete" type="Reject"
+						press="onDeletePress" visible="false" />
+					<!-- Employee Area -->
+				</contentMiddle>
+				<contentRight>
+					<!-- Employee Area -->
+					<c:FileUploader id="btnEMPUploadTransferForm" width="200px"
+						maximumFileSize="5" fileSizeExceed="onFileSizeExceed" visible="false"
+						fileAllowed = "onFileAllowed" class="customUpload"
+						typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload Signed Requisition Form">
+					</c:FileUploader>
+					<Button id="btnEMPSubmitTravelPlan" text="Submit Request" type="Accept" 
+						icon="sap-icon://accept" press="onSubmitTravelPlan" visible="false" />
+					<Button id="btnEMPSubmitDocs" text="Submit Docs" icon="sap-icon://action"
+						type="Accept" press="onEMPSubmitDocsPress" visible="false" />
+					<Button id="btnEMPSubmitVisaDocs" text="Submit"
+						icon="sap-icon://action" type="Accept" press="onEMPSubmitVisaDocsPress"
+						visible="false" />
+					<Button id="btnEMPSubmitPassport" text="Submit Docs" icon="sap-icon://action"
+						type="Accept" press="onEMPSubmitPassportPress" visible="false" />
+					<Button id="btnEMPSubmit" text="Submit Request" icon="sap-icon://accept"
+						press="onEMPSubmitPress" type="Accept" visible="false" />
+					<Button id="btnEMPRejectCL" text="Send back Contract" type="Emphasized"
+						icon="sap-icon://action" press="onEMPSendBackCLPress"
+						visible="false" />
+					<Button id="btnEMPAcceptCL" text="Accept Contract" type="Accept"
+						icon="sap-icon://employee-approvals" press="onEMPAcceptCLPress"
+						visible="false" />
+					<Button id="btnEMPChange" text="Change Request" icon="sap-icon://accept"
+						press="onEMPChangePress" type="Accept" visible="false" />
+					<!-- Employee Area -->
+
+					<!-- Manager Area -->
+					<Button id="btnSendBack" text="Send Back" icon="sap-icon://action"
+						type="Emphasized" press="onSendBackPress" visible="false" />
+					<Button id="btnReject" type="Reject" text="Reject"
+						icon="sap-icon://employee-rejections" press="onRejectPress"
+						visible="false" />
+					<Button id="btnApprove" text="Approve" type="Accept"
+						icon="sap-icon://employee-approvals" press="onApprovePress"
+						visible="false" />
+					<Button id="btnRejectCancel" type="Reject" text="Reject Cancel Request"
+						icon="sap-icon://employee-rejections" press="onWFRejectRequestPress"
+						visible="false" />
+					<Button id="btnApproveCancel" text="Approve Cancel Request" type="Accept"
+						icon="sap-icon://employee-approvals" press="onWFApproveRequestPress"
+						visible="false" />
+					<!-- Manager Area -->
+
+					<!-- Deputation Area -->
+					<Button id="btnDEPUSendBack" text="Send Back" icon="sap-icon://action"
+						type="Emphasized" press="onSendBackPress" visible="false" />
+					<Button id="btnDEPUReject" type="Reject" text="Reject"
+						icon="sap-icon://employee-rejections" press="onRejectPress"
+						visible="false" />
+					<Button id="btnDEPUClose" type="Accept" text="Approve"
+						icon="sap-icon://employee-approvals" press="onClosePress" visible="false" />
+					<Button id="btnDEPUUpload" text="Upload" icon="sap-icon://upload"
+						visible="false" />
+					<Button id="btnDEPUDownload" text="Download" icon="sap-icon://download"
+						visible="false" />
+					<Button id="btnDEPUVerified" text="Verified" type="Accept"
+						icon="sap-icon://employee-approvals" press="onVerifiedPress"
+						visible="false" />
+					<c:FileUploader id="btnDEPUPreInvitationButton" width="200px"
+						maximumFileSize="5" fileSizeExceed="onFileSizeExceed" visible="false"
+						fileAllowed = "onFileAllowed" class="customUpload" change="onFileChange"
+						typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload Pre Approval Letter">
+					</c:FileUploader>
+					<c:FileUploader id="btnDEPUInvitationButton" width="180px"
+						maximumFileSize="5" fileSizeExceed="onFileSizeExceed" visible="false"
+						fileAllowed = "onFileAllowed" class="customUpload" change="onFileChange"
+						typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload Invitation Letter">
+					</c:FileUploader>
+					<Button id="btnDEPUInvitation" text="Submit Invitation" icon="sap-icon://employee-approvals" 
+						press="onSubmitInvitationPress" visible="false" type="Accept" />
+					<Button id="btnDEPUGenerateCL" text="Generate Contract" type="Accept"
+						icon="sap-icon://employee-approvals" press="onGeneratePress"
+						visible="false" />
+					<Button id="btnDEPUVerifiedDocs" text="Verified" type="Accept"
+						icon="sap-icon://employee-approvals" press="onVerifiedDocsPress"
+						visible="false" />
+					<Button id="btnDEPUVerifiedAddDocs" text="Verified" type="Accept"
+						icon="sap-icon://employee-approvals" press="onVerifiedAdditionalDocsPress"
+						visible="false" />
+					<Button id="btnDEPUVisaCopy" text="Confirm VISA Copy"
+						type="Accept" icon="sap-icon://employee-approvals" press="onUploadVisaCopyPress"
+						visible="false" />
+					<c:FileUploader id="btnDEPUCOCButton" width="150px" visible="false"
+						maximumFileSize="5" fileSizeExceed="onFileSizeExceed"
+						fileAllowed = "onFileAllowed" class="customUpload" change="onFileChange"
+						typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload COC">
+					</c:FileUploader>
+					<Button id="btnDEPUCOC" text="Submit COC" type="Accept" 
+						icon="sap-icon://employee-approvals" press="onUploadCOCPress"
+						visible="false" />
+					<Button id="btnDEPUPassportReturn" text="Visa Clearance" type="Accept" tooltip="Return passport to Employee / Visa Clearance"
+						icon="sap-icon://employee-approvals" press="onPassportReturnPress"
+						visible="false" />
+					<Button id="btnDEPUApprove" text="Approve" type="Accept" tooltip="Approve the new return date"
+						icon="sap-icon://employee-approvals" press="onDEPUApprovePress"
+						visible="false" />
+					<!-- Deputation Area -->
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

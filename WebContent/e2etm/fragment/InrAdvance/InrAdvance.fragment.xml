@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+	<Table inset="false" class="tableclass table_ticket_admin sapUiSizeCompact"
+		mode="MultiSelect" width="100%" items="{travelsettlement>/inradvance/}">
+		<headerToolbar>
+			<Toolbar>
+				<c:Button text="Add row" icon="sap-icon://add" enabled="{travelsettlement>/fieldproperties/editable}"
+					press="onAdd"></c:Button>
+				<c:Button text="Delete row" enabled="{travelsettlement>/fieldproperties/editable}" icon="sap-icon://less"
+					class="margin_left_10" press="onDel"></c:Button>
+					
+				<ToolbarSpacer/>
+				<Link text="Travel Plan PDF" id="travelplanpdf" target="_blank" emphasized="true"/>
+
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="5rem">
+				<Text text="Date" tooltip="Date" />
+			</Column>
+
+			<Column width="5rem">
+				<Text text="Amount" tooltip="Amount" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Currency" tooltip="Currency" />
+			</Column>
+			<Column width="8rem">
+				<Text text="Reason" tooltip="Reason" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Approved Amount" tooltip="Approved Amount" />
+			</Column>
+			<Column width="5rem">
+				<Text text="Approved Currency" tooltip="Approved Currency" />
+			</Column>
+			<Column width="8rem">
+				<Text text="Remarks by Travel Settlement" tooltip="Remarks by Travel Settlement" />
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+						editable="{travelsettlement>/fieldproperties/editable}"
+						value="{travelsettlement>Begda}" valueFormat="yyyyMMdd" required="true" />
+
+					<Input editable="{travelsettlement>/fieldproperties/editable}"
+						value="{travelsettlement>Paemp}" />
+					<Input editable="false"
+						value="{travelsettlement>Waers}" />
+					<Input editable="{travelsettlement>/fieldproperties/editable}"
+						value="{travelsettlement>Rmrks}" />
+					<Input editable="{travelsettlement>/fieldproperties/trsteditable}"
+						value="{travelsettlement>Apamt}" />
+					<Input editable="false"
+						value="{travelsettlement>Apcur}" />
+					<Input editable="{travelsettlement>/fieldproperties/trsteditable}"
+						value="{travelsettlement>Tremr}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

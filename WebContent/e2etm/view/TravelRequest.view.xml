@@ -1,0 +1,46 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.TravelRequest" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:flowStage="sap.ui.project.e2etm.controls.customFlowStage" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:l="sap.ui.layout" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:stageItem="sap.ui.project.e2etm.controls.stageItem"
+	xmlns="sap.m">
+	<Page class="pageTravelRequest" id="pageTravelRequest" title="Your are creating a Business Travel Request">
+		<!--		<Toolbar class="headerToolbar">-->
+		<!--	<Label class="trv_head_top_label font-size-20" text="Your are creating a Business Travel Request "/>-->
+		<!--</Toolbar>-->
+		<FlexBox class="landing_flexbox_dep_detail_container margin_top_10" id="flexBoxProcess" justifyConten="Start" visible="true">
+			<Label class="rotate" text="PROCESS"></Label>
+			<Label class="rotate" text="FLOW"></Label>
+			<!-- Dynamic Stages -->
+			<c:Carousel animationDuration="500" class="carousel_process" height="75px" id="carouselProcessFlow" orientation="horizontal" width="100%"></c:Carousel>
+			<!-- Dynamic Stages -->
+		</FlexBox>
+		<Toolbar class="headerToolbar FullInfo">
+			<layout:VerticalLayout class="travelRequestDetailHead-Right font-size-18">
+				<layout:HorizontalLayout>
+					<Label text="Travel Request number: "/>
+					<Label class="red_bold_text" text="{trvRequestDtl>/ZZ_TRV_REQ_NUM}"/>
+				</layout:HorizontalLayout>
+				<Label class="text_title" text="{trvRequestDtl>/empDetail/travelLoc}"/>
+				<Label class="text_title" text="{trvRequestDtl>/empDetail/travelDate}"/>
+			</layout:VerticalLayout>
+		</Toolbar>
+		<FlexBox class="sapUiSizeCompact objPageTravelRequest" direction="Column">
+			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.TV_REQ" type="XML"/>
+		</FlexBox>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button icon="sap-icon://home" id="back" press="onBackPress" text="Back" type="Reject"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Button enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://save" id="btnSave" press="saveTravelRequest" text="Save Travel Request"
+						type="Emphasized" visible="{properties>/savevisible}"></Button>
+					<Button icon="sap-icon://delete" id="btnDelete" press="deleteTravelRequest" text="Delete Request" type="Reject" visible="false"/>
+				</contentMiddle>
+				<contentRight>
+					<Button enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://sys-enter" id="btnSubmit" press="submitTravelRequest"
+						text="Submit Request" type="Accept" visible="{properties>/submitvisible}"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

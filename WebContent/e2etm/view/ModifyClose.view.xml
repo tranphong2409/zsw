@@ -1,0 +1,526 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:c="sap.ui.commons" xmlns:view="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:unified="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:suite="sap.suite.ui.commons"
+	xmlns:layout="sap.ui.commons.layout" controllerName="sap.ui.project.e2etm.controller.Forex"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="Forex" class="pageForex" title="FOREX">
+		<!-- Header -->
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="FOREX" design="Bold" />
+				</contentMiddle>
+				<contentRight>
+					<Link text="Help"
+						href="http://sgpvm070:8080/pkit/go/pelement.do?id=238678&amp;type=Activity"
+						target="_blank" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<ObjectHeader id='forexHdr' class="forexObjHeader"
+			responsive="true" numberState="Success">
+		</ObjectHeader>
+		<FlexBox direction="Row" width="100%" justifyContent="SpaceBetween">
+			<FlexBox direction="Column" justifyContent="SpaceBetween"
+				class="objFlex1">
+				<ObjectAttribute
+					text="{path:'general>/EmpNo',formatter:'sap.ui.project.e2etm.util.Formatter.forexEmpNo'}" />
+				<ObjectAttribute
+					text="{path:'general>/EmpName',formatter:'sap.ui.project.e2etm.util.Formatter.forexEmpName'}" />
+				<ObjectAttribute
+					text="{path:'general>/Department',formatter:'sap.ui.project.e2etm.util.Formatter.forexDepartment'}" />
+			</FlexBox>
+			<FlexBox direction="Column" justifyContent="SpaceBetween"
+				visible="{path:'general>/whichtab',formatter:'sap.ui.project.e2etm.util.Formatter.visibleForexStatusAmountIcon'}">
+				<ObjectStatus
+					icon="{path:'general>/TCKT',formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectIcon'}"
+					text="Ticketing"
+					state="{path:'general>/TCKT',formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectStatus'}"
+					textDirection="LTR" />
+				<ObjectStatus
+					icon="{path:'general>/ACCO',formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectIcon'}"
+					text="Accomodation"
+					state="{path:'general>/ACCO',formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectStatus'}"
+					textDirection="LTR" />
+				<!-- <ObjectStatus -->
+				<!-- icon="{parts:[{path:'general>/TravelType'},{path:'general>/ACCO'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectAccIcon'}" -->
+				<!-- text="Accomodation" -->
+				<!-- state="{parts:[{path:'general>/TravelType'},{path:'general>/ACCO'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectAccStatus'}" -->
+				<!-- textDirection="LTR" /> -->
+				<ObjectStatus
+					icon="{path:'general>/INSR',formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectIcon'}"
+					text="Insurance"
+					state="{path:'general>/INSR',formatter:'sap.ui.project.e2etm.util.Formatter.formatObjectStatus'}"
+					textDirection="LTR" />
+			</FlexBox>
+			<FlexBox direction="Column"
+				visible="{path:'general>/whichtab',formatter:'sap.ui.project.e2etm.util.Formatter.visibleForexStatusAmount'}"
+				justifyContent="SpaceBetween" class="objFlex3">
+				<ObjectAttribute id="amount1" />
+				<ObjectAttribute id="amount2" />
+				<ObjectAttribute id="amount3" />
+			</FlexBox>
+		</FlexBox>
+		<FlexBox class="padding_10" direction="Column">
+			<c:Panel text="GENERAL INFORMATION" class="panelCollapse">
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+					class="hideCoreForex">
+					<f:content>
+						<core:Title text="" />
+						<Label text="Travelling From Country" class="font_size_14" />
+						<Text text="{general>/FromCountryText}" />
+						<Label text="Travelling From Location" class="font_size_14" />
+						<Text text="{general>/FromLoc}" />
+						<Label text="Start Date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'general>/StartDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Visa Type" class="font_size_14" />
+						<Text text="{general>/VisaType}" />
+						<Label text="Date of Birth" class="font_size_14" />
+						<Text
+							text="{path:'passport>/DateOfBirth',
+						formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<core:Title text="" />
+						<Label text="Travelling to Country" class="font_size_14" />
+						<Text text="{general>/ToCountryText}" />
+						<Label text="Travelling to Location" class="font_size_14" />
+						<Text text="{general>/ToLoc}" />
+						<Label text="End date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'general>/EndDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Mobile Number" class="font_size_14" />
+						<Text text="{general>/ContactNo}" />
+						<Label text="Email Id" class="font_size_14" />
+						<Text text="{passport>/Email}" />
+					</f:content>
+				</f:SimpleForm>
+			</c:Panel>
+			<c:Panel text="Passport Details" class="panelCollapse">
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+					class="hideCoreForex">
+					<f:content>
+						<core:Title text="" />
+						<Label text="Passport No" class="font_size_14" />
+						<Text text="{passport>/PassportNo}" />
+						<Label text="Issued Place" class="font_size_14" />
+						<Text text="{passport>/IssuePlace}" />
+						<Label text="Date of Issue" class="font_size_14" />
+						<Text
+							text="{
+							path: 'passport>/DateOfIssue',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<core:Title text="" />
+						<Label text="Issued By" class="font_size_14" />
+						<Text text="{passport>/IssuedBy}" />
+						<Label text="Issued Country" class="font_size_14" />
+						<Text text="{passport>/IssuedCountry}" />
+						<Label text="Date of Expiry" class="font_size_14" />
+						<Text
+							text="{
+							path: 'passport>/DateOfExpiry',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+					</f:content>
+				</f:SimpleForm>
+			</c:Panel>
+		</FlexBox>
+		<IconTabBar id="idIconTabBar" select="onIconTabBarSelect">
+			<items>
+				<IconTabFilter icon="sap-icon://message-information"
+					tooltip="Forex Info.">
+					<c:Label class="empinfo" visible="{fieldproperties>/msgvisible}"
+						text="* Advance Currency should be converted to Policy Currency"
+						design="Bold" />
+					<c:Panel text="Card Details" class="panelCollapse">
+						<t:Table rows="{/}" id="cardtable" columnHeaderHeight="40"
+							visibleRowCount="1" class="sapUiSizeCompact margin_bottom_10">
+							<t:toolbar>
+								<Toolbar>
+									<c:Button text="Add row" enabled="{fieldproperties>/benabled}"
+										icon="sap-icon://add" press="onAddCard"></c:Button>
+									<c:Button text="Delete row" enabled="{fieldproperties>/benabled}"
+										icon="sap-icon://less" class="margin_left_10" press="onDelCard"></c:Button>
+								</Toolbar>
+							</t:toolbar>
+							<t:noData>
+								<c:Label text=""></c:Label>
+							</t:noData>
+							<t:Column width="110px">
+								<c:Label text="Type of Currency" tooltip="Type of Currency"
+									textAlign="Center" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:ComboBox change="onCurrencyChange" value="{Currency}"
+										displaySecondaryValues="true" items="{curModel>/}">
+										<c:items>
+											<core:ListItem additionalText="{curModel>FIELD2}"
+												text="{curModel>FIELD1}" />
+										</c:items>
+									</c:ComboBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="	Issued Banker" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<c:ComboBox selectedKey="{IssuerBank}"
+										displaySecondaryValues="true" items="{Bank>/}">
+										<c:items>
+											<core:ListItem additionalText="{Bank>FIELD3}"
+												text="{Bank>FIELD3}" key="{Bank>FIELD2}" />
+										</c:items>
+									</c:ComboBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Card no" textAlign="Center" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField value="{CardNo}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="130px">
+								<c:Label text="Card Validity" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<DatePicker value="{path:'CardValidity'}" class="datepick_read_only"
+										displayFormat="dd.MM.yyyy" valueFormat="yyyyMMdd" />
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Amount" textAlign="Center" class="label_small_bold"></c:Label>
+								<t:template>
+									<!-- <c:TextField value="{path:'Amount'}" change="onCalculate" -->
+									<!-- editable="{fieldproperties>/editable}" /> -->
+									<c:TextField
+										value="{path:'Amount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										change="onCalculate" />
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Payment Type" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<c:ComboBox change="onSelectCardChange" selectedKey="{PaymentType}"
+										displaySecondaryValues="true" items="{Payment>/}">
+										<c:items>
+											<core:ListItem additionalText="{Payment>FIELD3}"
+												text="{Payment>FIELD2}" key="{Payment>FIELD2}" />
+										</c:items>
+									</c:ComboBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="80px">
+								<c:Label text="Exchange Rate" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField
+										editable="{parts:[{path:'PaymentType'},{path:'general>/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatExchangeEdit'}"
+										value="{path:'ExchangeRate',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										change="onCalculate" />
+								</t:template>
+							</t:Column>
+							<t:Column width="80px">
+								<c:Label text="Service Tax Amount" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField
+										value="{path:'Tax',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										editable="{parts:[{path:'PaymentType'},{path:'general>/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatExchangeEdit'}"
+										change="onCalculate" />
+									<!-- editable="{fieldproperties>/peditable}" -->
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Total" textAlign="Center" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField
+										value="{path:'Total',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										editable="false" />
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Invoice No" textAlign="Center" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField value="{InvoiceNo}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="130px">
+								<c:Label text="Invoice Date" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<DatePicker value="{path:'Invoicedate'}" change="checkValidDate"
+										class="datepick_read_only" displayFormat="dd.MM.yyyy"
+										valueFormat="yyyyMMdd" />
+								</t:template>
+							</t:Column>
+							<!-- <t:Column width="80px" visible="{fieldproperties>/pvisible}"> -->
+							<!-- <c:Label text="Policy Currency" textAlign="Center" -->
+							<!-- class="label_small_bold"></c:Label> -->
+							<!-- <t:template> -->
+							<!-- <c:TextField editable="false" value="{Pcurrency}" /> -->
+							<!-- </t:template> -->
+							<!-- </t:Column> -->
+							<!-- <t:Column width="120px" visible="{fieldproperties>/pvisible}"> -->
+							<!-- <c:Label text="Policy Exchange Rate" textAlign="Center" -->
+							<!-- class="label_small_bold"></c:Label> -->
+							<!-- <t:template> -->
+							<!-- <c:TextField -->
+							<!-- value="{path:'PexchangeRate',type: 'sap.ui.model.type.Float', -->
+							<!-- formatOptions: { -->
+							<!-- maxFractionDigits: 2, -->
+							<!-- groupingEnabled: true, -->
+							<!-- groupingSeparator: ','}}" -->
+							<!-- change="onCalculate" -->
+							<!-- editable="{parts:[{path:'Pcurrency'},{path:'Currency'},{path:'general>/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatPolicyExchangeRate'}" 
+								/> -->
+							<!-- </t:template> -->
+							<!-- </t:Column> -->
+							<!-- <t:Column width="120px" visible="{fieldproperties>/pvisible}"> -->
+							<!-- <c:Label text="Policy Total" textAlign="Center" -->
+							<!-- class="label_small_bold"></c:Label> -->
+							<!-- <t:template> -->
+							<!-- <c:TextField -->
+							<!-- value="{path:'Ptotal',type: 'sap.ui.model.type.Float', -->
+							<!-- formatOptions: { -->
+							<!-- maxFractionDigits: 2, -->
+							<!-- groupingEnabled: true, -->
+							<!-- groupingSeparator: ','}}" -->
+							<!-- editable="false" /> -->
+							<!-- </t:template> -->
+							<!-- </t:Column> -->
+						</t:Table>
+					</c:Panel>
+					<c:Panel text="Cash Details" visible="{fieldproperties>/cashpnlvisible}"
+						class="panelCollapse">
+						<t:Table id="cashtable" rows="{/}" columnHeaderHeight="40"
+							visibleRowCount="1" class="sapUiSizeCompact margin_bottom_10">
+							<t:toolbar>
+								<Toolbar>
+									<c:Button text="Add row" enabled="{fieldproperties>/benabled}"
+										icon="sap-icon://add" press="onAddCash"></c:Button>
+									<c:Button text="Delete row" enabled="{fieldproperties>/benabled}"
+										icon="sap-icon://less" class="margin_left_10" press="onDelCash"></c:Button>
+								</Toolbar>
+							</t:toolbar>
+							<t:noData>
+								<c:Label text=""></c:Label>
+							</t:noData>
+							<t:Column width="170px">
+								<c:Label text="Currency Type" class="label_small_bold"></c:Label>
+								<t:template>
+									<!-- <Select width="200px" items="{curModel>/}"> -->
+									<c:ComboBox change="onCurrencyChange" value="{Currency}"
+										displaySecondaryValues="true" items="{curModel>/}">
+										<c:items>
+											<core:ListItem additionalText="{curModel>FIELD2}"
+												text="{curModel>FIELD1}" />
+										</c:items>
+									</c:ComboBox>
+									<!-- </Select> -->
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Cash" class="label_small_bold"></c:Label>
+								<t:template>
+									<!-- <c:TextField editable="{fieldproperties>/editable}" -->
+									<!-- value="{path:'Cash'}" change="onCashExchange" /> -->
+									<c:TextField
+										value="{path:'Cash',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										change="onCashExchange" />
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Payment Type" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+
+									<c:ComboBox change="onSelectCashChange" selectedKey="{PaymentType}"
+										displaySecondaryValues="true" items="{Payment>/}">
+										<c:items>
+											<core:ListItem additionalText="{Payment>FIELD3}"
+												text="{Payment>FIELD2}" key="{Payment>FIELD2}" />
+										</c:items>
+									</c:ComboBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Exchange Rate" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField
+										value="{path:'ExchangeRate',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										editable="{parts:[{path:'PaymentType'},{path:'general>/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatExchangeEdit'}"
+										change="onCashExchange" />
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Service Tax Amount" textAlign="Center"
+									class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField
+										value="{path:'Tax',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										change="onCashExchange"
+										editable="{parts:[{path:'PaymentType'},{path:'general>/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatExchangeEdit'}" />
+									<!-- editable="{fieldproperties>/editable}" /> -->
+								</t:template>
+							</t:Column>
+							<t:Column width="120px">
+								<c:Label text="Total" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField
+										value="{path:'Total',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+										editable="false" />
+								</t:template>
+							</t:Column>
+							<t:Column width="170px">
+								<c:Label text="Vendor" class="label_small_bold"></c:Label>
+								<t:template>
+									<!-- <c:TextField value="{Vendor}" editable="{fieldproperties>/editable}"/> -->
+									<Select width="200px" selectedKey="{Vendor}" items="{Vendor>/}">
+										<items>
+											<core:Item key="{Vendor>FIELD2}" text="{Vendor>FIELD3}" />
+											<!-- <core:Item key="VKC" text="VKC" /> -->
+										</items>
+									</Select>
+								</t:template>
+							</t:Column>
+							<t:Column width="170px">
+								<c:Label text="Invoice No" class="label_small_bold"></c:Label>
+								<t:template>
+									<c:TextField value="{InvoiceNo}" />
+								</t:template>
+							</t:Column>
+							<t:Column width="170px">
+								<c:Label text="Invoice Date" class="label_small_bold"></c:Label>
+								<t:template>
+									<DatePicker value="{path:'Invoicedate'}" class="datepick_read_only"
+										displayFormat="dd.MM.yyyy" placeholder="DD.MM.YYYY"
+										valueFormat="yyyyMMdd" />
+								</t:template>
+							</t:Column>
+							<!-- <t:Column width="80px" visible="{fieldproperties>/pvisible}"> -->
+							<!-- <c:Label text="Policy Currency" textAlign="Center" -->
+							<!-- class="label_small_bold"></c:Label> -->
+							<!-- <t:template> -->
+							<!-- <c:TextField editable="false" value="{Pcurrency}" /> -->
+							<!-- </t:template> -->
+							<!-- </t:Column> -->
+							<!-- <t:Column width="120px" visible="{fieldproperties>/pvisible}"> -->
+							<!-- <c:Label text="Policy Exchange Rate" textAlign="Center" -->
+							<!-- class="label_small_bold"></c:Label> -->
+							<!-- <t:template> -->
+							<!-- <c:TextField -->
+							<!-- value="{path:'PexchangeRate',type: 'sap.ui.model.type.Float', -->
+							<!-- formatOptions: { -->
+							<!-- maxFractionDigits: 2, -->
+							<!-- groupingEnabled: true, -->
+							<!-- groupingSeparator: ','}}" -->
+							<!-- change="onCashExchange" -->
+							<!-- editable="{parts:[{path:'Pcurrency'},{path:'Currency'},{path:'general>/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatPolicyExchangeRate'}" 
+								/> -->
+							<!-- </t:template> -->
+							<!-- </t:Column> -->
+							<!-- <t:Column width="120px" visible="{fieldproperties>/pvisible}"> -->
+							<!-- <c:Label text="Policy Total" textAlign="Center" -->
+							<!-- class="label_small_bold"></c:Label> -->
+							<!-- <t:template> -->
+							<!-- <c:TextField -->
+							<!-- value="{path:'Ptotal',type: 'sap.ui.model.type.Float', -->
+							<!-- formatOptions: { -->
+							<!-- maxFractionDigits: 2, -->
+							<!-- groupingEnabled: true, -->
+							<!-- groupingSeparator: ','}}" -->
+							<!-- editable="false" /> -->
+							<!-- </t:template> -->
+							<!-- </t:Column> -->
+						</t:Table>
+					</c:Panel>
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexTrst"
+						type="XML" />
+					<FlexBox direction="Row" alignItems="Center">
+						<Label width="114px" text="Comments" class="label_bold font_size_14"></Label>
+						<l:VerticalLayout class="sapUiContentPadding"
+							width="100%">
+							<l:content>
+								<TextArea id="comments" rows="8" cols="47" />
+							</l:content>
+						</l:VerticalLayout>
+					</FlexBox>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://attachment" tooltip="Attachment">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+						type="XML" />
+					<UploadCollection class="uploadCollectionClass margin_top_10"
+						maximumFilenameLength="55" uploadEnabled="false" items="{fixedAttachments>/}">
+						<UploadCollectionItem fileName="{fixedAttachments>FileName}"
+							mimeType="{
+							path: 'fixedAttachments>FileName',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.getFileType'
+						}"
+							url="{fixedAttachments>FileUrl}" visibleEdit="false"
+							visibleDelete="false" thumbnailUrl="" />
+					</UploadCollection>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://comment" tooltip="Comments">
+					<core:Fragment id="AppoveInfo"
+						fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+						type="XML" />
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<!-- Footer -->
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="back" text="Back" icon="sap-icon://sys-cancel"
+						type="Reject" press="onBack" />
+				</contentLeft>
+				<contentMiddle>
+				</contentMiddle>
+				<contentRight>
+					<Button text="Modify" type="Accept" visible="{fieldproperties>/savvisible}"
+						press="onSave" icon="sap-icon://accept" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

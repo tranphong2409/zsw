@@ -1,0 +1,199 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"  xmlns:f="sap.ui.layout.form" xmlns:commons="sap.ui.commons"
+		controllerName="sap.ui.project.e2etm.controller.PreDepartureCalender" xmlns:html="http://www.w3.org/1999/xhtml" >
+	<Page title="Pre Departure Meeting Shedule" class="sapUiSizeCompact">
+		
+		<subHeader>
+			<Toolbar>
+			 <Label text="Year"></Label>
+			<Select id="Year"  items="{/DepuPDMYearSet}"  change="onSelectChange">
+			<core:Item text="{ZZ_YEAR}" key="{ZZ_YEAR}">
+			</core:Item>			
+			</Select>
+			
+			<Label></Label>
+			
+			<Label text="Assignment Model"></Label>
+			<Select id="AsgModel" width="200px" items="{/AsgModelsF4Set}"  change="onSelectChange">
+				<core:Item text="{AsgType}" key="{Key}"></core:Item>
+			</Select>
+			</Toolbar>
+		</subHeader>	
+		<content>
+		
+		
+		<ScrollContainer>
+		<Table id="pdmTable" itemPress="onItemPress" inset="false"  items="{path:'pdmData>/'}"
+		  mode="MultiSelect">
+			
+			<headerToolbar>
+					<Toolbar>
+						<Button id="pdmTableAdd" text="Add row" icon="sap-icon://add" enabled="{tableDisplay>/isEnable}"
+							press="onAdd"></Button>
+						<Button id = "pdmTableDel" text="Delete row" icon="sap-icon://delete" enabled="{tableDisplay>/isEnable}"
+							class="margin_left_10" press="onDel"></Button>
+					</Toolbar>
+				</headerToolbar>
+		
+			<columns>
+			<Column width="12em">
+					<Text text="Country" />
+			</Column>
+			<Column width="8em">
+					<Text text="Person Responsible" />
+			</Column>
+			<Column width="4em">
+					<Text text="Jan" />
+			</Column>
+
+			<Column width="4em">
+					<Text text="Feb" />
+			</Column>
+			
+			<Column width="4em">
+					<Text text="Mar" />
+			</Column>
+
+			<Column width="4em">
+					<Text text="Apr" />
+			</Column>
+
+			<Column width="4em">
+					<Text text="May" />
+			</Column>
+		
+			<Column width="4em">
+					<Text text="Jun" />
+			</Column>
+			
+			<Column width="4em">
+					<Text text="Jul" />
+			</Column>
+			
+			<Column width="4em">
+					<Text text="Aug" />
+			</Column>
+			
+			<Column width="4em">
+					<Text text="Sep" />
+			</Column>
+			
+			<Column width="4em">
+					<Text text="Oct" />
+			</Column>
+		<Column width="4em">
+					<Text text="Nov" />
+			</Column>
+			<Column width="4em">
+					<Text text="Dec" />
+			</Column>
+		</columns>
+	<items>
+			<ColumnListItem  height="10px" width="70px">
+				<cells>
+					<Select id="FCntry" selectedKey="{pdmData>LAND1}" items="{path: 'frmCntry>/'}"  change="onFrmCntryChange" enabled="{tableDisplay>/isEnable}" >	
+					<core:Item text="{frmCntry>LTEXT}" key="{frmCntry>MOLGA}"/>
+				</Select>
+					
+					<Input value="{pdmData>NAME}" editable="{tableDisplay>/isEnable}">
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>NAME}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>JAN}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>JAN}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>FEB}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>FEB}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>MAR}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>MAR}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>APR}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>APR}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>MAY}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>MAY}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>JUN}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>JUN}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>JUL}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>JUL}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>AUG}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>AUG}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>SEP}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>SEP}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>OCT}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>OCT}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>NOV}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>NOV}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+					<Input value="{pdmData>DECE}" editable="{tableDisplay>/isEnable}" >
+					<tooltip>
+					<commons:RichTooltip title="{pdmData>DECE}">
+					</commons:RichTooltip>
+					</tooltip>
+					</Input>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+		</ScrollContainer>
+		</content>
+		
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="save" text="Save" type="Accept" press="onSave" visible="true" icon="sap-icon://save" />								
+				</contentRight>
+				<contentMiddle>
+					<Button id="edit" text="Edit" type="Reject" press="onEdit" icon="sap-icon://response"/>
+				</contentMiddle>
+				<contentLeft>
+					<Button text="Back"  icon="sap-icon://response" type="Reject" press="onBack" />
+				</contentLeft>
+			</Bar>
+		</footer>
+		
+		
+		
+	</Page>
+</core:View>

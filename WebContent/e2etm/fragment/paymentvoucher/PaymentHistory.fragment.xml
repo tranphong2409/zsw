@@ -1,0 +1,98 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+	<!-- class="sapUiSizeCompact margin_bottom_10" -->
+	<Panel  id="payhistory" expandable="false"
+		expandAnimation="false" class="panelBorderTrSettle">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Payment History" />
+			</Toolbar>
+		</headerToolbar>
+		<content>
+			<ScrollContainer>
+				<Table items="{travelsettlement>/paymenthistory/}" class="tableclass table_ticket_admin sapUiSizeCompact">
+
+					<columns>
+						<Column width="6.5rem">
+							<c:Label text="Date" tooltip="Date" textAlign="Center"
+								class="label_small_bold"></c:Label>
+
+						</Column>
+						<Column width="8rem">
+							<c:Label text="Bill No" tooltip="Description" textAlign="Center"
+								class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="8rem">
+							<c:Label text="Description" tooltip="Description"
+								textAlign="Center" class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="6rem">
+							<c:Label text="INR" tooltip="INR" textAlign="Center"
+								class="label_small_bold"></c:Label>
+
+						</Column>
+
+						<Column width="5rem">
+							<c:Label text="Currency" tooltip="Currency" textAlign="Center"
+								class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="7rem">
+							<c:Label text="Remarks" tooltip="Remarks" textAlign="Center"
+								class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="6rem">
+							<c:Label text="Approved Amount" tooltip="Approved Amount"
+								textAlign="Center" class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="7rem">
+							<c:Label text="Currency" tooltip="Currency" textAlign="Center"
+								class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="7rem">
+							<c:Label text="Remarks by Trvl Settlement" tooltip="Remarks by Trvl Settlement"
+								textAlign="Center" class="label_small_bold"></c:Label>
+						</Column>
+						<Column width="7rem">
+							<c:Label text="PDF" tooltip="PDF"
+								textAlign="Center" class="label_small_bold"></c:Label>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem height="10px">
+							<cells>
+								<Label text="{path:'travelsettlement>Begda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+								<Label text="{travelsettlement>Otype}" />
+								<Label text="{travelsettlement>Descr}" />
+								<Label
+									text="{path: 'travelsettlement>Paemp',
+									type: 'sap.ui.model.type.Float',
+												formatOptions: {
+												maxFractionDigits: 2,
+												groupingEnabled: true,
+												groupingSeparator: ','}}" />
+								<Label text="{path: 'travelsettlement>Waers'}" />
+								<!-- editable="{parts:[{path:'travelsettlement>Pacmp'},{path:'travelsettlement>/traveldetails/whichtab'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatTSCurrencyEditable'}" -->
+
+
+								<Label text="{travelsettlement>Rmrks}" />
+
+								<Label text="{path: 'travelsettlement>Apamt',
+								type: 'sap.ui.model.type.Float',
+															formatOptions: {
+															maxFractionDigits: 2,
+															groupingEnabled: true,
+															groupingSeparator: ','}}"/>
+								<Label text="{travelsettlement>Apcur}" />
+								<Label text="{travelsettlement>Tremr}"/>
+								<Link text="Payment Voucher PDF" tooltip="Payment Voucher PDF" press = "onDownloadLink"/>
+
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+
+			</ScrollContainer>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

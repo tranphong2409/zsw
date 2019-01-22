@@ -1,0 +1,128 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.travelrequest.TVRDetail" xmlns:c="sap.ui.commons"
+	xmlns:cc="sap.ui.project.e2etm.controls" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" xmlns="sap.m">
+	<FlexBox alignItems="Start" class="travelling_flex_box font-size-18" direction="Column" id="flbPassenger" templateShareable="true">
+		<FlexBox alignItems="End" width="100%">
+			<Label design="Bold" text="When are you travelling? *"/>
+			<Link class="link_right_side_objlayout" press="onUpdatePofileNav" text="Update Profile Data"></Link>
+		</FlexBox>
+		<VBox id="passengerLst" items="{ path: 'trvRequestDtl>/travelingDtl/aPassenger'}" templateShareable="true">
+			<Panel class="psgPanel" expandable="true" expanded="{trvRequestDtl>ZZ_EXPANDED}" id="pnlPassenger">
+				<headerToolbar>
+					<Toolbar class="hadPassenger travelerHeader">
+						<Label class="font-size-18" design="Bold" text="{trvRequestDtl>ZZ_PSG_NAME}: " width="102px"></Label>
+						<ComboBox change="onDependentChange" class="mxWidth100 cm_input_border_bottom font-size-18" enabled="{trvRequestDtl>ZZ_ENABLED}"
+							filterSecondaryValues="true" items="{ path: 'trvRequestDtl>/travelingDtl/aDependent'}" max-width="102px"
+							selectedKey="{trvRequestDtl>ZZ_ZSLFDPD}" showSecondaryValues="true">
+							<core:ListItem additionalText="{trvRequestDtl>DDTEXT}" key="{trvRequestDtl>DOMVALUE_L}" text="{trvRequestDtl>DDTEXT}"/>
+						</ComboBox>
+						<ToolbarSpacer visible="{trvRequestDtl>ZZ_VISIBLE}" width="20px"/>
+						<Image densityAware="true" src="images/flight-seat.png" visible="{trvRequestDtl>ZZ_VISIBLE}"/>
+						<Select change="onHeaderChange" class="cm_input_border_bottom font-size-18" enabled="{trvRequestDtl>ZZ_TRV_STATUS}"
+							items="{ path: 'trvRequestDtl>/travelingDtl/aFlighSeat'}" selectedKey="{trvRequestDtl>ZZ_ZSEAT}" visible="{trvRequestDtl>ZZ_VISIBLE}"
+							width="11rem">
+							<items>
+								<core:Item key="{trvRequestDtl>DOMVALUE_L}" text="{trvRequestDtl>DDTEXT}"/>
+							</items>
+						</Select>
+						<ToolbarSpacer visible="{trvRequestDtl>ZZ_VISIBLE}" width="20px"/>
+						<!--<core:Icon size="20px" src="sap-icon://meal"/>-->
+						<Image densityAware="true" src="images/Meal.png" visible="{trvRequestDtl>ZZ_VISIBLE}"/>
+						<ComboBox change="onHeaderChange" class="cm_input_border_bottom font-size-18" enabled="{trvRequestDtl>ZZ_TRV_STATUS}"
+							filterSecondaryValues="true" items="{ path: 'trvRequestDtl>/travelingDtl/aMeal'}" max-width="150px" selectedKey="{trvRequestDtl>ZZ_ZMEAL}"
+							showSecondaryValues="true" visible="{trvRequestDtl>ZZ_VISIBLE}">
+							<core:Item key="{trvRequestDtl>DOMVALUE_L}" text="{trvRequestDtl>DDTEXT}"/>
+						</ComboBox>
+						<ToolbarSpacer width="20px"/>
+						<core:Icon size="20px" src="sap-icon://BusinessSuiteInAppSymbols/icon-sms"/>
+						<Input change="onHeaderChange" class="mxWidth200 cm_input_base_border_bot font-size-18" enabled="{trvRequestDtl>ZZ_TRV_STATUS}"
+							type="Number" value="{trvRequestDtl>ZZ_MOBILE}"/>
+						<!--<Button icon="sap-icon://delete" press="onRemovePassenger" type="Reject" visible="{trvRequestDtl>ZZ_ENABLED}"/>-->
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<FlexBox class="passenger_detail_flexbox">
+						<c:TabStrip class="sapUiResponsiveContentPadding passenger_detail_tab font-size-18" enableTabReordering="{trvRequestDtl>ZZ_TRV_STATUS}"
+							select="onTripChangeHandle" selectedIndex="{trvRequestDtl>/ZZ_TRIP_TAB}">
+							<c:tabs>
+								<c:Tab text="ONE WAY">
+									<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TSingle" type="XML"/>
+								</c:Tab>
+								<c:Tab text="ROUND TRIP">
+									<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TRound" type="XML"/>
+								</c:Tab>
+								<c:Tab text="MULTI-CITY">
+									<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TMCity" type="XML"/>
+								</c:Tab>
+							</c:tabs>
+						</c:TabStrip>
+						<!--<cc:customTab editModeEnabled="true" selectedIndex="{trvRequestDtl>/ZZ_TRIP_TAB}">-->
+						<!--	<c:Tab text="ONE WAY">-->
+						<!--		<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TSingle" type="XML"/>-->
+						<!--	</c:Tab>-->
+						<!--</cc:customTab>-->
+						<!--<IconTabBar class="sapUiResponsiveContentPadding passenger_detail_tab font-size-18" id="passengerDtlTab" select="onTripChangeHandle"-->
+						<!--	selectedKey="{trvRequestDtl>/ZZ_TRIP_TAB}" templateShareable="true">-->
+						<!--	<items>-->
+						<!--		<IconTabFilter enabled="{trvRequestDtl>ZZ_TRV_STATUS}" key="ONW" text="ONE WAY">-->
+						<!--			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TSingle" type="XML"/>-->
+						<!--		</IconTabFilter>-->
+						<!--		<IconTabFilter enabled="{trvRequestDtl>ZZ_TRV_STATUS}" key="RND" text="ROUND TRIP">-->
+						<!--			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TRound" type="XML"/>-->
+						<!--		</IconTabFilter>-->
+						<!--		<IconTabFilter enabled="{trvRequestDtl>ZZ_TRV_STATUS}" key="MUL" text="MULTI-CITY">-->
+						<!--			<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.travel.request.psg.TMCity" type="XML"/>-->
+						<!--		</IconTabFilter>-->
+						<!--	</items>-->
+						<!--</IconTabBar>-->
+					</FlexBox>
+				</content>
+			</Panel>
+		</VBox>
+		<Link press="onNavToTaxiApp" text="Open Taxi Indent Application" visible="{trvRequestDtl>/ZZ_TAXI_LINK_ENABLED}"/>
+	</FlexBox>
+	<FlexBox alignItems="Start" direction="Column">
+		<HBox class="additionPassenger">
+			<Button class="addPassengerBtn" icon="sap-icon://add" id="addNewPsgBtn" press="onAddNewPassenger" text="Add More Passengers"
+				type="Emphasized" visible="false"/>
+			<Button class="remPassengerBtn" icon="sap-icon://delete" id="reducewPsgBtn" press="onRemovePassenger" text="Reduce Passenger"
+				type="Emphasized" visible="{trvRequestDtl>/ZZ_REMOVE_PSG}"/>
+		</HBox>
+	</FlexBox>
+	<l:Grid class="sapUiSmallMarginTop" defaultSpan="L2 M6 S10">
+		<l:content>
+			<Label class="font-size-18" design="Bold" text="What is your purpose of travel? *">
+				<layoutData>
+					<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L5 M5 S8"/>
+				</layoutData>
+			</Label>
+			<Select change="onPurpuseChange" class="cm_input_border_bottom purpose_combobox font-size-18" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+				filterSecondaryValues="true" selectedKey="{trvRequestDtl>/ZZ_ZPURPOSE}" showSecondaryValues="true"
+				valueState="{trvRequestDtl>/ZZ_ZPURPOSE_ERROR}" width="100%">
+				<!--<layoutData>-->
+				<!--	<l:GridData span="L4 M4 S8"/>-->
+				<!--</layoutData>-->
+				<core:ListItem additionalText="Business Meetings" key="BMPP" text="Business Meetings"/>
+				<core:ListItem key="ATDP" text="Attending technical discussions/conferences/seminars and exhibitions"/>
+				<core:ListItem key="CRTP" text="Class room trainings (for short durations)"/>
+			</Select>
+			<!--<Input class="cm_input_base_border_bot font-size-18" value="{trvRequestDtl>/ZZ_ZPURPOSE}" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}">-->
+			<!--	<layoutData>-->
+			<!--		<l:GridData span="L4 M4 S8"/>-->
+			<!--	</layoutData>-->
+			<!--</Input>-->
+			<Label class="font-size-18" design="Bold" text="Category of customer you are travelling for *">
+				<layoutData>
+					<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L5 M5 S8"/>
+				</layoutData>
+			</Label>
+			<RadioButtonGroup buttons="{ path: 'trvRequestDtl>/travelingDtl/aTravelCat'}" class="trvCategoryGrp font-size-18" columns="6"
+				id="trvCategoryGrp" select="onChangeCustomerCat" selectedIndex="{trvRequestDtl>/ZZ_CATID_IDX}">
+				<layoutData>
+					<l:GridData linebreakL="false" linebreakM="false" linebreakS="false" span="L7 M5 S8"/>
+				</layoutData>
+				<RadioButton class="trvCatItem" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" text="{trvRequestDtl>ZZ_SUB_DEP_DESC}"/>
+			</RadioButtonGroup>
+		</l:content>
+	</l:Grid>
+</core:View>

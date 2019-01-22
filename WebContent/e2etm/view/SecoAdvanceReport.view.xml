@@ -1,0 +1,100 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.SecoAdvanceReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Report">
+		<content>
+		<ScrollContainer>
+			<Table id="secoTable" inset="false" noDataText="{No Data}"
+				items="{/SecoAdvanceReportSet}" fixedLayout="true" growing="true"
+				growingScrollToLoad="true">
+				<headerToolbar>
+					<Toolbar>
+						<ToolbarSpacer />
+						<Button text="Export to Excel" type="Emphasized" press="onDataExport" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Emp no" />
+					</Column>
+					<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="TP No" />
+					</Column>
+					<Column id="col3" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Emp Name" />
+					</Column>
+					<Column id="col4" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Description" />
+					</Column>
+					<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Amount" />
+					</Column>
+					<Column id="col6" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Currency" />
+					</Column>
+
+					<Column id="txtRecdt" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Request Recd. Date"  tooltip="Request Received Date"/>
+					</Column>
+					<Column id="txtPaydt" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Date of Payment" tooltip="Payment Date"/>
+					</Column>
+					<Column id="col10" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Department" />
+					</Column>
+					<Column id="col11" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Section" />
+					</Column>
+					<Column id="col12" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="BU" />
+					</Column>
+					<Column id="col13" minScreenWidth="Tablet" demandPopin="true"
+						width="60px">
+						<Text text="Country" />
+					</Column>
+					<Column id="col14" minScreenWidth="Tablet" demandPopin="true"
+						width="100px">
+						<Text text="Status" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Pernr}" />
+							<Text text="{Reinr}" />
+							<Text text="{Name}" />
+							<Text text="{Description}" />
+							<Text text="{Amount}" />
+							<Text text="{path:'Currency'}" />
+							<Text
+								text="{path:'Recdt', type: 'sap.ui.model.type.Date',formatOptions: {
+				                 pattern:'dd.MM.yyyy'
+				               }}" />
+							<Text
+								text="{path:'Paydt', type: 'sap.ui.model.type.Date',formatOptions: {
+				                 pattern:'dd.MM.yyyy'
+				               }}" />
+							<Text text="{Department}" />
+							<Text text="{Section}" />
+							<Text text="{Bu}" />
+							<Text text="{Country}" />
+							<Text text="{Status}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			</ScrollContainer>
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:view="sap.ui.core.mvc"
+	controllerName="sap.ui.project.e2etm.controller.Cargo">
+	<Page id="pageCargoAdmin" class="pageCargoAdmin" showHeader="false"
+		enableScrolling="false">
+		<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+		<SplitContainer id="cargoSplitApp" class="sapUiSizeCompact">
+			<masterPages>
+				<Page title="CARGO REQUESTS">
+					<subHeader>
+						<Toolbar>
+							<!-- <Button id="btnReportCARO" text="Onward Report" type="Transparent" -->
+							<!-- press="onReportCAROPress" icon="sap-icon://redo"></Button> -->
+							<Button id="btnReportCARO" text="ONWARD REPORT" type="Emphasized"
+								class="report_request" press="onReportCAROPress" icon="sap-icon://expense-report"
+								tooltip="Onward Report"></Button>
+							<!-- <Button id="btnReportCARR" text="Return Report" type="Transparent" -->
+							<!-- press="onReportCARRPress" icon="sap-icon://undo"></Button> -->
+							<Button id="btnReportCARR" text="RETURN REPORT" type="Emphasized"
+								class="report_request" press="onReportCARRPress" icon="sap-icon://expense-report"
+								tooltip="Return Report"></Button>
+						</Toolbar>
+					</subHeader>
+					<Text text="Filter Options"></Text>
+					<RadioButtonGroup columns="2" width="100%"
+						id="idFilterRadio" selectedIndex="0" select="onFilterRadioSelect">
+						<buttons>
+							<RadioButton text="Onward Request" />
+							<RadioButton text="Return Request" />
+							<RadioButton text="Closed Request" />
+							<RadioButton text="Cancelled Request" />
+						</buttons>
+					</RadioButtonGroup>
+
+					<SearchField search="onSearch" width="95%"
+						showRefreshButton="true" id="idSearchNewRequest" placeholder="Employee Number"
+						class="margin_left_10" />
+
+					<List selectionChange="onSelectionChange" id="list"
+						class="padding_top_5 margin_bottom_100" growingThreshold="10"
+						growing="false" growingScrollToLoad="true" noDataText="No data found"
+						showSeparators="All" mode="SingleSelectMaster" select="onMasterListSelect"
+						updateStarted="onUpdateStarted" updateFinished="onUpdateFisnish">
+						<infoToolbar>
+							<Toolbar active="true" press="handleInfobarPress">
+								<Text text="Request List"></Text>
+							</Toolbar>
+						</infoToolbar>
+						<items>
+						</items>
+					</List>
+				</Page>
+			</masterPages>
+
+			<detailPages>
+				<Page title="CARGO INFORMATION">
+					<headerContent>
+						<Link text="Help"
+							href="http://sgpvm070:8080/pkit/go/pelement.do?id=19404&amp;type=Process&amp;anon=1"
+							target="_blank" />
+					</headerContent>
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.cargo.CargoInfo"
+						type="XML" />
+				</Page>
+			</detailPages>
+		</SplitContainer>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<!-- <Button id="btnBack" text="Back" type="Emphasized" press="onBack" 
+						icon="sap-icon://home"></Button> -->
+				</contentLeft>
+				<contentMiddle>
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSave"
+						icon="sap-icon://save"
+						visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isEmployee'
+												}" />
+<!-- 					<Button id="btnReject" text="Reject Cargo" type="Reject" -->
+<!-- 						press="onReject" -->
+<!-- 						visible="{ -->
+<!-- 							path: 'profile>/currentRole', -->
+<!-- 							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee' -->
+<!-- 						}" /> -->
+				</contentMiddle>
+				<contentRight>
+					<Button id="btnCancel" text="Cancel" type="Reject" press="onCancel"
+						icon="sap-icon://sys-cancel"
+						visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isEmployee'
+												}"></Button>
+					<Button id="btnSendBack" text="Send Back" type="Emphasized"
+						icon="sap-icon://action" press="onSendBackPress"
+						visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}">
+					</Button>
+					<Button id="btnSubmit" text="Approve" type="Accept" press="onSubmit"
+						icon="sap-icon://accept"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

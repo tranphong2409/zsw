@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+	<commons:Dialog modal="true" width="510px" title="WORKFLOW ACTION" class="dialog">
+	    <FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_textarea">
+				<Label text="Your Comment"></Label>
+				<TextArea id="txtManagerWFComment" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="landing_dep_detail">
+				<Label text="Deputation To" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/subtype'}" width="300px"
+				    placeholder="Please select" id="cbSubType" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>ZZ_DEP_SUB_TYPE}" text="{global>ZZ_SUB_DEP_DESC}" />
+				</Select>
+			</FlexBox>
+			
+			<FlexBox>
+			    <Image src="images/indian-rupee.gif" press="onBudgetCheck" class="margin_left_10 budget_check_button" 
+				    height="18px" width="20px" tooltip="Budget Check">					    
+				</Image>
+				
+				<Image src="images/icon_trip.gif" press="onTripCostCheck" class="margin_left_10 budget_check_button" 
+				    height="18px" width="20px" tooltip="Trip Cost">					    
+				</Image> 
+			</FlexBox>
+		</FlexBox>
+		<commons:buttons>
+			<commons:Button text="Approve Travel Request" press="onManagerTRApproveClick" width="150px" height="30px" />
+		</commons:buttons>
+	</commons:Dialog>
+</core:FragmentDefinition>

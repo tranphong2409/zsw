@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons" xmlns:calendar="sap.ui.unified.calendar"
+	xmlns:t="sap.ui.table">
+
+
+	<Table  id="monthremdepm" itemPress="onMRItemPressDepm" inset="false" growing="true" growingThreshold="100"
+		class="sapUiSizeCompact tableclass table_ticket_admin" items="{/}"
+		mode="MultiSelect">
+				<columns>
+			<Column width="3em">
+
+				<Button text="Employee Number" class="button_header" tooltip="Employee Number"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Employee Name" class="button_header" tooltip="Employee Name"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Travel Plan" class="button_header" tooltip="Travel Plan"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Start Date" class="button_header" tooltip="Start Date"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="End Date" class="button_header" tooltip="End Date"
+					type="Transparent"/>
+			</Column>
+			
+			
+			<Column width="3em">
+
+				<Button text="To Country" class="button_header" tooltip="To Country"
+					type="Transparent" />
+			</Column>
+			
+			<Column width="3em">
+
+				<Button text="Amount" class="button_header" tooltip="Amount"
+					type="Transparent" />
+			</Column>
+			<Column width="3em" visible="false">
+
+				<Button text="Request Type" class="button_header"
+					type="Transparent" />
+			</Column>
+			<Column width="3em" visible="false">
+
+				<Button text="Depu Req" class="button_header"
+					type="Transparent" />
+			</Column>
+			<Column width="3em" visible="false">
+
+				<Button text="ToCountry" class="button_header"
+					type="Transparent" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" height="10px">
+				<cells>
+					<Text text="{EmpNo}" />
+					<Text text="{EmpName}" />
+					<Text text="{TravelPlan}" />
+					<Text text="{path:'StartDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{path:'EndDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					
+					
+					<Text text="{path:'ToCountryText'}" />
+					<Text text="{path:'Amount'}" />
+                    <Text text="{path:'TravelType'}" />
+                    <Text text="{path:'DepuReq'}" />
+					<Text text="{path:'ToCountry'}" />
+
+
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+
+</core:FragmentDefinition>

@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	<TreeTable id="tblCurr"
+		rows="{path:'/currencies', parameters: {arrayNames:['Details']}}"
+		 enableSelectAll="false" ariaLabelledBy="title">
+		<toolbar>
+<!-- 			<m:Toolbar> -->
+				
+<!-- 				<m:ToolbarSpacer /> -->
+<!-- 				<m:Button text="Collapse all" press="onCollapseAll" /> -->
+<!-- 				<m:Button text="Expand first level" press="onExpandFirstLevel" /> -->
+<!-- 			</m:Toolbar> -->
+		</toolbar>
+		<columns>
+			<Column width="13rem" sortProperty="Currency" filterProperty="Currency">
+				<m:Label text="Currency" />
+				<template>
+					<m:Text text="{Currency}" wrapping="false" />
+				</template>
+			</Column>
+			<Column width="9rem" sortProperty="Amount" filterProperty="Amount">
+				<m:Label text="Amount" />
+				<template>
+					<m:Text  text="{Amount}" />
+				</template>
+			</Column>
+		<Column width="9rem" sortProperty="TravelPlan" filterProperty="TravelPlan">
+				<m:Label text="Travel Plan" />
+				<template>
+					<m:Text text="{TravelPlan}" wrapping="false" />
+				</template>
+			</Column>
+			<Column width="9rem" sortProperty="EmpNo" filterProperty="EmpNo">
+				<m:Label text="Employee No" />
+				<template>
+					<m:Text text="{EmpNo}" wrapping="false" />
+				</template>
+			</Column>
+			
+		</columns>
+	</TreeTable>
+</core:FragmentDefinition>

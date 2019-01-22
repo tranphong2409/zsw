@@ -1,0 +1,142 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:table="sap.ui.table"
+xmlns:f="sap.ui.layout.form"  xmlns:l="sap.ui.layout"
+		controllerName="sap.ui.project.e2etm.controller.OhaAllowanceReport" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+			<VBox class="reportSearch">
+		<f:SimpleForm editable="true" layout="ResponsiveGridLayout"
+			labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+			emptySpanS="0" columnsXL="3" columnsL="4" columnsM="2" columnsS="1"
+			singleContainerFullSize="false">
+			<f:content>
+				<core:Title />
+				<Label text="Country Name"  />
+				<ComboBox id="ipHcnty" items="{path:'global>/country'}"
+					change="onCountryChange">
+					<items>
+						<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+					</items>
+				</ComboBox>
+
+				<core:Title />
+				<Label text="Month" />
+				<Select id="ipMonth">
+					<items>
+						<core:Item key="" text="Please select" />
+						<core:Item key="01" text="January" />
+						<core:Item key="02" text="February" />
+						<core:Item key="03" text="March" />
+						<core:Item key="04" text="April" />
+						<core:Item key="05" text="May" />
+						<core:Item key="06" text="June" />
+						<core:Item key="07" text="July" />
+						<core:Item key="08" text="August" />
+						<core:Item key="09" text="September" />
+						<core:Item key="10" text="October" />
+						<core:Item key="11" text="November" />
+						<core:Item key="12" text="December" />
+					</items>
+					<layoutData>
+						<l:GridData span="L5 M3 S4" />
+					</layoutData>
+				</Select>
+				<Input id="ipYear" placeholder="Year">
+					<layoutData>
+						<l:GridData span="L3 M3 S4" />
+					</layoutData>
+				</Input>
+				<core:Title />
+					<Button  text="Search" width="40%" press="onSearch" class="resMBtnBlack formButtonMargin" />
+
+			</f:content>
+		</f:SimpleForm>
+
+	</VBox>
+		<table:Table id="tblOhaDet" rows="{path:'ohaReport>/'}" navigationMode="Paginator"
+			selectionMode="MultiToggle" enableSelectAll="false" ariaLabelledBy="title">
+
+			<table:toolbar>
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.reservation.Toolbar"
+					type="XML" />
+			</table:toolbar>
+
+			<table:columns>
+				<table:Column sortProperty="Pernr">
+					<Label text="Employee No" />
+					<table:template>
+						<Text text="{ohaReport>Pernr}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Ename">
+					<Label text="Employee Name" />
+					<table:template>
+						<Text text="{ohaReport>Ename}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Reinr">
+					<Label text="Travel Plan" />
+					<table:template>
+						<Text text="{ohaReport>Reinr}" wrapping="false" />
+					</table:template>
+				</table:Column>
+			
+				<table:Column sortProperty="Country">
+					<Label text="Country" />
+					<table:template>
+						<Text text="{ohaReport>Country}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+				<table:Column sortProperty="MonthTxt">
+					<Label text="Month" />
+					<table:template>
+						<Text text="{ohaReport>MonthTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Begda">
+					<Label text="Start Date" />
+					<table:template>
+						<Text text="{ohaReport>BegdaTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Endda">
+					<Label text="End Date" />
+					<table:template>
+						<Text text="{ohaReport>EnddaTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Days">
+					<Label text="No of Days" />
+					<table:template>
+						<Text text="{ohaReport>Days}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+
+				<table:Column visible="true" sortProperty="Drent">
+					<Label text="Per Day Rent" />
+					<table:template>
+						<Text text="{parts:[{path:'ohaReport>Drent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+				<table:Column sortProperty="TotalRent">
+					<Label text="Total Rent" />
+					<table:template>
+						<Text text="{parts:[{path:'ohaReport>TotalRent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Waers">
+					<Label text="Currency" />
+					<table:template>
+						<Text text="{path:'ohaReport>Waers'}" wrapping="false" />
+					</table:template>
+				</table:Column>
+			</table:columns>
+
+		</table:Table>
+	</Panel>
+
+</core:View>

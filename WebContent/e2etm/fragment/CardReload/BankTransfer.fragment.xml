@@ -1,0 +1,118 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+
+<Panel expandable="false"
+		class="panelBorderTrSettle" expandAnimation="false" width="auto">
+<!-- 		<headerToolbar> -->
+<!-- 			<Toolbar> -->
+<!-- 				<Label text="Travelling" /> -->
+<!-- 			</Toolbar> -->
+<!-- 		</headerToolbar> -->
+		<content>
+<ScrollContainer>
+	<Table items="{banktransfer>/}" fixedLayout="true" inset="false" class="tableclass sapUiSizeCompact"
+	mode="MultiSelect" growing="true" growingThreshold="100">
+		<columns>
+			<Column width="5rem">
+				<Label text="Travel Plan" tooltip="Type of Currency"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Travel Type" tooltip="Travel Type" />
+			</Column>
+			<Column width="5rem">
+				<Label text="Employee No" tooltip="Employee No"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="From Date" tooltip="From Date"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="To Date" tooltip="To Date"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Employee Name" tooltip="Employee Name"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Country" tooltip="Country" />
+			</Column>
+			<Column width="3rem">
+				<Label text="Level" tooltip="Level" />
+			</Column>
+
+			<Column width="5rem">
+				<Label text="Living" tooltip="Living"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Lodging" tooltip="Lodging"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Caution Deposit" tooltip="Caution Deposit"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Transport" tooltip="Transport"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Others" tooltip="Others"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Total" tooltip="Total"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Currency" tooltip="Currency"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Bank Name" tooltip="Bank Name"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Bank Account Number" tooltip="Bank Account Number"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Routing" tooltip="Routing"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Swift" tooltip="Swift"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="IBAN" tooltip="IBAN"/>
+			</Column>
+			<Column width="5rem">
+				<Label text="Bank Code" tooltip="Bank Code"/>
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation">
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<Text text="{banktransfer>TravelPlan}" textAlign="Center"/>
+					<Text text="{banktransfer>TravelType}" textAlign="Center"/>
+					<Text text="{banktransfer>EmpNo}" textAlign="Center"/>
+					<Text text="{path:'banktransfer>FromDt',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" textAlign="Center"/>
+					<Text text="{path:'banktransfer>ToDt',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" textAlign="Center"/>
+					<Text wrapping="false" tooltip="{banktransfer>EmpName}" text="{banktransfer>EmpName}" textAlign="Center"/>
+					<Text text="{banktransfer>Country}" textAlign="Center"/>
+					<Text text="{banktransfer>Level}" textAlign="Center"/>
+					<Text text="{banktransfer>Living}" textAlign="Center"/>
+					<Text text="{banktransfer>Lodging}" textAlign="Center"/>
+					<Text text="{banktransfer>CautionDeposit}" textAlign="Center"/>
+					<Text text="{banktransfer>Transport}" textAlign="Center"/>
+					<Text text="{banktransfer>Others}" textAlign="Center"/>
+					<Text text="{banktransfer>Total}" textAlign="Center"/>
+					<Text text="{banktransfer>Currency}" textAlign="Center"/>
+					<Text text="{banktransfer>BankName}" textAlign="Center"/>
+					<Text text="{banktransfer>BankAcct}" textAlign="Center"/>
+					<Text text="{banktransfer>Routing}" textAlign="Center"/>
+					<Text text="{banktransfer>SwiftBIC}" textAlign="Center"/>
+					<Text text="{banktransfer>IBAN}" textAlign="Center"/>
+					<Text text="{banktransfer>BankCode}" textAlign="Center"/>
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+</ScrollContainer>
+</content>
+</Panel>
+
+</core:FragmentDefinition>

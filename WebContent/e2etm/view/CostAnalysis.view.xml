@@ -1,0 +1,112 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:u="sap.ui.unified"
+	controllerName="sap.ui.project.e2etm.controller.CostAnalysis"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+		<content>
+			<core:Fragment
+				fragmentName="sap.ui.project.e2etm.fragment.reservation.ReportSearch"
+				type="XML" />
+			<table:Table rows="{costReport>/}" id="tblCostList"
+				class="sapUiSizeCompact tblAccReport" navigationMode="Paginator"
+				visibleRowCount="7" ariaLabelledBy="title">
+				<table:toolbar>
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.reservation.Toolbar"
+						type="XML" />
+				</table:toolbar>
+				<table:columns>
+					<table:Column sortProperty="Country">
+						<Label text="Country" />
+						<table:template>
+							<Text text="{costReport>Country}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="City">
+						<Label text="City" />
+						<table:template>
+							<Text text="{costReport>City}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Hname">
+						<Label text="Apartment Name" />
+						<table:template>
+							<Text text="{costReport>Hname}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="MonthTxt">
+						<Label text="Month" />
+						<table:template>
+							<Text text="{costReport>MonthTxt}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Nrooms">
+						<Label text="No of Rooms" />
+						<table:template>
+							<Text text="{costReport>Nrooms}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Amount">
+						<Label text="Amount" />
+						<table:template>
+							<!-- <u:Currency -->
+							<!-- value="{costReport>Amount}" currency="{costReport>Waers}" maxPrecision="0" 
+								useSymbol="false" /> -->
+							<Text
+								text="{parts:[{path:'costReport>Amount'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+								wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="NoccAmt">
+						<Label text="Non Occupied Amount" />
+						<table:template>
+							<Text
+								text="{parts:[{path:'costReport>NoccAmt'}],
+							formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="Waers">
+						<Label text="Currency" />
+						<table:template>
+							<Text text="{path:'costReport>Waers'}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column sortProperty="NoccDays">
+						<Label text="Non Occupied Days" />
+						<table:template>
+							<Text text="{costReport>NoccDays}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+
+				</table:columns>
+				<table:footer height="auto">
+
+					<VBox id="tblFooter" items="{footer>/}">
+						<Toolbar>
+							<Label text="Amount:" design="Bold" />
+							<ToolbarSpacer width="20px" />
+							<Label textAlign="Center" width="250px"
+								text="{parts:[{path:'footer>Amount'},{path:'footer>Waers'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatTotalAccReportValues'}"
+								design="Bold" />
+							<ToolbarSpacer width="60px" />
+							<Label text="Non Occupied Amount:" design="Bold" />
+							<ToolbarSpacer width="20px" />
+							<Label textAlign="Center" width="250px"
+								text="{parts:[{path:'footer>NoccAmt'},{path:'footer>Waers'}],
+							formatter:'sap.ui.project.e2etm.util.Formatter.formatTotalAccReportValues'}"
+								design="Bold" />
+							<ToolbarSpacer />
+							<!-- <ToolbarSpacer /> -->
+						</Toolbar>
+
+					</VBox>
+
+				</table:footer>
+			</table:Table>
+
+
+		</content>
+	</Panel>
+</core:View>

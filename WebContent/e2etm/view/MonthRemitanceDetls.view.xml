@@ -1,0 +1,213 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:commons="sap.ui.commons"
+	xmlns:f="sap.ui.layout.form" controllerName="sap.ui.project.e2etm.controller.MonthRemitanceDetls"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Monthly Remittance">
+	<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="Monthly Remittance" design="Bold" />
+				</contentMiddle>
+				<contentRight>
+<!-- 					<Link text="Help" -->
+<!-- 						href="http://sgpvm070:8080/pkit/go/pelement.do?id=228395&amp;type=Activity&amp;anon=1" -->
+<!-- 						target="_blank" /> -->
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+		
+			<!-- <layout:HorizontalLayout> -->
+			<FlexBox direction="Row" justifyContent="SpaceBetween"
+				alignItems="Center" class="flexMonRem">
+				<ObjectHeader id='objhdr' class="forexObjHeader"
+					title="{='Travel Plan:' + ${traveldetails>/TravelPlan}}">
+
+
+					<attributes>
+						<ObjectAttribute text="{='Employee No :'+${traveldetails>/EmpNo}}" />
+						<ObjectAttribute text="{='Employee Name :'+${traveldetails>/EmpName}}" />
+						<ObjectAttribute text="{='Department : '+${traveldetails>/Department}}" />
+					</attributes>
+				
+				</ObjectHeader>
+				<ObjectHeader class="remObjHdr" title="">
+					<attributes>
+					    <ObjectAttribute class="link_class" text="Address Details" press="onAddressPress" active="true"/>
+						<ObjectAttribute text="{='Travel Advance:'+${path:'traveldetails>/Advance',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}+' '+${path:'traveldetails>/AdvanceCur',formatter:'sap.ui.project.e2etm.util.Formatter.formatTravelAdvance'}}" />
+						<ObjectAttribute text="{='Travel Advance to be recovered:'+${path:'traveldetails>/AdvRecover',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValueRec'}+' '+${path:'traveldetails>/AdvanceCur',formatter:'sap.ui.project.e2etm.util.Formatter.formatTravelAdvance'}}" />
+						<ObjectAttribute class="remObjAttr3"
+							text="(in 3 installment from 2nd month of deputation)" />
+
+					</attributes>
+				</ObjectHeader>
+				
+			</FlexBox>
+
+
+			<!-- </layout:HorizontalLayout> -->
+			<commons:Panel text="General Information" id="memberPanelId"
+				class="panelCollapse">
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+					class="hideCoreForex">
+					<f:content>
+						<core:Title text="" />
+						<Label text="Travelling From Country" textAlign="Left" />
+						<Text text="{traveldetails>/FromCountryText}" />
+						<Label text="Travelling From Location" textAlign="Left" />
+						<Text text="{traveldetails>/FromLoc}" />
+						<Label text="Start Date" textAlign="Left" />
+						<Text
+							text="{
+							path: 'traveldetails>/StartDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Duration(in days)" textAlign="Left" />
+						<Text text="{traveldetails>/Duration}" />
+						<Label text="Visa Type" textAlign="Left" />
+						<Text text="{path:'traveldetails>/VisaType'}" />
+						<Label text="Family Accompanied" />
+<!-- 						<Text text="{path:'traveldetails>/ZZ_FAMILY_ACCOMP',formatter: 'sap.ui.project.e2etm.util.Formatter.formatFamilyAccompanied'}" /> -->
+                        <commons:DropdownBox editable="{fieldproperties>/faeditable}" selectedKey="{path:'traveldetails>/FamilyAcc'}">
+                        <core:ListItem text="Yes" key="X"/>
+                        <core:ListItem text="No" key=""/>
+                        </commons:DropdownBox>
+
+						<Label text="Family Sponsorship" />
+									
+						<commons:DropdownBox editable="{fieldproperties>/faeditable}" selectedKey="{traveldetails>/FamilySpons}">
+                        <core:ListItem text="Yes" key="X"/>
+                        <core:ListItem text="No" key=""/>
+                        </commons:DropdownBox>		
+						
+						
+						<core:Title text="" />
+						
+						<Label style="color:blue;" text="Travelling to Country" class="font_size_14" />
+						<Text text="{traveldetails>/ToCountryText}" />
+						<Label text="Travelling to Location" class="font_size_14" />
+						<Text text="{traveldetails>/ToLoc}" />
+						<Label text="End date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'traveldetails>/EndDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Level" class="font_size_14" />
+						<Text text="{traveldetails>/Level}" />
+						<Label text="Email Id" class="font_size_14" />
+						<Text text="{traveldetails>/OfcEmailId}" />
+<!-- 						<Label text="Insurance from RBEI" class="font_size_14" /> -->
+<!-- 						<Text text="Yes" /> -->
+                       <Label text="Changed Requests" visible="{fieldproperties>/chvisible}"/>
+                       <commons:CheckBox id="changedreq" editable="{fieldproperties>/faeditable}" checked="{path:'traveldetails>/ChangedReq',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}" visible="{fieldproperties>/chvisible}"/>
+					</f:content>
+				</f:SimpleForm>
+			</commons:Panel>
+			<IconTabBar id="idIconTabBar" select="onIconTabBarSelect">
+				<items>
+					<IconTabFilter icon="sap-icon://message-information"
+						tooltip="Details">			
+					
+						<commons:Panel text="Bank/Card Details" class="panelCollapse">
+							<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+								class="hideCoreForex">
+								<f:content>
+									<core:Title text="" />
+									<Label text="Name of the Bank" class="font_size_14" />
+									<Text text="{bankadvice>/Nofbk}" />
+									<Label text="Bank Account Number" class="font_size_14" />
+									<Text text="{bankadvice>/Bkact}" />
+									<Label text="Bank Code" class="font_size_14" />
+									<Text text="{bankadvice>/Bkcbr}" />
+									<Label text="Branch Code" class="font_size_14" />
+									<Text text="{bankadvice>/Brncd}" />
+									<Label text="Routing Code" class="font_size_14" />
+									<Text text="{bankadvice>/Rcode}" />
+									
+									<Label text="IBAN No" class="font_size_14" />
+									<Text text="{bankadvice>/Ibano}" />
+									<Label text="Swift Code" class="font_size_14" />
+									<Text text="{bankadvice>/Swbic}" />
+									<Label text="Street/Area/PostBox Number" tooltip="Street/Area/PostBox Number"
+										class="font_size_14" />
+									<Text text="{bankadvice>/Starp}" />
+									<Label text="Pin Code" class="font_size_14" />
+									<Text text="{bankadvice>/Porct}" />
+									<Label text="City" class="font_size_14" />
+									<Text text="{bankadvice>/City}" />
+									
+									
+									<core:Title text="" />
+									<Label text="Card Number" class="font_size_14" />
+									<Text text="{traveldetails>/CardNo}" />
+									<Label text="Issued Banker" class="font_size_14" />
+									<Text text="{traveldetails>/IssuedBanker}" />
+									<Label text="Card Validupto" class="font_size_14" />
+									<Text text="{path: 'traveldetails>/CardValidity',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+									<Label text="Currency" class="font_size_14" />
+									<Text text="{traveldetails>/Currency}" />
+								</f:content>
+							</f:SimpleForm>
+						</commons:Panel>
+
+						<commons:Panel text="Monthly Remittance" class="panelCollapse">
+							<core:Fragment
+								fragmentName="sap.ui.project.e2etm.fragment.MonthlyRemittance.RemittanceDetails"
+								type="XML" />
+						</commons:Panel>
+						<FlexBox direction="Row" alignItems="Center">
+							<Label width="114px" text="Comments" class="label_bold font_size_14"/>
+
+							<layout:VerticalLayout class="sapUiContentPadding"
+								width="100%">
+								<layout:content>
+									<TextArea id="comments" rows="5" cols="70" />
+								</layout:content>
+							</layout:VerticalLayout>
+						</FlexBox>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://attachment" tooltip="Attachment">
+						<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+					type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://comment" tooltip="Comments">
+						<core:Fragment id="AppoveInfo"
+							fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+							type="XML" />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button id="back" text="Back" type="Reject" press="onBackPress"
+						icon="sap-icon://home"/>
+				</contentLeft>
+				<contentMiddle>
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSave"
+						icon="sap-icon://save" visible="{fieldproperties>/visible}"/>
+					 <Button text="Send Back" icon="sap-icon://response" type="Emphasized" press="onSendback" visible="{fieldproperties>/sbvisible}"/>
+				    
+                    
+                    <Button text="On Hold" icon="sap-icon://repost" type="Emphasized" press="onHold" visible="{fieldproperties>/ohvisible}"/>
+					<!-- icon="sap-icon://home"></Button> -->
+				</contentMiddle>
+				<contentRight>
+					<Button id="btnSubmit" text="Submit" type="Accept"
+						press="onSubmit" icon="sap-icon://sys-enter" visible="{fieldproperties>/visible}"/>
+				   <Button  text="Review" type="Accept"
+						press="onReview" icon="sap-icon://forward" visible="{fieldproperties>/revisible}"/>
+					<Button text="Approve" type="Accept"
+						press="onApprove" icon="sap-icon://sys-enter" visible="{fieldproperties>/apvisible}"/>
+					<Button text="Release" type="Accept"
+						press="onRelease" icon="sap-icon://sys-enter" visible="{fieldproperties>/relvisible}"/>
+					
+				</contentRight>
+			</Bar>
+		</footer>
+
+	</Page>
+</core:View>

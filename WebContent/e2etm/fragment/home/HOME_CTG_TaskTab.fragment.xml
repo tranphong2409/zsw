@@ -1,0 +1,200 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:table="sap.ui.table">
+	<FlexBox class="landing_flexbox_my_task" id="flexboxCTGMyTask">
+		<FlexBox direction="Column" class="refreshManagerFlexBox">
+			<commons:Button id="btnCTGRefreshMyTaskTable" icon="sap-icon://refresh"
+				tooltip="Refresh" press="onRefreshData" class="refresh_button refresh_button_mgr"
+				visible="false"></commons:Button>
+			<FlexBox id="lblCTGNodata">
+				<Label text="At the moment, there is no data in your Mytask box"
+					class="margin_20"></Label>
+				<commons:Button icon="sap-icon://refresh" tooltip="Refresh"
+					press="onRefreshData" class="refresh_button margin_top_20 margin_bottom_20"></commons:Button>
+			</FlexBox>
+			<table:Table id="tableCTGMyTasks" visibleRowCount="15"
+				visible="false" selectionMode="Single" class="compact_table margin_10"
+				columnHeaderHeight="40" rowSelectionChange="onCTGMyTaskTableChange"
+				filter="onTableCentralFilter" showNoData="false" navigationMode="Paginator"
+				selectionBehavior="RowOnly">
+				<table:columns>
+					<table:Column resizable="false" width="80px"
+						sortProperty="ZZ_REQ_TYP" sorted="true" filterProperty="ZZ_REQ_TYP"
+						hAlign="Center">
+						<table:label>
+							<Label text="TYPE" class="label_bold"></Label>
+						</table:label>
+						<table:template width="80px">
+							<Label text="{ZZ_REQ_TYP}"
+								tooltip="{path: 'ZZ_REQ_TYP', formatter: 'sap.ui.project.e2etm.util.Formatter.formatReqType'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="120px"
+						sortProperty="ZZ_DEP_REQ" sorted="true" sortOrder="Descending"
+						filterProperty="ZZ_DEP_REQ" hAlign="Center">
+						<table:label>
+							<Label text="REQ ID" class="label_bold" tooltip="Request Number"></Label>
+						</table:label>
+						<table:template width="100px">
+							<Label text="{ZZ_DEP_REQ}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_STDATE"
+						sorted="true" filterProperty="ZZ_DEP_STDATE" hAlign="Center">
+						<table:label>
+							<Label text="ST.DATE" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label
+								text="{path : 'ZZ_DEP_STDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_ENDATE"
+						sorted="true" filterProperty="ZZ_DEP_ENDATE" hAlign="Center">
+						<table:label>
+							<Label text="E.DATE" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label
+								text="{path : 'ZZ_DEP_ENDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" sortProperty="ZZ_DEP_TOCNTRY_TXT"
+						sorted="true" filterProperty="ZZ_DEP_TOCNTRY_TXT" hAlign="Center">
+						<table:label>
+							<Label text="COUNTRY" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{path: 'ZZ_DEP_TOCNTRY_TXT'}"></Label>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</FlexBox>
+		<FlexBox class="panel_gray employeeRightPanel" id="flexboxCTGMyTaskDetail"
+			visible="false" direction="Column">
+			<html:Div class="arrow_gray_background"></html:Div>
+			<Bar class="landing_panel_mytask_detail_bar">
+				<contentLeft>
+					<Label
+						text="EMPLOYEE: {myCTGSelectedTaskModel>/ZZ_DEP_NAME} ({myCTGSelectedTaskModel>/ZZ_DEP_PERNR})"
+						class="label_bold margin_left_10 header_text"></Label>
+				</contentLeft>
+			</Bar>
+			<FlexBox direction="Column">
+				<FlexBox class="margin_top_10 margin_left_10">
+					<Label
+						text="{myCTGSelectedTaskModel>/ZZ_DEP_FRMLOC_TXT} -
+				         {path: 'myCTGSelectedTaskModel>/ZZ_DEP_FRCNTRY_TXT'}
+					                "
+						class="label_bold"></Label>
+					<Label text="to" class="margin_left_10 margin_right_10"></Label>
+					<Label
+						text="{myCTGSelectedTaskModel>/ZZ_DEP_TOLOC_TXT} - 
+					    {path: 'myCTGSelectedTaskModel>/ZZ_DEP_TOCNTRY_TXT'}"
+						class="label_bold"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail">
+					<Label text="Customer: " class="label_bold"></Label>
+					<Label text="{myCTGSelectedTaskModel>/ZZ_CUST_NAME}" class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Travel Request: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'}"
+						class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail">
+					<Label text="Duration in days: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_DEP_DAYS'}"
+						class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Travel To" class="label_bold line_height_30"></Label>
+					<Select items="{path: 'myCTGSelectedTaskModel>/subtype'}"
+						class="normal_select" selectedKey="{myCTGSelectedTaskModel>/ZZ_DEP_SUB_TYPE}"
+						width="300px" placeholder="Please select" enabled="false">
+						<core:ListItem key="{myCTGSelectedTaskModel>ZZ_DEP_SUB_TYPE}"
+							text="{myCTGSelectedTaskModel>ZZ_SUB_DEP_DESC}" />
+					</Select>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Cost Center: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_KOSTL'}"
+						class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="WBS Element: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_FIPOS'}"
+						class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Fund Center: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_FSTL'}"
+						class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Commitment Item: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_FIPEX'}"
+						class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="Fund: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_GEBER'}"
+						class="margin_right_10"></Label>
+					<Link press="onViewCustomer" text="Customer Info"
+						class="margin_left_10 line_height_19"
+						visible="{path: 'myCTGSelectedTaskModel>/ZZ_GEBER', formatter: 'sap.ui.project.e2etm.util.Formatter.visibleViewCustomer'}"></Link>
+				</FlexBox>
+				<FlexBox class="margin_top_10 landing_dep_detail"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_TRV_REQ'},{path : 'myCTGSelectedTaskModel>/ZZ_TRV_CAT'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisbleTravelRequest'}">
+					<Label text="VKM: " class="label_bold"></Label>
+					<Label text="{path: 'myCTGSelectedTaskModel>/ZZ_VKM'}" class="margin_right_10"></Label>
+				</FlexBox>
+				<FlexBox class="landing_dep_document">
+					<FlexBox class="commentBox" fitContainer="true" alignItems="Stretch">
+						<TextArea value="{myCTGSelectedTaskModel>/ZZ_NEW_COMMENTS}"
+							class="margin_0" id="textAreaCTGComment" maxLength="254" rows="4"
+							placeholder="Enter comment"></TextArea>
+						<TextArea value="{myCTGSelectedTaskModel>/ZZ_COMMENTS}"
+							rows="4" tooltip="Display Comments from Others" class="margin_0 width_100pc"
+							editable="false"></TextArea>
+					</FlexBox>
+				</FlexBox>
+				<FlexBox justifyContent="End"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_STAT_FLAG'},{path : 'myCTGSelectedTaskModel>/ZZ_REQ_TYP'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.invisibleCancelRequestDetails'}">
+					<Button text="Sent back" icon="sap-icon://action" type="Emphasized"
+						class="margin_right_10 margin_bottom_10 normal_button" press="onCTGSentBackForChange" />
+					<Button type="Reject" text="Reject" icon="sap-icon://employee-rejections"
+						class="margin_right_10 margin_bottom_10 normal_button" press="onCTGRejectRequest" />
+					<Button text="Approve" type="Accept" icon="sap-icon://employee-approvals"
+						class="margin_right_10 margin_bottom_10 normal_button" press="onCTGApproveRequest" />
+				</FlexBox>
+				<FlexBox justifyContent="End"
+					visible="{parts : [{path : 'myCTGSelectedTaskModel>/ZZ_STAT_FLAG'},{path : 'myCTGSelectedTaskModel>/ZZ_REQ_TYP'}], 
+					    formatter: 'sap.ui.project.e2etm.util.Formatter.visibleCancelRequestDetails'}">
+					<Button type="Reject" text="Reject Cancel Request" icon="sap-icon://employee-rejections"
+						class="margin_right_10 margin_bottom_10 normal_button" press="onRejectCancelRequest" />
+					<Button text="Approve Cancel Request" type="Accept"
+						icon="sap-icon://employee-approvals" class="margin_right_10 margin_bottom_10 normal_button"
+						press="onApproveCancelRequest" />
+				</FlexBox>
+			</FlexBox>
+		</FlexBox>
+	</FlexBox>
+</core:FragmentDefinition>

@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<c:Dialog modal="true" width="510px" title="PRIMARY INFORMATION" class="dialog" id="requestDialog">
+	    <FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_select_short_with_to">
+				<Label text="From Date" class="required"></Label>
+				<c:DatePicker enabled="{enabled}" yyyymmdd="{global>/screenData/ZZ_DEP_STDATE}"
+					value="{path: 'global>/screenData/ZZ_DEP_STDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					placeholder="Select Date" change="onDeputationDateChange"
+					valueState="{global>/screenData/ZZ_DEP_STDATE_ERROR}" />
+				<Label text="To"></Label>
+				<c:DatePicker enabled="{enabled}" yyyymmdd="{global>/screenData/ZZ_DEP_ENDATE}"
+				    id="dpEndDate"
+					value="{path: 'global>/screenData/ZZ_DEP_ENDATE_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					placeholder="Select Date" change="onDeputationDateChange"
+					valueState="{global>/screenData/ZZ_DEP_ENDATE_ERROR}" />
+			</FlexBox> 
+			<FlexBox class="dep_customer_flexbox_select_short_with_to">
+				<Label text="From Country" class="required"></Label>
+				<Select autoAdjustWidth="true" change="onCountryFromChange"
+					enabled="{enabled}" items="{ path: 'global>/country'}" selectedKey="{global>/screenData/ZZ_DEP_FRCNTRY}">
+					<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+				</Select>
+				<Label text="To"></Label>
+				<Select autoAdjustWidth="true" change="onCountryToChange"
+					enabled="{enabled}" items="{ path: 'global>/country'}" selectedKey="{global>/screenData/ZZ_DEP_TOCNTRY}">
+					<core:Item key="{global>MOLGA}" text="{global>LTEXT}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select_short_with_to">
+				<Label text="From Location" class="required"></Label>
+				<Select autoAdjustWidth="true" id="cbBoxFromCity" change="onLocationChange"
+					enabled="{enabled}" items="{ path: 'global>/cityfrom'}" selectedKey="{global>/screenData/ZZ_DEP_FRMLOC}">
+					<core:Item key="{global>MOLGA}" text="{global>BLAND}" />
+				</Select>
+				<Label text="To"></Label>
+				<Select autoAdjustWidth="true" id="cbBoxToCity" change="onLocationChange" tooltip="Enter Work location in case of work permit"
+					enabled="{enabled}" items="{ path: 'global>/cityto'}" selectedKey="{global>/screenData/ZZ_DEP_TOLOC}">
+					<core:Item key="{global>MOLGA}" text="{global>BLAND}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="dep_customer_flexbox_select">
+				<Label text="Purpose of travel" class="required"></Label>
+				<Select autoAdjustWidth="true" valueState="{global>/screenData/ZZ_TRV_CAT_ERROR}" id="TravelCategoryId"
+				    change="onCategoryChange"
+				    items="{ path: 'global>/visaType'}" selectedKey="{global>/screenData/ZZ_TRV_CAT}">
+					<core:Item key="{global>ZZ_VKEY}" 
+					    text="{parts : [{path : 'global>ZZ_VISA_DESC'},{path : 'global>ZZ_MIN'},{path : 'global>ZZ_MAX'}], 
+				    formatter: 'sap.ui.project.e2etm.util.Formatter.visisblePleaseSelectTravelCategory'}"
+					    />
+				</Select>
+			</FlexBox>
+		</FlexBox>
+		<c:buttons>
+			<c:Button text="Next" press="onNextButtonClick" width="60px" height="30px" />
+		</c:buttons>
+	</c:Dialog>
+</core:FragmentDefinition>

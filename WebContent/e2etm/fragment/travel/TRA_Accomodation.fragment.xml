@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<FlexBox class="dep_customer_flexbox" direction="Column">
+	    <FlexBox visible="{/view/enabled}" class="margin_bottom_10">
+	        <c:Button text="Add row" icon="sap-icon://add" press="onAccomodationAddPress"
+				enabled="{/view/enabled}"></c:Button>
+			<c:Button text="Delete row" icon="sap-icon://less" class="margin_left_10"
+				enabled="{/view/enabled}" press="onAccommodationDeletePress"></c:Button>
+	    </FlexBox>
+		<t:Table rows="{/TRV_HDRtoTRV_ACCOM/results/}" columnHeaderHeight="40" id="AccommodationTableId"
+			visibleRowCount="{/view/accommodationLength}">
+			<t:noData>
+				<c:Label text=""></c:Label>
+			</t:noData>
+			<t:Column> 
+				<c:Label text="PLACE" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{ZZ_ZPLACE}" valueState="{ZZ_ZPLACE_ERROR}"
+						enabled="{enabled}" class="width_100pc"></c:TextField>
+				</t:template>
+			</t:Column>
+			<t:Column width="150px">
+				<c:Label text="FROM DATE" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:DatePicker yyyymmdd="{ZZ_BEGDA}"
+						value="{path: 'ZZ_BEGDA_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+						enabled="{enabled}" change="onDeputationDateChange"
+						valueState="{ZZ_BEGDA_ERROR}" />
+				</t:template>
+			</t:Column>
+			<t:Column width="150px">
+				<c:Label text="TO DATE" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:DatePicker yyyymmdd="{ZZ_ENDDA}" enabled="{/view/enabled}"
+						value="{path: 'ZZ_ENDDA_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+						change="onDeputationDateChange" valueState="{ZZ_ENDDA_ERROR}" />
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<c:Label text="CONTACT PERSON" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{ZZ_CONTACT}" valueState="{ZZ_CONTACT_ERROR}"
+						enabled="{enabled}" class="width_100pc"></c:TextField>
+				</t:template>
+			</t:Column>
+			
+		</t:Table>
+	</FlexBox>
+</core:FragmentDefinition>

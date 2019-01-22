@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<script src="./js/constants.js"></script>
+	<script>
+		/* eraseCookie(di0Cookie);
+		if (!document.execCommand("ClearAuthenticationCache")) {  
+			//"ClearAuthenticationCache" will work only for IE. Below code for other browsers  
+	        $.ajax({  
+	        	type: "GET",  
+	        	url: sServiceUrl + "DEP_EMPSet",
+	        	dataType: 'json', //any URL to a Gateway service  
+	            username: 'dummy', //dummy credentials: when request fails, will clear the authentication header  
+	            password: 'dummy',  
+	            statusCode: { 401: function() {
+	            	//This empty handler function will prevent authentication pop-up in chrome/firefox
+	            	sap.ui.getCore().setModel(null, "profile");
+	    		    window.location = "/E2ETM/logout.html";
+	            } },  
+	            error: function() {  
+	                //alert('reached error of wrong username password')  
+	            } 
+	        }); 
+			
+			var xmlhttp;
+			try {
+				if (window.XMLHttpRequest) {
+					xmlhttp = new XMLHttpRequest();
+				} else if (window.ActiveXObject) {
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.open("GET", sServiceUrl + "DEP_EMPSet", true, "logout", "logout");
+				xmlhttp.send("");
+				xmlhttp.abort();
+			} catch(exc) {
+				xmlhttp = false;
+			}
+	    } */
+	</script>
+	<body class="sapUiBody" id="content" style="height: 100%; width: 100%">
+		<div id="editor" class="editor">
+			You are logged out. Click <a href="./">here</a> to login again
+		</div>
+	</body>
+</html>

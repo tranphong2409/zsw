@@ -1,0 +1,140 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<Table id="dependentTableId" class="memberTable"
+		items="{new>/Detail/ZE2E_ACC_DETAILSet}" mode="SingleSelectMaster">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button icon="sap-icon://official-service" id="btnBookRooms" press="onBookRooms" text="Book Rooms"
+					type="Emphasized" visible="false"
+					enabled="{	path: 'new>/Role',
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}" />
+				<Button icon="sap-icon://add" press="onAddColum" tooltip="Add new accommodation"
+					enabled="{	path: 'new>/Role',
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}" />
+				<Button icon="sap-icon://less" press="onDeleteColum" tooltip="Delete"
+					enabled="{	path: 'new>/Role',
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}" />
+				<Link text="View Travel PDF" target="_blank" id="idLinkTravelPDF"
+					press="handleLinkPress" />
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto">
+				<Label text="Accommodation Type" required="true" />
+			</Column>
+
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto"
+				id="idStarDate">
+				<Label text="Start Date" required="true" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto"
+				id="idEndDate">
+				<Label text="End Date" required="true" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto">
+				<Label text="Currency" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto"
+				id="idCost">
+<!-- 				visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}"> -->
+				<Label text="Cost" required="true" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto"
+				id="idTax">
+<!-- 				visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}"> -->
+				<Label text="Tax" required="true" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto"
+				id="idPer">
+<!-- 				visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}"> -->
+				<Label text="Unit" required="true" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto"
+				id="idTotal">
+<!-- 				visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}"> -->
+				<Label text="Total cost" required="true" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="auto">
+				<Label text="Hotel/Apt Name" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Desktop" width="250px">
+				<Label text="Address" />
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Select items="{new>/AccType/results}" selectedKey="{new>ZZ_ACC_TYP}"
+						change="onSelectAccType" tooltip="{new>ZZ_ACC_TYP}"
+						enabled="{	path: 'new>/Role',
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}">
+						<core:Item key="{new>ZZ_ACC_TYP}" text="{new>ZZ_ACC_DES}"
+							tooltip="{new>ZZ_ACC_DES}" />
+					</Select>
+					<DatePicker value="{new>BEGDA}" valueFormat="yyyyMMdd"
+						displayFormat="dd/MM/yyyy" change="onCostChange" id="DPStartDate"
+						editable="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}" />
+
+					<DatePicker value="{new>ENDDA}" valueFormat="yyyyMMdd"
+						displayFormat="dd/MM/yyyy" change="onCostChange" id="DPEndDate"
+						editable="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}" />
+
+
+					<Select selectedKey="{new>ZZ_ACC_CURR}" items="{new>/Currency/results}"
+						tooltip="{new>ZZ_ACC_CURR}"
+						enabled="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}">
+						<core:Item key="{new>FIELD1}" text="{new>FIELD1}"
+							tooltip="{new>FIELD2}" />
+					</Select>
+
+					<Input value="{new>ZZ_ACC_COST}" placeholder="cost" change="onCostChange"
+						editable="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}"/>
+<!-- 						visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}" /> -->
+					<Input value="{new>ZZ_TAX}" placeholder="Tax" change="onCostChange"
+						editable="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}"/>
+<!-- 						visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}" /> -->
+
+					<Select selectedKey="{new>ZZ_UNITS}" change="onSelectUnit"
+						tooltip="{new>ZZ_UNITS}"
+						enabled="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}">
+						<core:Item key="" text="" tooltip="" />
+						<core:Item key="PERMONTH" text="Per Month" tooltip="Cost by per month" />
+						<core:Item key="PERDAY" text="Per Day" tooltip="Cost by per day" />
+						<core:Item key="PERWEEK" text="Per week" tooltip="Cost by per week" />
+					</Select>
+					<Input value="{new>ZZ_TOTAL}" placeholder="cost" editable="false"/>
+<!-- 						visible="{	path: 'new>/Role', -->
+<!-- 									formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}" /> -->
+
+
+					<c:ValueHelpField value="{new>ZZ_NAME}" class="width_100pc"
+						change="onHotelChange" id="idHotel" valueHelpRequest="onValueHelpRequest"
+						enabled="{/view/enabledCountry}" valueState="{/view/ZZ_FMLOC_ERROR}"
+						editable="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}">
+					</c:ValueHelpField>
+					<TextArea value="{new>ZZ_ADD_ACC}" placeholder="Address"
+						maxLength="512" class="textareaAcc"
+						editable="{	parts:[{path: 'new>/Role'},{path:'new>ZZ_ACC_TYP'},{path:'accAdminData>/asgGroup'}],
+									formatter: 'sap.ui.project.e2etm.util.Formatter.editAdminAcc1'}" />
+
+
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

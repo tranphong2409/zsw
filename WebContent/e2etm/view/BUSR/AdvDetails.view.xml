@@ -1,0 +1,9 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.BUSR.AdvDetails" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+		<Label text="Do you need Advance ?" />
+		<Switch />
+		<Label text="Do you need Sim card ?" />
+		<Switch />
+	</Panel>
+</core:View>

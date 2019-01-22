@@ -1,0 +1,197 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+
+	<ObjectHeader id="tvPlanheader" title="Travel Plan: {new>/trvhdr/ZZ_REINR}"
+		responsive="true" fullScreenOptimized="false">
+		<attributes>
+
+			<ObjectAttribute title="Employee No" text="{new>/trvhdr/ZZ_PERNR}" />
+			<ObjectAttribute />
+
+			<ObjectAttribute title="Employee Name"
+				text="{new>/trvhdr/DEP_EMP/ZZ_DEP_NAME}" />
+			<ObjectAttribute />
+
+			<ObjectAttribute title="Department"
+				text="{new>/trvhdr/DEP_EMP/ZZ_DEP_GROUP}" />
+			<ObjectAttribute />
+
+		</attributes>
+
+	</ObjectHeader>
+
+	<commons:Panel text="General Information" class="panelCollapse">
+		<f:SimpleForm id="generalinfo" minWidth="1024"
+			maxContainerCols="1" editable="false" layout="ResponsiveGridLayout"
+			labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+			columnsM="2" class="editableForm">
+			<f:content>
+				<core:Title text="" />
+				<Label text="Travelling From Country" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_FMCNTRY',formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+				<Label text="Travelling From Location" />
+				<Text text="{new>/trvhdr/ZZ_FMLOC}" />
+				<Label text="Start Date" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_DATV1',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				<Label text="Visa Type" />
+				<Text
+					text="{path: 'new>/visa/ZZ_CURR_VISA_TYP',formatter: 'sap.ui.project.e2etm.util.Formatter.visaTypeFormat'}" />
+
+				<Label text="Level" />
+				<Text text="{new>/trvhdr/ZZ_LEVEL}" />
+				<Label text="Duration in Days" />
+				<Text text="{new>/trvhdr/ZZ_ZDURN}" />
+
+
+				<core:Title text="" />
+				<Label text="Travelling To Country" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_LAND1',formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+				<Label text="Travelling To Location" />
+				<Text text="{new>/trvhdr/ZZ_LOCATION_END}" />
+				<Label text="End Date" />
+				<Text
+					text="{path: 'new>/trvhdr/ZZ_DATB1',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				<Label text="Email ID" />
+				<Text text="{new>/trvhdr/DEP_EMP/ZZ_DEP_EMAIL}" />
+				<Label text="Family Accompanied" />
+				<Text
+					text="{path: 'new>/FAMACC',formatter:'sap.ui.project.e2etm.util.Formatter.formatCheckBoxStatus'}" />
+				<Label text="Family Sponsorship" />
+				<Text
+					text="{path: 'new>/SPONSOR',formatter: 'sap.ui.project.e2etm.util.Formatter.formatCheckBoxStatus'}" />
+			</f:content>
+		</f:SimpleForm>
+	</commons:Panel>
+
+	<f:SimpleForm minWidth="1024" maxContainerCols="1"
+		editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+		class="editableForm">
+		<f:content>
+		    <Text text = "Kindly Address all the Original bills to: {new>/address}"></Text>
+<!-- 			<Text -->
+<!-- 				text="Kindly Address all the Original bills to: ROBERT BOSCH ENGINEERING AND BUSSINESS SOLUTIONS PVT LIMITED, #123, Industrial Layout, Koramangala, Bangalore-560 095" /> -->
+
+		</f:content>
+	</f:SimpleForm>
+
+	<IconTabBar id="idIconTabBarMulti" expandable="false"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<!--Reimbursement Information -->
+			<IconTabFilter icon="sap-icon://hint">
+				<content>
+					
+					<commons:Panel text="Reimbursement Detail" class="panelCollapse">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.reimbursement.ReimbursementDetail"
+							type="XML" />
+					</commons:Panel>
+
+					<commons:Panel  id="bankPanel" text="Bank/Card Details" class="panelCollapse">
+						<f:SimpleForm id="bankinfo" minWidth="1024">
+							<f:content>							
+								<Label text="Name of the Bank" />
+								<Text text="{new>/bankdetail/Nofbk}" />
+								<Label text="Street/Area/Postbox No." />
+								<Text text="{new>/bankdetail/Starp}" />
+								<Label text="PIN Code/City" />
+								<Text text="{new>/bankdetail/Porct}" />
+								<Label text="Bank Account Number" />
+								<Text text="{new>/bankdetail/Bkact}" />
+								<Label text="Routing Code" />
+								<Text text="{new>/bankdetail/Rcode}" />
+								<Label text="SWIFT Code" />
+								<Text text="{new>/bankdetail/Swbic}" />
+								<Label text="Branch Code/Bank Code" />
+								<Text text="{new>/bankdetail/Bkcbr}" />
+							</f:content>
+						</f:SimpleForm>
+					</commons:Panel>
+					<commons:Panel  id="cardPanel" text="Bank/Card Details" class="panelCollapse">
+						<f:SimpleForm id="bankinfo_1" minWidth="1024">
+							<f:content>	
+								<Label text="Card Number" />
+								<Text text="{new>/forexCard/CARDNO}" />
+								<Label text="Issued Banker" />
+								<Text text="{new>/forexCard/BANK}" />
+								<Label text="Card Valid Upto" />
+								<Text text="{new>/forexCard/ENDDA}" />
+								<Label text="Currency" />
+								<Text text="{new>/forexCard/CURR}" />
+							</f:content>
+						</f:SimpleForm>
+					</commons:Panel>
+					
+					<commons:Panel  id="empty" text="Bank/Card Details" class="panelCollapse">
+						<f:SimpleForm id="bankinfo_2" minWidth="1024">
+							<f:content>	
+							    <core:Title text="" />							    
+							    <Label text="Name of the Bank" />
+								<Text text="{new>/bankdetail/Nofbk}" />
+								<Label text="Street/Area/Postbox No." />
+								<Text text="{new>/bankdetail/Starp}" />
+								<Label text="PIN Code/City" />
+								<Text text="{new>/bankdetail/Porct}" />
+								<Label text="Bank Account Number" />
+								<Text text="{new>/bankdetail/Bkact}" />
+								<Label text="Routing Code" />
+								<Text text="{new>/bankdetail/Rcode}" />
+								<Label text="SWIFT Code" />
+								<Text text="{new>/bankdetail/Swbic}" />
+								<Label text="Branch Code/Bank Code" />
+								<Text text="{new>/bankdetail/Bkcbr}" />
+							    
+								<core:Title text="" />
+								<Label text="Card Number" />
+								<Text text="{new>/forexCard/CARDNO}" />
+								<Label text="Issued Banker" />
+								<Text text="{new>/forexCard/BANK}" />
+								<Label text="Card Valid Upto" />
+								<Text text="{new>/forexCard/ENDDA}" />
+								<Label text="Currency" />
+								<Text text="{new>/forexCard/CURR}" />
+							</f:content>
+						</f:SimpleForm>
+					</commons:Panel>
+				</content>
+			</IconTabFilter>
+			<!--Attchment File -->
+			<IconTabFilter icon="sap-icon://attachment" key="attach">
+				<content>
+					<FlexBox>
+						<Link text="Reimbursement Form" emphasized="true"
+							class="font_size_14 height_12" id="idReimLeterLink" target="_blank"
+							enabled="" press="onLinkPress" />
+						<Text text="* NOTE: Refer this link to view your request in PDF format."
+							class="color_red smalltext link_notice margin_left_10 font_size_14" />
+
+					</FlexBox>
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+						type="XML" />
+				</content>
+			</IconTabFilter>
+			<!--Comment Tab -->
+			<IconTabFilter icon="sap-icon://comment" id="idApprove"
+				tooltip="History">
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+					type="XML" />
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+
+	<f:SimpleForm minWidth="1024" maxContainerCols="1"
+		editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+		class="editableForm">
+		<f:content>
+			<CheckBox
+				text="I hereby confirm that I have not claimed reimbursement against the above bills."
+				selected="true" />
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+	<Popover title="Room Details" class="sapUiContentPadding" id="roomPopover" 
+		placement="Bottom">
+		<VBox width="250px">
+		<HBox justifyContent="SpaceBetween" alignItems="Center">
+				<Label text="Room No: " />
+				<Text text="{Romno}" wrapping="true"/>
+			</HBox>
+			<HBox justifyContent="SpaceBetween" alignItems="Center">
+				<Label text="Floor:" />
+				<Label text="{Floor}" />
+			</HBox>
+			<HBox justifyContent="SpaceBetween" alignItems="Center">
+				<Label text="Category:" />
+				<Label text="{RtypeDesc}" />
+			</HBox>
+			<HBox justifyContent="SpaceBetween" alignItems="Center">
+				<Label text="Room Cost:" />
+				<Label text="{Rcost}{Waers}" />
+			</HBox>
+		</VBox>
+	</Popover>
+
+</core:FragmentDefinition>

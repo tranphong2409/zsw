@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+	<IconTabFilter icon="sap-icon://hint" id="idInfo">
+		<content>
+			<f:SimpleForm minWidth="1024" maxContainerCols="2"
+				editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+				labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+				class="editableForm">
+				<!-- <f:title text="Time to move baggages and Address" level="H5" icon= 
+					"sap-icon://cargo-train"> -->
+
+				<!-- </f:title> -->
+				<f:content>
+					<core:Title text="" level="H6" />
+					<Label text="Planned Date" />
+					<DatePicker id="DP2" value="{new>/Detail/ZZ_CAR_PLA}"
+						valueFormat="yyyyMMdd" displayFormat="long" change="handleChange"
+						class="sapUiSmallMarginBottom" visible="{new>/Mode/editMode}" />
+					<Label text="Domestic Address" />
+					<TextArea value="{new>/Detail/ZZ_ADD_LOC}" editable="{new>/Mode/editMode}" />
+					<Label text="Deputation Address" />
+					<TextArea value="{new>/Detail/ZZ_ADD_INT}" editable="{new>/Mode/editMode}" />
+
+					<core:Title text="" level="H6" />
+					<Label text="Contact No. of country to" />
+					<Input value="{new>/Detail/ZZ_CONTACT_NO}" editable="{new>/Mode/editMode}" />
+					<Label text="Deputed Country No" />
+					<Input value="{new>/Detail/ZZ_OFF_NO}" editable="{new>/Mode/editMode}" />
+					<Label text="Office Number" />
+					<Input value="{new>/Detail/ZZ_RES_NO}" editable="{new>/Mode/editMode}" />
+					<Label text="Addtional instruction" />
+					<TextArea value="{new>/Detail/ZZ_ADD_INS}" editable="{new>/Mode/editMode}" />
+				</f:content>
+			</f:SimpleForm>
+		</content>
+	</IconTabFilter>
+
+</core:FragmentDefinition>

@@ -1,0 +1,221 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+	<!-- class="sapUiSizeCompact margin_bottom_10" -->
+	<t:Table rows="{traveldetails>/mrdetails}" id="cardtable"
+		columnHeaderHeight="40" class="sapUiSizeCompact margin_bottom_10"
+		visibleRowCount="1">
+		<t:toolbar>
+			<Toolbar>
+				<c:Button text="Add row" enabled="true" visible="{fieldproperties>/tbvisible}"
+					icon="sap-icon://add" press="onAddCard"></c:Button>
+				<c:Button text="Delete row" enabled="true" visible="{fieldproperties>/tbvisible}"
+					icon="sap-icon://less" class="margin_left_10" press="onDelCard"></c:Button>
+				<ToolbarSpacer />
+				<!-- <c:Label design="Bold" text="Travel Advance : 6500 EUR"/> -->
+				<!-- <ToolbarSpacer/> -->
+				<!-- <c:Label design="Bold" text="Advance Recovery:5200 EUR"/> -->
+			</Toolbar>
+		</t:toolbar>
+		<t:noData>
+			<c:Label text=""></c:Label>
+		</t:noData>
+		<t:Column width="8rem">
+			<c:Label text="Month" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<Input
+					editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}"
+					value="{path:'traveldetails>Zmnth',formatter:'sap.ui.project.e2etm.util.Formatter.formatMonth'}"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMonthHelpRequest" />
+				<!-- <Select enabled="{fieldproperties>/editable}" width="200px" change="onMonthChange" -->
+				<!-- selectedKey="{traveldetails>Zmnth}"> -->
+				<!-- <items> -->
+				<!-- <core:Item text="Please select" /> -->
+				<!-- <core:Item key="01" text="January" /> -->
+				<!-- <core:Item key="02" text="February" /> -->
+				<!-- <core:Item key="03" text="March" /> -->
+				<!-- <core:Item key="04" text="April" /> -->
+				<!-- <core:Item key="05" text="May" /> -->
+				<!-- <core:Item key="06" text="June" /> -->
+				<!-- <core:Item key="07" text="July" /> -->
+				<!-- <core:Item key="08" text="August" /> -->
+				<!-- <core:Item key="09" text="September" /> -->
+				<!-- <core:Item key="10" text="October" /> -->
+				<!-- <core:Item key="11" text="November" /> -->
+				<!-- <core:Item key="12" text="December" /> -->
+				<!-- </items> -->
+				<!-- </Select> -->
+
+			</t:template>
+		</t:Column>
+		<t:Column width="6rem">
+			<c:Label text="Year" textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+
+				<Input
+					editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}"
+					value="{traveldetails>Zyear}" showValueHelp="true"
+					valueHelpRequest="onValueHelpRequest" />
+
+
+			</t:template>
+		</t:Column>
+		<t:Column width="5rem">
+			<c:Label text="No of Family Members" tooltip="No of Family Members"
+				textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+<!-- 				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}" -->
+<!-- 					value="{traveldetails>Nofmb}" /> -->
+           <Select enabled="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}" width="200px"
+				selectedKey="{traveldetails>Nofmb}">
+				<items>
+<!-- 				<core:Item text="Please select" /> -->
+				<core:Item key= "01" text= "1" />
+				<core:Item key= "02" text= "2" />
+				<core:Item key= "03" text= "3" />
+				<core:Item key= "04" text= "4" />
+				<core:Item key= "05" text= "5" />
+				<core:Item key= "06" text= "6" />
+				
+				</items>
+				</Select>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Living" tooltip="Living" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+<!-- 				<c:TextField editable="false" -->
+<!-- 					value="{path:'traveldetails>Lival',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}" -->
+<!-- 					change="onCalculate" /> -->
+				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'},
+				                                 {path : 'traveldetails>/ToCountry'},{path : 'traveldetails>/TravelType'},
+				                                 {path : 'traveldetails>/AsgType'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRFieldsOnCntry'}"
+					value="{path:'traveldetails>Lival',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					change="onCalculate" />		
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Lodging" tooltip="Lodging" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}"
+					value="{path:'traveldetails>Lodal',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					change="onCalculate" />
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="OHA" tooltip="OHA" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+				<!-- <c:TextField enabled="{fieldproperties>/editable}" value="{path:'traveldetails>Ohaal',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}" 
+					change="onCalculate"/> -->
+				<c:DropdownBox selectedKey="{path:'traveldetails>Ohaal',formatter:'sap.ui.project.e2etm.util.Formatter.formatOHADropDown'}" change="onOHAChange"
+					editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}, 
+					                    {path : 'traveldetails>/ToCountry'},{path : 'traveldetails>/TravelType'},
+				                        {path : 'traveldetails>/AsgType'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRFieldsOnCntry'}">
+					<core:ListItem text="Yes" key="Yes" />
+					<core:ListItem text="No" key="No" />
+				</c:DropdownBox>
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Caution Deposit" tooltip="Caution Deposit"
+				textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}, 
+					                    {path : 'traveldetails>/ToCountry'},{path : 'traveldetails>/TravelType'},
+				                        {path : 'traveldetails>/AsgType'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRFieldsOnCntry'}"
+					value="{path:'traveldetails>Cdpal',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					change="onCalculate" />
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Transportation" tooltip="Transportation"
+				textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}, 
+					                    {path : 'traveldetails>/ToCountry'},{path : 'traveldetails>/TravelType'},
+				                        {path : 'traveldetails>/AsgType'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRFieldsOnCntry'}"
+					value="{path:'traveldetails>Traal',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					change="onCalculate" />
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Others" tooltip="Others" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}, 
+					                    {path : 'traveldetails>/ToCountry'},{path : 'traveldetails>/TravelType'},
+				                        {path : 'traveldetails>/AsgType'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRFieldsOnCntry'}"
+					value="{path:'traveldetails>Othal',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					change="onCalculate" />
+			</t:template>
+		</t:Column>
+		<t:Column width="11rem">
+			<c:Label text="Remarks" tooltip="Remarks" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}"
+					value="{traveldetails>Rmrks}" />
+			</t:template>
+		</t:Column>
+
+
+		<t:Column width="8rem">
+			<c:Label text="Currency" tooltip="Currency" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="false" value="{traveldetails>/AdvanceCur}"/>
+
+			</t:template>
+		</t:Column>
+
+		<t:Column width="8rem">
+			<c:Label text="Advance Recovery" tooltip="Advance Recovery"
+				textAlign="Center" class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField editable="{fieldproperties>/areditable}"
+					value="{path:'traveldetails>Advrc',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					change="onCalculate" />
+<!-- 				<c:TextField editable="{parts : [{path : 'traveldetails>Chck'},{path : 'traveldetails>/Role'},{path : 'traveldetails>/Action'}],formatter:'sap.ui.project.e2etm.util.Formatter.formatMRTable'}" -->
+<!-- 					value="{path:'traveldetails>Advrc',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}" -->
+<!-- 					change="onCalculate" /> -->
+
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Net Total" tooltip="Net Total" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+
+				<c:TextField
+					value="{path:'traveldetails>Total',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					editable="false" />
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Total" tooltip="Total" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+
+				<c:TextField
+					value="{path:'traveldetails>Ctotal',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					editable="false" />
+			</t:template>
+		</t:Column>
+		<t:Column width="8rem">
+			<c:Label text="Cumulative" tooltip="Cumulative" textAlign="Center"
+				class="label_small_bold"></c:Label>
+			<t:template>
+				<c:TextField
+					value="{path:'traveldetails>Cumul',formatter:'sap.ui.project.e2etm.util.Formatter.formatAmountValue1'}"
+					editable="false" />
+			</t:template>
+		</t:Column>
+
+
+
+
+	</t:Table>
+</core:FragmentDefinition>

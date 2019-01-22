@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+	<Table itemPress="onItemPress" inset="false" id="taxtable" growing="true" growingScrollToLoad="true"
+		class="tableclass table_ticket_admin" items="{taxinfo>/}">
+		<headerToolbar>
+			<Toolbar visible="false">
+				<Label text="Assign Request" class="font_size_14" />
+				<c:TextField width="200px" />
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="5em">
+				<Button text="Travel Req" icon="sap-icon://sort" class="button_header"
+					type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="5em">
+				<Text text="Employee No" />
+				<Button text="Employee No" icon="sap-icon://sort" class="button_header"
+					type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="5em">
+				<Button text="Country" icon="sap-icon://sort" class="button_header"
+					type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="5em">
+				<Button text="Tax Inititation date" icon="sap-icon://sort" class="button_header"
+					type="Transparent" press="onMenu" />
+			</Column>			
+			<Column width="5em">
+				<Button text="Travel end date" icon="sap-icon://sort" class="button_header"
+					type="Transparent" press="onMenu" />
+			</Column>
+			<Column width="5em">
+				<Button text="Assignment Model" icon="sap-icon://sort" class="button_header"
+					type="Transparent" press="onMenu" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" height="10px">
+				<cells>
+					<Text text="{taxinfo>ZZ_TRV_REQ}" />
+					<Text text="{taxinfo>ZZ_OWNER}" />
+					<Text text="{path:'taxinfo>ZZ_COUNTRY_G' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+					<Text text="{path:'taxinfo>ZZ_REQ_DATE' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />	
+					<Text text="{path:'taxinfo>ENDDA' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />	
+					<Text text="{taxinfo>ZZ_ASG_TYP}" />	
+								
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+</core:FragmentDefinition>

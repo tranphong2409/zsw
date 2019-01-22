@@ -1,0 +1,233 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table"
+	controllerName="sap.ui.project.e2etm.controller.BookingDetails"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.reservation.EmployeeWiseSearch"
+			type="XML" />
+		<table:Table id="tblBookDet" rows="{path:'bookReport>/'}"
+			navigationMode="Paginator" selectionMode="MultiToggle"
+			enableSelectAll="false" ariaLabelledBy="title">
+
+			<table:toolbar>
+				<!-- <core:Fragment fragmentName="sap.ui.project.e2etm.fragment.reservation.Toolbar" -->
+				<!-- type="XML" /> -->
+				<Toolbar>
+					<Label text="Show" />
+					<Select change="onEntriesDisplay">
+						<items>
+							<core:Item key="10" text="10" />
+							<core:Item key="25" text="25" />
+							<core:Item key="50" text="50" />
+							<core:Item key="100" text="100" />
+						</items>
+					</Select>
+					<Label text="Entries" />
+					<ToolbarSpacer />
+					<SearchField width="200px" liveChange="onLiveSearch"
+						selectOnFocus="false" />
+					<Button icon="sap-icon://download" type="Emphasized" press="onExportCSV" tooltip="Download"/>
+					<Button icon="sap-icon://action-settings" type="Accept" press="onSettings" tooltip="Columns visibility"/>
+				</Toolbar>
+
+			</table:toolbar>
+
+			<table:columns>
+				<table:Column id="PernrCol" sortProperty="Pernr">
+					<Label text="Employee No" tooltip="Employee No"/>
+					<table:template>
+						<Text text="{bookReport>Pernr}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="EnameCol" sortProperty="Ename">
+					<Label text="Employee Name" tooltip="Employee Name"/>
+					<table:template>
+						<Text text="{bookReport>Ename}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="ReinrCol" sortProperty="Reinr">
+					<Label text="Travel Plan" tooltip="Travel Plan"/>
+					<table:template>
+						<Text text="{bookReport>Reinr}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="HnameCol" sortProperty="Hname">
+					<Label text="Apartment Name" tooltip="Apartment Name"/>
+					<table:template>
+						<Text text="{bookReport>Hname}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="RomnoCol" sortProperty="Romno">
+					<Label text="Room no" tooltip="Room no"/>
+					<table:template>
+						<Text text="{bookReport>Romno}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="CountryCol" sortProperty="Country">
+					<Label text="Country" tooltip="Country"/>
+					<table:template>
+						<Text text="{bookReport>Country}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="RsizeCol" sortProperty="Rsize">
+					<Label text="Size of the room"  tooltip="Size of the room"/>
+					<table:template>
+						<Text text="{bookReport>Rsize} {bookReport>Runit}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="MonthTxtCol" sortProperty="MonthTxt">
+					<Label text="Month" tooltip="Month" />
+					<table:template>
+						<Text text="{bookReport>MonthTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="BegdaCol" sortProperty="Begda">
+					<Label text="Start Date" tooltip="Start Date" />
+					<table:template>
+						<Text text="{bookReport>BegdaTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="EnddaCol" sortProperty="Endda">
+					<Label text="End Date" tooltip="End Date"/>
+					<table:template>
+						<Text text="{bookReport>EnddaTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="DaysCol" sortProperty="Days">
+					<Label text="No of Days" tooltip="No of Days" />
+					<table:template>
+						<Text text="{bookReport>Days}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="MfeesCol" visible="true" sortProperty="Mfees">
+					<Label text="Maintenance fee" tooltip="Maintenance fee"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Mfees'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+				<table:Column id="MrgdsCol" visible="true" sortProperty="Mrgds">
+					<Label text="Monthly Rent Goods" tooltip="Monthly Rent Goods"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Mrgds'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+				<table:Column id="SrfeeCol" visible="true" sortProperty="Srfee">
+					<Label text="JH Service fee per month" tooltip="JH Service fee per month"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Srfee'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+				<table:Column id="TaxCol" visible="true" sortProperty="Tax">
+					<Label text="Tax(8%)" tooltip="Tax(8%)"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Tax'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="InsrCol" visible="true" sortProperty="Insr">
+					<Label text="Insurance" tooltip="Insurance" />
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Insr'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="ChrgsCol" visible="true" sortProperty="Chrgs">
+					<Label text="One time charges" tooltip="One time charges"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Chrgs'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="RfscdCol" visible="true" sortProperty="Rfscd">
+					<Label text="Refundable Security Deposit" tooltip="Refundable Security Deposit"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Rfscd'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				
+				
+				<table:Column id="MrentCol" visible="true" sortProperty="Mrent">
+					<Label text="Monthly Rent" tooltip="Monthly Rent"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Mrent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+
+				<table:Column id="DrentCol" visible="true" sortProperty="Drent">
+					<Label text="Per Day Rent" tooltip="Per Day Rent"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>Drent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="ActRentCol" sortProperty="ActRent"
+					visible="true">
+					<Label text="Actual Rent" tooltip="Actual Rent"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>ActRent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="TotalRentCol" sortProperty="TotalRent">
+					<Label text="Total Rent" tooltip="Total Rent"/>
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>TotalRent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column id="WaersCol" sortProperty="Waers">
+					<Label text="Currency" tooltip="Currency"/>
+					<table:template>
+						<Text text="{path:'bookReport>Waers'}" wrapping="false" />
+					</table:template>
+				</table:Column>
+			</table:columns>
+			<!-- <table:footer> -->
+
+
+			<!-- <VBox id="tblFooter" items="{footer>/}"> -->
+			<!-- <Toolbar> -->
+			<!-- <Label text="Actual Rent" design="Bold"/> -->
+			<!-- <ToolbarSpacer /> -->
+			<!-- <Label width="180px" text="{parts:[{path:'footer>ActRent'},{path:'footer>Waers'}], -->
+			<!-- formatter:'sap.ui.project.e2etm.util.Formatter.formatTotalAccReportValues'}" 
+				design="Bold"/> -->
+			<!-- </Toolbar> -->
+
+			<!-- </VBox> -->
+
+			<!-- </table:footer> -->
+		</table:Table>
+	</Panel>
+</core:View>

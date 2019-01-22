@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons">
+	<ScrollContainer class="padding_top_5">
+		<Table id="idItemTable" inset="false" growing="true"
+			growingScrollToLoad="true" noDataText="{No Data}" items="{/ZE2E_HPL_CPRD_REPORTSet}"
+			fixedLayout="true">
+			<headerToolbar>
+				<Toolbar>
+				<Button icon="sap-icon://action-settings" press="onPersoButtonPressed" />
+				<DatePicker valueFormat="yyyyMMddHHmmss" width="150px"
+					placeholder="From Date" displayFormat="dd/MM/yyyy" change="handleChange"
+					id="idFromDate" />
+				<DatePicker valueFormat="yyyyMMddHHmmss" width="150px"
+					placeholder="To Date" displayFormat="dd/MM/yyyy" change="handleChange"
+					id="idToDate" />
+					<Button text="New Travel Date" type="Emphasized" icon="sap-icon://search" 
+						    class="margin_left_10" press="onSearch"></Button>
+					<Button text="Export To Excel" type="Accept" icon="sap-icon://excel-attachment" 
+						    class="margin_left_10" press="onExportExcel"></Button>
+				<ToolbarSpacer></ToolbarSpacer>
+				
+
+			</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+					width="80px">
+					<Text text="Pers.No" />
+				</Column>
+				<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+					width="120px">
+					<Text text="Name" />
+				</Column>
+				<Column id="col3" minScreenWidth="Tablet" demandPopin="true"
+					width="70px">
+					<Text text="Section" />
+				</Column>
+				<Column id="col4" minScreenWidth="Tablet" demandPopin="true"
+					width="50px">
+					<Text text="Department" />
+				</Column>
+				<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+					width="80px">
+					<Text text="DOJ" />
+				</Column>
+				<Column id="col6" minScreenWidth="Tablet" demandPopin="true"
+					width="100px">
+					<Text text="Current Visa Start Date" />
+				</Column>
+				<Column id="col7" minScreenWidth="Tablet" demandPopin="true"
+					width="100px">
+					<Text text="Current Visa End Date" />
+				</Column>
+				<Column id="col8" minScreenWidth="Tablet" demandPopin="true"
+					width="80px">
+					<Text text="Cooling Off Period" />
+				</Column>
+				<Column id="col9" minScreenWidth="Tablet" demandPopin="true"
+					width="80px">
+					<Text text="New Travel Date" />
+				</Column>
+				<Column id="col10" minScreenWidth="Tablet" demandPopin="true"
+					width="150px">
+					<Text text="Expected Year of Travel" />
+				</Column>	
+				</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{ZZ_PERNR}" />
+						<Text text="{ZZ_EMP_NAME}" />
+						<Text text="{ZZ_SECTION}" />
+						<Text text="{ZZ_DEPARTMENT}" />
+						<Text text="{path:'ZZ_DOJ', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<Text text="{path:'ZZ_VISA_SDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"/>
+						<Text text="{path:'ZZ_VISA_EDATE' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"/>
+						<Text text="{ZZ_CL_VISA_EXP}" />
+						<Text text="{path:'ZZ_NEW_TRV_DATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<Text text="{ZZ_YEAR_TRV}" />						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

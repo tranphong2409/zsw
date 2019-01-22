@@ -1,0 +1,131 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons">
+
+	<!-- <FacetFilter id="idLifeSpanItemFacetFilter" type="Light" -->
+	<!-- showReset="true" reset="onLifeSpantFilterReset" width="100%"> -->
+	<!-- <lists> -->
+	<!-- <FacetFilterList title="Press ID" key="SERIAL" -->
+	<!-- multiselect="true" items="{/pres}" listClose="handleChange"> -->
+	<!-- <items> -->
+	<!-- <FacetFilterItem text="{SERIAL} : {PRODUC}" key="{SERIAL}" /> -->
+	<!-- </items> -->
+	<!-- </FacetFilterList> -->
+	<!-- </lists> -->
+	<!-- </FacetFilter> -->
+
+<!-- 	<FacetFilter id="idLifeSpanItemFacetFilter" type="Light" -->
+<!-- 		showReset="true" reset="onLifeSpantFilterReset" width="100%"> -->
+<!-- 		<lists> -->
+<!-- 			<FacetFilterList title="Press ID" key="SERIAL" -->
+<!-- 				multiselect="true" items="{/ZE2E_CARGO}" listClose="onFilterListClose"> -->
+<!-- 				<items> -->
+<!-- 					<FacetFilterItem text="Travel No. {ZZ_REINR} " key="{ZZ_REINR}" /> -->
+<!-- 				</items> -->
+<!-- 			</FacetFilterList> -->
+<!-- 		</lists> -->
+<!-- 	</FacetFilter> -->
+
+
+	<Table id="idItemTable" inset="false" growing="true"
+		growingScrollToLoad="true" noDataText="{No Data}" items="{/ZE2E_CARO_REPORTSet}"	
+						 showSeparators="All"
+		fixedLayout="false">
+		<headerToolbar>
+			<Toolbar>
+			     <Label text="From To" class="font_size_14" />
+		    	<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+					placeholder="From Date" displayFormat="dd/MM/yyyy" change="handleChange"
+					id="idFromDate" />
+				<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+					placeholder="To Date" displayFormat="dd/MM/yyyy" change="handleChange"
+					id="idToDate" />
+			    <Label text="Search Field" class="font_size_14" />
+				<SearchField search="onSearch" width="30%" id="idSearch" placeholder="Req. No or Emp. No or Department"
+					class="margin_left_10" tooltip="Search field for  Travel Number, Employee Number, Department" />
+				<Button text="Export To Excel" type="Accept" icon="sap-icon://excel-attachment" 
+						    class="margin_left_10" press="onExportExcel"></Button>
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Employee Name" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Employee Number" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Travel No." />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Dept." />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Section" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="BU" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Start Date" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="End Date" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Request received Date" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Cargo Movement" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" >
+				<Text text="Cargo Limit (kg)" />
+			</Column>
+
+			<Column minScreenWidth="Tablet" demandPopin="true" >
+				<Text text="Cargo Vendor" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Country of deputation" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Remark/Comment" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Associate Mail Id" />
+			</Column>
+			
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{SNAME}" />
+					<Text text="{ZZ_OWNER}" />
+					<Text text="{ZZ_REINR}" width="70px" />
+					<Text text="{ZZ_STEXT_D}" width="65px"/>
+					<Text text="{ZZ_STEXT_S}" width="65px"/>
+					<Text text="{ZZ_STEXT_B}" />
+					<Text 
+					    text="{path:'BEGDA' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"  width="70px"/>
+					<Text 
+					    text="{path:'ENDDA' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"  width="70px" />
+					<Text     text="{path:'ZZ_RTIMESTAMP' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{path:'ZZ_CAR_PLA' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"/>
+					<Text text="{ZZ_ELIGIBILITY}" />
+			
+					<Text text="{Vendor}" />
+<!-- 					<Text text="{path:'ZZ_TO_CNTY' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'" /> -->
+					<Text
+						text="{path:'ZZ_TO_CNTY' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+						textAlign="Center" />
+
+<!-- 					<Text text="{ZZ_TO_CNTY}" /> -->
+					<Text text="{ZZ_COMMENTS}" />
+					<Text text="{USRID_LONG}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+<!--     <FacetFilter id="idItemFacetFilter" type="Light" -->
+<!-- 		showReset="true" reset="onItemFacetFilterReset" width="100%"> -->
+<!-- 		<lists> -->
+<!-- 			<FacetFilterList title="Travel Request" key="ZZ_REINR" -->
+<!-- 				multiselect="true" items="{listAcc>/results}" listClose="onFilterListClose"> -->
+<!-- 				<items> -->
+<!-- 					<FacetFilterItem text="Travel No. {listAcc>TRV_HDR/ZZ_REINR}" key="{ZZ_REINR}" /> -->
+<!-- 				</items> -->
+<!-- 			</FacetFilterList> -->
+
+<!-- 			<FacetFilterList id="idItemFaceFilterList" title="Employee Number" -->
+<!-- 				key="ZZ_PERNR" multiselect="true" listClose="onFilterListClose" -->
+<!-- 				items="{listAcc>/results}"> -->
+<!-- 				<items> -->
+<!-- 					<FacetFilterItem text="Employee No. {listAcc>TRV_HDR/ZZ_PERNR}" key="{ZZ_PERNR}" /> -->
+<!-- 				</items> -->
+<!-- 			</FacetFilterList> -->
+<!-- 		</lists> -->
+<!-- 	</FacetFilter> -->
+	<ScrollContainer class="padding_top_5">
+	<Table inset="false" class="table_ticket_admin tableclass" mode="MultiSelect"
+		id="idlistAdmin" itemPress="onItemPress" items="{listAcc>/results}"  >
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Search Field" class="font_size_14" />
+				<SearchField search="onSearch" width="30%" id="idSearch" placeholder="Req. No or To Country or From Date"
+					class="margin_left_10" tooltip="Search field for  Travel Number, To Country, From Date" />
+				 <PullToRefresh class="pullrefresh" showIcon="true" refresh="onRefresh"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="auto">
+				<Button text="Travel Request" class="button_header"  type="Transparent"
+					id="idColTravelReq" />
+			</Column>
+			<Column width="auto">
+				<Button text="Employee No" class="button_header" />
+			</Column>
+			<Column width="auto">
+				<Button text="From Location" class="button_header"  />
+			</Column>
+			<Column width="auto" id="idToLocation">
+				<Button text="To Location" class="button_header" />
+			</Column>
+			<Column width="auto" id="idToCountry">
+				<Button text="To Country" class="button_header" press="onMenu" />
+			</Column>
+			<Column width="auto">
+				<Button text="From Date" class="button_header" press="onMenu" />
+			</Column>
+			<Column width="auto">
+				<Button text="To Date" class="button_header"  />
+			</Column>
+			<Column width="auto">
+				<Button text="Duration" class="button_header"  />
+			</Column>
+			<Column width="auto" id="idStatus">
+				<Button text="Status" class="button_header" />
+			</Column>
+			<Column width="auto" id="idBook" visible="{path:'listAcc>/AdminRole',formatter:'sap.ui.project.e2etm.util.Formatter.visibleReservation'}">
+				<Button text="Reservation" class="button_header" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" height="10px">
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<Text text="{listAcc>TRV_HDR/ZZ_REINR}" textAlign="Center"
+						class="margin_top_10 margin_bottom_10" />
+					<Text text="{listAcc>TRV_HDR/ZZ_PERNR}" textAlign="Center" />
+					<Text text="{listAcc>TRV_HDR/ZZ_FMLOC}" textAlign="Center" />
+					<Text text="{listAcc>TRV_HDR/ZZ_LOCATION_END}" textAlign="Center" />
+					<Text
+						text="{path:'listAcc>TRV_HDR/ZZ_LAND1' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}"
+						textAlign="Center" />
+
+					<Text class="margin_top_10 margin_bottom_10"
+						text="{path:'listAcc>TRV_HDR/ZZ_DATV1', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text class="margin_top_10 margin_bottom_10"
+						text="{path:'listAcc>TRV_HDR/ZZ_DATB1' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text class="margin_top_10 margin_bottom_10" text="{listAcc>TRV_HDR/ZZ_ZDURN}" />
+					<Text class="margin_top_10 margin_bottom_10"
+						text="{path:'listAcc>ZE2E_TR_STATUS/ZZ_STATUS' , formatter: 'sap.ui.project.e2etm.util.Formatter.statusFormat'}" />
+				    <Link text="{path:'listAcc>ZZ_STATUS',formatter:'sap.ui.project.e2etm.util.Formatter.formatBookingText'}" 	emphasized="true"
+							      enabled="{path:'listAcc>ZZ_STATUS',formatter:'sap.ui.project.e2etm.util.Formatter.enableBookingOption'}" press="onBookClick" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

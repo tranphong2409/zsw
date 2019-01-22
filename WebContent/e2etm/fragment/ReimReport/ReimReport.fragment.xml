@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons">
+	<ScrollContainer class="padding_top_5">
+		<Table id="idItemTable" inset="false" growing="true"
+			growingScrollToLoad="false" noDataText="{No Data}" items="{/ZE2E_REI_REPORTSet}"
+			growingThreshold = "200"
+			fixedLayout="true">
+			<headerToolbar>
+				<Toolbar>
+					<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+						placeholder="From Date" displayFormat="dd/MM/yyyy" change="handleChange"
+						id="idFromDate" />
+					<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+						placeholder="To Date" displayFormat="dd/MM/yyyy" change="handleChange"
+						id="idToDate" />
+					<!-- <ToolbarSpacer></ToolbarSpacer> -->
+					<Label text="Search Field" class="font_size_14" />
+					<SearchField search="onSearch" width="20%" id="idSearch"
+						placeholder="Req. No or Emp. No or Deputation Country"
+						class="margin_left_10"
+						tooltip="Search field for  Travel Number, Employee Number, Deputation country" />
+					<SearchField search="onSearch" width="20%" id="idSearchDept"
+						placeholder="Department" class="margin_left_10" tooltip="Search field for Department" />
+					<Button text="Export To Excel" type="Accept"
+						icon="sap-icon://excel-attachment" class="margin_left_10" press="onExportExcel"></Button>
+
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+					<Text text="Employee Number" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
+					<Text text="Travel No." />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="150px">
+					<Text text="Employee Name" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="50px">
+					<Text text="Expense Incurred for" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="100px">
+					<Text text="Description of Expense" />
+				</Column>
+
+				<Column minScreenWidth="Tablet" demandPopin="true" width="40px">
+					<Text text="Amount" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="50px">
+					<Text text="Currency" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="50px">
+					<Text text="Submitted Date" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="45px">
+					<Text text="Date of Payment" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="50px">
+					<Text text="Dept." />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="50px">
+					<Text text="Section" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="50px">
+					<Text text="BU" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="65px">
+					<Text text="Country  Of Deputation" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="65px">
+					<Text text="Status" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{ZZ_OWNER}" />
+						<Text text="{ZZ_TRV_REQ}" />
+						<Text text="{SNAME}" />
+						<Text text="{ZZ_EXP_INCUR}" />
+						<Text text="{ZZ_COMMENTS}" />
+						<Text text="{ZZ_AMOUNT}" />
+						<Text text="{WAERS}" />
+						<Text
+							text="{path:'ZZ_RTIMESTAMP' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<Text
+							text="{path:'ZZ_CTIMESTAMP' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+						<Text text="{STEXT_D}" />
+						<Text text="{STEXT_S}" />
+						<Text text="{STEXT_B}" />
+						<Text
+							text="{path: 'ZZ_COUNTRY_G' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+						<Text text="{ZZ_STATUS}" />
+
+
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

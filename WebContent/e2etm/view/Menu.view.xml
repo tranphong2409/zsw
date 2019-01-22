@@ -1,0 +1,95 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.Menu" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<!-- <Bar class="menu_bar_banner" id="logoBar">
+		<contentRight>
+			<FlexBox direction="Column" class="menu_logo">
+			    <Image src="images/Logo_Bosch.png" height="30px"
+					class="margin_top_15 margin_right_10"></Image>
+			</FlexBox>
+		</contentRight>
+		<contentLeft>
+			<FlexBox class="menu_logo" fitContainer="true">
+			    <Image src="images/logotext.png" class="margin_top_14"></Image>
+			</FlexBox>
+		</contentLeft>
+	</Bar> -->
+	<Bar class="user_bar" id="welcomeBar">
+		<contentRight>
+			<FlexBox alignItems="Center" class="line_height_32 margin_left_10" fitContainer="true" justifyContent="End">
+				<!-- <Label text="{i18n>welcome}:" class="margin_right_5"></Label> -->
+				<Link class="margin_right_10 margin_top_11" id="lblUsername" press="onEmployeeDetails" text="View Profile"></Link>
+				<Select change="handleChangeRole" class="normal_select" id="roleList" width="175px"></Select>
+				<core:Icon activeBackgroundColor="lightgray" activeColor="black" backgroundColor="lightgray"
+					class="border_black margin_left_5 padding_left_10 padding_right_10 margin_top_3 margin_right_3" height="26px" hoverBackgroundColor="black"
+					hoverColor="white" id="iconSubstitution" press="onSubStitutionPress" src="sap-icon://activity-individual" tooltip="Substitution"/>
+			</FlexBox>
+		</contentRight>
+		<contentLeft>
+			<Button class="home_request" icon="sap-icon://home" id="btnHome" press="onHomePress" text="HOME" type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://expense-report" id="btnReport" press="onReportPress" text="REPORTS" type="Emphasized"
+				visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://expense-report" id="btnTaxReport" press="onTaxReportPress" text="TAX CLEARANCE REPORTS"
+				type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://expense-report" id="btnTransfer" press="onTransferPress" text="TRANSFER REPORTS"
+				type="Emphasized" visible="false"></Button>
+			<!--start TinhTD -->
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnBusiForm" press="onBusinessTravelHandle" text="{i18n>business_form}"
+				type="Emphasized"></Button>
+			<!--end TinhTD -->
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnAddNewRequest" press="onTravelRequestCreate"
+				text="{i18n>deputation_info_travel}" type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnBusiVisaRequest" press="onBusinessVisaRequest"
+				text="BUSINESS VISA PLAN" type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://my-sales-order" id="btnForexSalesReport" press="onForexSalesReportPress" text="SALES"
+				type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://my-sales-order" id="btnForexEncashmentReport" press="onForexEncashmentReportPress"
+				text="ENCASHMENT" type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://my-sales-order" id="btnForexMasterReport" press="onForexMasterReportPress" text="MASTER"
+				type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://credit-card" id="btnCardReloadReport" press="onCardReloadReportPress"
+				text="CARD RELOAD REPORTS" type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://address-book" id="btnOnsiteAddressReport" press="onOnsiteAddressReportPress"
+				text="Onsite Address Reports" type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnMRReport" press="onMRPress" text="Monthly Remittance Report"
+				type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnTrstReport" press="onTrstReportPress" text="DAILY REPORT"
+				type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnTcktReport" press="onTcktReportPress" text="TICKETING REPORT"
+				type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnAirSavingsReport" press="onSavingsReportPress"
+				text="AIR SAVINGS REPORT" type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnQmmReport" press="onQmmReportPress" text="QMM Report"
+				type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnQeiReport" press="onQeiReportPress" text="OEI Report"
+				type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnSecoReport" press="onSecoReportPress"
+				text="SECONDARY ADVANCE REPORT" type="Emphasized" visible="false"></Button>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnSetlUsetlReport" press="onSetlUsetlReportPress"
+				text="SETTLED/UNSETTLED REPORT" type="Emphasized" visible="false"/>
+			<Button class="new_request" icon="./images/new_request_icon.png" id="btnSetlReport" press="onMoreReportPress" text="Other Reports"
+				type="Emphasized" visible="false"/>
+			<Button class="report_request" icon="sap-icon://expense-report" id="btnSlaRep" press="onSlaOutput" text="INS Recovery Report"
+				type="Emphasized" visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://expense-report" id="btnMisRep" press="onMisOutput" text="MIS Report" type="Emphasized"
+				visible="false"></Button>
+			<Button class="report_request" icon="sap-icon://expense-report" id="btnDownCl" press="onDownloadCl" text="Download CL/HPC Sheets"
+				type="Emphasized" visible="false"></Button>
+			<!-- 			<Button text="Download CL" id="btnCl" type="Emphasized" icon="sap-icon://expense-report" class="report_request" press="onDownloadCl" visible="true"></Button> -->
+			<!-- 			<Button text="Issue CL" id="btnIssueCl" type="Emphasized" icon="sap-icon://expense-report" class="report_request" press="onIssueCl" visible="true"></Button> -->
+			<!-- 			<Button text="Upload Manager" id="btnMgr" type="Emphasized" icon="sap-icon://expense-report" class="report_request" press="onUploadMgr" visible="true"></Button> -->
+			<commons:MenuButton class="report_request" icon="sap-icon://open-command-field" id="OnlyDepuMenu" text="More">
+				<commons:menu >
+					<u:Menu>
+						<u:MenuItem icon="sap-icon://notification-2" select="onSendNotificationsPress" text="SendNotifications"/>
+						<u:MenuItem icon="sap-icon://calendar" select="onPdmCalenderPress" text="PDM Calender"/>
+						<u:MenuItem icon="sap-icon://download" select="onDownloadCl" text="Download CL/HPC Sheets"/>
+						<u:MenuItem icon="sap-icon://generate-shortcut" select="onIssueCl" text="Issue CL"/>
+						<u:MenuItem icon="sap-icon://upload" select="onUploadMgr" text="Upload Manager Details"/>
+						<u:MenuItem icon="sap-icon://upload" select="onMonthlyReport" text="STVA Monthly Report"/>
+						<u:MenuItem icon="sap-icon://simulate" select="onCSGenerate" text="CGGS Calculation Sheet"/>
+					</u:Menu>
+				</commons:menu>
+			</commons:MenuButton>
+		</contentLeft>
+	</Bar>
+</core:View>

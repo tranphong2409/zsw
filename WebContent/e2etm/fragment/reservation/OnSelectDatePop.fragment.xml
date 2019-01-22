@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+	<!-- <Popover title="Room Details" class="sapUiContentPadding" id="dtRangeSelect"> -->
+	<Dialog title="Room Details" class="sapUiContentPadding" id="dtRangeSelect">
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.reservation.EmployeeDetails"
+			type="XML" />
+
+		<HBox id="hAccType">
+			<RadioButton id="rbtnRbei" text="RBEI Contracted Apartment" selected="true" />
+			<RadioButton id="rbtnOha" text="OHA" />
+		</HBox>
+		<HBox alignItems="Center">
+			<VBox id="dateRangeSec" class="sapUiMediumMarginTop sapUiMediumMarginEnd">
+				<HBox alignItems="Center">
+
+					<Label text="From" width="100px" />
+
+					<DatePicker id="ipPopDtFrm" valueFormat="yyyyMMdd"
+						class="sapUiTinyMarginEnd" displayFormat="dd.MM.yyyy" width="140px" />
+					<DateTimeInput id="ipTimeFrm" type="Time"
+						displayFormat="HH:mm:ss" valueFormat="HHmmss" width="100px"
+						placeholder="Time ..." />
+				</HBox>
+				<HBox>
+					<Label text="To" width="100px" />
+					<DatePicker id="ipPopDtTo" valueFormat="yyyyMMdd"
+						class="sapUiTinyMarginEnd" displayFormat="dd.MM.yyyy" width="140px" />
+					<DateTimeInput id="ipTimeTo" type="Time"
+						displayFormat="HH:mm:ss" valueFormat="HHmmss" width="100px"
+						placeholder="Time ..." />
+				</HBox>
+
+
+			</VBox>
+			<HBox alignItems="Center" class="sapUiMediumMarginTop">
+				<Label text="Notes" width="50px" />
+				<TextArea id="txtRemarks" rows="5" cols="30" />
+			</HBox>
+
+		</HBox>
+
+		<buttons>
+			<Button text="Book" press="onSubmit" id="btnBook" icon="sap-icon://locked" />
+			<Button text="Block" press="onSubmit" id="btnBlock"
+				icon="sap-icon://permission" />
+			<Button text="Release" press="onSubmit" id="btnRelease"
+				icon="sap-icon://unlocked" />
+			<Button text="Block for Maintenance" press="onSubmit" id="btnMaint"
+				icon="sap-icon://cancel-maintenance" />
+			<Button text="Close" press="onClose" icon="sap-icon://decline" />
+		</buttons>
+		<!-- <footer> -->
+		<!-- <Toolbar> -->
+		<!-- <Button text="Book" press="onSubmit" id="btnBook" icon="sap-icon://locked"/> -->
+		<!-- <Button text="Block" press="onSubmit" id="btnBlock" icon="sap-icon://permission"/> -->
+		<!-- <Button text="Release" press="onSubmit" id="btnRelease" icon="sap-icon://unlocked"/> -->
+		<!-- <Button text="Close" press="onClose" icon="sap-icon://decline"/> -->
+		<!-- </Toolbar> -->
+		<!-- </footer> -->
+
+	</Dialog>
+	<!-- </Popover> -->
+
+</core:FragmentDefinition>

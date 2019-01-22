@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+	<Table id="advncetable" itemPress="onItemPress" inset="false"
+		class="tableclass table_ticket_admin sapUiSizeCompact cardreloadtable" items="{path: '/'}"
+		mode="MultiSelect">
+		<headerToolbar>
+						<Toolbar>
+							<c:Button  text="Add row"
+								enabled="{bProperties>/editable}" icon="sap-icon://add"
+								press="onAdd"></c:Button>
+							<c:Button  text="Delete row"
+								enabled="{bProperties>/editable}" icon="sap-icon://less"
+								class="margin_left_10" press="onDel"></c:Button>
+							<c:Button id="btnAddNewCard" text="Update Card" enabled="{bProperties>/editable}"
+									          icon="sap-icon://add-coursebook" class="margin_left_10" press="onUpdateCard"></c:Button>
+							<ToolbarSpacer />
+						</Toolbar>
+		</headerToolbar>
+		<infoToolbar>
+		<Toolbar>
+		<Text text="Note:In case of any discrepancies in the 'existing' card data, kindly contact forex team after submitting the Additional advance request. If no card data exist, add the card details through 'update Card' option."/>
+		</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column width="3em">
+				<Button text="Currency" class="button_header"
+					type="Transparent"/>
+			</Column>
+			
+			<Column width="3em">
+				<Button text="Bank" class="button_header"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+				<!-- //<Text text="Employee No" /> -->
+				<Button text="Card No" class="button_header"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Card Validity" class="button_header"
+					type="Transparent"/>
+			</Column>
+			<Column width="3em">
+
+				<Button text="Amount" class="button_header"
+					type="Transparent" />
+			</Column>
+		
+		</columns>
+		<items>
+			<ColumnListItem  height="10px">
+				<cells>
+				<c:ComboBox editable="{bProperties>/editable}" change="onCardsAllChange"
+						selectedKey="{Currency}" displaySecondaryValues="false" items="{cardsAll>/}">
+
+						<c:items>
+							<core:ListItem key="{cardsAll>Currency}"
+								text="{cardsAll>Currency}" />
+
+						</c:items>
+					</c:ComboBox>
+					<Input value="{IssuerBank}" editable="false"/>
+					<Input value="{CardNo}" editable="false"/>
+					<Input value="{path:'CardValidity',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" editable="false"/>
+
+					<Input value="{Amount}" editable="{bProperties>/amteditable}"/>
+<!-- 					<Input value="{Currency}" editable="{bProperties>/editable}"/> -->
+
+
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+</core:FragmentDefinition>

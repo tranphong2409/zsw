@@ -1,0 +1,124 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<f:SimpleForm minWidth="1024" maxContainerCols="2"
+		editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+		class="memberGeneralInfo">
+		<core:Title text="Insurance Info" level="H5" />
+		<Label text="Family Sponsored" required="true"
+			tooltip="Family travel sponsored by company" />
+
+		<RadioButtonGroup columns="3" id="sponsoredRadioId"
+			tooltip="Family travel sponsored by company"
+			visible="{parts : [{path : 'new>/ZZ_MODID'},
+								   {path : 'new>/ZE2E_INS_HDR/ZZ_SPONSOR'}], 
+						    	formatter: 'sap.ui.project.e2etm.util.Formatter.displayInsuranceSponsore'}"
+
+			enabled="false" select="onSponsoreSelect"
+			selectedIndex="{
+									path: 'new>/ZE2E_INS_HDR/ZZ_SPONSOR',
+									formatter: 'sap.ui.project.e2etm.util.Formatter.sapRadio'
+								}">
+			<buttons>
+				<RadioButton text="YES" />
+				<RadioButton text="NO" />
+			</buttons>
+		</RadioButtonGroup>
+		<Label text="Personal Email" />
+		<Input value="{new>/ZE2E_INS_HDR/ZZ_PER_EMAIL}" placeholder="Mandatory for global 3rd party"
+			editable="{	path: 'global>/action',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+		<Label text="Questionnaire" visible="false" />
+		<RadioButtonGroup columns="3" id="questionnaireRadioId"
+			visible="false"
+			enabled="{	path: 'global>/action',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+			select="onQuestionnaireSelect"
+			selectedIndex="{
+									path: 'new>/ZE2E_INS_HDR/ZZ_INS_QUE',
+									formatter: 'sap.ui.project.e2etm.util.Formatter.sapRadio'
+								}">
+			<buttons>
+				<RadioButton text="YES" />
+				<RadioButton text="NO" />
+			</buttons>
+		</RadioButtonGroup>
+
+		<core:Title level="H5"
+			text="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.getPolicyText'
+						}"  visible = " { 
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+							} "
+						  />
+		<Label text="Endorsement"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Input
+			value="{ 	path: 'new>/ZE2E_INS_HDR/ZE2E_REQ_STATUS/ZZ_REASON',
+			   					formatter: 'sap.ui.project.e2etm.util.Formatter.getEndorsement'}"
+			editable="false"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Label text="Family status"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Input
+			value="{
+							path: 'new>/ZE2E_INS_HDR/ZZ_CLEVEL',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.getInsuranceFamilyStatus'
+						}"
+			editable="false"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<!-- <Label text="Non Medical Amount"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Input value="{new>/ZE2E_INS_HDR/ZZ_INS_AMOUNT}" editable="false"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Input value="{new>/ZE2E_INS_HDR/ZZ_INS_CURR}" editable="false"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}">  -->
+			<!-- <layoutData>
+				<l:GridData span="L2 M2 S4" />
+			</layoutData>
+		</Input>
+		
+		<Label text="Day Amount"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Input value="{new>/ZE2E_INS_HDR/ZZ_DAY_AMOUNT}" editable="false"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}" />
+		<Input value="{new>/ZE2E_INS_HDR/ZZ_DAY_CURR}" editable="false"
+			visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}">
+			<layoutData>
+				<l:GridData span="L2 M2 S4" />
+			</layoutData>
+		</Input> -->
+	</f:SimpleForm>
+</core:FragmentDefinition>

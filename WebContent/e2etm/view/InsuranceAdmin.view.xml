@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:view="sap.ui.core.mvc"
+	controllerName="sap.ui.project.e2etm.controller.Insurance">
+	<Page showHeader="false" id="pageInsuranceAdmin" class="pageInsuranceAdmin"
+		enableScrolling="false">
+		<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+		<SplitContainer id="insuranceSplitApp" class="sapUiSizeCompact">
+			<masterPages>
+				<Page title="INSURANCE REQUESTS" enableScrolling="true">
+					<subHeader>
+						<Toolbar>
+							<Text text="Filter Options"></Text>
+						</Toolbar>
+					</subHeader>
+
+					<RadioButtonGroup columns="1" width="100%"
+						id="idFilterRadio" selectedIndex="0" select="onFilterRadioSelect">
+						<buttons>
+							<RadioButton text="New Request" />
+							<RadioButton text="Extend Date" />
+							<RadioButton text="Shorten Date" />
+							<RadioButton text="Change Traveller" />
+							<RadioButton text="Closed Request" />
+							<RadioButton text="Cancelled Request"/>
+						</buttons>
+					</RadioButtonGroup>
+
+					<SearchField search="onSearch" width="100%"
+						showRefreshButton="true" id="idSearchNewRequest" placeholder="Emp. or Req. No / Submitted Date"
+						class="margin_left_10" />
+
+					<List id="idList" selectionChange="onSelectionChange" growing="false"
+						growingScrollToLoad="true" noDataText="No request at the moment"
+						showSeparators="All" mode="SingleSelectMaster" select="onMasterListSelect"
+						updateFinished="onUpdateFisnish" updateStarted="onUpdateStarted"
+						class="padding_top_5 margin_bottom_100">
+						<infoToolbar>
+							<Toolbar active="true" press="handleInfobarPress">
+								<Text id="idListHeader" text="Request List"></Text>
+							</Toolbar>
+						</infoToolbar>
+
+						<items>
+							<StandardListItem title="Req. : {ZZ_TRV_REQ}"
+								description="Emp. : {ZZ_OWNER}"
+								icon="{path : 'ZZ_TRV_KEY', formatter: 'sap.ui.project.e2etm.util.Formatter.iconFormat'}"
+								info="{ZZ_CTIMESTAMP}" />
+						</items>
+					</List>
+				</Page>
+			</masterPages>
+
+			<detailPages>
+				<Page title="INSURANCE DETAILS" enableScrolling="true">
+				    <headerContent>
+				        <Link text="Help" href="http://sgpmis02.apac.bosch.com/Helpdesk/ESS/swifthelpdoc/" target="_blank"/>
+				        
+				    </headerContent>
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.insurance.Insurance"
+						type="XML" />
+				</Page>
+			</detailPages>
+		</SplitContainer>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<!-- <Button id="btnBack" text="Back" type="Emphasized" press="onBackPress" 
+						icon="sap-icon://home"></Button> -->
+				</contentLeft>
+
+				<contentMiddle>
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSavePress"
+						icon="sap-icon://save"></Button>
+				</contentMiddle>
+
+				<contentRight>
+					<Button id="btnSendBack" text="Send Back" type="Emphasized"
+						icon="sap-icon://action" press="onSendBackPress"
+						visible="{
+							path: 'profile>/currentRole',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.isNotEmployee'
+						}">
+					</Button>
+					<!-- <Button id="btnCancel" text="Cancel" type="Reject" press="onCancelPress" -->
+					<!-- icon="sap-icon://home"></Button> -->
+					<Button id="btnNext" text="Next" type="Emphasized" press="onNextPress"
+						icon="sap-icon://media-forward"></Button>
+					<Button id="btnSubmit" text="Submit" type="Accept" press="onSubmitPress"
+						icon="sap-icon://accept"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

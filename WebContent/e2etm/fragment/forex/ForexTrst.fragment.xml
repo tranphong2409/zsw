@@ -1,0 +1,16 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+	<c:Panel id="forexsurrenderpanel" text = "Forex Surrender" class="panelCollapse" visible="{path:'general>/whichtab',formatter:'sap.ui.project.e2etm.util.Formatter.visibleForexTrstTables'}">
+	
+		<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexSurrenderCardTable"
+						type="XML" />
+						
+	    <core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexSurrenderCashTable"
+						type="XML" />
+						
+		<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexSurrenderAmtTable"
+						type="XML" />			
+		</c:Panel>
+</core:FragmentDefinition>

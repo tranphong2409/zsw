@@ -1,0 +1,110 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" xmlns="sap.m"
+	controllerName="sap.ui.project.e2etm.controller.BUSR.TravelDetails"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel expandable="true" expanded="true">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Passenger 01: " design="Bold" width="100px">
+
+				</Label>
+				<Select>
+					<items>
+						<core:Item text="Self" key="S" />
+						<core:Item text="Spouse" key="SP" />
+						<core:Item text="Child 1" key="C1" />
+					</items>
+
+				</Select>
+				<ToolbarSpacer width="50px" />
+				<Image src="images/Chair.jpg" densityAware="true">
+
+				</Image>
+
+				<Select>
+					<items>
+						<core:Item text="Window" key="S" />
+						<core:Item text="Normal" key="SP" />
+
+					</items>
+				</Select>
+				<ToolbarSpacer width="50px" />
+
+				<!-- <Image src="images/Meals.jpg" densityAware="true"/> -->
+				<core:Icon src="sap-icon://meal" size="20px" />
+				<Select>
+					<items>
+						<core:Item text="Veg" key="S" />
+						<core:Item text="Non Veg" key="SP" />
+
+					</items>
+
+				</Select>
+				<ToolbarSpacer width="50px" />
+				<core:Icon src="sap-icon://phone" size="20px" />
+				<Input />
+			</Toolbar>
+		</headerToolbar>
+		<Table id="tbl"
+			items="{path:'/TRV_travel_DataSet'}">
+			<headerToolbar>
+				<Toolbar visible="true">
+					<Button text="Add Row" press="onAdd" />
+					<Button text="Save Row" press="onSave" />
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+
+				<Column>
+					<Label text="From Location" />
+				</Column>
+
+				<Column>
+					<Label text="To Location" />
+				</Column>
+				<Column>
+					<Label text="Travelling Date" />
+				</Column>
+				<Column>
+					<Label text="Mode of Travel" />
+				</Column>
+			</columns>
+			<items>
+				<Input value="{ZZ_ZFRPLACE}" />
+				<Input value="{ZZ_ZTOPLACE}" />
+				<Input value="{ZZ_BEGDA}" />
+				<Select selectedKey="{ZZ_ZMODE}" items="{path:'/GetDomain', parameters: { custom: { 'DomainName': '\'ZINF_MODE\'' } } }">
+					<core:Item key="{DOMVALUE_L}" text="{DDTEXT}" />
+				</Select>
+			</items>
+		</Table>
+		<l:Grid class="sapUiSmallMarginTop" defaultSpan="L2 M6 S10">
+			<l:content>
+				<Label text="What is your purpose of travel? " design="Bold">
+					<layoutData>
+						<l:GridData span="L4 M4 S8" linebreakL="true"
+							linebreakM="true" linebreakS="true" />
+					</layoutData>
+				</Label>
+				<Input>
+
+					<layoutData>
+						<l:GridData span="L4 M4 S8" />
+					</layoutData>
+				</Input>
+				<Label text="Category of customer you are travelling for "
+					design="Bold">
+					<layoutData>
+						<l:GridData span="L4 M4 S8" linebreakL="true"
+							linebreakM="true" linebreakS="true" />
+					</layoutData>
+				</Label>
+				<Input>
+					<layoutData>
+						<l:GridData span="L4 M4 S8" />
+					</layoutData>
+				</Input>
+			</l:content>
+		</l:Grid>
+	</Panel>
+</core:View>

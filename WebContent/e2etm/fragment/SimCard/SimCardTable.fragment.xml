@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+	
+	
+	
+	<Table id="SimCardDataTable" itemPress="onItemPress" inset="false" growing="true" growingThreshold="100" 
+		  class="table_ticket_admin" items="{path: 'SimCardDataSet>/'}">
+	<headerToolbar>
+	<Toolbar class="sapUiSizeCompact">
+	<ToolbarSpacer/>
+	<SearchField width="200px"  liveChange="sap.ui.project.e2etm.util.StaticUtility.onSimLiveSearch" selectOnFocus="false"/>
+	</Toolbar>
+	</headerToolbar>	
+	
+			<columns>
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="Travel Request" />
+				</FlexBox>
+
+			</Column>
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="Employee No" />
+				</FlexBox>
+			</Column>
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="Employee Name" />
+				</FlexBox>
+			</Column>
+
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="Start Date" />
+				</FlexBox>
+			</Column>
+			
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="End Date" />
+				</FlexBox>
+			</Column>
+
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="Received Date" />
+				</FlexBox>
+			</Column>
+
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<Text text="To Country" />
+				</FlexBox>
+			</Column>
+		</columns>
+	<items>
+			<ColumnListItem type="Navigation" height="10px">
+				<cells>
+					<Text text="{SimCardDataSet>reinr}" />
+					<Text text="{SimCardDataSet>pernr}" />
+					<Text text="{SimCardDataSet>Name}" />
+                    <Text text="{path:'SimCardDataSet>begda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+                    <Text text="{path:'SimCardDataSet>endda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+                    <Text text="{path:'SimCardDataSet>rdate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{SimCardDataSet>cntry}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	
+</core:FragmentDefinition>

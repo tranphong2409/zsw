@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+	<c:Dialog modal="true" width="510px" id="dialogTravelCustomer" title="CUSTOMER INFORMATION" class="dialog">
+	    <FlexBox direction="Column">
+	        <FlexBox> 
+				<Label text="Customer Coordinator Name: " class="label_bold margin_10"></Label>
+				<Label text="{ZZ_CCNAME}" class="margin_10"></Label>
+			</FlexBox>
+	        <FlexBox>
+				<Label text="Customer Coordinator Dept:" class="label_bold margin_10"></Label>
+				<Label text="{ZZ_CCDEPT}" class="margin_10"></Label>
+			</FlexBox>
+			<FlexBox> 
+				<Label text="Customer Cost Centre: " class="label_bold margin_10"></Label>
+				<Label text="{ZZ_CCOST}" class="margin_10"></Label>
+			</FlexBox>
+			<FlexBox> 
+				<Label text="Customer Legal Entity: " class="label_bold margin_10"></Label>
+				<Label text="{ZZ_CLENTY}" class="margin_10"></Label>
+			</FlexBox>
+			<FlexBox> 
+				<Label text="EA Number: " class="label_bold margin_10"></Label>
+				<Label text="{ZZ_EANO}" class="margin_10"></Label>
+			</FlexBox>
+			<FlexBox> 
+				<Label text="PO Number: " class="label_bold margin_10"></Label>
+				<Label text="{ZZ_PONO}" class="margin_10"></Label>
+			</FlexBox>
+		</FlexBox>
+		<c:buttons>
+			<c:Button text="Close" press="onCloseCustomerDialog" width="60px" height="30px" />
+		</c:buttons>
+	</c:Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,249 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+			xmlns:f="sap.ui.layout.form" controllerName="sap.ui.project.e2etm.controller.SimCardRequest" 
+			xmlns:table="sap.ui.table" xmlns:c="sap.ui.commons"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="SIM Card Reqeust">
+		<customHeader>
+		<Bar>
+			<contentMiddle>
+				<Text text="SIM Card Reqeust" />
+			</contentMiddle>
+			<contentRight>
+			<Link text="Help"></Link>
+			</contentRight>
+		</Bar>
+	</customHeader>
+		<content>
+		<ObjectHeader title="Travel Plan:{empTravelData>/ZZ_DEP_REQ}"/>
+		<f:SimpleForm  maxContainerCols="3" 
+		editable="false" layout="ResponsiveGridLayout" labelSpanL="6"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="1" class="SimcardForm">
+		<f:content>
+		<core:Title ></core:Title>
+			<Label text="Employee Number" ></Label>
+			<Text text="{EmpData>/pernr}"></Text>
+			<Label text="Employee Name"></Label>
+			<Text text="{EmpData>/name}"></Text>
+			<Label text="Department"></Label>
+			<Text text="{EmpData>/Department}"></Text>
+			<Label text="Email ID"></Label>
+			<Text text="{EmpData>/email}"></Text>
+			<Label text="Employee Location" class="SimCardBoldTxt"></Label>
+			<Text text="{EmpData>/baselocation}" class="SimCardBoldTxt"></Text>
+		<core:Title ></core:Title>
+			<Label text="Travelling From Country"></Label>
+			<Text text="{empTravelData>/ZZ_FR_CNTRY_TXT}"></Text>
+			<Label text="Travelling From Location"></Label>
+			<Text text="{empTravelData>/ZZ_FMLOC}"></Text>
+			<Label text="Start Date"></Label>
+			<Text text="{path:'empTravelData>/ZZ_DATV1',type:'sap.ui.model.type.Date',formatOptions: {
+					pattern:'dd.MM.yyyy',
+					source: {
+						pattern: 'yyyyMMdd'
+					}
+				}}"></Text>
+			<Label text="Visa Type"></Label>
+			<Text text="{empTravelData>/ZZ_TRV_TYP}"></Text>
+			<Label text="SIM Type" class="SimCardBoldTxt"></Label>
+			<Text text="{empTravelData>/ZZ_SIM_TYP}" class="SimCardBoldTxt" ></Text>
+		<core:Title ></core:Title>
+			<Label text="Travelling To Country"></Label>
+			<Text text="{empTravelData>/ZZ_TO_CNTRY_TXT}"></Text>
+			<Label text="Travelling To Location"></Label>
+			<Text text="{empTravelData>/ZZ_LOCATION_END}"></Text>
+			<Label text="End Date"></Label>
+			<Text text="{path:'empTravelData>/ZZ_DATB1',type:'sap.ui.model.type.Date',formatOptions: {
+					pattern:'dd.MM.yyyy',
+					source: {
+						pattern: 'yyyyMMdd'
+						}
+					}}"></Text>
+			<Label text="Mobile Number"></Label>
+			<Text text="{empTravelData>/ZZ_MOBILE}"></Text>
+			<Label text="Data Required" class="SimCardBoldTxt"></Label>
+			<Text text="{empTravelData>/ZZ_SIM_DATA}" class="SimCardBoldTxt"></Text>		
+		</f:content>
+		</f:SimpleForm>
+		<IconTabBar id="AdminIconTab" select="SimAdminSelect"
+				class="sapUiResponsiveContentPadding">
+				<items>
+				<IconTabFilter id="Admin_Sim_info"   key=" " icon="sap-icon://message-information">
+					<content>
+						<Panel headerText="SIM Card Details" expandable="true" expanded="true">
+							<Table id="SimAdminTable" inset="false" class="tableclass table_ticket_admin sapUiSizeCompact"
+									mode="MultiSelect" width="100%" items="{path: 'SimCardTableDataSet>/'}" >
+									<headerToolbar>
+										<Toolbar>
+											<c:Button id="simDetailAdd" text="Add row" icon="sap-icon://add" enabled="true"
+												press="onAdd"></c:Button>
+											<c:Button id = "simDetailDel" text="Delete row" icon="sap-icon://delete" enabled="true"
+												class="margin_left_10" press="onDel"></c:Button>
+												
+											<ToolbarSpacer/>
+											<Link text="Travel Plan PDF" id="travelplanpdf" target="_blank" emphasized="true" press="OnPdfPress"/>
+							
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column width="4rem">
+											<Text text="Sim Card Number" tooltip="Sim Card Number" />
+										</Column>
+							
+										<Column width="4rem">
+											<Text text="Mobile Number" tooltip="Mobile Number" />
+										</Column>
+										<Column width="4rem">
+											<Text text="Validity Start Date" tooltip="Validity Start Date" />
+										</Column>
+										<Column width="4rem">
+											<Text text="Validity End Date" tooltip="Validity End Date" />
+										</Column>
+										
+										<Column width="4rem">
+											<Text text="SIM Issued Date" tooltip="SIM Issued Date" />
+										</Column>
+										
+										<Column width="4rem">
+											<Text text="To country" tooltip="To country" />
+										</Column>
+										
+										<Column width="4rem">
+											<Text text="Remarks" tooltip="Remarks" />
+										</Column>
+										
+									</columns>
+										<items>
+											<ColumnListItem>
+												<cells>		
+													<Input id="SimNo" value="{SimCardTableDataSet>simNo}" editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}"/>
+													<Input value="{SimCardTableDataSet>SimMobileNo}" editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}" />
+													<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+														editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}" value="{SimCardTableDataSet>simBegda}" valueFormat="yyyyMMdd" required="true" />
+													<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+														editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}" value="{SimCardTableDataSet>simEndda}" valueFormat="yyyyMMdd" required="true" />
+														
+													<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+														editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}" value="{SimCardTableDataSet>simIssueDate}" valueFormat="yyyyMMdd" required="true" />
+														
+														<Input value="{SimCardTableDataSet>toCntry}" editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}" />
+														<Input value="{SimCardTableDataSet>remarks}" editable="{= ${SimCardTableDataSet>isEnable}==='X' ? true : false}" />
+														
+												</cells>
+											</ColumnListItem>
+										</items>
+							</Table>
+						</Panel>
+						<Panel id="SImInvoice" headerText="SIM Card Invoice Details" expandable="true" expanded="true" >
+						<Table id="SimInvoiceTable" inset="false" class="tableclass table_ticket_admin sapUiSizeCompact"
+									mode="MultiSelect" width="100%" items="{path: 'SimCardInvoiceDataSet>/'}">
+						
+									<headerToolbar>
+										<Toolbar>
+											<c:Button id="simInvoiceAdd" text="Add row" icon="sap-icon://add" enabled="true"
+												press="onAdd"></c:Button>
+											<c:Button id="simInvoiceDel" text="Delete row" icon="sap-icon://delete" enabled="true"
+												class="margin_left_10" press="onDel"></c:Button>
+												
+											<ToolbarSpacer/> 
+										</Toolbar>
+									</headerToolbar>
+						
+									<columns>
+										<Column width="4rem">
+											<Text text="Recieved Date" tooltip="Recieved Date" />
+										</Column>
+							
+										<Column width="4rem">
+											<Text text="Amount" tooltip="Amount" />
+										</Column>
+										<Column width="4rem">
+											<Text text="Currency" tooltip=" Currency" />
+										</Column>
+										<Column width="4rem">
+											<Text text="Remarks" tooltip="Remarks" />
+										</Column>
+										<Column width="4rem">
+											<Text text="Personal Calls" tooltip="Personal Calls" />
+										</Column>
+										<Column width="4rem">
+											<Text text="Official Calls" tooltip="Official Calls" />
+										</Column>
+										<Column width="5rem">
+											<Text text="Type of Declaration" tooltip="Type of Declaration" />
+										</Column>
+										
+																		
+									</columns>
+										<items>
+											<ColumnListItem>
+												<cells>		
+													<DatePicker displayFormat="dd-MM-yyyy" placeholder="DD-MM-YYYY"
+														editable="{= ${SimCardInvoiceDataSet>adminEnable}==='X' ? true : false}" value="{SimCardInvoiceDataSet>rDate}" valueFormat="yyyyMMdd" required="true" />
+														<Input value="{SimCardInvoiceDataSet>simTotAmt}" editable="{= ${SimCardInvoiceDataSet>adminEnable}==='X' ? true : false}" change="onPersonalCallsLiveChange" />
+														<Input value="{SimCardInvoiceDataSet>simCurr}" editable="{= ${SimCardInvoiceDataSet>adminEnable}==='X' ? true : false}" />
+														<Input value="{SimCardInvoiceDataSet>remarks}" editable="{= ${SimCardInvoiceDataSet>adminEnable}==='X' ? true : false}" />
+														<Input value="{SimCardInvoiceDataSet>SimPersonalCallAmt}" editable="{= ${SimCardInvoiceDataSet>EmpPersonalcallEnable}==='X' ? true : false}" change="onPersonalCallsLiveChange" />
+														<Input value="{SimCardInvoiceDataSet>SimOfficialCallAmt}" editable="{= ${SimCardInvoiceDataSet>EmpOfficialCallEnable}==='X' ? true : false}" />
+														<Select id="typDeclare" autoAdjustWidth="true" change="OntypDeclareSelect" selectedKey="{SimCardInvoiceDataSet>TypeofDeclare}" enabled="{= ${SimCardInvoiceDataSet>adminEnable}==='X' ? true : false}" >
+														<core:Item key="L" text="SIM card Lost"></core:Item>
+														<core:Item key="U" text="SIM card usage"></core:Item>
+													</Select>													
+													
+												</cells>
+											</ColumnListItem>
+										</items>
+						
+						</Table>
+						</Panel> 
+						<l:VerticalLayout class="margin_top_20">
+							<FlexBox direction="Row" alignItems="Center">
+								<Label width="114px" text="Comments" class="label_bold font_size_14"></Label>
+								<ToolbarSpacer width="10px" />
+								<TextArea width="568px" height="100px" id="comments" wrapping="Hard">
+								</TextArea>
+							</FlexBox>
+						</l:VerticalLayout>
+						
+					</content>	  
+				</IconTabFilter>
+				
+				<IconTabFilter id="attachments"   key=" " icon="sap-icon://attachment">
+							  
+				<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+					type="XML" />
+				</IconTabFilter>		
+				<IconTabFilter id="Admin_Sim_Comment"   key="comment" icon="sap-icon://comment">
+							  
+				<core:Fragment id="AppoveInfo"
+							fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+							type="XML" />
+				
+				</IconTabFilter>		
+				</items>
+	    </IconTabBar>
+		
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="notify" text="Notify" type="Accept" press="onNotify" visible="true" icon="sap-icon://response" />					
+					<Button id="save1" text="Save" type="Accept" press="onSave" icon="sap-icon://save" />	
+					<Button id="close" text="Close" type="Accept" press="onClose" icon="sap-icon://save" />
+					<Button id="sDeclare" text="Send For Declaration" type="Accept" press="onSdeclare" icon="sap-icon://save" />
+					<!-- <Button id="stDeclare" text="Sent For Declaration" type="Accept" press="onSentdeclare" icon="sap-icon://save" />	 -->
+					<Button id="submit" text="Submit" type="Accept" press="onSubmit" icon="sap-icon://save" />				
+				</contentRight>
+				<contentMiddle>
+					<Button id="reject" text="Reject" type="Reject" press="onReject" icon="sap-icon://decline" />
+					<Button id="save" text="Save" type="Accept" press="onSave" icon="sap-icon://save" />
+				</contentMiddle>
+				<contentLeft>
+					<Button text="Back"  icon="sap-icon://response" type="Reject" press="onBack" />
+				</contentLeft>
+			</Bar>
+		</footer>
+		
+		
+	</Page>
+</core:View>

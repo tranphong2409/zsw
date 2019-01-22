@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:calendar="sap.ui.unified.calendar"
+	xmlns:t="sap.ui.table">
+<!-- 	<commons:Panel id="trsettlepanel" text="Expenses" class="panelCollapse trsettlepanel"> -->
+<Panel id="trsettlepanel" headerText="Expenses" class="trsettlepanel">
+	<headerToolbar>
+		<Toolbar class="sapUiSizeCompact">
+			<Label text="Expenses" design="Bold" />
+			<ToolbarSpacer />
+			<HBox id="hBoxCurrency">
+			<Input width="150px" placeholder=" Approved Currency" id="ipAddCurrency"/>
+			<Button text="Add/Replace" type="Emphasized" press="onAddReplace"/>
+			</HBox>
+		</Toolbar>
+	</headerToolbar>
+	<content>
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TravelExpense"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.LodgingExpense"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.Boarding"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.ConveyanceExpense"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.CargoBaggageExpense"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.EntertainmentCharges"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.OtherCharges"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.Credit"
+			type="XML" />
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.Advance"
+			type="XML" />
+			
+		<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexTrst"
+						type="XML" />
+
+</content>
+<!-- 	</commons:Panel> -->
+</Panel>
+
+
+
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TotalExpenses"
+			type="XML" />
+
+	
+	
+	<layout:VerticalLayout class="margin_top_20">
+		<FlexBox direction="Row" alignItems="Center">
+			<Label width="114px" text="Comments" class="label_bold font_size_14"></Label>
+			<ToolbarSpacer width="10px" />
+			<TextArea width="400px" height="100px" id="comments"
+				editable="{properties>/comtxteditbl}" wrapping="Hard">
+			</TextArea>
+			<ToolbarSpacer width="10px" />
+			<HBox alignItems="End" class="trstRemarksBottom">
+			<Button id="btnSaveRmrks" type="Emphasized" text="Save Remarks" press="onSaveRemarks"/>
+			<ToolbarSpacer width="10px" />
+			<Button id="btnShowRmrks" type="Emphasized" text="Show Remarks" press="onShowRemarks"/>
+			</HBox>
+			
+		</FlexBox>
+		
+	</layout:VerticalLayout>
+	<f:SimpleForm minWidth="1024" maxContainerCols="1"
+		editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+		class="editableForm">
+		<f:content>
+			<CheckBox id="declaration" editable="{travelsettlement>/fieldproperties/editable}"
+				text="I hereby declare that the above expenses(including daily Allowance) have actually been incurred by me towards discharge of official duties and agree by clicking Submit button"
+				selected="{path:'travelsettlement>/traveldetails/Declaration',formatter:'sap.ui.project.e2etm.util.Formatter.formatBooleanValue'}" />
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

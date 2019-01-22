@@ -1,0 +1,104 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:b="sap.ui.project.e2etm.blocks" xmlns="sap.uxap" xmlns:layout="sap.ui.layout"
+	xmlns:m="sap.m" controllerName="sap.ui.project.e2etm.controller.BusinessTravel"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<ObjectPageLayout id="ObjectPageLayout"
+		enableLazyLoading="true" showTitleInHeaderContent="true"
+		showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress">
+		<headerTitle>
+			<ObjectPageHeader
+				objectImageURI=""
+				objectTitle="{profile>/employeeDetail/ZZ_DEP_NAME}"
+				objectImageShape="Circle" objectImageAlt="Denise Smith"
+				objectSubtitle="{profile>/employeeDetail/ZZ_DEP_DESG}"
+				isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false"
+				isObjectSubtitleAlwaysVisible="false">
+				<actions>
+					<ObjectPageHeaderActionButton icon="sap-icon://pull-down"
+						text="show section" type="Emphasized" />
+					<ObjectPageHeaderActionButton icon="sap-icon://show"
+						text="show state" type="Emphasized" />
+					<ObjectPageHeaderActionButton text="Toggle Footer"
+						hideIcon="true" hideText="false" type="Emphasized" press="toggleFooter" />
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<layout:VerticalLayout>
+			   
+				<m:ObjectStatus title="Name" text="{profile>/employeeDetail/ZZ_DEP_NAME}" />
+				<m:ObjectStatus title="Email id" text="{profile>/employeeDetail/ZZ_DEP_MAIL}" />
+				<m:ObjectStatus title="Designation" text="{profile>/employeeDetail/ZZ_DEP_DESG}" />
+			</layout:VerticalLayout>
+
+			<layout:VerticalLayout>
+			   <m:ObjectStatus title="Travel Plan" text="{profile>/employeeDetail/ZZ_DEP_NAME}" />
+				<m:ObjectStatus title="Designation" text="{profile>/employeeDetail/ZZ_DEP_DESG}" />
+				<m:Title level="H3" text="Bangalore-India to Stuttgart-Germany from 01st July 2018 to 20th July 2018"/> 
+			</layout:VerticalLayout>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection id="trvlSec" title="Travelling Details">
+				<subSections>
+					<ObjectPageSubSection id="goalsSectionSS1"
+						title=" ">
+						<blocks>
+							<b:TravelDetails columnLayout="3" />
+						</blocks>
+
+
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection id="passSec" title="Passport/Visa Documents"
+				importance="Medium">
+
+				<subSections>
+					<ObjectPageSubSection>
+
+						<blocks>
+							<m:Label text="Copy of your passport" columnLayout="2" />
+							<m:Label text="Copy of your Visa " columnLayout="2" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection id="accSec" title="Accommodation">
+				<subSections>
+					<ObjectPageSubSection id="accSubSec" title=" ">
+						<blocks>
+							<b:AccDetails columnLayout="3" />
+						</blocks>
+
+
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Advance/Sim Card Details">
+				<subSections>
+					<ObjectPageSubSection id="advSubSec" title=" ">
+						<blocks>
+							<b:AdvDetails columnLayout="3" />
+						</blocks>
+
+
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Sponsorship Details">
+
+			</ObjectPageSection>
+		</sections>
+		<!-- <footer> -->
+		<!-- <m:OverflowToolbar> -->
+		<!-- <m:ToolbarSpacer /> -->
+		<!-- <m:Button type="Accept" text="Accept"/> -->
+		<!-- <m:Button type="Reject" text="Reject"/> -->
+		<!-- </m:OverflowToolbar> -->
+		<!-- </footer> -->
+	</ObjectPageLayout>
+</core:View>

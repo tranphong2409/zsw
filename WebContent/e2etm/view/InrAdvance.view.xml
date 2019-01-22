@@ -1,0 +1,167 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.commons.layout" xmlns="sap.m" xmlns:c="sap.ui.commons"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="sap.ui.project.e2etm.controller.InrAdvance" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="INR Advance">
+	<customHeader>
+		<Bar>
+			<contentMiddle>
+				<Text text="Initial Advance" />
+			</contentMiddle>
+			<contentRight>
+				<Button icon="sap-icon://download" text="Initial Advance PDF"
+					press="onDownload" />
+			</contentRight>
+		</Bar>
+	</customHeader>
+		<content>
+			<ObjectHeader id='objhdr' class="forexObjHeader"
+				title="{='Travel Plan:' + ${travelsettlement>/traveldetails/TravelPlan}}">
+
+
+				<attributes>
+					<ObjectAttribute
+						text="{='Employee No :'+${travelsettlement>/traveldetails/EmpNo}}" />
+					<ObjectAttribute
+						text="{='Employee Name :'+${travelsettlement>/traveldetails/EmpName}}" />
+					<ObjectAttribute
+						text="{='Department : '+${travelsettlement>/traveldetails/Department}}" />
+				</attributes>
+
+
+				<statuses>
+					<ObjectStatus title="Status" text="{travelsettlement>/traveldetails/StatusText}"
+						state="Success" />
+					<ObjectStatus title="NextAction By" text="{travelsettlement>/traveldetails/NextAction}"
+						state="Success" />
+				</statuses>
+			</ObjectHeader>
+
+			<c:Panel text="Travel Details" class="panelCollapse">
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+					class="employeeGeneralInfo hideFormTitle">
+					<f:content>
+						<core:Title text="" visible="false"></core:Title>
+						<Label text="Travelling From Country" class="font_size_14" />
+						<Text text="{travelsettlement>/traveldetails/FromCountryText}" />
+						<Label text="Start date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'travelsettlement>/traveldetails/StartDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Travel Type" tooltip="Advance for Primary/Secondary Travel"
+							class="font_size_14" />
+						<Text text="{travelsettlement>/traveldetails/VisaType}" />
+						<!-- <core:Title text=""></core:Title> -->
+						<core:Title text="" visible="false"></core:Title>
+						<Label text="Travelling To Country" class="font_size_14" />
+						<Text text="{travelsettlement>/traveldetails/ToCountryText}" />
+						<Label text="End date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'travelsettlement>/traveldetails/EndDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Duration" class="font_size_14" />
+						<Text text="{travelsettlement>/traveldetails/Duration}" />
+					</f:content>
+				</f:SimpleForm>
+			</c:Panel>
+			<IconTabBar id="icontabbar" select="onIconTabSelect">
+				<items>
+					<IconTabFilter icon="sap-icon://begin" tooltip="Details">						
+							<core:Fragment
+								fragmentName="sap.ui.project.e2etm.fragment.InrAdvance.InrAdvance"
+								type="XML" />
+					
+						<layout:VerticalLayout class="margin_top_20">
+							<FlexBox direction="Row" alignItems="Center">
+								<Label width="114px" text="Comments" class="label_bold font_size_14"></Label>
+								<ToolbarSpacer width="10px" />
+								<TextArea width="568px" height="100px" id="comments"
+									editable="{properties>/comtxteditbl}" wrapping="Hard">
+								</TextArea>
+							</FlexBox>
+						</layout:VerticalLayout>
+						
+					<c:Panel text="Bank Details" class="panelCollapse" id="bankdetails">
+						<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+								class="employeeGeneralInfo hideFormTitle">
+								<f:content>
+									<core:Title visible="false" text="" />
+									<Label text="Name of the Bank" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Nofbk}" />
+									<Label text="Bank Account Number" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Bkact}" />
+									<Label text="Bank Code" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Bkcbr}" />
+									<Label text="Branch Code" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Brncd}" />
+									<Label text="Routing Code" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Rcode}" />						
+									
+									<core:Title text="" visible="false" />
+									<Label text="IBAN No" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Ibano}" />
+									<Label text="Swift Code" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Swbic}" />
+									<Label text="Street/Area/PostBox Number" tooltip="Street/Area/PostBox Number"
+										class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Starp}" />
+									<Label text="Pin Code" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/Porct}" />
+									<Label text="City" class="font_size_14" />
+									<Text text="{travelsettlement>/bankadvice/City}" />
+								</f:content>
+							</f:SimpleForm>							
+						</c:Panel>
+
+						<Panel headerText="History">
+							<core:Fragment
+								fragmentName="sap.ui.project.e2etm.fragment.InrAdvance.AdvanceHistory"
+								type="XML" />
+						</Panel>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://attachment" 
+						tooltip="Attachment">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://comment"
+						tooltip="Comments">
+						<core:Fragment id="AppoveInfo"
+							fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+							type="XML" />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="Approve" type="Accept" press="onApprove"
+						visible="{travelsettlement>/fieldproperties/apvisible}" icon="sap-icon://save" />
+					<Button id="submit" text="Submit" type="Accept" press="onSubmit"
+						visible="{travelsettlement>/fieldproperties/savisible}" icon="sap-icon://save" />
+				
+					<Button text="Close" type="Accept" press="onClose"
+						visible="{travelsettlement>/fieldproperties/clvisible}" icon="sap-icon://status-completed" />
+					<Button text="Review" type="Accept" press="onReview"
+						visible="{travelsettlement>/fieldproperties/revisible}" icon="sap-icon://status-completed" />
+
+				</contentRight>
+				<contentMiddle>
+					<Button text="Send Back" type="Emphasized" press="onSendBack"
+						visible="{travelsettlement>/fieldproperties/sbvisible}" icon="sap-icon://response" />
+				</contentMiddle>
+				<contentLeft>
+					<Button text="Back" icon="sap-icon://response" type="Reject"
+						press="onBack" />
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+
+</core:View>

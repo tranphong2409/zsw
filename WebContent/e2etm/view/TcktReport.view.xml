@@ -1,0 +1,174 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.TcktReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page title="SLA Report">
+		<content>
+			<Panel width="auto" class="panelBorderTrSettle sapUiSizeCompact">
+				<headerToolbar>
+					<Toolbar>
+						<Label text="Filter By" />
+						<DatePicker valueFormat="yyyyMMdd" width="150px"
+							placeholder="From Date" displayFormat="dd/MM/yyyy" id="idFromDate" />
+						<DatePicker valueFormat="yyyyMMdd" width="150px"
+							placeholder="To Date" displayFormat="dd/MM/yyyy" id="idToDate" />
+						<Button text="Search" type="Emphasized" icon="sap-icon://search"
+							class="margin_left_10" press="onSearch"></Button>
+						<ToolbarSpacer />
+						<Button icon="sap-icon://action-settings" type="Emphasized"
+							press="onPersoButtonPressed" />
+						<Button text="Download" type="Emphasized" press="onExport" />
+
+					</Toolbar>
+
+				</headerToolbar>
+				<content>
+					<ScrollContainer horizontal="true" vertical="true"
+						focusable="true">
+						<Table id="slaRep" inset="false" growing="true"
+							class="tableclass table_ticket_admin sapUiSizeCompact"
+							growingScrollToLoad="true" noDataText="{No Data}" items="{/}"
+							fixedLayout="true">
+
+							<columns>
+								<Column id="col1" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Travel Plan Number" />
+								</Column>
+								<Column id="col2" minScreenWidth="Tablet" demandPopin="true"
+									width="60px">
+									<Text text="Travel Type" />
+								</Column>
+								<Column id="col3" minScreenWidth="Tablet" demandPopin="true"
+									width="150px">
+									<Text text="Employee No" />
+								</Column>
+								<!-- <Column id="col4" minScreenWidth="Tablet" demandPopin="true" -->
+								<!-- width="50px"> -->
+								<!-- <Text text="Visa Type" /> -->
+								<!-- </Column> -->
+								<Column id="col4" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Name" />
+								</Column>
+								<Column id="col5" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Department" />
+								</Column>
+								<Column id="txtDate1" minScreenWidth="Tablet"
+									demandPopin="true" width="100px">
+									<Text text="Approved Date" />
+								</Column>
+								<Column id="txtTime1" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Approved Time" />
+								</Column>
+								<Column id="txtDate2" minScreenWidth="Tablet"
+									demandPopin="true" width="100px">
+									<Text text="Closed Date" />
+								</Column>
+								<Column id="txtTime2" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Closed Time" />
+								</Column>
+								<Column id="mode" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Mode of Travel" />
+								</Column>
+								<Column id="col10" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Status" />
+								</Column>
+								<Column id="txtTime3" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="LeadTime" />
+								</Column>
+								<Column id="col12" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="SLA Status" />
+								</Column>
+								<Column id="col13" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Due" />
+								</Column>
+								<Column id="col14" minScreenWidth="Tablet" demandPopin="true"
+									width="100px">
+									<Text text="Remarks" />
+								</Column>
+
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{TravelPlan}" wrapping="false" tooltip="{TravelPlan}" />
+										<Text text="{TravelType}" />
+										<Text text="{path:'EmpNo'}" tooltip="{path:'EmpNo'}"
+											wrapping="false" />
+
+										<Text text="{Name}" tooltip="{Name}" wrapping="false" />
+										<Text text="{Department}" tooltip="{Department}"
+											wrapping="false" />
+										<Text wrapping="false"
+											tooltip="{path:'ApprDate', type: 'sap.ui.model.type.Date',formatOptions: {
+				                pattern:'dd.MM.yyyy',
+				                source: {
+						pattern: 'yyyyMMdd'
+					}
+				               }}"
+											text="{path:'ApprDate', type: 'sap.ui.model.type.Date',formatOptions: {
+				                pattern:'dd.MM.yyyy',
+				                source: {
+						pattern: 'yyyyMMdd'
+					}
+				               }}" />
+										<Text
+											text="{path:'ApprTime',type:'sap.ui.model.type.Time',formatOptions:{
+										pattern:'HH:mm:ss',
+										source:{
+										pattern:'hhmmss'
+										}}}"
+											tooltip="{ApprTime}" wrapping="false" />
+
+										<Text wrapping="false"
+											text="{path:'ClsDate',type: 'sap.ui.model.type.Date',formatOptions: {
+				                pattern:'dd.MM.yyyy',
+				                source: {
+						pattern: 'yyyyMMdd'
+					}
+				               }}"
+											tooltip="{path:'ClsDate',type: 'sap.ui.model.type.Date',formatOptions: {
+				                pattern:'dd.MM.yyyy',
+				                source: {
+						pattern: 'yyyyMMdd'
+					}
+				               }}" />
+
+										<Text text="{path:'ClsTime',type:'sap.ui.model.type.Time',formatOptions:{
+										pattern:'HH:mm:ss',
+										source:{
+										pattern:'hhmmss'
+										}}}" tooltip="{ClsTime}" wrapping="false" />
+                                        <Text text="{Mode}" tooltip="{Mode}" wrapping="false" />
+										<Text text="{Status}" tooltip="{Status}" wrapping="false" />
+<!-- 										<Text text="{path:'LeadTime',type:'sap.ui.model.type.Time',formatOptions:{ -->
+<!-- 										pattern:'HH:mm:ss', -->
+<!-- 										source:{ -->
+<!-- 										pattern:'hhmmss' -->
+<!-- 										}}}" tooltip="{LeadTime}" wrapping="false" /> -->
+										<Text text="{=${LeadTime}?${LeadTime}.substring(0,2)+':'+${LeadTime}.substring(2,4)+':'+${LeadTime}.substring(4):'NA'}" tooltip="{LeadTime}" wrapping="false" />
+										<Text text="{path:'SLAStatus'}" tooltip="{path:'SLAStatus'}"
+											wrapping="false" />
+										<Text wrapping="false" text="{path:'Due'}" tooltip="{path:'Due'}" />
+										<Text wrapping="false" text="{path:'Remarks'}" tooltip="{path:'Remarks'}" />
+
+
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:View>

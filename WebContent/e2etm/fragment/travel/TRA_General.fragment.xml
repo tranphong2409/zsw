@@ -1,0 +1,213 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<c:Button text="Current Version" class="margin_left_10 margin_bottom_10"
+		press="showCurrentGeneralDetails" id="btnCurrentVersionGeneralDetails"
+		visible="{path: 'ZZ_CHANGE_GE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}"
+		enabled="false"></c:Button>
+	<c:Button text="Previous Version" class="margin_left_10 margin_bottom_10"
+		press="showPreviousGeneralDetails" id="btnPreviousVersionGeneralDetails"
+		visible="{path: 'ZZ_CHANGE_GE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}"></c:Button>
+	<c:RowRepeater numberOfRows="1" id="rowRepeaterGeneralDetails"
+		class="rowRepeaterGeneral">
+		<c:noData>
+			<c:TextView text=""></c:TextView>
+		</c:noData>
+		<c:rows>
+			<FlexBox class="dep_customer_flexbox">
+				<FlexBox direction="Column">
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="From Country"></Label>
+						<Select autoAdjustWidth="true" selectedKey="{ZZ_FMCNTRY}"
+							id="FromCountryId" change="onCountryChange" items="{ path: '/country'}"
+							enabled="{/view/enabledCountry}">
+							<core:Item key="{MOLGA}" text="{LTEXT}" />
+						</Select>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="From Location" class="required"></Label>
+						<c:ValueHelpField value="{ZZ_FMLOC}" class="width_100pc"
+							id="FromLocationId" valueHelpRequest="onValueHelpRequest"
+							enabled="{/view/enabledCountry}" valueState="{/view/ZZ_FMLOC_ERROR}"></c:ValueHelpField>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="{i18n>dur_in_day}"></Label>
+						<Input value="{ZZ_ZDURN}" editable="false"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="{i18n>tra_cat}"></Label>
+						<Input value="{ZZ_ZCATG}" editable="false"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label text="{i18n>vis_cat}"></Label>
+						<Select autoAdjustWidth="true" selectedKey="{ZZ_ZVISAT}"
+							items="{ path: '/visaCategory'}" enabled="false">
+							<core:Item key="{DOMVALUE_L}" text="{DDTEXT}" />
+						</Select>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="Purpose" class="required"></Label>
+						<Input value="{ZZ_KUNDE}" editable="{/view/isFuture}"
+							valueState="{/view/ZZ_KUNDE_ERROR}"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_input">
+						<Label text="Mobile No"></Label>
+						<Input value="{ZZ_MOBILE}" editable="{/view/isFuture}"
+							placeholder="Please enter mobile mandatorily" valueState="{/view/ZZ_MOBILE_ERROR}"></Input>
+					</FlexBox>
+					<FlexBox class="dep_customer_flexbox_select" visible="{/view/visaAvailability}">
+						<Label text="Visa Availability"></Label>
+						<Select autoAdjustWidth="true" selectedKey="{/view/visaExist}"
+							enabled="{/view/isFuture}" change="onVisaAvailabilityChange">
+							<core:Item key="" text="No valid visa" />
+							<core:Item key="X" text="Zip and upload Passport and Visa" />
+						</Select>
+					</FlexBox>
+
+					<!--SIM CARD change_DYE5KOR_13.09.3017  -->
+					
+					<FlexBox class="dep_customer_flexbox_select">
+						<Label id="Lbl_SimReq" text="Sim Card Required ?" class="required"></Label>
+						<Select id="SimReq" autoAdjustWidth="true" change="OnSimcardSelect" selectedKey="{ZZ_SIM_REQ_KEY}" enabled="{/view/international}" valueState="{/view/ZZ_SIM_REQ_	ERROR}" >
+							<core:Item key="P" text="Please select"></core:Item>
+							<core:Item key="Y" text="Yes"></core:Item>
+							<core:Item key="N" text="No"></core:Item>
+						</Select>
+						</FlexBox>
+						
+						<FlexBox class="dep_customer_flexbox_select">
+						<Label id="Lbl_SimTyp" text="Sim Card Type" class="required" width="172px"></Label>
+						<Select id="SimTyp" autoAdjustWidth="true" change="OnSimcardTypSelect" selectedKey="{ZZ_SIM_TYP_KEY}" >
+							<core:Item key="P" text="Please select"></core:Item>
+							<core:Item key="NO" text="Normal"></core:Item>
+							<core:Item key="MI" text="Micro"></core:Item>
+							<core:Item key="NA" text="Nano"></core:Item>
+						</Select>
+						</FlexBox>
+						
+						<FlexBox class="dep_customer_flexbox_select">
+						<Label id="Lbl_SimData" text="Internet Data Required ?" class="required" width="172px"></Label>
+						<Select id="SimData" autoAdjustWidth="true" change="OnSimcarddataSelect"  selectedKey="{ZZ_SIM_DATA_KEY}">
+							<core:Item key="P" text="Please select"></core:Item>
+							<core:Item key="Y" text="Yes"></core:Item>
+							<core:Item key="N" text="No"></core:Item>
+						</Select>
+						</FlexBox>
+						
+					<!--SIM CARD change_DYE5KOR_13.09.3017  -->
+
+							<!-- Comment because of new requirement: Do not validate cargo flag -->
+
+							<!-- <FlexBox class="dep_customer_flexbox_select" visible="{/view/cargoVis}"> -->
+							<!-- <Label text="Cargo Facility" class="required"></Label> -->
+							<!-- <Select autoAdjustWidth="true" selectedKey="{ZZ_CARGO}" -->
+							<!-- enabled="{/view/isFuture}"> -->
+							<!-- <core:Item key="" text="None" /> -->
+							<!-- <core:Item key="C" text="Cargo" /> -->
+							<!-- <core:Item key="P" text="Personal Baggage" /> -->
+							<!-- </Select> -->
+							<!-- </FlexBox> -->
+
+							<FlexBox class="dep_customer_flexbox_select" visible="false">
+								<Label text="Travel Type"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{ZZ_TRV_TYP}"
+									items="{ path: '/travelType'}" enabled="false">
+									<core:Item key="{FIELD1}" text="{FIELD2}" />
+								</Select>
+							</FlexBox>
+						</FlexBox>
+
+						<FlexBox direction="Column">
+							<FlexBox class="dep_customer_flexbox_select">
+								<Label text="To Country"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{ZZ_LAND1}"
+									id="ToCountryId" change="onCountryChange" items="{ path: '/country'}"
+									enabled="{/view/enabledCountry}">
+									<core:Item key="{MOLGA}" text="{LTEXT}" />
+								</Select>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_input">
+								<Label text="To Location" class="required"></Label>
+								<c:ValueHelpField value="{ZZ_LOCATION_END}"
+									class="width_100pc" id="ToLocationId" valueHelpRequest="onValueHelpRequest"
+									enabled="{/view/enabledCountry}" valueState="{/view/ZZ_LOCATION_END_ERROR}"></c:ValueHelpField>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_ValueHelpField">
+								<Label text="Customer Legal Entity" class="required"></Label>
+								<c:ValueHelpField value="{ZZ_CUST_NAME}" id="customerId"
+									class="width_100pc" valueHelpRequest="onValueHelpRequest"
+									enabled="{/view/isFuture}" valueState="{/view/ZZ_CUST_NAME_ERROR}"
+									change="onCustomerChange"></c:ValueHelpField>
+							</FlexBox> 
+							<FlexBox class="dep_customer_flexbox_select" visible="{/view/international}">
+								<Label text="{i18n>insurance}"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{ZZ_ZINSUR}"
+									items="{ path: '/insurance'}" enabled="{/view/enableInsurance}">
+									<core:Item key="{DOMVALUE_L}" text="{DDTEXT}" />
+								</Select>
+							</FlexBox>
+
+							<FlexBox class="dep_customer_flexbox_select">
+								<Label text="Meal Preference"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{ZZ_ZMEAL}"
+									items="{ path: '/meal'}" enabled="{/view/isFuture}">
+									<core:Item key="{DOMVALUE_L}" text="{DDTEXT}" />
+								</Select>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_select">
+								<Label text="Seat Preference"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{ZZ_ZSEAT}"
+									items="{ path: '/seat'}" enabled="{/view/isFuture}">
+									<core:Item key="{DOMVALUE_L}" text="{DDTEXT}" />
+								</Select>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_textarea">
+								<Label text="Comment" visible="{/view/enabled}"></Label>
+								<TextArea value="{ZZ_COMMENTS}" visible="{/view/enabled}"
+									maxLength="254" class="margin_top_5"></TextArea>
+							</FlexBox>
+						</FlexBox>
+					</FlexBox>
+
+					<!-- Display old version here -->
+					<FlexBox class="dep_customer_flexbox"
+						visible="{path: 'ZZ_CHANGE_GE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}">
+						<FlexBox direction="Column">
+							<FlexBox class="dep_customer_flexbox_select">
+								<Label text="From Country"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{/old/ZZ_FMCNTRY}"
+									items="{ path: '/country'}" enabled="false">
+									<core:Item key="{MOLGA}" text="{LTEXT}" />
+								</Select>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_input">
+								<Label text="From Location"></Label>
+								<Input value="{/old/ZZ_FMLOC}" editable="false"></Input>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_input">
+								<Label text="{i18n>dur_in_day}"></Label>
+								<Input value="{/old/ZZ_ZDURN}" editable="false"></Input>
+							</FlexBox>
+						</FlexBox>
+
+						<FlexBox direction="Column">
+							<FlexBox class="dep_customer_flexbox_select">
+								<Label text="To Country"></Label>
+								<Select autoAdjustWidth="true" selectedKey="{/old/ZZ_LAND1}"
+									items="{ path: '/country'}" enabled="false">
+									<core:Item key="{MOLGA}" text="{LTEXT}" />
+								</Select>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_input">
+								<Label text="To Location"></Label>
+								<Input value="{/old/ZZ_LOCATION_END}" editable="false"></Input>
+							</FlexBox>
+							<FlexBox class="dep_customer_flexbox_ValueHelpField">
+								<Label text="Customer Name"></Label>
+								<c:ValueHelpField value="{/old/ZZ_CUST_NAME}"
+									class="width_100pc" enabled="false"></c:ValueHelpField>
+							</FlexBox>
+						</FlexBox>
+					</FlexBox>
+		</c:rows>
+	</c:RowRepeater>
+</core:FragmentDefinition>

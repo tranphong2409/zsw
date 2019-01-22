@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:commons="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+
+	<Dialog id="visadialog" title="Confirm">
+	<FlexBox direction="Column">
+		<FlexBox direction="Row" justifyContent="SpaceBetween" alignItems="Center">
+			<Label text="Start Date" required="true" />
+			
+			<DatePicker id="visafromdate" width="200px" displayFormat="dd-MM-yyyy"
+				placeholder="DD-MM-YYYY" valueFormat="yyyyMMdd" required="true"/>
+		</FlexBox>
+		<FlexBox direction="Row" alignItems="Center" justifyContent="SpaceBetween">
+			<Label text="End" required="true" />
+			
+			<DatePicker id="visatodate" width="200px" displayFormat="dd-MM-yyyy"
+				placeholder="DD-MM-YYYY" valueFormat="yyyyMMdd" required="true"/>
+		</FlexBox>
+		</FlexBox>
+		<buttons>
+		<Button text="Confirm" press="onDialogConfirm"/>
+		<Button text="Cancel" press="onDialogCancel"/>
+		</buttons>
+		
+	</Dialog>
+</core:FragmentDefinition>

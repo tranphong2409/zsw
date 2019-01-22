@@ -1,0 +1,120 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+	<Panel headerText="Direct Paid to Company" class="panelBorderTrSettle">
+		<t:Table rows="{forexsurrender>/inrtable/}"
+			columnHeaderHeight="40" id="forexsurrinr" class="sapUiSizeCompact margin_bottom_10">
+			<t:toolbar>
+				<Toolbar>
+					<c:Button id="surinradd" text="Add row"
+						enabled="{fieldproperties>/sureditable}" icon="sap-icon://add"
+						press="onSurrAdd"></c:Button>
+					<c:Button id="surinrdel" text="Delete row"
+						enabled="{fieldproperties>/sureditable}" icon="sap-icon://less"
+						class="margin_left_10" press="onSurrDel"></c:Button>
+				</Toolbar>
+			</t:toolbar>
+			<t:noData>
+				<c:Label text=""></c:Label>
+			</t:noData>
+			<t:Column width="170px">
+				<c:Label text="Amount" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField
+						value="{path:'forexsurrender>Cash',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						editable="{fieldproperties>/sureditable}" change="onINRCalculate" />
+
+				</t:template>
+			</t:Column>
+			<t:Column width="120px">
+				<c:Label text="Currency" class="label_small_bold"></c:Label>
+				<t:template>
+
+					<c:ComboBox editable="{fieldproperties>/sureditable}"
+						value="{forexsurrender>Currency}" displaySecondaryValues="true"
+						items="{curModel>/}">
+
+						<c:items>
+							<core:ListItem additionalText="{curModel>FIELD2}"
+								text="{curModel>FIELD1}" />
+
+						</c:items>
+					</c:ComboBox>
+				</t:template>
+			</t:Column>
+			<t:Column width="120px">
+				<c:Label text="Exchange Rate" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField
+						value="{path:'forexsurrender>ExchangeRate',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						editable="{fieldproperties>/sureditable}" change="onINRCalculate" />
+				</t:template>
+			</t:Column>
+
+			<t:Column width="120px">
+				<c:Label text="Total" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField
+						value="{path:'forexsurrender>Total',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+						editable="false" />
+				</t:template>
+			</t:Column>
+
+			<t:Column width="120px">
+				<c:Label text="Type" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:ComboBox editable="{fieldproperties>/sureditable}"
+						value="{forexsurrender>PaymentType}" displaySecondaryValues="false">
+
+						<c:items>
+							<core:ListItem additionalText="NEFT" text="NEFT" />
+							<core:ListItem additionalText="Cheque" text="Cheque" />
+
+
+
+						</c:items>
+					</c:ComboBox>
+				</t:template>
+			</t:Column>
+
+
+
+
+			<t:Column width="170px">
+				<c:Label text="Bank Name" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{forexsurrender>Bank}" editable="{fieldproperties>/sureditable}" />
+
+				</t:template>
+			</t:Column>
+			<t:Column width="170px">
+				<c:Label text="Receipt/Reference Number" class="label_small_bold"></c:Label>
+				<t:template>
+					<c:TextField value="{forexsurrender>Receipt}" editable="{fieldproperties>/surineditable}" />
+				</t:template>
+			</t:Column>
+			<t:Column width="130px">
+				<c:Label text="Remarks" textAlign="Center" class="label_small_bold"></c:Label>
+				<t:template>
+					<Input value="{path:'forexsurrender>Remarks'}"
+						editable="{fieldproperties>/sureditable}"/>
+				</t:template>
+			</t:Column>
+
+		</t:Table>
+		<!-- </c:Panel> -->
+	</Panel>
+
+</core:FragmentDefinition>

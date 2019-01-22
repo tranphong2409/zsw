@@ -1,0 +1,31 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.Login"
+	xmlns:form="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Page title="End To End Travel Management" height="100%"
+		enableScrolling="false" class="login pageHome" showHeader="false">
+		<content>
+			<Bar class="menu_bar_banner" id="logoBar">
+				<contentRight>
+					<FlexBox direction="Column" class="menu_logo">
+						<Image src="images/Logo_Bosch.png" height="30px"
+							class="margin_top_15 margin_right_10"></Image>
+					</FlexBox>
+				</contentRight>
+				<contentLeft>
+					<FlexBox class="menu_logo" fitContainer="true">
+						<Image src="images/logotext.png" class="margin_top_14"></Image>
+					</FlexBox>
+				</contentLeft>
+			</Bar>
+			<FlexBox alignItems="Center" justifyContent="Center"
+				class="margin_top_minus20" direction="Column" fitContainer="true">
+				<items>
+					<Image src="images/warning.jpg"></Image>
+					<Label
+						text="You don't have authorization. Please contact this email address for more information"
+						class="font_size_25"></Label>
+					<Label text="RBEI-IDM User Administrator (RBEI/ICO1)" class="label_bold margin_20"></Label>
+				</items>
+			</FlexBox>
+		</content>
+	</Page>
+</core:View>

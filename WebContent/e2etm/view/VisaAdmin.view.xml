@@ -1,0 +1,85 @@
+<core:View xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:view="sap.ui.core.mvc" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="sap.ui.project.e2etm.controller.VisaRequest">
+	<Page title="Title" showHeader="false" showFooter='false' >
+		<content>
+			<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+			<IconTabBar id="iconTabVisaAdmin" select="onIconTabSelect" class="sapUiSizeCompact">
+				<items>
+					<IconTabFilter icon="sap-icon://begin" text="New" key="NEW"
+						tooltip="New">
+
+					</IconTabFilter>
+<!-- 					<IconTabFilter icon="sap-icon://sys-cancel" -->
+<!-- 						tooltip="Cancelled" text="Cancelled" key="CANCEL"> -->
+
+<!-- 					</IconTabFilter> -->
+					<IconTabFilter icon="sap-icon://status-completed" tooltip="Closed"
+						text="Closed" key="CLOSE">
+
+					</IconTabFilter>
+					
+				</items>
+				<content>
+					<Table inset="false" id="tablevisa" mode="SingleSelectMaster" itemPress="onItemPress" class="tableclass table_ticket_admin"
+						items="{path: '/'}" growing="true" growingThreshold="100">
+						<headerToolbar>
+							<Toolbar visible="false">
+								<Label text="Employee No" class="font_size_14" />
+								<c:TextField width="200px" placeholder="Employee No" />
+								<c:Button text="Assign" width="60px" height="30px"
+									press="onAssign" style="Emph" />
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="5em">
+								<Button text="Travel Req" class="button_header" icon="sap-icon://sort" type="Transparent" press="onMenu" />
+							</Column>
+							<Column width="5em">
+								<Button text="VISA Type" class="button_header" icon="sap-icon://sort" type="Transparent" press="onMenu" />
+							</Column>
+							<Column width="5em">
+								<Button text="Employee No" class="button_header" icon="sap-icon://sort" type="Transparent" press="onMenu" />
+							</Column>
+			
+							<Column width="5em">
+								<Button text="To Country" class="button_header" icon="sap-icon://sort"  type="Transparent" press="onMenu" />
+							</Column>
+
+							<Column width="4em">
+								<Button text="Start Date" class="button_header" icon="sap-icon://sort"  type="Transparent" press="onMenu" />
+							</Column>
+							<Column width="4em">
+								<Button text="End Date" class="button_header" icon="sap-icon://sort"  type="Transparent" press="onMenu" />
+							</Column>
+
+						</columns>
+						<items>
+							<ColumnListItem type="Navigation">
+								<cells>
+									<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+									<Text text="{ZZ_VISA_REQ}"/>
+										
+									<Text text="{ZZ_VISA_TYP}"/>
+									<Text text="{ZZ_PERNR}"/>
+									
+
+									<Text text="{ZZ_VISA_TOCNTRY}" />
+
+									<Text
+										text="{path:'ZZ_VISA_PSDATE',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+									<Text
+										text="{path:'ZZ_VISA_PEDATE',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabBar>
+		</content>
+	</Page>
+	  <core:Fragment id="custommenu" fragmentName="sap.ui.project.e2etm.fragment.common.CustomMenu"
+            type="XML" />
+</core:View>

@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+	<c:Panel text="CONTRACT LETTER" visible="true" class="panelCollapse">
+
+<!-- 		<FlexBox fitContainer="true"> -->
+			<FlexBox direction="Column" fitContainer="true">
+				<Label id="lblContractLetter"
+					text="There is no contract letter generated at the moment" class="margin_20"
+					visible="false"></Label>
+				<FlexBox id="flexBoxContractLetter" width="100%">
+					<c:Carousel width="1000px" content="{contractList>/}"
+						height="100px" defaultItemHeight="100px" defaultItemWidth="150px">
+						<c:content>
+							<FlexBox direction="Column" class="margin_right_20">
+								<Image src="./images/contract.png" width="50px" height="50px"></Image>
+								<Link text="{contractList>ZZ_DOC_NAME}" href="{contractList>ZZ_DOC_PATH}"
+									target="_blank" />
+
+							</FlexBox>
+						</c:content>
+					</c:Carousel>
+				</FlexBox>
+			</FlexBox>
+<!-- 		</FlexBox> -->
+	</c:Panel>
+	<c:Panel text="CGGS calculation sheets" visible="true" class="panelCollapse"
+		id="pnlSalSlip">
+<!-- 		<c:buttons> -->
+<!-- 			<c:Button text="Download" class="margin_5" -->
+<!-- 				press="onDownloadSal" icon="sap-icon://download" /> -->
+<!-- 		</c:buttons> -->
+	
+			<FlexBox direction="Column" fitContainer="true">
+				<Label id="lblSalSlip" text="There is no letter generated at the moment"
+					class="margin_20" visible="false"></Label>
+				<FlexBox id="flexBoxSalSlip" fitContainer="true">
+					<c:Carousel content="{salaryList>/}" width="1000px"
+						height="100px" defaultItemHeight="100px" defaultItemWidth="150px">
+						<c:content>
+							<FlexBox direction="Column" class="margin_right_20">
+								<Image src="./images/contract.png" width="50px" height="50px"></Image>
+								<Link text="{salaryList>ZZ_DOC_NAME}" href="{salaryList>ZZ_DOC_PATH}"
+									target="_blank" />
+							</FlexBox>
+						</c:content>
+					</c:Carousel>
+				</FlexBox>
+			</FlexBox>
+
+	</c:Panel>
+</core:FragmentDefinition>

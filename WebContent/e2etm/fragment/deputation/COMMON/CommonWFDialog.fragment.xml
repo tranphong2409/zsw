@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<c:Dialog modal="true" width="510px" title="WORKFLOW ACTION" class="dialog">
+	    <FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_textarea">
+				<Label text="Your Comment" class="required"></Label>
+				<TextArea id="txtCommonWFComment" value="{ZZ_NEW_COMMENTS}" valueState="{ZZ_NEW_COMMENTS_ERROR}" maxLength="254"></TextArea>				
+			</FlexBox>
+			<Text text="Note:Once Rejected,it cannot be reverted,do you want to Reject or Send Back" id="txtReject" class="FinLabelRedColor"> </Text>
+			<FlexBox id="flxSndBack" visible="false">
+				<RadioButton text="Send Back to Employee" id="rbtnSndEmp"/>
+				<RadioButton text="Send Back to Manager" id="rbtnSndMgr"/>
+			
+			</FlexBox>
+		   <CheckBox id="chkSTVA"  visible="false"
+		             text="I have been briefed on central directive pertaining to ST-VA asignments and the Anlage 1a that is applicable to me.I hereby accept the analage 1a."/>
+		</FlexBox>
+		<c:buttons> 
+			<c:Button id="btnAcceptCL" text="Accept CL" press="onAcceptCLWFButtonClick" height="30px" />
+			<c:Button id="btnRejectCL" text="Reject CL" press="onRejectCLWFButtonClick" height="30px" />
+			<c:Button id="btnSendBack" text="Send Back" press="onSendBackWFButtonClick" height="30px" />
+			<c:Button id="btnReject" text="Reject" press="onRejectWFButtonClick" height="30px" />
+		</c:buttons>
+	</c:Dialog>
+</core:FragmentDefinition>

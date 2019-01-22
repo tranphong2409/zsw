@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+<l:VerticalLayout id="verticalmr" width="100%">
+
+<!-- <FlexBox  direction="Row" justifyContent="End" alignItems="Center"> -->
+<!--     <Button  text="Reports" press="onReport"/> -->
+<!--     <ToolbarSpacer width="20px"/> -->
+<!--     <PullToRefresh class="pullrefresh" showIcon="true" refresh="onRefresh"/> -->
+
+<!--   </FlexBox> -->
+
+	<IconTabBar id="mrtab" class="sapUiResponsiveContentPadding" select="onMonthTabSelect">
+
+		<items>
+			<IconTabFilter key="NEW" text="New">
+				<core:Fragment id="NEW"
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContentTable"
+					type="XML" />
+<!-- 			<Bar design="Footer" class="sapMPageFooter"> -->
+<!-- 				<contentRight> -->
+					
+<!-- 					<Button text="Reject"  icon="sap-icon://sys-cancel"/> -->
+<!-- 				</contentRight> -->
+				
+<!-- 			</Bar>	 -->
+			</IconTabFilter>
+			<IconTabFilter key="REV" text="Reviewed">
+				<core:Fragment id="REV"
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContentTable"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="APP" text="Approved">
+				<core:Fragment id="APP"
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContentTable"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="ONH" text="On Hold">
+				<core:Fragment id="ONH"
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContentTable"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="SBAP" text="Sent Back by Approver">
+				<core:Fragment id="SBAP"
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContentTable"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="SBRW" text="Sent Back by Reviewer">
+				<core:Fragment id="SBRW"
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.MonthlyRemittanceContentTable"
+					type="XML" />
+			</IconTabFilter>
+		</items>
+		
+	</IconTabBar>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

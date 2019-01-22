@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+	<Table id="accWorklist" inset="false" growing="true"
+		growingThreshold="100" class="table_ticket_admin" items="{path: 'trworklist>/'}">
+
+		<columns>
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<c:TextField placeholder="Search" id="trvlreq" change="onSearchWorklist" />
+					<Text text="Travel Request" />
+				</FlexBox>
+
+			</Column>
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<c:TextField id="empno" placeholder="Search" change="onSearchWorklist" />
+
+					<Text text="Employee No" />
+				</FlexBox>
+			</Column>
+			<Column width="5em">
+				<FlexBox direction="Column" alignItems="Start">
+					<c:TextField id="trvltype" placeholder="Search"
+						change="onSearchWorklist" />
+					<Text text="Visa Type" />
+				</FlexBox>
+			</Column>
+
+			<Column width="12em">
+				<!-- <VBox> -->
+				<!-- <Button text="Accounting" press="onAccounting" type="Emphasized" 
+					/> -->
+
+				<Text class="sapUiMediumMarginTop tableclass" text="Accounting"
+					width="100%" textAlign="Center" />
+				<!-- </VBox> -->
+
+			</Column>
+
+
+		</columns>
+
+		<items>
+			<ColumnListItem height="10px">
+				<cells>
+					<Text text="{trworklist>TravelPlan}" />
+					<Text text="{trworklist>EmpNo}" />
+					<Text text="{trworklist>VisaType}" />
+					<VBox>
+						<FlexBox direction="Row" alignItems="Center">
+							<!-- <Button text="Accounting" press="onAccounting" type="Emphasized" 
+								/> -->
+							<HBox>
+								<items>
+									<Button icon="sap-icon://account" type="Emphasized"
+										tooltip="Accouting" press="onAccounting" />
+									<Button icon="sap-icon://log" tooltip="Accouting Error Log"
+										enabled="false" type="Reject" press="onLogPress" />
+
+								</items>
+							</HBox>
+
+							<RadioButtonGroup columns="2" selectedIndex="0"
+								class="rbg_display" select="onYearSelect">
+								<buttons>
+									<RadioButton text="Current Month" />
+									<RadioButton text="Previous Month" />
+								</buttons>
+							</RadioButtonGroup>
+
+						</FlexBox>
+
+						<HBox visible="false" justifyContent="SpaceBetween">
+							<ToolbarSpacer width="80px" />
+							<Input placeholder="Month" maxLength="2" />
+							<Input placeholder="Year" maxLength="4" />
+						</HBox>
+					</VBox>
+
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+</core:FragmentDefinition>

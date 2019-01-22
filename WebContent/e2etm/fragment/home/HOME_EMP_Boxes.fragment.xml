@@ -1,0 +1,167 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<FlexBox justifyContent="Start"
+		class="landing_flexbox_top_container margin_top_10" id="flexboxEmployeeBoxes">
+		<items>
+		    <Panel class="landing_panel_box" headerText="OPEN REQUESTS"
+				id="panelEmployeeCurrentRequest" height="202px">
+				<content>
+					<commons:RowRepeater numberOfRows="1" class="height_100"
+						id="currentRequestRowRepeater" threshold="3"
+						rows="{currentRequestModel>/openDeputationList/}">
+						<commons:noData>
+							<commons:TextView class="font_size_14"
+								text="Currently, there is no open requests. You can raise a request by clicking on the NEW REQUEST button"></commons:TextView>
+						</commons:noData>
+						<commons:rows>
+							<FlexBox direction="Column" class="flexbox_current_request_content" fitContainer="true">
+								<items>
+									<FlexBox justifyContent="Start" fitContainer="true">
+										<Label text="{currentRequestModel>ZZ_REQ_TYP}"
+											tooltip="{path: 'currentRequestModel>ZZ_REQ_TYP', formatter: 'sap.ui.project.e2etm.util.Formatter.formatReqType'}"
+											class="margin_right_5 labelType line_height_24" height="30px"
+											width="38px"></Label>
+										<Link text="{currentRequestModel>ZZ_DEP_REQ}" height="30px"
+											press="onViewCurrentDepDetails"
+											class="label_underline margin_left_5 margin_right_10 line_height_25 padding_right_10 border_right_lightgray"></Link>
+										<Label
+											text="{currentRequestModel>ZZ_DEP_TOCNTRY_TXT}, {currentRequestModel>ZZ_DEP_TOLOC_TXT}"
+											class="line_height_25 color_main_blue" height="30px" width="150px"
+											tooltip="{currentRequestModel>ZZ_DEP_TOCNTRY_TXT}, {currentRequestModel>ZZ_DEP_TOLOC_TXT}"></Label>
+									</FlexBox>
+									<FlexBox fitContainer="true">
+										<Label
+											text="From: {path: 'currentRequestModel>ZZ_DEP_STDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'} To: 
+								            {path: 'currentRequestModel>ZZ_DEP_ENDATE', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}"
+											class="margin_right_5"></Label>
+									</FlexBox>
+									<FlexBox fitContainer="true">
+										<Label text="Current Status:" width="100px" class="label_underline"></Label>
+										<Label text="{currentRequestModel>ZZDEP_SF_TEXT}"
+											tooltip="{currentRequestModel>ZZDEP_SF_TEXT}" width="200px"
+											class="color_main_blue margin_left_10"></Label>
+									</FlexBox>
+									<FlexBox fitContainer="true">
+										<Label text="Action pending with:" width="127px" class="label_underline"></Label>
+										<Label text="{currentRequestModel>ZZ_NEXT_APPROVER}"
+											tooltip="{currentRequestModel>ZZ_NEXT_APPROVER}" width="200px"
+											class="color_main_blue margin_left_10"></Label>
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</commons:rows>
+					</commons:RowRepeater>
+				</content>
+			</Panel>
+			<Panel class="landing_panel_box" headerText="VIEW PROCESS FLOW"
+				height="202px" id="panelProcessFlow">
+				<content>
+					<FlexBox justifyContent="Center" class="margin_left_30">
+						<items>
+							<FlexBox direction="Column" fitContainer="true" width="100%"
+								alignItems="Start">
+								<Link text="Deputation" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/0/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/0/Value}"></Link>
+								<Link text="Travel Request" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/1/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/1/Value}"></Link>
+								<Link text="Forex" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/2/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/2/Value}"></Link>
+								<Link text="Insurance" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/3/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/3/Value}"></Link>
+								<Link text="Cargo" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/4/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/4/Value}"></Link>
+								<Link text="Monthly Remittance" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/5/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/5/Value}"></Link>
+								<Link text="Tax Clearance" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/6/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/6/Value}"></Link>
+								<Link text="VN Global Policy" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/18/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/18/Value}"></Link>
+							</FlexBox>
+							<FlexBox direction="Column" fitContainer="true" width="100%">
+								<Link text="Ticketing" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/7/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/7/Value}"></Link>
+								<Link text="Aditional Advance" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/8/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/8/Value}"></Link>
+								<Link text="Reimbursement" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/9/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/9/Value}"></Link>
+								<Link text="Payment Voucher" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/10/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/10/Value}"></Link>
+								<Link text="Travel Settlement" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/11/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/11/Value}"></Link>
+								<Link text="Accommodation" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/12/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/12/Value}"></Link>
+								<Link text="Business Visa Plan" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/13/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/13/Value}"></Link>
+								<Link text="VA Global Policy" class="smalltext" target="_blank"
+								    enabled="{path : '/newsandupdates/19/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+								    href="{/newsandupdates/19/Value}"></Link>
+							</FlexBox>
+						</items>
+					</FlexBox>
+				</content>
+			</Panel>
+			<Panel class="landing_panel_box" headerText="USEFUL INFORMATION"
+				id="panelUsefulInfo" height="202px">
+				<content>
+					<FlexBox justifyContent="SpaceAround" direction="Column">
+						<items>
+						    <Link text="Travel Policy" class="smalltext" target="_blank"
+						        enabled="{path : '/newsandupdates/14/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+						        href="{/newsandupdates/14/Value}"></Link>
+<!-- 							<Link text="Travel Contacts" class="smalltext" target="_blank" -->
+<!-- 							    enabled="{path : '/newsandupdates/15/Value',  -->
+<!-- 								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}" -->
+<!-- 							    href="{/newsandupdates/15/Value}"></Link> -->
+							<Link text="Travel Contacts" class="smalltext" target="_blank"
+							    href="file://bosch.com/DfsRB/DfsIN/LOC/Kor/COR/ICO/02_Public/01_General_Information/03_others/Travel_Contacts/TD Contact Details.pptx"
+							    />
+							<Link text="User Manual" class="smalltext" target="_blank"
+							    enabled="{path : '/newsandupdates/16/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+							    href="{/newsandupdates/16/Value}"></Link>
+							<Link text="Screen level FAQs" class="smalltext" target="_blank"
+							    enabled="{path : '/newsandupdates/17/Value', 
+								    	formatter: 'sap.ui.project.e2etm.util.Formatter.visibleLink'}"
+							    href="{/newsandupdates/17/Value}"></Link>
+						<Link text="PreDeparture Meeting Schedule" class="smalltext" press="onPdmPress"></Link>
+						
+						</items>
+					</FlexBox>
+				</content>
+			</Panel>
+		</items>
+	</FlexBox>
+</core:FragmentDefinition>

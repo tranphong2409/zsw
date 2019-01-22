@@ -1,0 +1,174 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:view="sap.ui.core.mvc" controllerName="sap.ui.project.e2etm.controller.SimCard"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Mobility Help Desk">
+		<content>
+			<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+			<IconTabBar id="IconIssueSim" select="IssueSimOnSelect"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="issue_simcard" iconColor="Positive"
+						text="Issue SIM Cards" key="I">
+						<content>
+							<IconTabBar id="IconIssueNewSim" select="OnIssueNewSimSelect"
+								class="sapUiResponsiveContentPadding">
+								<items>
+									<IconTabFilter text="New" id="new_issue_simcard"
+										key="N">
+										<content>
+											<IconTabBar id="IconIssueNew" select="OnIssueNewSelect">
+												<items>
+													<IconTabFilter text="Submitted"
+														id="submitt_new_issue_simcard" icon="sap-icon://request"
+														key="S">
+														<!-- <core:Fragment id="SimCardTable" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+															type="XML" /> -->
+													</IconTabFilter>
+													<IconTabFilter text="Approved"
+														id="approved_new_issue_simcard" icon="sap-icon://accept"
+														key="A">
+														<!-- <core:Fragment id="SimCardTable" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+															type="XML" /> -->
+													</IconTabFilter>
+													<IconTabFilter text="Email Sent"
+														id="emailsent_new_issue_simcard" icon="sap-icon://arobase"
+														key="E">
+														<!-- <core:Fragment id="SimCardTable1" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+															type="XML" /> -->
+													</IconTabFilter>
+												</items>
+												<content>
+													<core:Fragment
+														fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable"
+														type="XML" />
+												</content>
+											</IconTabBar>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter text="Date Change"
+										id="datechange_new_issue_simcard" key="D">
+										<content>
+											<IconTabBar id="IconDateChangeApprove" select="OnDateChangeApproveSelect">
+												<items>
+													<IconTabFilter text="Submitted"
+														id="submitted_datechange_new_issue_simcard" icon="sap-icon://request"
+														key="S">
+														<!-- <core:Fragment id="SimCardTable1" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+															type="XML" /> -->
+													</IconTabFilter>
+													<IconTabFilter text="Approved"
+														id="approved_datechange_new_issue_simcard" icon="sap-icon://accept"
+														key="A">
+														<!-- <core:Fragment id="SimCardTable2" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+															type="XML" /> -->
+													</IconTabFilter>
+													<IconTabFilter text="Email Sent"
+														id="emailsent_datechange_new_issue_simcard" icon="sap-icon://arobase"
+														key="E">
+														<!-- <core:Fragment id="SimCardTable3" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+															type="XML" /> -->
+													</IconTabFilter>
+												</items>
+												<content>
+													<core:Fragment id="SimCardDatechangeTable"
+														fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable"
+														type="XML" />
+												</content>
+											</IconTabBar>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter text="Reject/Cancel/Change in the Option"
+										id="reject_new_issue_simcard" key="R">
+										<!-- <core:Fragment id="SimCardTable4" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									</IconTabFilter>
+									<IconTabFilter text="Exisisting SIM Holders"
+										id="Existing_new_issue_simcard" key="E">
+										<!-- <core:Fragment id="SimCardTable5" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									</IconTabFilter>
+									<IconTabFilter text="Closed" id="closed_new_issue_simcard"
+										key="C">
+										<!-- <core:Fragment id="SimCardTable6" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									</IconTabFilter>
+								</items>
+								<content>
+									<core:Fragment id="SimCardnewrejecttable"
+										fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable"
+										type="XML" />
+								</content>
+							</IconTabBar>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter iconColor="Positive" id="return_simcard"
+						text="Return SIM Cards" key="R">
+						<content>
+							<IconTabBar id="IconReturnSim" select="OnReturnSimOnSelect"
+								class="sapUiResponsiveContentPadding">
+								<items>
+									<IconTabFilter text="New" id="new_return_simcard"
+										icon="sap-icon://request" key="N">
+										<!-- <core:Fragment id="SimCardTable7" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									
+									</IconTabFilter>
+									<IconTabFilter text="For Personal Call Declaration"
+										id="personalcall_return_simcard" icon="sap-icon://call" key="F" >
+										<!-- <core:Fragment id="SimCardTable8" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									</IconTabFilter>
+									<IconTabFilter text="Personal Calls Declared"
+										id="personalcalldeclared_return_simcard" icon="sap-icon://home-share"
+										key="L">
+										<!-- <core:Fragment id="SimCardTable9" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									</IconTabFilter>
+									<IconTabFilter text="Closed" id="closed_return_simcard"
+										icon="sap-icon://complete" key="C">
+										<!-- <core:Fragment id="SimCardTable10" fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable" 
+											type="XML" /> -->
+									</IconTabFilter>
+								</items>
+								<content>
+									<Button id="reminderbtn" text="Send Reminders" icon="sap-icon://email" press="onMailSent"></Button>
+									<core:Fragment id="SimCardreturnTable"
+										fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardTable"
+										type="XML" />
+								</content>
+							</IconTabBar>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter iconColor="Positive" id="report" text="Reports" key="Rep" >
+					<content>
+					<IconTabBar id="simrep" select="OnSimcardRepSelect"
+								class="sapUiResponsiveContentPadding">
+						<items>
+						
+						<IconTabFilter text="SIM Card Report" id="simcard_rep"
+										 key="simcard_rep">
+								<core:Fragment  fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardRepTable" 
+									type="XML" /> 
+									
+						</IconTabFilter>
+						<IconTabFilter text="SIM Card Usage report"
+										id="sim_usgae_rep"  key="sim_usgae_rep">
+						 <core:Fragment  fragmentName="sap.ui.project.e2etm.fragment.SimCard.SimCardUsageRepTable" 
+							type="XML" /> 
+						</IconTabFilter>
+						
+						
+						
+						</items>		
+					
+					
+					</IconTabBar>
+					
+					
+					</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</core:View>

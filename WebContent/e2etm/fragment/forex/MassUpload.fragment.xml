@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons" xmlns:t="sap.ui.table">
+	<Panel class="panelBorderTrSettle" expandable="true" expanded="true" headerText="File Upload">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="File Upload" design="Bold" />
+			</Toolbar>
+		</headerToolbar>
+		<HBox alignItems="Center">
+			<Label text="Filename" width="180px" design="Bold" />
+			<u:FileUploader id="forexFileUploader" name="myFileUpload" />
+			<Button text="Upload" class="sapUiMediumMarginBegin" press="onMassFileUpload" type="Accept" />
+		</HBox>
+	</Panel>
+	<Panel id="pnlLog" visible="false"
+		class="panelBorderTrSettle sapUiSmallMarginTop">
+		<headerToolbar>
+			<Toolbar>
+				<Label text="Details" design="Bold" />
+				<ToolbarSpacer />
+				<SegmentedButton id="pnlSegBtn" selectedKey="SUC"
+					select="onLogSelect">
+					<items>
+						<SegmentedButtonItem icon="sap-icon://message-success" tooltip="Success"
+							key="SUC" />
+						<SegmentedButtonItem icon="sap-icon://error" tooltip="Error"
+							key="ERR" />
+					</items>
+				</SegmentedButton>
+			</Toolbar>
+		</headerToolbar>
+		<content>
+
+		</content>
+	</Panel>
+
+
+</core:FragmentDefinition>

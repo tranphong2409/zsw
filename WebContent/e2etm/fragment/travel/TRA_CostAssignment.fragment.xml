@@ -1,0 +1,344 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.commons">
+	<c:Button text="Current Version" class="margin_bottom_10"
+		press="showCurrentCostDetails" id="btnCurrentVersionCostDetails"
+		visible="{path: 'ZZ_CHANGE_CO', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}"
+		enabled="false"></c:Button>
+	<c:Button text="Previous Version" class="margin_left_10 margin_bottom_10"
+		press="showPreviousCostDetails" id="btnPreviousVersionCostDetails"
+		visible="{path: 'ZZ_CHANGE_CO', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}"></c:Button>
+	<c:RowRepeater numberOfRows="1" id="rowRepeaterCostDetails"
+		class="rowRepeaterGeneral">
+		<c:noData>
+			<c:TextView text=""></c:TextView>
+		</c:noData>
+		<c:rows>
+			<FlexBox direction="Column">
+				<FlexBox visible="{/view/isFuture}" class="margin_bottom_10">
+					<c:Button text="Add row" icon="sap-icon://add" press="onCostAssignmentAddPress"
+						enabled="{/view/isFuture}"></c:Button>
+					<c:Button text="Delete row" icon="sap-icon://less" class="margin_left_10"
+						press="onCostAssignmentDeletePress" enabled="{/view/isFuture}"></c:Button>
+				</FlexBox>
+				<t:Table rows="{/TRV_HDRtoTRV_COST_ASGN/results/}" id="tabCostAssignment"
+					columnHeaderHeight="40" visibleRowCount="{/view/costLength}" class="margin_bottom_10 UiCellsheight">
+					<t:noData>
+						<c:Label text=""></c:Label>
+					</t:noData>
+					<t:Column width="90px" height="150px">
+						<c:Label text="PERCENT" class="required label_small_bold"></c:Label>
+						<t:template>
+							<FlexBox direction="Column" alignItems="Start" height="100px">
+							<!--  <FlexBox height="100px"> -->
+							<c:TextField value="{ZZ_PERCENT}" enabled="{/view/isFuture}" width="100%"
+								valueState="{ZZ_PERCENT_ERROR}"></c:TextField> 
+								<!-- </FlexBox> -->
+							<!--  <FlexBox height="70px">  -->
+							<Text id="PercentHelptxt" text = " "></Text> </FlexBox>	
+						<!-- 	</FlexBox> -->
+						</t:template>
+					</t:Column>
+					<t:Column width="150px" height="150px">
+						<c:Label text="FUND" class="required label_small_bold"></c:Label>
+						<t:template>
+							<FlexBox direction="Column" alignItems="Start" height="100px">
+						<!-- 	 <FlexBox height="100px">  -->
+							<c:ValueHelpField value="{ZZ_GEBER}" id="fundId"
+								change="onChangeFund" valueHelpRequest="onValueHelpRequest"
+								enabled="{/view/isFuture}" valueState="{ZZ_GEBER_ERROR}" editable="{/view/fundEditable}"
+								tooltip="{ZZ_GEBER_TOOLTIP}"></c:ValueHelpField> 
+								<!-- </FlexBox>  -->
+								<!--  <FlexBox height="70px"> -->
+								<Text id="FundHelptxt" text = "{ZZ_BESCHR}" tootip="{ZZ_BESCHR}" width="80%" ></Text> 
+								<!-- </FlexBox>  -->
+							</FlexBox>
+						</t:template>
+					</t:Column>
+					<t:Column width="150px" height="150px">
+						<c:Label text="BUDGET CENTER" class="required label_small_bold"></c:Label>
+						<t:template>
+							<FlexBox direction="Column" alignItems="Start" height="100px">
+							<!-- <FlexBox height="100px">  -->
+							<c:ValueHelpField value="{ZZ_FISTL}" change="onBudgetCenterChange"
+								id="budgetCenterId" valueHelpRequest="onValueHelpRequest" class="budget_center_read_only"
+								enabled="{/view/isFuture}" valueState="{ZZ_FISTL_ERROR}"></c:ValueHelpField>
+							<!-- </FlexBox>  -->
+							<!-- <FlexBox height="70px"> -->
+							 <Text id="BudCenterHelptxt" text = "{ZzFundDes}" tooltip="{ZzFundDes}" width="80%"></Text>
+						<!-- 	</FlexBox>  -->
+							</FlexBox>
+						</t:template>
+					</t:Column>
+					<t:Column width="170px" height="150px">
+						<c:Label text="WBS ELEMENT" class="label_small_bold"></c:Label>
+						<t:template>
+							<FlexBox direction="Column" alignItems="Start" height="100px">
+							<!-- <FlexBox height="100px">  -->
+							<c:ValueHelpField value="{ZZ_FIPOS}" id="wbsId"
+								valueHelpRequest="onValueHelpRequest" enabled="{/view/isFuture}"
+								valueState="{ZZ_FIPOS_ERROR}"></c:ValueHelpField>
+								<!-- </FlexBox> --> 
+								 <!-- <FlexBox height="70px"> -->
+								 <Text id="WbsHelptxt" text = "{ZZ_POST1}" tooltip="{ZZ_POST1}" width="80%"></Text> 
+								 <!-- </FlexBox> --> 
+							 </FlexBox>
+						</t:template>
+					</t:Column>
+					<t:Column height="150px">
+						<c:Label text="COST CENTER" class="label_small_bold"></c:Label>
+						<t:template>
+							<FlexBox direction="Column" alignItems="Start" height="100px">
+							<!--  <FlexBox height="100px"> -->
+							<c:ValueHelpField value="{ZZ_KOSTL}" change="onCostCenterChange"
+								id="costCenterId" valueHelpRequest="onValueHelpRequest" enabled="{/view/isFuture}"
+								valueState="{ZZ_KOSTL_ERROR}"></c:ValueHelpField>
+							<!-- 	</FlexBox> -->
+						<!-- 	<FlexBox height="70px">  -->
+							<Text id="CostCenterHelptxt" text = "{KTEXT}" tooltip="{KTEXT}" width="80%"></Text> </FlexBox> 
+							<!-- </FlexBox> -->
+						</t:template>
+					</t:Column>
+					<t:Column height="150px">
+						<c:Label text="BUDGET CODE" class="required label_small_bold"></c:Label>
+						<t:template>
+							<FlexBox direction="Column" alignItems="Start" height="100px">
+							<!-- <FlexBox height="100px"> -->
+							<c:ValueHelpField value="{ZZ_FIPEX}" change="onBudgetCodeChange"
+								id="budgetCodeId" valueHelpRequest="onValueHelpRequest" enabled="{/view/isFuture}"
+								valueState="{ZZ_FIPEX_ERROR}" tooltip="{ZZ_FIPEX_TOOLTIP}"></c:ValueHelpField> 
+								<!-- </FlexBox>  -->
+							<!--  <FlexBox height="70px">  -->
+							<Text id="BudgetCodeHelptxt" text = "{ZZ_BUD_DESC}" tooltip = "{ZZ_BUD_DESC}" width="80%"></Text>
+							<!-- </FlexBox>  -->
+							</FlexBox>
+						</t:template>
+					</t:Column>
+				</t:Table>
+				
+					<FlexBox direction="Column">
+					<FlexBox id="flexBoxFundF03" justifyContent="SpaceBetween"
+						class="margin_top_5 margin_bottom_5 padding_10 border_lightgray background_gradient_gray"
+						direction="Column">
+						<FlexBox>
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="Customer Coordinator Name" class="required line_height_30 margin_right_10"
+									width="200px" tooltip="Customer Coordinator Name"></Label>
+								<Input value="{ZZ_CCNAME}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" valueState="{ZZ_CCNAME_ERROR}"
+									width="250px" placeholder="Mr/Ms"></Input>
+							</FlexBox>
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="Customer Coordinator Department"
+									class="required line_height_30 margin_right_10 margin_left_20"
+									width="250px" tooltip="Customer Coordinator Department"></Label>
+								<Input value="{ZZ_CCDEPT}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" valueState="{ZZ_CCDEPT_ERROR}"
+									width="250px"></Input>
+							</FlexBox> 
+						
+					<!-- Dye5kor -->
+						<!-- <FlexBox class="" justifyContent="SpaceBetween" >
+							<Label text="Customer Company Name" 
+								class="line_height_30 margin_right_10"
+								width="230px" tooltip="Customer Company Name"></Label>
+							<c:ValueHelpField value="{ZZ_CUST_NAME}" id="customerId"
+								width="250px" valueHelpRequest="onValueHelpRequest"
+								enabled="{/view/isFuture}" valueState="{/view/ZZ_CUST_NAME_ERROR}"
+								change="onCustomerChange"></c:ValueHelpField>
+							</FlexBox>
+					
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="Customer Cost Center" class="line_height_30 margin_left_20"
+									width="200px" tooltip="Customer Cost Center"></Label>
+								<Input value="{ZZ_CCOST}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" width="250px" valueState="{ZZ_CCOST_ERROR}"></Input>
+							</FlexBox> -->
+					
+					<!-- Dye5kor -->					
+						
+						</FlexBox>
+
+						<FlexBox>
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="EA/DO" class="line_height_30 margin_right_10"
+									width="200px" tooltip="EA Number"></Label>
+								<Input value="{ZZ_EANO}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" width="250px"></Input>
+							</FlexBox>
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="PO Number"
+									class="line_height_30 margin_right_10 margin_left_20" width="250px"
+									tooltip="PO Number"></Label>
+								<Input value="{ZZ_PONO}" editable="{/view/isFuture}"
+									class="normal_input" width="250px"></Input>
+							</FlexBox> 
+						
+						<!-- Dye5kor -->
+						<!-- <FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="Customer Coordinator Name" class="required line_height_30 margin_right_10"
+									width="230px" tooltip="Customer Coordinator Name"></Label>
+								<Input value="{ZZ_CCNAME}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" valueState="{ZZ_CCNAME_ERROR}"
+									width="250px" placeholder="Mr/Ms"></Input>
+							</FlexBox>
+							
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="PO Number"
+									class="line_height_30 margin_left_20" width="200px"
+									tooltip="PO Number"></Label>
+								<Input value="{ZZ_PONO}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" width="250px"></Input>
+							</FlexBox>
+ -->						
+						<!-- Dye5kor -->
+						
+						
+						</FlexBox>
+						<FlexBox>
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="Customer Cost Center" class="line_height_30 margin_right_10"
+									width="200px" tooltip="Customer Cost Center"></Label>
+								<Input value="{ZZ_CCOST}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" width="250px" valueState="{ZZ_CCOST_ERROR}"></Input>
+							</FlexBox>
+							<FlexBox class="" justifyContent="SpaceBetween" visible="false">
+								<Label text="Customer Legal Entity"
+									class="required line_height_30 margin_right_10 margin_left_20"
+									width="250px" tooltip="Customer Cost Centre"></Label>
+								<Input value="{ZZ_CLENTY}" editable="{/view/isFuture}"
+									class="normal_input" width="250px" valueState="{ZZ_CLENTY_ERROR}"></Input>
+							</FlexBox> 
+							
+							<!-- Dye5kor -->
+	<!-- 						
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="Customer Coordinator Department"
+									class="line_height_30 margin_right_10"
+									width="230px" tooltip="Customer Coordinator Department"></Label>
+								<Input value="{ZZ_CCDEPT}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" valueState="{ZZ_CCDEPT_ERROR}"
+									width="250px"></Input>
+							</FlexBox> 
+							<FlexBox class="" justifyContent="SpaceBetween">
+								<Label text="EA/DO" class="line_height_30 margin_left_20"
+									width="200px" tooltip="EA Number"></Label>
+								<Input value="{ZZ_EANO}" editable="{/view/isFuture}"
+									class="normal_input margin_right_10" width="250px"></Input>
+							</FlexBox>
+	 -->						<!-- Dye5kor -->
+						
+						
+						
+						
+						</FlexBox>
+					</FlexBox>
+					<FlexBox id="flexBoxFundF02"
+						class="padding_10 border_lightgray margin_top_5 margin_bottom_5 background_gradient_gray"
+						direction="Column" justifyContent="SpaceBetween">
+						<FlexBox justifyContent="SpaceBetween">
+							<FlexBox alignItems="Center" justifyContent="SpaceBetween">
+								<Label text="VKM" valueHelpRequest="onValueHelpRequest"
+									width="160px"></Label>
+								<c:ValueHelpField value="{ZZ_VKM}" id="vkmId"
+									width="160px" valueHelpRequest="onValueHelpRequest"
+									enabled="{/view/isFuture}" valueState="{ZZ_VKM_ERROR}" tooltip="{ZZ_VKM_TOOLTIP}"></c:ValueHelpField>
+							</FlexBox>
+							</FlexBox>
+
+					</FlexBox>
+					<!-- <FlexBox id="flexBoxFundF02"
+						class="padding_10 border_lightgray margin_top_5 margin_bottom_5 background_gradient_gray"
+						direction="Column" justifyContent="SpaceBetween">
+						<FlexBox justifyContent="SpaceBetween">
+							<FlexBox alignItems="Center" justifyContent="SpaceBetween">
+								<Label text="VKM" valueHelpRequest="onValueHelpRequest"
+									width="160px"></Label>
+								<c:ValueHelpField value="{ZZ_VKM}" id="vkmId"
+									width="160px" valueHelpRequest="onValueHelpRequest"
+									enabled="{/view/isFuture}" valueState="{ZZ_VKM_ERROR}" tooltip="{ZZ_VKM_TOOLTIP}"></c:ValueHelpField>
+							</FlexBox>
+							</FlexBox>
+
+					</FlexBox> -->
+					<FlexBox id="flexBoxFundF01F02F04"
+						class="padding_10 border_lightgray margin_top_5 margin_bottom_5 background_gradient_gray sapUiSizeCompact"
+						direction="Column" justifyContent="SpaceBetween">
+
+<!-- 						<core:Fragment id="f01CustomerType" fragmentName="sap.ui.project.e2etm.fragment.travel.CustomerType" -->
+<!-- 							type="XML" /> -->
+
+						<core:Fragment id="f01CiRep" fragmentName="sap.ui.project.e2etm.fragment.travel.CIRepDetails"
+							type="XML" />
+					</FlexBox>
+
+				</FlexBox>
+			</FlexBox>
+
+			<!-- Display old version here -->
+			<FlexBox direction="Column">
+				<t:Table rows="{/old/TRV_HDRtoTRV_COST_ASGN/results/}"
+					visibleRowCount="{/old/costLength}"
+					visible="{path: 'ZZ_CHANGE_CO', formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}">
+					<t:Column width="120px">
+						<c:Label text="PERCENT" class="required label_small_bold"></c:Label>
+						<t:template>
+							<c:TextField value="{ZZ_PERCENT}" enabled="false"></c:TextField>
+						</t:template>
+					</t:Column>
+
+					<t:Column width="120px">
+						<c:Label text="FUND" class="required label_small_bold"></c:Label>
+						<t:template>
+							<c:ValueHelpField value="{ZZ_GEBER}" enabled="false"></c:ValueHelpField>
+						</t:template>
+					</t:Column>
+					<t:Column width="170px">
+						<c:Label text="BUDGET CENTER" class="required label_small_bold"></c:Label>
+						<t:template>
+							<c:ValueHelpField value="{ZZ_FISTL}" enabled="false"></c:ValueHelpField>
+						</t:template>
+					</t:Column>
+					<t:Column width="170px">
+						<c:Label text="WBS ELEMENT" class="label_small_bold"></c:Label>
+						<t:template>
+							<c:ValueHelpField value="{ZZ_FIPOS}"
+								valueHelpRequest="onValueHelpRequest" enabled="false"></c:ValueHelpField>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<c:Label text="COST CENTER" class="label_small_bold"></c:Label>
+						<t:template>
+							<c:ValueHelpField value="{ZZ_KOSTL}" enabled="false"></c:ValueHelpField>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<c:Label text="BUDGET CODE" class="required label_small_bold"></c:Label>
+						<t:template>
+							<c:ValueHelpField value="{ZZ_FIPEX}" enabled="false"></c:ValueHelpField>
+						</t:template>
+					</t:Column>
+				</t:Table>
+				<!-- <FlexBox direction="Column"> <FlexBox justifyContent="SpaceBetween" 
+					class="margin_top_10"> <FlexBox> <Label text="Customer Coordinator Name" 
+					class="required line_height_30 margin_right_10" tooltip="Customer Coordinator 
+					Name"></Label> <Input value="{/old/ZZ_CCNAME}" editable="false" class="normal_input 
+					margin_right_10" valueState="{/old/ZZ_CCNAME_ERROR}" width="100px"></Input> 
+					</FlexBox> <FlexBox> <Label text="Customer Coordinator Department" class="required 
+					line_height_30 margin_right_10" tooltip="Customer Coordinator Department"></Label> 
+					<Input value="{/old/ZZ_CCDEPT}" editable="false" class="normal_input margin_right_10" 
+					valueState="{/old/ZZ_CCDEPT_ERROR}" width="100px"></Input> </FlexBox> <FlexBox> 
+					<Label text="EA Number" class="line_height_30 margin_right_10" tooltip="EA 
+					Number"></Label> <Input value="{/old/ZZ_EANO}" editable="false" class="normal_input 
+					margin_right_10" width="100px"></Input> </FlexBox> <FlexBox> <Label text="Customer 
+					Cost Centre" class="line_height_30 margin_right_10" tooltip="Customer Cost 
+					Centre"></Label> <Input value="{/old/ZZ_CCOST}" editable="false" class="normal_input" 
+					width="100px"></Input> </FlexBox> </FlexBox> <FlexBox alignItems="Center"> 
+					<Label text="VKM" valueHelpRequest="onValueHelpRequest" class="required line_height_30"></Label> 
+					<c:ValueHelpField value="{/old/ZZ_VKM}" class="margin_left_10" valueHelpRequest="onValueHelpRequest" 
+					enabled="{/view/enabled}" valueState="{/old/ZZ_VKM_ERROR}"></c:ValueHelpField> 
+					</FlexBox> </FlexBox> -->
+			</FlexBox>
+		</c:rows>
+	</c:RowRepeater>
+</core:FragmentDefinition>

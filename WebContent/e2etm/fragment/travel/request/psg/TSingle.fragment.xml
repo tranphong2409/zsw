@@ -1,0 +1,77 @@
+<core:FragmentDefinition height="100%" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns:t="sap.ui.table"
+	xmlns="sap.m">
+	<HBox class="font-size-18 passenger_tab_content">
+		<items>
+			<VBox width="20%">
+				<items>
+					<Label text="From place"></Label>
+					<ComboBox change="onFromCountryChange" class="cm_input_border_bottom font-size-18 cm_loc_mtop" filterSecondaryValues="true"
+					enabled="{trvRequestDtl>ZZ_F_ROW}"
+						items="{ path: 'trvRequestDtl>/aCountries',length:1000}" selectedKey="{trvRequestDtl>ZZ_LOC_FROM_KEY}" showSecondaryValues="true"
+						valueState="{trvRequestDtl>ZZ_FMCNTRY_ERROR}" width="100%">
+						<core:ListItem additionalText="{trvRequestDtl>CITYCODE}" key="{trvRequestDtl>CITY_COUNTRY_CODE}" text="{trvRequestDtl>CITY_COUNTRY}"/>
+					</ComboBox>
+				</items>
+			</VBox>
+			<VBox width="3%">
+				<items>
+					<core:Icon class="trvDetailIcon" color="#031E48" src="">
+						<core:layoutData>
+							<FlexItemData growFactor="1"/>
+						</core:layoutData>
+					</core:Icon>
+				</items>
+			</VBox>
+			<VBox width="20%">
+				<items>
+					<Label text="To place"></Label>
+					<ComboBox change="onToCountryChange" class="cm_input_border_bottom font-size-18 cm_loc_mtop" filterSecondaryValues="true"
+					enabled="{trvRequestDtl>ZZ_F_ROW}"
+						items="{ path: 'trvRequestDtl>/aCountries',length:1000}" selectedKey="{trvRequestDtl>ZZ_LOC_TO_KEY}" showSecondaryValues="true"
+						valueState="{trvRequestDtl>ZZ_TOCNTRY_ERROR}" width="95%">
+						<core:ListItem additionalText="{trvRequestDtl>CITYCODE}" key="{trvRequestDtl>CITY_COUNTRY_CODE}" text="{trvRequestDtl>CITY_COUNTRY}"/>
+					</ComboBox>
+				</items>
+			</VBox>
+			<VBox width="13%">
+				<items>
+					<Label text="Departure Date"></Label>
+					<DatePicker change="onChangeTravelDateFrom" class="trvDetailDate cm_input_base_border_bot" displayFormat="dd/MM/yyyy" enabled="{trvRequestDtl>ZZ_F_ROW}"
+						value="{trvRequestDtl>ZZ_FMDATE_VALUE}" valueFormat="dd/MM/yyyy"/>
+				</items>
+			</VBox>
+			<VBox width="7%">
+				<items>
+					<Label text="Time"></Label>
+					<DateTimeInput change="onChangeTravelTimeFrom" class="time_field margin_right_10 cm_input_base_border_bot" displayFormat="HH:mm" type="Time" enabled="{trvRequestDtl>ZZ_F_ROW}"
+						value="{trvRequestDtl>ZZ_FMTIME}" valueFormat="HHmmss" valueState="{/view/ZZ_UHRV1_ERROR}" width="60px"></DateTimeInput>
+				</items>
+			</VBox>
+			<VBox width="12%">
+				<items>
+					<Label text="Arrival Date"></Label>
+					<DatePicker change="onChangeTravelDateTo" class="trvDetailDate cm_input_base_border_bot" displayFormat="dd/MM/yyyy"
+						enabled="{trvRequestDtl>/ZZ_ROUND_TRIP}" value="{trvRequestDtl>ZZ_TODATE_VALUE}" valueFormat="dd/MM/yyyy"/>
+				</items>
+			</VBox>
+			<VBox width="7%">
+				<items>
+					<Label text="Time"></Label>
+					<DateTimeInput change="onChangeTravelTimeTo" class="time_field_sec margin_right_10 cm_input_base_border_bot" displayFormat="HH:mm"
+						enabled="{trvRequestDtl>/ZZ_ROUND_TRIP}" type="Time" value="{trvRequestDtl>ZZ_TOTIME}" valueFormat="HHmmss"
+						valueState="{/view/ZZ_UHRV1_ERROR}" width="60px"></DateTimeInput>
+				</items>
+			</VBox>
+			<VBox width="15%">
+				<items>
+					<Label text="Travel Mode"></Label>
+					<ComboBox change="onTravelModeChange" class="trvDetailMode cm_input_border_bottom" filterSecondaryValues="true"
+					enabled="{trvRequestDtl>ZZ_F_ROW}"
+						items="{ path: 'trvRequestDtl>/travelingDtl/aTrvMode'}" selectedKey="{trvRequestDtl>ZZ_ZMODE}" showSecondaryValues="true">
+						<core:ListItem additionalText="{trvRequestDtl>DDTEXT}" key="{trvRequestDtl>DOMVALUE_L}" text="{trvRequestDtl>DDTEXT}"/>
+					</ComboBox>
+				</items>
+			</VBox>
+		</items>
+	</HBox>
+</core:FragmentDefinition>

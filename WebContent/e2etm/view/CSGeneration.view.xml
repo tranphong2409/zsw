@@ -1,0 +1,138 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="sap.ui.project.e2etm.controller.CSGeneration"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Generation of CGGS Calculation Sheet">
+	<customHeader>
+	<Bar>
+	<contentMiddle>
+	<Label text="Generation of CGGS Calculation Sheet"/>
+	</contentMiddle>
+	<contentRight>
+	<Link text="Employee Salary Details" press="onSalLink"/>
+	</contentRight>
+	</Bar>
+	</customHeader>
+		<content>
+			<IconTabBar id="cgtabbaradmin" class="sapUiSizeCompact"
+				select="onIconTabSelect">
+				<items>
+					<IconTabFilter icon="sap-icon://request" visible="true"
+						text="New" tooltip="New" key="NEW">
+
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://to-be-reviewed" text="To be Reviewed"
+						key="REVW" tooltip="To be Reviewed">
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://accept" text="To be Approved"
+						tooltip="To be Approved" key="APPV">
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://complete" text="Closed"
+						tooltip="Closed" key="CLSD">
+
+					</IconTabFilter>
+				</items>
+				<content>
+					<RadioButtonGroup columns="4" selectedIndex="0"
+						id="rbtnGroupTrvl" select="onRbSelect">
+						<buttons>
+							<RadioButton text="New Travels" />
+							<RadioButton text="Manual Selection" />
+						</buttons>
+					</RadioButtonGroup>
+					<HBox id="srchBox" alignItems="Center" justifyContent="SpaceBetween"
+						visible="false">
+						<HBox id="flxBegda" alignItems="Center">
+							<Label text="Start Date: " />
+							<DatePicker id="ipBegda" displayFormat="dd.MM.yyyy"
+								valueFormat="yyyyMMdd" width="120px" />
+						</HBox>
+						<HBox id="flxEndda" alignItems="Center">
+							<Label text="End Date: " />
+							<DatePicker id="ipEndda" displayFormat="dd.MM.yyyy"
+								valueFormat="yyyyMMdd" width="120px" />
+						</HBox>
+						<Label text="Employee No:" />
+						<Input id="ipPernr" width="120px" />
+						<Label text="Dep.Req:" />
+						<Input id="ipDepreq" width="120px" />
+						<Button text="Search" press="onManualSearch" />
+					</HBox>
+
+					<Table inset="false" mode="MultiSelect" id="tblDetls" width="100%"
+						fixedLayout="false" itemPress="onItemPress" items="{path:'/'}">
+						<headerToolbar>
+							<Toolbar>
+								<ToolbarSpacer />
+								<SearchField width="200px" search="onSearch" id="idSearch" />
+
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Employee Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Dep.Req No." />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Employee Name" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Request Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Assignment Model" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true"
+								visible="false" id="clTemplate">
+								<Text text="Template" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true"
+								visible="false" id="clLink">
+								<Text text="" />
+							</Column>
+
+						</columns>
+						<items>
+							<ColumnListItem height="10px">
+								<cells>
+									<Text text="{Pernr}" wrapping="true" />
+									<Text text="{DepReq}" wrapping="true" />
+									<Text text="{Name}" wrapping="true" />
+									<Text text="{ReqType}" wrapping="true" />
+									<Text text="{AsgTyp}" wrapping="true" />
+									<Select selectedKey="{Template}">
+										<items>
+											<core:Item key="" text="Please Select" />
+											<core:Item key="N" text="New" />
+											<core:Item key="X" text="Revision" />
+										</items>
+									</Select>
+									<Link text="Link" emphasized="true" href="{Url}" target="_blank" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button text="Refresh" type="Emphasized" press="onRefresh"
+						icon="sap-icon://refresh"  visible="true" />
+					<Button text="Details" type="Reject" press="onLogPress"
+						icon="sap-icon://error" id="btnLog" visible="false" />
+				</contentLeft>
+				<contentRight>
+					<Button text="Generate" icon="sap-icon://generate-shortcut"
+						type="Accept" press="onUpdateStatus" id="btnGenerate" visible="false" />
+					<Button text="Re generate" icon="sap-icon://redo" press="onUpdateStatus"
+						type="Accept" id="btnRegen" visible="false" />
+
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

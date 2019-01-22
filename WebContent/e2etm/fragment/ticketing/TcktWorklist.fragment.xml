@@ -1,0 +1,105 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+<ScrollContainer>
+	<Table inset="false" class="tableclass table_ticket_admin sapUiSizeCompact" id="tblTicketing"
+		mode="SingleSelectMaster" itemPress="onItemPress" items="{path: '/'}"
+		growing="true" growingThreshold="100">
+		<headerToolbar>
+			<Toolbar visible="false">
+				<Label text="Employee No" class="font_size_14" />
+				<c:TextField width="200px" placeholder="Employee No" />	
+				<c:Button text="Assign" width="60px" height="30px" press="onAssign"
+					style="Emph" />
+			</Toolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<Toolbar visible="false" design="Auto" class="infoToolbar">
+				<RadioButtonGroup columns="2" selectedIndex="0"
+					class="rbg_display" select="onSentBackRbSelect">
+					<buttons>
+						<RadioButton text="Sent Back by Employee" />
+						<RadioButton text="Sent Back by Admin" />
+					</buttons>
+				</RadioButtonGroup>
+
+			</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column width="5em">
+				<Button text="Travel Req" icon="sap-icon://sort" tooltip="Travel Req"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="5em">
+				<Button text="Employee No" icon="sap-icon://sort" tooltip="Employee No"
+					class="button_header" press="onMenu" />
+			</Column>
+
+			<Column width="5em">
+				<Button text="Name" icon="sap-icon://sort" tooltip="Name"
+					class="button_header" press="onMenu" />
+			</Column>
+	       <Column width="5em">
+				<Button text="Date&amp;Time"  icon="sap-icon://sort" tooltip="Creation Date and Time"
+					class="button_header" press="onMenu"/>
+			</Column>
+			<Column width="3em">
+				<Button text="Level" icon="sap-icon://sort" tooltip="Level"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="4em">
+				<Button text="Category" icon="sap-icon://sort" tooltip="Category"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="3em">
+				<Button text="Mode" icon="sap-icon://sort" tooltip="Mode"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="6em">
+				<Button text="From Country" icon="sap-icon://sort" tooltip="From Country"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="5em">
+				<Button text="To Country" icon="sap-icon://sort" tooltip="To Country"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="4em">
+				<Button text="From Date" icon="sap-icon://sort" tooltip="From Date"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="4em">
+				<Button text="To Date" icon="sap-icon://sort" tooltip="To Date"
+					class="button_header" press="onMenu" />
+			</Column>
+			<Column width="5.5em">
+				<Button text="Request With" icon="sap-icon://sort" tooltip="Request With"
+					class="button_header" press="onMenu" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation">
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<Text text="{TravelPlan}" textAlign="Center"
+						class="margin_top_10 margin_bottom_10" />
+					<Text text="{EmpNo}" textAlign="Center" />
+				   
+					<Text text="{EmpName}" wrapping="false" tooltip="{EmpName}"
+						textAlign="Center" />
+					<Text text="{CrDateTime}" textAlign="Center" />
+					<Text text="{Level}" textAlign="Center" />
+					<Text text="{TrvCat}" textAlign="Center" />
+					<Text text="{Mode}" textAlign="Center" />
+					<Text text="{FromCountryText}" textAlign="Center" />
+					<Text text="{ToCountryText}" textAlign="Center" />
+					<Text
+						text="{path:'StartDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text
+						text="{path:'EndDate',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+					<Text text="{TcktRespName}" wrapping="false" tooltip="{TcktRespName}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

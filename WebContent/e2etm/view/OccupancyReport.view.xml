@@ -1,0 +1,139 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:table="sap.ui.table" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" controllerName="sap.ui.project.e2etm.controller.OccupancyReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+		<content>
+			<core:Fragment
+				fragmentName="sap.ui.project.e2etm.fragment.reservation.OccReportSearch"
+				type="XML" />
+			<table:TreeTable
+				rows="{path:'occReport>/',parameters: {arrayNames:['results']}}" id="tblOccList"
+				class="sapUiSizeCozy tblAccReport" enableGrouping="true"
+				navigationMode="Paginator" visibleRowCount="7" ariaLabelledBy="title">
+				<table:toolbar>
+
+					<Toolbar>
+						<Label text="Show" />
+						<Select change="onEntriesDisplay">
+							<items>
+								<core:Item key="10" text="10" />
+								<core:Item key="25" text="25" />
+								<core:Item key="50" text="50" />
+								<core:Item key="100" text="100" />
+							</items>
+						</Select>
+						<Label text="Entries" />
+						<ToolbarSpacer />
+
+
+						<Button text="Export" icon="sap-icon://download" press="onExportCSV" />
+					</Toolbar>
+				</table:toolbar>
+				<table:columns>
+					<table:Column>
+						<Label text="Country" />
+						<table:template>
+							<Text text="{occReport>Country}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="City" />
+						<table:template>
+							<Text text="{occReport>City}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+					<table:Column>
+						<Label text="Apartment Name" />
+						<table:template>
+							<Text text="{occReport>Hname}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="No of Rooms" />
+						<table:template>
+							<Text text="{occReport>Nrooms}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Month" />
+						<table:template>
+							<Text text="{occReport>MonthTxt}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Days in Month" />
+						<table:template>
+							<Text text="{occReport>Days}" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Total Room Night" />
+						<table:template>
+							<Text text="{occReport>Rnight}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Room Nights Not Occupied" />
+						<table:template>
+							<Text text="{occReport>Notocc}" wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Room Nights Occupied" />
+						<table:template>
+							<Text text="{occReport>Occupied}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+					<table:Column>
+						<Label text="% of Occupancy" />
+						<table:template>
+							<Text
+								text="{path:'occReport>Percentage',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+								wrapping="false" />
+						</table:template>
+					</table:Column>
+
+					<table:Column>
+						<Label text="Total Rent" sortProperty="TotalRent" />
+						<table:template>
+							<Text
+								text="{parts:[{path:'occReport>TotalRent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+								wrapping="false" />
+						</table:template>
+					</table:Column>
+					<table:Column>
+						<Label text="Currency" />
+						<table:template>
+							<Text text="{path:'occReport>Waers'}" wrapping="false" />
+						</table:template>
+					</table:Column>
+				</table:columns>
+<!-- 				<table:footer height="auto"> -->
+
+<!-- 					<VBox id="tblFooter" items="{footer>/}"> -->
+<!-- 						<Toolbar> -->
+<!-- 							<Label text="Total Rent:" design="Bold" /> -->
+<!-- 							<ToolbarSpacer width="30px" /> -->
+<!-- 							<Label width="140px" -->
+<!-- 								text="{parts:[{path:'footer>TotalRent'},{path:'footer>Waers'}], -->
+<!-- 						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatTotalAccReportValues'}" -->
+<!-- 								design="Bold" /> -->
+<!-- 						</Toolbar> -->
+
+<!-- 					</VBox> -->
+
+<!-- 				</table:footer> -->
+			</table:TreeTable>
+
+
+		</content>
+	</Panel>
+</core:View>

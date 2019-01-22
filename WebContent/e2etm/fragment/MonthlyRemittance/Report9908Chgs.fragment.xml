@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:table="sap.ui.table">
+	<table:Table id="report9908" selectionMode="MultiToggle"
+		rows="{path:'tableModel>/rep9908/'}" class="compact_table margin_10"
+		navigationMode="Paginator" showNoData="true">
+
+
+		<table:columns>
+			<table:Column resizable="true" width="120px"
+				sortProperty="EmpNo"  filterProperty="EmpNo" hAlign="Center">
+				<table:label>
+					<Label text="Employee No" tooltip="Employee No" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>EmpNo}" tooltip="{path: 'tableModel>EmpNo'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="StartDate"
+				width="80px"   filterProperty="StartDate"
+				hAlign="Center">
+				<table:label>
+					<Label text="Start Date" class="label_bold" tooltip="Start Date"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>StartDate',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="EndDate"
+				width="80px"   filterProperty="EndDate"
+				hAlign="Center">
+				<table:label>
+					<Label text="End Date" class="label_bold" tooltip="End Date"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{path:'tableModel>EndDate',formatter:'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="150px"
+				sortProperty="Description"  filterProperty="Description">
+				<table:label>
+					<Label text="Description" tooltip="Description" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Description}" tooltip="{tableModel>Description}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="Amount"
+				width="80px"  filterProperty="Amount"
+				hAlign="Center">
+				<table:label>
+					<Label text="Amount" class="label_bold" tooltip="Amount"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Amount}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="Currency"  filterProperty="Currency">
+				<table:label>
+					<Label text="Currency" tooltip="Currency" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>Currency}" tooltip="{tableModel>Currency}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" hAlign="Center" width="80px"
+				sortProperty="CountryKey"  filterProperty="CountryKey">
+				<table:label>
+					<Label text="Country Key" tooltip="Country Key" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>CountryKey}" tooltip="{tableModel>CountryKey}" />
+				</table:template>
+			</table:Column>
+
+
+		</table:columns>
+	</table:Table>
+</core:FragmentDefinition>

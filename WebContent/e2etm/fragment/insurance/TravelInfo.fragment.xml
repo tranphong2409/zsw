@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<f:SimpleForm minWidth="1024" maxContainerCols="2" class="employeeGeneralInfo"
+		editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+		labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+		<f:content>
+			<core:Title text="Employee Info" level="H5" />
+			<Label text="Employee Name" />
+			<Text text="{new>/ZZ_DEP_NAME}" />
+			<Label text="Employee Number" />
+			<Text text="{new>/ZZ_DEP_PERNR}" />
+<!-- 			<Label text="Gender" /> -->
+<!-- 			<Text text="{new>/ZZ_DEP_GENDER}" /> -->
+			<Label text="Email" />
+			<Text text="{new>/ZZ_DEP_EMAIL}" />
+			<Label text="Passport" />
+			<Text text="{new>/ZZ_PASSPORT_NO}" />
+			<core:Title text="Travel Info" level="H5" />
+			<Label text="Travel Type" />
+			<Text text="{new>/ZZ_TRV_TYP}" />
+			<Label text="Assignment Model" />
+			<Text text="{new>/ZE2E_INS_HDR/ZZ_ASG_TYP}" />
+			<Label text="Travel Plan No" />
+			<Text text="{new>/ZZ_REINR}" />
+			<Label text="Start Date" />
+			<Text
+				text="{
+							path: 'new>/ZZ_DATV1',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+			<Label text="End Date" />
+			<Text
+				text="{
+							path: 'new>/ZZ_DATB1',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+			<Label text="Number of Day(s)" />
+			<Text text="{new>/ZZ_ZDURN}" />
+			<Label text="To Country" />
+			<Text
+				text="{
+							path: 'new>/ZZ_LAND1',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'
+						}" />
+				
+		
+<!-- 	    <Label text="Recovery Amount" ></Label> -->
+<!-- 		<Text text="{new>/ZE2E_INS_HDR/ZZ_RECOVERY_AMT} {new>/ZE2E_INS_HDR/ZZ_RECOVERY_CURR}"></Text> -->
+		
+		</f:content>
+	</f:SimpleForm>
+	<f:SimpleForm  class="employeeGeneralInfo"
+		editable="false" layout="ResponsiveGridLayout">
+		<f:content>
+			<core:Title text="Approximate Recovery Amount for Dependents" level="H5" />
+		<Label text="Medical Amount">
+		  <layoutData>
+		    <l:GridData  spanXL="2" spanL="2" spanM="3" spanS="4"/>
+		  </layoutData>
+		</Label>
+		<Text text="{new>/ZE2E_INS_HDR/ZZ_DAY_AMOUNT} {new>/ZE2E_INS_HDR/ZZ_DAY_CURR}"></Text>
+		<Label text="Non Medical Amount" >
+		   <layoutData>
+				<l:GridData  spanXL="2" spanL="2" spanM="3" spanS="4"/>
+					</layoutData>
+		</Label>
+		<Text text="{new>/ZE2E_INS_HDR/ZZ_INS_AMOUNT} {new>/ZE2E_INS_HDR/ZZ_INS_CURR}"></Text>
+		
+		</f:content>
+		</f:SimpleForm>
+
+	<Label id="canReq" text="{new>/ZZ_CAN_TXT}" class="canreq_red_font"></Label>
+
+</core:FragmentDefinition>

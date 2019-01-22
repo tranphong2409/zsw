@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.commons.layout" xmlns="sap.m" xmlns:c="sap.ui.commons"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="sap.ui.project.e2etm.controller.CardReload" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Additional Advance">
+		<content>
+			<ObjectHeader id='objhdr' class="forexObjHeader"
+				responsive="false" numberState="Success">
+				<attributes>
+					<ObjectAttribute
+						text="{path:'traveldetails>/EmpNo',formatter:'sap.ui.project.e2etm.util.Formatter.forexEmpNo'}" />
+					<ObjectAttribute
+						text="{path:'traveldetails>/EmpName',formatter:'sap.ui.project.e2etm.util.Formatter.forexEmpName'}" />
+					<ObjectAttribute
+						text="{path:'traveldetails>/Department',formatter:'sap.ui.project.e2etm.util.Formatter.forexDepartment'}" />
+				</attributes>
+              <statuses>
+				<ObjectStatus title="Status" text="{traveldetails>/StatusText}" state="Success" />
+				<ObjectStatus title="NextAction By" text="{traveldetails>/NextAction}" state="Success" />
+			</statuses>
+			</ObjectHeader>
+			<!-- <FlexBox direction="Row" width="100%" justifyContent="SpaceBetween"> -->
+			<!-- <FlexBox direction="Column" justifyContent="SpaceBetween" -->
+			<!-- class="objFlex1"> -->
+			<!-- <ObjectAttribute -->
+			<!-- text="{path:'profilemodel>/employeeDetail/ZZ_DEP_PERNR',formatter:'sap.ui.project.e2etm.util.Formatter.forexEmpNo'}" 
+				/> -->
+			<!-- <ObjectAttribute -->
+			<!-- text="{path:'profilemodel>/employeeDetail/ZZ_DEP_NAME',formatter:'sap.ui.project.e2etm.util.Formatter.forexEmpName'}" 
+				/> -->
+			<!-- <ObjectAttribute -->
+			<!-- text="{path:'profilemodel>/employeeDetail/ZZ_DEP_GROUP',formatter:'sap.ui.project.e2etm.util.Formatter.forexDepartment'}" 
+				/> -->
+			<!-- </FlexBox> -->
+			<!-- </FlexBox> -->
+			<c:Panel text="Travel Details" class="panelCollapse">
+				<f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+					class="employeeGeneralInfo hideFormTitle">
+					<f:content>
+						<core:Title text="" visible="false"></core:Title>
+						<Label text="Travelling From Country" class="font_size_14" />
+						<Text text="{traveldetails>/FromCountryText}" />
+						<Label text="Start date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'traveldetails>/StartDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Travel Type" tooltip="Advance for Primary/Secondary Travel"
+							class="font_size_14" />
+						<Text text="{traveldetails>/VisaType}" />
+						<!-- <core:Title text=""></core:Title> -->
+						<core:Title text="" visible="false"></core:Title>
+						<Label text="Travelling To Country" class="font_size_14" />
+						<Text text="{traveldetails>/ToCountryText}" />
+						<Label text="End date" class="font_size_14" />
+						<Text
+							text="{
+							path: 'traveldetails>/EndDate',
+							formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'
+						}" />
+						<Label text="Duration" class="font_size_14" />
+						<Text text="{traveldetails>/Duration}" />
+					</f:content>
+				</f:SimpleForm>
+			</c:Panel>
+			<IconTabBar id="icontabbar" select="onIconTabSelect">
+				<items>
+					<IconTabFilter icon="sap-icon://begin" text="Request"
+						tooltip="New">
+						<Panel id="panelrequest" visible="{bProperties>/pvisible}">
+							<FlexBox direction="Row" width="300px" justifyContent="SpaceBetween"
+								alignItems="Center">
+								<Label text="Assign Request" class="font_size_14" />
+								<c:TextField width="200px" value="{traveldetails>/ForexResp}"
+									editable="{bProperties>/peditable}" id="request" />
+							</FlexBox>
+						</Panel>
+						<c:Panel class="panelCollapse" text="Card Details">
+							<core:Fragment
+								fragmentName="sap.ui.project.e2etm.fragment.CardReload.Addladvance"
+								type="XML" />
+						</c:Panel>
+						<c:Panel class="panelCollapse" text="Bank Details">
+							<f:SimpleForm editable="false" width="100%"
+								class="employeeGeneralInfo hideFormTitle" labelSpanM="4"
+								minWidth="50%" layout="ResponsiveGridLayout">
+								<f:content>
+									<core:Title text=""></core:Title>
+									<Label text="Name of the Bank" class="card_label_top" />
+									<Text text="{bankdetails>/Nofbk}" />
+									<Label text="Bank Account Number" class="card_label_top" />
+									<Text text="{bankdetails>/Bkact}" />
+									<Label text="IBAN Number" class="font_size_14" />
+									<Text text="{bankdetails>/Ibano}" />
+									<core:Title text=""></core:Title>
+									<Label text="Country" class="font_size_14" />
+									<Text text="{traveldetails>/ToCountryText}" />
+									<Label text="SWIFT Code" class="font_size_14" />
+									<Text text="{bankdetails>/Swbic}" />
+								</f:content>
+							</f:SimpleForm>
+						</c:Panel>
+					
+							<FlexBox direction="Row" alignItems="Center">
+								<Label width="114px" text="Comments" class="label_bold font_size_14"></Label>
+								<TextArea width="500px" height="100px" id="comments"
+									editable="{properties>/comtxteditbl}">
+								</TextArea>
+							</FlexBox>
+					
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.CardReload.InitialAdvance"
+							type="XML" />
+<!-- 						<core:Fragment -->
+<!-- 							fragmentName="sap.ui.project.e2etm.fragment.CardReload.AdditionalAdvance" -->
+<!-- 							type="XML" /> -->
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://attachment" text="Attachment"
+						tooltip="Attachment">
+						<core:Fragment
+							fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://comment" text="Comments"
+						tooltip="Comments">
+						<core:Fragment id="AppoveInfo"
+							fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+							type="XML" />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="submit" text="Submit" type="Accept" press="onSave"
+						visible="{bProperties>/saVisible}" icon="sap-icon://save" />
+					<Button text="Send Back" id="sendback" icon="sap-icon://nav-back"
+						type="Emphasized" visible="{bProperties>/sVisible}" press="onSave" />
+					<Button text="Approve" id="approve" icon="sap-icon://approvals"
+						type="Accept" press="onSave" visible="{bProperties>/aVisible}" />
+					
+					<Button text="Reject" id="reject" icon="sap-icon://sys-cancel"
+						type="Reject" press="onSave" visible="{bProperties>/rVisible}" />
+				</contentRight>
+				<contentMiddle>
+					<!-- <Button id="save" text="Save" type="Emphasized" press="onSave" -->
+					<!-- visible="true" icon="sap-icon://save" /> -->
+				</contentMiddle>
+				<contentLeft>
+					<Button text="Back" icon="sap-icon://response" type="Reject"
+						press="onBack" />
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+	<ResponsivePopover id="responsivepop" placement="Right"
+		title="About" class="sapUiContentPadding" icon="sap-icon://person-placeholder"
+		contentWidth="auto">
+		<content>
+			<l:HorizontalLayout>
+				<core:Icon src="sap-icon://person-placeholder" size="50px"
+					color="#686868" />
+				<layout:MatrixLayout width="200px" columns="2"
+					widths="100px,100px" class="mat_margin_left mat_margin_top_20">
+					<layout:MatrixLayoutRow>
+						<layout:MatrixLayoutCell>
+							<Label text="Name" />
+						</layout:MatrixLayoutCell>
+						<layout:MatrixLayoutCell>
+							<Text text="{profilemodel>/employeeDetail/ZZ_DEP_NAME}" />
+						</layout:MatrixLayoutCell>
+					</layout:MatrixLayoutRow>
+					<layout:MatrixLayoutRow>
+						<layout:MatrixLayoutCell>
+							<Label text="Department" />
+						</layout:MatrixLayoutCell>
+						<layout:MatrixLayoutCell>
+							<Text text="{profilemodel>/employeeDetail/ZZ_DEP_GROUP}" />
+						</layout:MatrixLayoutCell>
+					</layout:MatrixLayoutRow>
+				</layout:MatrixLayout>
+
+			</l:HorizontalLayout>
+		</content>
+	</ResponsivePopover>
+</core:View>

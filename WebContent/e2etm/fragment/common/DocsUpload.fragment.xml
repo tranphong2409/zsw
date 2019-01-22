@@ -1,0 +1,30 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:unified="sap.ui.unified" xmlns:commons="sap.ui.commons" xmlns:c="sap.ui.commons"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:sc="sap.suite.ui.commons">
+	<FlexBox fitContainer="true" direction="Column">
+		<FlexBox justifyContent="End" alignItems="Center">
+			<unified:FileUploader icon="sap-icon://upload" id="btnCggsFormsUploader"
+				buttonText="Upload" buttonOnly="true" change="onCGGSFormsUpload" sameFilenameAllowed="true"/>
+			<commons:Button text="Remove" class="margin_5" id="btnCggsFormsRemove"
+				press="onRemoveCggsForms" icon="sap-icon://delete" />
+			<commons:Button text="Download" class="margin_5" id="btnCggsFormsDownload"
+				press="onDownloadCggsForms" icon="sap-icon://download" />
+		</FlexBox>
+<!-- 		<Label id="lblCggsForms" -->
+<!-- 			text="Documents are not yet uploaded by Manager/Deputation team" -->
+<!-- 			class="margin_20" visible="false"></Label> -->
+		<c:Carousel id="cggsFormsDisplay" content="{/}" width="100%"
+			height="100px" defaultItemHeight="100px" defaultItemWidth="150px"
+			visible="true" pages="{/}">
+			<c:content>
+				<FlexBox direction="Column" class="margin_right_20">
+					<Image src="{Image}" width="50px" height="50px"></Image>
+					<Link text="{FileName}{Extension}" tooltip="{FileName}{Extension}"
+						href="{URL}" target="_blank" class="viewRepeatURL"></Link>
+					<c:CheckBox checked="{Checked}"/>
+				</FlexBox>
+			</c:content>
+		</c:Carousel>
+	</FlexBox>
+</core:FragmentDefinition>

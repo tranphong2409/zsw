@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+
+
+
+
+	<IconTabBar id="bnktransfertab" select="onBankTransferTabSelect" class="sapUiResponsiveContentPadding">
+
+		<items>
+			<IconTabFilter key="NEW" text="New">
+				<Toolbar>
+					<Label text="Month" />
+					<ToolbarSpacer width="30px" />
+					<Select id="bnkmonth" width="150px">
+						<items>
+
+							<core:Item key="01" text="January" />
+							<core:Item key="02" text="February" />
+							<core:Item key="03" text="March" />
+							<core:Item key="04" text="April" />
+							<core:Item key="05" text="May" />
+							<core:Item key="06" text="June" />
+							<core:Item key="07" text="July" />
+							<core:Item key="08" text="August" />
+							<core:Item key="09" text="September" />
+							<core:Item key="10" text="October" />
+							<core:Item key="11" text="November" />
+							<core:Item key="12" text="December" />
+						</items>
+					</Select>
+					
+					<Label text="Year" />
+					<ToolbarSpacer width="30px" />
+					<Input width="150px" id="bnkyear" showValueHelp="true"
+						valueHelpRequest="onValueHelpRequest" />
+					<ToolbarSpacer />
+					<Button text="Submit" id="bankprocesssubmit"  press="onProcessSubmit" type="Emphasized" />
+					<!-- <ToolbarSpacer/> -->
+					<Button text="Download" press="onProcessDownload" type="Emphasized" />
+				</Toolbar>
+				<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.BankTransfer"
+					type="XML" />
+
+			</IconTabFilter>
+			<IconTabFilter key="CLS" text="Closed">
+				<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.CardReload.BankTransfer"
+					type="XML" />
+			</IconTabFilter>
+
+		</items>
+		<!-- <content> -->
+		<!-- <core:Fragment -->
+		<!-- fragmentName="sap.ui.project.e2etm.fragment.CardReload.BankTransfer" -->
+		<!-- type="XML" /> -->
+		<!-- </content> -->
+
+	</IconTabBar>
+
+</core:FragmentDefinition>

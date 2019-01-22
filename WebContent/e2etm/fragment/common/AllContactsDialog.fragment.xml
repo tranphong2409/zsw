@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+	<c:Dialog modal="true" width="800px" title="ALL CONTACTS" class="dialog">
+	    <table:Table id="tableAllContacts" visibleRowCount="5" showNoData="false" 
+			columnHeaderHeight="40" selectionBehavior="RowOnly"> 
+			<table:columns>
+				<table:Column resizable="false" width="80px">
+					<table:label>
+						<Label text="COUNTRY" class="label_bold"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{CountryName}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" width="210px">
+					<table:label>
+						<Label text="EMAIL"></Label>
+					</table:label>
+					<table:template>
+						<Label text="{Email}"></Label>
+					</table:template>
+				</table:Column>
+				<table:Column resizable="false" width="210px">
+					<table:label>
+						<Label text="NAME"></Label>
+					</table:label>
+					<table:template>
+						<Label
+							text="{Name}"></Label>
+					</table:template>
+				</table:Column>
+			</table:columns>
+		</table:Table>
+		<c:buttons>
+			<c:Button text="Close" press="onCloseDialog" width="60px" height="30px" />
+		</c:buttons>
+	</c:Dialog>
+</core:FragmentDefinition>

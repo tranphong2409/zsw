@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:unified="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">	
+	<unified:Menu id="menu_settings">
+		<unified:MenuItem text="Sort Ascending" select="onMenuItemSelect"/>
+		<unified:MenuItem text="Sort Descending" select="onMenuItemSelect"/>
+		<unified:MenuTextFieldItem label="Filter" select="onMenuItemSelect"/>
+	</unified:Menu>
+	</core:FragmentDefinition> 

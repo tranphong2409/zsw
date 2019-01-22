@@ -1,0 +1,249 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+  xmlns:table="sap.ui.table" xmlns="sap.m"
+  controllerName="sap.ui.project.e2etm.controller.TrstSecoAdvanceReport"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  <Page title="Title" showHeader="true">
+      <customHeader>
+      <Bar>
+        <contentRight>
+          <Button icon="sap-icon://full-screen" press="onChangeMode" />
+        </contentRight>
+        <contentMiddle>
+          <Title text="Secondary Advance" titleStyle="H3" />
+        </contentMiddle>
+      </Bar>
+    </customHeader>
+    <content>
+      <Panel width="auto" class="panelBorderTrSettle sapUiSizeCompact">
+        <headerToolbar>
+          <Toolbar>
+            <Label text="Filter By Closed Date:" />
+            <DatePicker id="fromdate" width="160px" displayFormat="dd-MM-yyyy"
+              placeholder="DD-MM-YYYY" valueFormat="yyyy-MM-dd" />
+            <Label text="To" />
+            <DatePicker id="todate" width="160px" displayFormat="dd-MM-yyyy"
+              placeholder="DD-MM-YYYY" valueFormat="yyyy-MM-dd" />
+            <Button text="Submit" id="btnSubmit" press="onSubmit" type="Emphasized" />
+            <ToolbarSpacer />
+
+            <Button text="Download" type="Emphasized" press="onExport" />
+
+          </Toolbar>
+
+        </headerToolbar>
+        <content>
+          <table:Table id="tblSecoAdvRep" selectionMode="MultiToggle"
+            rows="{path:'/'}" class="compact_table margin_10" navigationMode="Paginator"
+            showNoData="true">
+
+
+            <table:columns>
+              <table:Column resizable="true" width="120px"
+                sortProperty="Pernr" filterProperty="Pernr" hAlign="Center">
+                <table:label>
+                  <Label text="Employee No" />
+                </table:label>
+                <table:template>
+                  <Label text="{Pernr}" tooltip="{path: 'Pernr'}"></Label>
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" sortProperty="Ename"
+                width="80px" filterProperty="Ename" hAlign="Center">
+                <table:label>
+                  <Label text="Employee Name" />
+                </table:label>
+                <table:template>
+                  <Label text="{path:'Ename'}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="80px" sortProperty="Zlevel" filterProperty="Zlevel">
+                <table:label>
+                  <Label text="Level" tooltip="Level" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{path:'Zlevel'}" />
+                </table:template>
+              </table:Column>
+
+              <table:Column resizable="true" sortProperty="Reinr"
+                width="80px" filterProperty="Reinr" hAlign="Center">
+                <table:label>
+                  <Label text="Travel Plan" />
+                </table:label>
+                <table:template>
+                  <Label text="{path:'Reinr'}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center" id="txtDate1"
+                width="80px" sortProperty="Begda" filterProperty="Begda">
+                <table:label>
+                  <Label text="Start Date" tooltip="Start Date" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label
+                    text="{path:'Begda',type: 'sap.ui.model.type.DateTime',formatOptions: {
+                        pattern:'dd.MM.yyyy'
+                       }}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" sortProperty="Endda"
+                id="txtDate2" width="80px" filterProperty="Endda" hAlign="Center">
+                <table:label>
+                  <Label text="End Date" class="label_bold" tooltip="End Date"></Label>
+                </table:label>
+                <table:template>
+                  <Label
+                    text="{path:'Endda',type: 'sap.ui.model.type.DateTime',formatOptions: {
+                        pattern:'dd.MM.yyyy'
+                       }}"></Label>
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center" id="txtAmount"
+                width="80px" sortProperty="Amount" filterProperty="Amount">
+                <table:label>
+                  <Label text="Amount" tooltip="Amount" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label
+                    text="{parts:[{path:'Amount'},{path:'Currency'}],
+                                type: 'sap.ui.model.type.Currency',
+                                formatOptions:{                               
+                                currencyCode:false
+                                }}"
+                    tooltip="{Amount}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="120px" sortProperty="Currency" filterProperty="Currency">
+                <table:label>
+                  <Label text="Currency" tooltip="Currency" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Currency}" tooltip="{Currency}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center" id="txtBkact"
+                width="80px" sortProperty="Bkact" filterProperty="Bkact">
+                <table:label>
+                  <Label text="Bank Account No" tooltip="Bank Account No"
+                    class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Bkact}" tooltip="{Bkact}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center" id="txtIbano"
+                width="80px" sortProperty="Ibano" filterProperty="Ibano">
+                <table:label>
+                  <Label text="IBAN No" tooltip="IBAN No" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Ibano}" tooltip="{Ibano}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="80px" sortProperty="Nofbk" filterProperty="Nofbk">
+                <table:label>
+                  <Label text="Name of Bank" tooltip="Name of Bank" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Nofbk}" tooltip="{Nofbk}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center" id="txtSwbic"
+                width="150px" sortProperty="Swbic" filterProperty="Swbic">
+                <table:label>
+                  <Label text="Swift Code/BIC" tooltip="Swift Code/BIC"
+                    class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Swbic}" tooltip="{Swbic}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center" id="txtSsnno"
+                width="150px" sortProperty="Ssnno" filterProperty="Ssnno">
+                <table:label>
+                  <Label text="SSN No" tooltip="SSN No"
+                    class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Ssnno}" tooltip="{Ssnno}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="150px" sortProperty="Brncd" filterProperty="Brncd">
+                <table:label>
+                  <Label text="Branch Code" tooltip="Branch Code"
+                    class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Brncd}" tooltip="{Brncd}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="150px" sortProperty="Rcode" filterProperty="Rcode">
+                <table:label>
+                  <Label text="Routing Code" tooltip="Routing Code"
+                    class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Rcode}" tooltip="{Rcode}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="150px" sortProperty="Bkcbr" filterProperty="Bkcbr">
+                <table:label>
+                  <Label text="Bank Code" tooltip="Bank Code"
+                    class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Bkcbr}" tooltip="{Bkcbr}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="80px" sortProperty="Porct" filterProperty="Porct">
+                <table:label>
+                  <Label text="Pin Code" tooltip="Pin code" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{Porct}" tooltip="{Porct}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="80px" sortProperty="ZzTrvtoLoc" filterProperty="ZzTrvtoLoc">
+                <table:label>
+                  <Label text="City" tooltip="City" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{path:'ZzTrvtoLoc'}" />
+                </table:template>
+              </table:Column>
+              <table:Column resizable="true" hAlign="Center"
+                width="80px" sortProperty="Tocountry" filterProperty="Tocountry">
+                <table:label>
+                  <Label text="Country" tooltip="Country" class="label_bold"></Label>
+                </table:label>
+                <table:template>
+                  <Label text="{path:'Tocountry'}" />
+                </table:template>
+              </table:Column>
+
+
+
+            </table:columns>
+          </table:Table>
+
+
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <Bar>
+        <contentRight>
+          <Button text="Process" type="Emphasized" press="onProcess" />
+        </contentRight>
+      </Bar>
+    </footer>
+  </Page>
+</core:View>

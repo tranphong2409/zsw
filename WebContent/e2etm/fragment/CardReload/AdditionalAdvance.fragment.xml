@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+<Panel headerText="Additional Advance">
+	<Table items="{forexhistory>/cardtable/}" class="tableclass table_ticket_admin sapUiSizeCompact">
+		<columns>
+			<Column>
+				<Label text="Type of Currency" tooltip="Type of Currency"/>
+			</Column>
+			<Column>
+				<Label text="Issued Banker" tooltip="Issued Banker" />
+			</Column>
+			<Column>
+				<Label text="Card no" tooltip="Card no"/>
+			</Column>
+			<Column>
+				<Label text="Card Validity" tooltip="Card Validity"/>
+			</Column>
+			<Column>
+				<Label text="Amount" tooltip="Amount"/>
+			</Column>
+			<Column>
+				<Label text="Payment Type" tooltip="Payment Type"/>
+			</Column>
+			<Column>
+				<Label text="Exchange Rate" tooltip="Exchange Rate" />
+			</Column>
+			<Column>
+				<Label text="Tax Amount" tooltip="Tax Amount" />
+			</Column>
+
+			<Column>
+				<Label text="Total" tooltip="Total"/>
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation">
+				<cells>
+					<!-- <ObjectIdentifier title="{Name}" text="{EmpNo}"/> -->
+					<Text text="{forexhistory>Currency}" textAlign="Center"
+						class="margin_top_10 margin_bottom_10" />
+					<Text text="{forexhistory>IssuerBank}" textAlign="Center" />
+					<Text text="{forexhistory>CardNo}" textAlign="Center" />
+					<Text text="{forexhistory>CardValidity}" textAlign="Center" />
+					<Text text="{forexhistory>Amount}" textAlign="Center" />
+					<Text text="{forexhistory>PaymentType}" textAlign="Center" />
+					<Text text="{forexhistory>ExchangeRate}" textAlign="Center" />
+					<Text
+						text="{path:'forexhistory>Tax'}" />
+					<Text
+						text="{path:'forexhistory>Total'}" />
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+
+	</Table>
+	</Panel>
+
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<mvc:View xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Label class="label_bold font-size-18" text="By Clicking on the 'Submit' below, I hereby agree and adhere to the "/>
+	<Link class="font-size-18" text="RBEI travel policy"/>
+	<forms:SimpleForm layout="ResponsiveGridLayout" maxContainerCols="1" width="100%">
+		<FlexBox alignItems="Center" direction="Row">
+			<Label class="label_bold font_size_14 font-size-18" text="Comments" width="114px"/>
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<l:content>
+					<TextArea class="font-size-18 comments_bg" cols="110" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" id="comments" rows="5"
+						value="{trvRequestDtl>/ZZ_COMMENTS}"/>
+				</l:content>
+			</l:VerticalLayout>
+		</FlexBox>
+	</forms:SimpleForm>
+</mvc:View>

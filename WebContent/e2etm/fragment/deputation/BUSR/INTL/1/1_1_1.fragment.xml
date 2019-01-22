@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:commons="sap.ui.commons" xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:view="sap.ui.core.mvc">
+	<FlexBox direction="Column">
+		<view:XMLView viewName='sap.ui.project.e2etm.view.TravelPlan' />
+		<!-- Display visa panel here -->
+		<c:Panel text="Please Zip and upload Passport and Visa" visible="false" class="panelCollapse margin_top_15"
+			id="panelEmployeeVisaCopy">
+			<FlexBox alignItems="Center">
+				<Label text="Self" width="150px"></Label>
+				<c:DatePicker yyyymmdd="{/selfVisa/ZZ_VISA_SDATE}" valueState="{/selfVisa/ZZ_VISA_SDATE_ERROR}"
+					enabled="{/selfVisa/enabled}" tooltip="Visa valid from date"
+					value="{path: '/selfVisa/ZZ_VISA_SDATE_VALUE', mode: 'TwoWay', 
+						type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					placeholder="Visa valid from" />
+				<Label text="To" class="margin_left_10"></Label>
+				<c:DatePicker yyyymmdd="{/selfVisa/ZZ_VISA_EDATE}" valueState="{/selfVisa/ZZ_VISA_EDATE_ERROR}"
+					enabled="{/selfVisa/enabled}" tooltip="Visa valid to date"
+					value="{path: '/selfVisa/ZZ_VISA_EDATE_VALUE', mode: 'TwoWay', 
+						type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"
+					placeholder="Visa valid to" class="margin_left_10"/> 
+				<Input value="{path: '/selfVisa/ZZ_VISA_NO', mode: 'TwoWay'}" valueState="{/selfVisa/ZZ_VISA_NO_ERROR}" width="140px"
+					editable="{/selfVisa/enabled}" placeholder="Enter visa number" tooltip="Visa number" class="margin_left_10 normal_input"></Input>
+				<Select selectedKey="{path: '/selfVisa/ZZ_CURR_VISA_TYP', mode: 'TwoWay'}" enabled="{/selfVisa/enabled}"
+					width="137px" class="margin_left_20 normal_select">
+					<core:Item key="BUSR" text="Business Visa" />
+					<core:Item key="TRNG" text="Training Visa" />
+					<core:Item key="WRKP" text="Work Permit" />
+				</Select>
+				<c:CheckBox text="Multi-Entry" class="margin_left_20"
+					enabled="{/selfVisa/enabled}" checked="{path: '/selfVisa/ZZ_MULT_ENTRY_CHAR', mode: 'TwoWay'}"></c:CheckBox>
+				<c:FileUploader id="UploadVisaSelf" enabled="{/selfVisa/enabledUpload}"
+					maximumFileSize="5" fileSizeExceed="onFileSizeExceed"
+					fileAllowed="onFileAllowed" change="onFileChange" class="margin_left_10"
+					typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload">
+				</c:FileUploader>
+				<Link text="Open File" href="{/selfVisa/href}" target="_blank"
+					class="margin_left_10" visible="{/selfVisa/visibleOpen}"></Link>
+			</FlexBox>
+		</c:Panel>
+	</FlexBox>
+</core:FragmentDefinition>

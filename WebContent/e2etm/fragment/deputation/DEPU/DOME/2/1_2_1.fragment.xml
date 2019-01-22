@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:commons="sap.ui.commons"
+	xmlns:c="sap.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<FlexBox fitContainer="true">
+		<FlexBox width="80%" class="panelMinwidth" fitContainer="true" direction="Column">
+			<c:Panel text="TRAVEL APPROVALS" class="panelCollapse">
+				<commons:TabStrip class="dep_deputation_fragment">
+	                <commons:tabs>
+	                    <commons:Tab text="Tickets">
+	                        <table:Table visibleRowCount="7"
+								selectionMode="None" class="compact_table margin_10"
+								showNoData="false" navigationMode="Paginator">
+								<table:columns>
+									<table:Column resizable="false" width="120px"
+										sortProperty="ZZ_DEP_REQ" sorted="true" sortOrder="Descending"
+										hAlign="Center">
+										<table:label>
+											<Label text="AIRLINE" class="label_bold"></Label>
+										</table:label>
+										<table:template width="100px">
+											<Link text="test" press="onSelectMyTask"></Link>
+										</table:template>
+									</table:Column>
+									<table:Column resizable="false" hAlign="Center">
+										<table:label>
+											<Label text="DEPART" class="label_bold"></Label>
+										</table:label>
+										<table:template>
+											<Label text="test"></Label>
+										</table:template>
+									</table:Column>
+									<table:Column resizable="false" hAlign="Center">
+										<table:label>
+											<Label text="ARRIVE" class="label_bold"></Label>
+										</table:label>
+										<table:template>
+											<Label text="test"></Label>
+										</table:template>
+									</table:Column>
+									<table:Column resizable="false" hAlign="Center">
+										<table:label>
+											<Label text="VIA" class="label_bold"></Label>
+										</table:label>
+										<table:template>
+											<Label text="test"></Label>
+										</table:template>
+									</table:Column>
+									<table:Column resizable="false" hAlign="Center">
+										<table:label>
+											<Label text="DURATION" class="label_bold"></Label>
+										</table:label>
+										<table:template>
+											<Label text="test"></Label>
+										</table:template>
+									</table:Column>
+									<table:Column resizable="false" hAlign="Center">
+										<table:label>
+											<Label text="FARE" class="label_bold"></Label>
+										</table:label>
+										<table:template>
+											<Label text="test"></Label>
+										</table:template>
+									</table:Column>
+								</table:columns>
+							</table:Table>
+	                    </commons:Tab>
+	                    <commons:Tab text="Accomodation">
+	                        
+	                    </commons:Tab>
+	                    <commons:Tab text="Insurance">
+	                        
+	                    </commons:Tab>
+	                    <commons:Tab text="Cargo">
+	                        
+	                    </commons:Tab>
+	                    <commons:Tab text="Forex">
+	                        
+	                    </commons:Tab>
+	                </commons:tabs>
+	            </commons:TabStrip>
+			</c:Panel>
+		</FlexBox>
+		<Panel width="auto" headerText="CURRENT STATUS" class="margin_left_10 summary_approval"></Panel>
+	</FlexBox>
+</core:FragmentDefinition>

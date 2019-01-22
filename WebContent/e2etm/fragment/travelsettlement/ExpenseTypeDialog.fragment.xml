@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:unified="sap.ui.unified" xmlns:table="sap.ui.table">
+
+	<Dialog id="expensetype" type="Message" afterClose="onAfterClose">
+<!-- 	<l:VerticalLayout class="ver_rec_margin_top hor_rec_margin_left"> -->
+<!-- 		<l:HorizontalLayout> -->
+		<FlexBox direction="Row" justifyContent="SpaceBetween" alignItems="Center">
+				<Label text="Expense Type" required="true"/>
+<!-- 				<ToolbarSpacer width="5px"/> -->
+			    <Select id="expensetypeselect" enabled="{fieldproperties>/editable}" width="200px" change="onMonthChange">
+				<items>
+				<core:Item text="Please select" />
+				<core:Item key="01" text="Travelling" />
+				<core:Item key="02" text="Lodging" />
+				<core:Item key="03" text="Boarding" />
+				<core:Item key="04" text="Conveyance charges" />
+				<core:Item key="05" text="Cargo Excess Baggage Charges" />
+				<core:Item key="06" text="Entertainment charges" />
+				<core:Item key="07" text="Other Charges" />
+				
+				</items>
+				</Select>
+				</FlexBox>
+<!-- 				</l:HorizontalLayout> -->
+<!-- 	</l:VerticalLayout> -->
+		
+
+
+
+		<buttons>
+			<Button text="Confirm" press="onDialogConfirm" />
+			<Button text="Cancel" press="onDialogClose" />
+		</buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

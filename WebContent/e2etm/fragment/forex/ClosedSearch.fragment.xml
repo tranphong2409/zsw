@@ -1,0 +1,16 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:t="sap.ui.table">
+	<Toolbar visible="true">
+		<Label text="Travel Plan" class="font_size_14" />
+		<ToolbarSpacer />
+		<c:TextField id="txtForextpno" width="200px" />
+		<ToolbarSpacer />
+		<RadioButton id="iadvance" text="Initial Advance" />
+		<ToolbarSpacer />
+		<RadioButton id="aadvance" text="Additional Advance" />
+		<ToolbarSpacer />
+		<Button text="Submit" type="Emphasized" press="onCloseSearchForex" />
+	</Toolbar>
+</core:FragmentDefinition>

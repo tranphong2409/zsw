@@ -1,0 +1,54 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.Home"
+	xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns:view="sap.ui.core.mvc" xmlns:table="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:commons="sap.ui.commons" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false" id="pageHome" class="pageHome">
+		<content>
+			<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+			<FlexBox visible="false">
+				<Button id="CountExpectedTravel" icon="sap-icon://expense-report"
+					visible="false" tooltip="Count Expected Travel" text="Count Expected Travel"
+					type="Emphasized" class="report_request" press="onCountExpectedTravel"></Button>
+				<Button id="EmployeeTravelDetails" icon="sap-icon://expense-report"
+					visible="false" text="Employee Travel Details" type="Emphasized"
+					class="report_request" press="onEmployeeTravelDetails" tooltip="Employee Travel Details"></Button>
+
+				<Button id="TravelEstimates" icon="sap-icon://expense-report"
+					visible="false" text="Travel Estimates" type="Emphasized" class="report_request"
+					press="onTravelEstimates" tooltip="Travel Estimates"></Button>
+			</FlexBox>
+			<!-- <commons:Button icon="sap-icon://refresh" tooltip="Count Expected 
+				Travel" text="Count Expected Travel" -->
+			<!-- press="onCountExpectedTravel" class="refresh_button margin_top_20 
+				margin_bottom_20"></commons:Button> -->
+			
+			<FlexBox direction="Column"
+				class="landing_flexbox_bottom_right_container margin_10" id="tabStripContainer">
+				<commons:TabStrip select="handleSelectTab" id="tabStrip"
+					visible="false">
+					<commons:tabs>
+						<commons:Tab text="MY TASKS" id="tabMyTasks" class="min_height_100"></commons:Tab>
+						<commons:Tab text="MY REQUESTS" id="tabMyRequests"
+							class="min_height_100"></commons:Tab>
+					</commons:tabs>			
+				</commons:TabStrip>
+			</FlexBox>
+		</content>
+	</Page>
+
+	<!-- <Page showHeader="false" id="pageHome" class="pageHome"> -->
+	<!-- <content> -->
+	<!-- <view:XMLView viewName='sap.ui.project.e2etm.view.Menu' /> -->
+	<!-- <FlexBox direction="Column" class="landing_flexbox_bottom_right_container 
+		margin_10" -->
+	<!-- id="tabStripContainer"> -->
+	<!-- <commons:TabStrip select="handleSelectTab" id="tabStrip" visible="false"> -->
+	<!-- <commons:tabs> -->
+	<!-- <commons:Tab text="MY TASKS" id="tabMyTasks" class="min_height_100"></commons:Tab> -->
+	<!-- <commons:Tab text="MY REQUESTS" id="tabMyRequests" class="min_height_100"></commons:Tab> -->
+	<!-- </commons:tabs> -->
+	<!-- </commons:TabStrip> -->
+	<!-- </FlexBox> -->
+	<!-- </content> -->
+	<!-- </Page> -->
+</core:View>

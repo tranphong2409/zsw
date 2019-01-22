@@ -1,0 +1,111 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+	<Dialog id="dialogCost" title="TRIP COST" class="dialog">
+		<FlexBox>
+			<table:Table id="tableCost" selectionMode="None"
+				class="smallHeaderTable" columnHeaderHeight="40" showNoData="false"
+				width="1048px">
+				<table:columns>
+					<table:Column resizable="false" width="40px">
+						<table:label>
+							<Label text="YEAR" tooltip="Year" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{YEAR}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="75px">
+						<table:label>
+							<Label text="VISA CHARGES" tooltip="Visa Charges" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{visa_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="70px">
+						<table:label>
+							<Label text="TICKET COST" tooltip="Ticket Cost" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{tkt_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="60px">
+						<table:label>
+							<Label text="INSURANCE" tooltip="Insurance" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{ins_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="55px">
+						<table:label>
+							<Label text="BAGGAGE" tooltip="Baggage" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{bag_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="60px">
+						<table:label>
+							<Label text="LODGING" tooltip="Lodging" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{lod_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="60px">
+						<table:label>
+							<Label text="BOARDING" tooltip="Boarding" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{board_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="70px">
+						<table:label>
+							<Label text="CONVEYANCE" tooltip="Conveyance" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{con_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="100px">
+						<table:label>
+							<Label text="INLAND CONVEYANCE" tooltip="Inland Conveyance"
+								class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{inl_cost}"></Label>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false" width="60px">
+						<table:label>
+							<Label text="DEPOSIT" tooltip="Deposit" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{dep_cost}"></Label>
+						</table:template>
+					</table:Column>
+
+					<table:Column resizable="false" width="50px">
+						<table:label>
+							<Label text="OTHER" tooltip="Other" class="label_bold"></Label>
+						</table:label>
+						<table:template>
+							<Label text="{otr_costs}"></Label>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</FlexBox>
+
+		<u:Currency id="totalId" class="label_bold margin_top_20"
+			currency="INR" useSymbol="false" maxPrecision="1"></u:Currency>
+
+		<endButton>
+			<Button text="Close" press="onCloseTripDialog"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

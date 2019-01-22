@@ -1,0 +1,40 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:view="sap.ui.core.mvc" controllerName="sap.ui.project.e2etm.controller.TaxClearance"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page class='pageCargoInfo' showHeader="false">
+		<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+		<IconTabBar id='idIconTaxClearanceAdmin_1' class="icontabbaradmin sapUiSizeCompact"
+			expandable="false" select="onIconTabBarSelect_Top">
+			<items>
+				<IconTabFilter icon="sap-icon://task" iconColor="Positive"
+					tooltip="" text="Initial Tax Approval" key="">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.home.HOME_TAX_TaskTab"
+						type="XML" />				
+				</IconTabFilter>	
+				<IconTabSeparator />			
+				<IconTabFilter icon="sap-icon://accept" iconColor="Positive"
+					tooltip="" text="Travel Settlement Approval" key="APP">					
+					<IconTabBar id="idIconTaxClearanceAdmin" class="sapUiResponsiveContentPadding"
+						expandable="false" select="onIconTabBarSelect">
+						<items>
+							<IconTabFilter key="01" text="New">
+							</IconTabFilter>
+							<IconTabFilter key="03" text="Closed">
+							</IconTabFilter>
+						</items>
+						<content>
+							<core:Fragment
+								fragmentName="sap.ui.project.e2etm.fragment.taxclearance.TaxClearanceWorklist"
+								type="XML" />
+						</content>
+					</IconTabBar>
+					
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</Page>
+	<core:Fragment id="custommenu"
+		fragmentName="sap.ui.project.e2etm.fragment.common.CustomMenu" type="XML" />
+</core:View>

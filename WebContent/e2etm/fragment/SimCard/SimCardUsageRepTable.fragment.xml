@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:table="sap.ui.table">
+
+	<ScrollContainer>
+		<Table id="SimCardDataUsageRepTable" itemPress="onItemPress"
+			inset="false" growing="true" growingThreshold="100" class="table_ticket_admin"
+			items="{path: 'SimcardRepModel>/'}">
+			<headerToolbar>
+				<Toolbar>
+				<ToolbarSpacer/>
+					<Button text="Export" icon="sap-icon://download"
+						press="sap.ui.project.e2etm.util.StaticUtility.onSimExportCSV" />
+				</Toolbar>
+			</headerToolbar>
+
+			<columns>
+				<Column width="5em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Serial No" />
+<!-- 					</FlexBox> -->
+
+				</Column>
+				<Column width="5em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Country" />
+<!-- 					</FlexBox> -->
+				</Column>
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Mobile Number" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Associate Name" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Employee Number" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<!-- <Column width="5em"> <FlexBox direction="Column" alignItems="Start"> 
+					<Text text="SIM delivery Date" /> </FlexBox> </Column> -->
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Travel Start Date" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Travel End Date" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="5em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Duration" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Travel Plan No" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Personal Calls Amount" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="7em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Official Calls Amount" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+				<Column width="5em">
+<!-- 					<FlexBox direction="Column" alignItems="Start"> -->
+						<Text text="Total Amount" />
+<!-- 					</FlexBox> -->
+				</Column>
+
+			</columns>
+			<items>
+				<ColumnListItem height="10px">
+					<cells>
+						<Text text="{SimcardRepModel>SEQNR}" />
+						<Text text="{SimcardRepModel>ZZ_TO_CNTY}" />
+						<Text text="{SimcardRepModel>ZZ_MOBILE}" />
+						<Text text="{SimcardRepModel>NAME}" />
+						<Text text="{SimcardRepModel>PERNR}" />
+						<Text
+							text="{path:'SimcardRepModel>BEGDA',type:'sap.ui.model.type.Date',formatOptions: {
+					pattern:'dd.MM.yyyy',
+					source: {
+						pattern: 'yyyyMMdd'
+					}}
+				}" />
+						<Text
+							text="{path:'SimcardRepModel>ENDDA',type:'sap.ui.model.type.Date',formatOptions: {
+					pattern:'dd.MM.yyyy',
+					source: {
+						pattern: 'yyyyMMdd'
+					}
+				}}" />
+						<Text text="{SimcardRepModel>NDAYS}" />
+						<Text text="{SimcardRepModel>REINR}" />
+						<Text text="{SimcardRepModel>ZZ_SIM_PAMT}" />
+						<Text text="{SimcardRepModel>ZZ_SIM_OAMT}" />
+						<Text text="{SimcardRepModel>ZZ_SIMAMT}" />
+
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</ScrollContainer>
+</core:FragmentDefinition>

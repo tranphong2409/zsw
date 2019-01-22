@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:unified="sap.ui.unified" xmlns:table="sap.ui.table">
+	<Toolbar>
+		<Label text="Travel Plan" />
+		<Input width="200px" id="batchtravel" />
+		<Label text="Employee No" />
+		<Input width="200px" id="batchemp" />
+		<ToolbarSpacer/>
+		<Button text="Submit" type="Emphasized" press="onBatchSubmit" />
+		
+	</Toolbar>
+	<List headerText="Attcahments" class="tableclass table_ticket_admin sapUiSizeCompact" items="{batchupload>/Files/}">
+		<headerToolbar>
+			<Toolbar>
+			<Title text="Attachments"/>
+				<ToolbarSpacer />
+				<unified:FileUploader multiple="true"
+					sameFilenameAllowed="true" buttonText="" buttonOnly="true" change="onBatchUpload"
+					icon="sap-icon://add" />
+			</Toolbar>
+		</headerToolbar>
+		<items>
+			<!-- <StandardListItem title="{batchupload>Filename}" /> -->
+			<CustomListItem>
+				<!-- <core:Icon size="2rem" src="sap-icon://attachment-photo" color="#031E48"/> -->
+				<!-- <Link target="_blank" text="{batchupload>FileName}" href="{batchupload>FileUrl}"/> -->
+				<HBox>
+					<core:Icon size="2rem" src="sap-icon://attachment-photo"
+						color="#031E48" />
+					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+						<Link target="_blank" text="{batchupload>FileName}" href="{batchupload>FileUrl}" />
+						<!-- <Label text="{ProductId}"/> -->
+					</VBox>
+				</HBox>
+			</CustomListItem>
+		</items>
+	</List>
+
+</core:FragmentDefinition>

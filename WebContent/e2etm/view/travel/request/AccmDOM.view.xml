@@ -1,0 +1,65 @@
+<core:View controllerName="sap.ui.project.e2etm.controller.travelrequest.AccmDOM" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table" xmlns="sap.m">
+	<HBox>
+		<l:VerticalLayout >
+			<l:content>
+				<Label class="label_bold font-size-18" text="Do you need accommodation to be arranged ?"/>
+			</l:content>
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+			<l:content>
+				<Switch change="_handleChangeAccmArrange" class="cm_switch" customTextOff="No" customTextOn="Yes" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+					id="swAccDOMAdv" state="{trvRequestDtl>/ZZ_ACCM_REQ_ENB}">
+					<layoutData>
+						<FlexItemData growFactor="1"/>
+					</layoutData>
+				</Switch>
+			</l:content>
+		</l:VerticalLayout>
+	</HBox>
+	<HBox>
+		<t:Table class="font-size-18 tblNoBorderCm" id="accmDomArrange" rows="{ path: 'trvRequestDtl>/aAccomodation'}" selectionMode="None"
+			visible="{trvRequestDtl>/ZZ_ACCM_REQ_ENB}" visibleRowCount="{trvRequestDtl>/nAccomodationLenght}">
+			<!--<t:toolbar>-->
+			<!--	<c:Toolbar design="Transparent">-->
+			<!--		<Button class="addBtnInsTable" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://add" press="addAccmRow" text="Add Row"-->
+			<!--			type="Emphasized"/>-->
+			<!--	</c:Toolbar>-->
+			<!--</t:toolbar>-->
+			<t:noData>
+				<c:Label text=""></c:Label>
+			</t:noData>
+			<t:Column width="40%">
+				<c:Label class="label_small_bold lbl_head_dtl" text="Preferred place"></c:Label>
+				<t:template>
+					<c:TextField class="width_100pc cm_input_border_bottom" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" value="{trvRequestDtl>ZZ_ZPLACE}"
+						valueState="{trvRequestDtl>ZZ_ZPLACE_ERROR}"></c:TextField>
+				</t:template>
+			</t:Column>
+			<t:Column width="25%">
+				<c:Label class="label_small_bold lbl_head_dtl" text="Start Date"></c:Label>
+				<t:template>
+					<DatePicker change="onChangeAccmDateFrom" class="cm_input_base_border_bot" displayFormat="dd/MM/yyyy"
+						enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" value="{trvRequestDtl>ZZ_BEGDA_VALUE}" valueFormat="dd/MM/yyyy"/>
+					<!--<c:DatePicker change="onChangeAccmDateFrom" enabled="{trvRequestDtl>enabled}" placeholder="Select Date"-->
+					<!--	value="{path: 'trvRequestDtl>/ZZ_BEGDA_VALUE', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"-->
+					<!--	valueState="{trvRequestDtl>/ZZ_BEGDA_ERROR}" yyyymmdd=""/>-->
+				</t:template>
+			</t:Column>
+			<t:Column width="25%">
+				<c:Label class="label_small_bold lbl_head_dtl" text="End Date"></c:Label>
+				<t:template>
+					<HBox class="actionClm">
+						<DatePicker change="onChangeAccmDateTo" class="cm_input_base_border_bot" displayFormat="dd/MM/yyyy" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}"
+							value="{trvRequestDtl>ZZ_ENDDA_VALUE}" valueFormat="dd/MM/yyyy"/>
+						<Button class="addBtnInsTable" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://delete" press="deleteAccmMoneyRow"
+							tooltip="Remove Row" type="Emphasized" visible="{trvRequestDtl>enabled}"/>
+						<Button class="addBtnInsTable add_accm_btn" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" icon="sap-icon://add" press="addAccmRow" tooltip="Add Row"
+							type="Emphasized"/>
+					</HBox>
+				</t:template>
+			</t:Column>
+		</t:Table>
+	</HBox>
+</core:View>

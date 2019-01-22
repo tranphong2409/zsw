@@ -1,0 +1,216 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:table="sap.ui.table">
+	<table:Table id="reportnpe" selectionMode="MultiToggle"
+		rows="{path:'tableModel>/mrnpe/'}" 
+		navigationMode="Paginator" showNoData="true">
+<table:toolbar>
+<Toolbar>
+	<DatePicker id="npebegda" width="200px" placeholder="Start Date"
+		displayFormat="dd-MM-yyyy" valueFormat="yyyyMMdd" required="true" />
+	<ToolbarSpacer/>
+	<DatePicker id="npeendda" width="200px" placeholder="End Date"
+		displayFormat="dd-MM-yyyy" valueFormat="yyyyMMdd" required="true" />
+		<ToolbarSpacer/>
+	<Input id="npetravelplan" width="200px" placeholder="Travel Plan" />
+	<ToolbarSpacer/>
+	<Button text="Submit" type="Emphasized" press="onNpeSubmit" />
+</Toolbar>
+</table:toolbar>
+
+		<table:columns>
+		<table:Column resizable="true" width="120px"
+				sortProperty="REINR" filterProperty="REINR" hAlign="Center">
+				<table:label>
+					<Label text="Travel Plan" tooltip="Travel Plan" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>REINR}" tooltip="{path: 'tableModel>REINR'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="PERNR" filterProperty="PERNR" hAlign="Center">
+				<table:label>
+					<Label text="Employee No" tooltip="Employee No" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>PERNR}" tooltip="{path: 'tableModel>PERNR'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="SNAME" filterProperty="SNAME" hAlign="Center">
+				<table:label>
+					<Label text="Employee Name" tooltip="Employee Name" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>SNAME}" tooltip="{path: 'tableModel>SNAME'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="country" filterProperty="country" hAlign="Center">
+				<table:label>
+					<Label text="Country" tooltip="Country" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>country}" tooltip="{path: 'tableModel>country'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="TRFGR" filterProperty="TRFGR" hAlign="Center">
+				<table:label>
+					<Label text="Level" tooltip="Level" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>TRFGR}" tooltip="{path: 'tableModel>TRFGR'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="ZMNTH" filterProperty="ZMNTH" hAlign="Center">
+				<table:label>
+					<Label text="Month" tooltip="Month" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>ZMNTH}" tooltip="{path: 'tableModel>ZMNTH'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="ZYEAR" filterProperty="ZYEAR" hAlign="Center">
+				<table:label>
+					<Label text="Year" tooltip="Year" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>ZYEAR}" tooltip="{path: 'tableModel>ZYEAR'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="LIVAL" filterProperty="LIVAL" hAlign="Center">
+				<table:label>
+					<Label text="Living" tooltip="Living" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>LIVAL}" tooltip="{path: 'tableModel>LIVAL'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="LODAL" filterProperty="LODAL" hAlign="Center">
+				<table:label>
+					<Label text="Lodging" tooltip="Lodging" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>LODAL}" tooltip="{path: 'tableModel>LODAL'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="CDPAL" filterProperty="CDPAL" hAlign="Center">
+				<table:label>
+					<Label text="Caution Deposit" tooltip="Caution Deposit" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>CDPAL}" tooltip="{path: 'tableModel>CDPAL'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="TRAAL" filterProperty="TRAAL" hAlign="Center">
+				<table:label>
+					<Label text="Transport" tooltip="Transport" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>TRAAL}" tooltip="{path: 'tableModel>TRAAL'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="OTHAL" filterProperty="OTHAL" hAlign="Center">
+				<table:label>
+					<Label text="Others" tooltip="Others" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>OTHAL}" tooltip="{path: 'tableModel>OTHAL'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="CURR" filterProperty="CURR" hAlign="Center">
+				<table:label>
+					<Label text="Currency" tooltip="Currency" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>CURR}" tooltip="{path: 'tableModel>CURR'}"></Label>
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" width="120px"
+				sortProperty="BKACT" filterProperty="BKACT" hAlign="Center">
+				<table:label>
+					<Label text="Bank Account Number" tooltip="Bank Account Number" class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>BKACT}" tooltip="{path: 'tableModel>BKACT'}"></Label>
+				</table:template>
+			</table:Column>
+			
+			<table:Column resizable="true" sortProperty="NOFBK"
+				width="80px" filterProperty="NOFBK" hAlign="Center">
+				<table:label>
+					<Label text="Bank Name" tooltip="Bank Name"></Label>
+				</table:label>
+				<table:template>
+					<Label
+						text="{path:'tableModel>NOFBK'}" />
+				</table:template>
+			</table:Column>
+		<table:Column resizable="true" sortProperty="BKCBR"
+				width="80px" filterProperty="BKCBR" hAlign="Center">
+				<table:label>
+					<Label text="Branch" class="label_bold" tooltip="Branch"></Label>
+				</table:label>
+				<table:template>
+					<Label
+						text="{path:'tableModel>BKCBR'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="BRNCD"
+				width="80px" filterProperty="BRNCD" hAlign="Center">
+				<table:label>
+					<Label text="Branch Code" class="label_bold" tooltip="Branch Code"></Label>
+				</table:label>
+				<table:template>
+					<Label
+						text="{path:'tableModel>BRNCD'}" />
+				</table:template>
+			</table:Column>
+			<table:Column resizable="true" sortProperty="CITY"
+				width="80px" filterProperty="CITY" hAlign="Center">
+				<table:label>
+					<Label text="City" class="label_bold" tooltip="City"></Label>
+				</table:label>
+				<table:template>
+					<Label
+						text="{path:'tableModel>CITY'}" />
+				</table:template>
+			</table:Column>
+		
+			<table:Column resizable="true" hAlign="Center" width="120px"
+				sortProperty="IBANO" filterProperty="IBANO">
+				<table:label>
+					<Label text="Iban Number" tooltip="Swift Code"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>IBANO}" tooltip="{tableModel>IBANO}" />
+				</table:template>
+			</table:Column>
+			
+			<table:Column resizable="true" hAlign="Center" width="120px"
+				sortProperty="SWBIC" filterProperty="SWBIC">
+				<table:label>
+					<Label text="Swift Code" tooltip="Swift Code"
+						class="label_bold"></Label>
+				</table:label>
+				<table:template>
+					<Label text="{tableModel>SWBIC}" tooltip="{tableModel>SWBIC}" />
+				</table:template>
+			</table:Column>
+		
+
+
+		</table:columns>
+	</table:Table>
+	</core:FragmentDefinition>

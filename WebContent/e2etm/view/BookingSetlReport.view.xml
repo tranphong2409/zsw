@@ -1,0 +1,96 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:table="sap.ui.table"
+	controllerName="sap.ui.project.e2etm.controller.BookingSetlReport"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel>
+		<core:Fragment
+			fragmentName="sap.ui.project.e2etm.fragment.reservation.EmployeeWiseSearch"
+			type="XML" />
+		<table:Table id="tblSetlRep" rows="{path:'bookReport>/'}" navigationMode="Paginator"
+			selectionMode="MultiToggle" enableSelectAll="false" ariaLabelledBy="title">
+			<table:toolbar>
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.reservation.Toolbar"
+					type="XML" />
+			</table:toolbar>
+			<table:columns>
+				<table:Column sortProperty="Pernr">
+					<Label text="Employee No" />
+					<table:template>
+						<Text text="{bookReport>Pernr}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Ename">
+					<Label text="Employee Name" />
+					<table:template>
+						<Text text="{bookReport>Ename}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Reinr">
+					<Label text="Travel Plan" />
+					<table:template>
+						<Text text="{bookReport>Reinr}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Hname">
+					<Label text="Apartment Name" />
+					<table:template>
+						<Text text="{bookReport>Hname}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Romno">
+					<Label text="Room no" />
+					<table:template>
+						<Text text="{bookReport>Romno}" wrapping="false" />
+					</table:template>
+				</table:Column>
+<!-- 				<table:Column sortProperty="MonthTxt"> -->
+<!-- 					<Label text="Month" /> -->
+<!-- 					<table:template> -->
+<!-- 						<Text text="{bookReport>MonthTxt}" wrapping="false" /> -->
+<!-- 					</table:template> -->
+<!-- 				</table:Column> -->
+				<table:Column sortProperty="Begda">
+					<Label text="Start Date" />
+					<table:template>
+						<Text text="{path:'bookReport>BegdaTxt'}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Endda">
+					<Label text="End Date" />
+					<table:template>
+						<Text text="{bookReport>EnddaTxt}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="Days">
+					<Label text="No of Days" />
+					<table:template>
+						<Text text="{bookReport>Days}" wrapping="false" />
+					</table:template>
+				</table:Column>
+				<table:Column sortProperty="AccType">
+					<Label text="Accomodation Type" />
+					<table:template>
+						<Text text="{bookReport>AccType}" wrapping="false" />
+					</table:template>
+				</table:Column>
+
+				<table:Column sortProperty="ActRent">
+					<Label text="Actual Rent" />
+					<table:template>
+						<Text
+							text="{parts:[{path:'bookReport>ActRent'}],
+						                    formatter:'sap.ui.project.e2etm.util.Formatter.formatAccReportValues'}"
+							wrapping="false" />
+					</table:template>
+				</table:Column>
+								<table:Column sortProperty="Waers">
+					<Label text="Currency" />
+					<table:template>
+						<Text text="{path:'bookReport>Waers'}" wrapping="false" />
+					</table:template>
+				</table:Column>
+
+			</table:columns>
+		</table:Table>
+	</Panel>
+</core:View>

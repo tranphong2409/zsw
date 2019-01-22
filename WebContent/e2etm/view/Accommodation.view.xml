@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:c="sap.ui.commons" xmlns:view="sap.ui.core.mvc"
+	controllerName="sap.ui.project.e2etm.controller.Accommodation"
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:f="sap.ui.layout.form">
+	<Page title="Accommodation Request" class="pageAccommodation"
+		showNavButton="true" navButtonPress="onNavPress">
+		<headerContent>
+			<Link text="Help"
+				href="http://sgpvm070:8080/pkit/go/pelement.do?id=228352&amp;type=Activity&amp;anon=1"
+				target="_blank" />
+		</headerContent>
+		<FlexBox class="sapUiSizeCompact" direction="Column">
+			<core:Fragment
+				fragmentName="sap.ui.project.e2etm.fragment.accommodation.Accommodation"
+				type="XML" />
+		</FlexBox>
+		<footer>
+			<Bar>
+				<contentRight>
+					<!-- <Button id="btnSubmit" text="Submit" type="Accept" press="onSubmit" 
+						icon="sap-icon://accept" visible="{ path: 'new>/Role', -->
+					<!-- formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}"></Button> -->
+
+					<Button id="btnSubmit" text="Submit" type="Accept" press="onSubmit"
+						icon="sap-icon://accept"></Button>
+				</contentRight>
+				<contentMiddle>
+					<!-- <Button id="btnSave" text="Save" type="Emphasized" press="onSave" 
+						icon="sap-icon://save" visible="{ path: 'new>/Role', -->
+					<!-- formatter: 'sap.ui.project.e2etm.util.Formatter.editableAdminAcc'}"></Button> -->
+					<Button id="btnSave" text="Save" type="Emphasized" press="onSave"
+						icon="sap-icon://save"></Button>
+					<Button id="btnCancel" text="Cancel" type="Reject" press="onCancel"
+						icon="sap-icon://sys-cancel"></Button>
+				</contentMiddle>
+				<contentLeft>
+					<!-- <Button id="btnCancel" text="Cancel" type="Reject" press="onCancel" 
+						icon="sap-icon://sys-cancel" -->
+					<!-- visible="{ path: 'new>/currFilter', -->
+					<!-- formatter: 'sap.ui.project.e2etm.util.Formatter.editableFilterAcc'}"></Button> -->
+					<Button icon="sap-icon://home" text="Back" type="Emphasized"
+						press="onBack" id="btnBack" />
+
+				</contentLeft>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

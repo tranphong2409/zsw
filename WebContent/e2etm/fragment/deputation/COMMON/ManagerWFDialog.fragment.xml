@@ -1,0 +1,117 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+	<commons:Dialog modal="true" width="510px" title="WORKFLOW ACTION" class="dialog">
+	    <FlexBox direction="Column">
+			<FlexBox class="dep_customer_flexbox_textarea">
+				<Label text="Your Comment" class="required"></Label>
+				<TextArea id="txtManagerWFComment" maxLength="254"></TextArea>
+			</FlexBox>
+			<FlexBox class="landing_dep_detail" id="cbEligibleFB">
+				<Label text="Family sponsored" class="required line_height_30"></Label>
+				<Select id="cbEligible"
+					class="margin_left_10 normal_select"
+					width="300px" placeholder="Please select">
+					<core:ListItem key="NA" text="Please select" />
+					<core:ListItem key="X" text="Yes" />
+					<core:ListItem key="" text="No" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="landing_dep_detail">
+				<Label text="Deputation To" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/subtype'}" width="300px"
+				    placeholder="Please select" id="cbSubType" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>ZZ_DEP_SUB_TYPE}" text="{global>ZZ_SUB_DEP_DESC}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="landing_dep_detail">
+				<Label text="Assignment Model" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/assgModel'}" width="300px" change="onAssignmentModelChange"
+				    placeholder="Please select" id="cbAssModel" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>ZZ_ASG_TYP}" text="{global>ZZ_ASG_DESC}" tooltip="{global>ZZ_ASG_DESC}" />
+				</Select>
+			</FlexBox>
+			<FlexBox class="landing_dep_detail" id="flexBoxPurposeOfTravelManager">
+				<Label text="Purpose Of travel" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/purpose'}" width="300px"
+				    placeholder="Please select" id="cbPurpose" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>ZZ_TRV_PUR}" text="{global>ZZ_TRV_DESC}" />
+				</Select> 
+			</FlexBox>
+			
+			<FlexBox class="landing_dep_detail" id="flexBoxTransferReasonManager">
+				<Label text="Reason" class="required line_height_30"></Label>
+				<Select class="margin_left_10 normal_select" id="cbTransferReason"
+					width="300px" placeholder="Please select">
+					<core:ListItem key="PERSONAL" text="Personal Reason" />
+					<core:ListItem key="BUSINESS" text="Business Reason" />
+				</Select>
+			</FlexBox>
+			
+			<FlexBox class="landing_dep_detail" id="flexBoxServiceConditionManager">
+				<Label text="Service Conditions" class="required line_height_30"></Label>
+				<Select items="{path: 'global>/serviceType'}" width="170px" change="onServiceTypeChange"
+				    placeholder="Please select" id="cbServiceCon" class="margin_left_10 normal_select">
+				    <core:ListItem key="{global>ZZ_SERV_TYP}" text="{global>ZZ_SERV_TEXT}" enabled="{= ${global>ZZ_SERV_TYP} !== 'SPCL' }"/>
+				</Select>
+			 <FlexBox  id="flexBoxServiceDurationManager">			
+				<Input id="txtServiceDuration" 
+				    width="50px" class="margin_left_10 normal_input" placeholder="Input duration"></Input>
+				<Label text="Month(s)" class="margin_left_10 line_height_30"></Label>
+			</FlexBox>
+			</FlexBox>
+		
+			<FlexBox class="landing_dep_detail" id="flexBoxServiceCheckManager">
+				<commons:CheckBox id="managerServiceConditionCheck1" 
+				    text="Service conditions were discussed with Employee" checked="false"></commons:CheckBox>
+			</FlexBox>
+			
+<!-- 			<core:Fragment id="mgrApproveCggs" -->
+<!-- 				        fragmentName="sap.ui.project.e2etm.fragment.common.CggsFields" -->
+<!-- 						type="XML" />	 -->
+						
+				<FlexBox direction="Column" id="cggsFlxBoxDialog" visible="false">				    
+					<FlexBox class="landing_dep_detail" visible="true">
+						<Label text="Job Level in Host Country" tooltip="Job Level in Host Country" class="required line_height_30"></Label>
+						<Input id="ipCggsLevelDialog" value="{global>/cggsdata/Zlevel}" width="200px" class="margin_left_10 normal_input"></Input>
+					</FlexBox>
+					<FlexBox class="landing_dep_detail" visible="true">
+						<Label text="Job Title in Host Country" tooltip="Job Title in Host Country" class="required line_height_30"></Label>
+						<Input id="ipCggsjobTitleDialog" value="{global>/cggsdata/Jobtitle}" width="200px" class="margin_left_10 normal_input"></Input>
+					</FlexBox>
+					<FlexBox class="landing_dep_detail" visible="true">
+						<Label text="CGGS Amount"  tooltip="CGGS Amount" class="required line_height_30"></Label>
+						
+						<HBox alignItems="Center">
+						<Input id="ipCggsAmtDialog" change="onCggsAmtChange"
+							value="{path:'global>/cggsdata/Amount',type: 'sap.ui.model.type.Float',
+                formatOptions: {
+				                maxFractionDigits: 2,
+				                groupingEnabled: true, 
+				                groupingSeparator: ','}}"
+							width="170px" class="margin_left_10 normal_input"></Input>
+							<Label text="EUR" width="30px"/>
+							</HBox>
+					</FlexBox>
+				</FlexBox>
+			<commons:Panel  text="{parts:[{path:'global>/ZZ_DEP_TOCNTRY'},{path:'global>/cggsdata/Asgtyp'},
+			                                                            {path:'global>/ZZ_TRV_CAT'}], 
+			                                             formatter: 'sap.ui.project.e2etm.util.Formatter.returnFormsPanelText'}" 
+			                visible="{parts:[{path:'global>/ZZ_DEP_TOCNTRY'},{path:'global>/cggsdata/Asgtyp'},
+			                                 {path:'global>/ZZ_TRV_CAT'},{path:'global>/ZZ_REQ_TYP'}], 
+			                                             formatter: 'sap.ui.project.e2etm.util.Formatter.visibleCGGSFormsPanel'}" class="panelCollapse">
+			  
+			   <core:Fragment id="grmDetailedCggsChecklist" fragmentName="sap.ui.project.e2etm.fragment.common.DocsUpload"
+						type="XML" />				
+
+					
+		   </commons:Panel>
+<!-- End-CGGS Changes -->			
+			<FlexBox class="landing_dep_detail" id="flexBoxTravelPlanCheckManager">
+				<commons:CheckBox id="managerWFDialogTravelPlanCheck" text="With Travel Plan" checked="true"></commons:CheckBox>
+			</FlexBox>
+		</FlexBox>
+		<commons:buttons>
+			<commons:Button text="Approve" press="onManagerApproveClick" width="60px" height="30px" />
+		</commons:buttons>
+	</commons:Dialog>
+</core:FragmentDefinition>

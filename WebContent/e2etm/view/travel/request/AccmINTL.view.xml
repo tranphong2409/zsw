@@ -1,0 +1,6 @@
+<core:View xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Label class="font-size-18" text="Visit"></Label>
+	<Link class="font-size-18" design="Bold" href="http://bosch-hotels.com" target="_blank" text="WWW.BOSCH-HOTELS.COM"/>
+	<Label class="font-size-18" text="to block your accommodation"></Label>
+</core:View>

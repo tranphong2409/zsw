@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons">
+	<Dialog id="dialogUploadExitCheckList" modal="true" width="700px" title="UPLOAD EXIT CHECKLIST" class="dialog">
+        <FlexBox class="margin_right_10 padding_right_20"
+            justifyContent="Center" alignItems="Center">
+            <c:FileUploader change="onExitCheckListFileChange"
+				maximumFileSize="5" fileSizeExceed="onFileSizeExceed"
+				fileAllowed="onFileAllowed" class="margin_left_10"
+				typeMissmatch="onTypeMissmatch" buttonOnly="true" buttonText="Upload Exit CheckList">
+			</c:FileUploader>
+			<Link text="Exit CheckList Link" href="{/ZZ_DOC_PATH}" target="_blank" id="lnkExitCheckListDocument"
+			    class="margin_left_10 margin_top_5"></Link>
+        </FlexBox> 
+		<endButton>
+		    <Button text="Close" press="onCloseVisaCopyUpload" icon="sap-icon://sys-cancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

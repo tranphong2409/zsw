@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+
+	<Carousel id="detlsPages" pages="{bookedDetails}" class="gradientCarousel">
+	<pages>
+	<VBox>
+		<VBox  justifyContent="SpaceBetween" visible="{=${Reinr}!=='9999999999'}">
+			<HBox justifyContent="Center">
+				<Label text="Booked For: " design="Bold" />
+				<Label text="{Ename}" />
+			</HBox>
+			<HBox justifyContent="Center">
+				<Label text="Email: " design="Bold" />
+				<Label text="{Email}" />
+			</HBox>
+			<HBox justifyContent="Center">
+				<Label text="Phone: " design="Bold" />
+				<Label text="{Phone}" />
+			</HBox>
+			<HBox justifyContent="Center">
+				<Label text="Trip Number: " design="Bold" />
+				<Label text="{Reinr}" />
+			</HBox>
+			
+			 <HBox justifyContent="Center">
+			    <Label text="Accom.. Start Date: " tooltip="Accommodation Start Date" design="Bold" />
+				<Label text="{path:'Begda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			    	<ToolbarSpacer width="20px"/>
+			    <Label text="Accom.. End Date: " tooltip="Accommodation End Date" design="Bold" />
+				<Label text="{path:'Endda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			</HBox>
+			
+	        <HBox justifyContent="Center">
+				<Label text="Date: " design="Bold" />
+				<Label text="{path:'Date',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			</HBox>
+			 <HBox justifyContent="Center" visible="{=${viewData>/DepType} === 'DOME'}">
+				<Label text="Check In: " design="Bold" />
+				<Label text="{path:'Chkin',type:'sap.ui.model.type.Time',
+				                formatOptions:{pattern:'HH:mm:ss',source:{}}}" />
+				<ToolbarSpacer width="20px"/>
+				<Label text="Check Out: " design="Bold" />
+				<Label text="{path:'Chkot',type:'sap.ui.model.type.Time',
+				                formatOptions:{pattern:'HH:mm:ss',source:{}}}" />
+			</HBox>
+			 <HBox justifyContent="Center">
+				<Label text="Accommodation Type: " design="Bold" />
+				<Label text="{path:'AcType'}" />
+			</HBox>
+			  <HBox justifyContent="Center">
+				<Label text="Status: " design="Bold" />
+				<Label text="{path:'Status',formatter:'sap.ui.project.e2etm.util.Formatter.formatReservationStatus'}" />
+			</HBox>
+			 <HBox justifyContent="Center">
+				<Label text="Remarks: " design="Bold" />
+				<Text text="{path:'Rmrks'}" wrapping="true"/>
+			</HBox>
+			
+		</VBox>
+		<VBox  justifyContent="SpaceBetween" visible="{=${Reinr}==='9999999999'}">
+
+	        <HBox justifyContent="Center">
+				<Label text="Start Date: " design="Bold" />
+				<Label text="{path:'Begda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			</HBox>
+			  <HBox justifyContent="Center">
+				<Label text="End Date: " design="Bold" />
+				<Label text="{path:'Endda',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			</HBox>
+		
+			  <HBox justifyContent="Center">
+				<Label text="Status: " design="Bold" />
+				<Label text="{path:'Status',formatter:'sap.ui.project.e2etm.util.Formatter.formatReservationStatus'}" />
+			</HBox>
+			 <HBox justifyContent="Center">
+				<Label text="Remarks: " design="Bold" />
+				<Text text="{path:'Rmrks'}" wrapping="true"/>
+			</HBox>
+		</VBox>
+		</VBox>
+		</pages>
+</Carousel>
+
+</core:FragmentDefinition>

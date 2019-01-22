@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons">
+	<commons:Panel id="questionnairePanelId" class="panelCollapse" text="QUESTIONNAIRE"
+		visible="{ path: 'new>/ZE2E_INS_HDR/ZZ_INS_QUE',
+				   formatter: 'sap.ui.project.e2etm.util.Formatter.sapBoolean'}">
+		<!-- <headerToolbar>
+			<Toolbar>
+				<Text text="Questionnaire" />
+				<Text
+					text="* Navigate using arrow button to enter questionnaires for all members"
+					class="color_main_blue smalltext"></Text>
+			</Toolbar>
+		</headerToolbar> -->
+		<Carousel pages="{new>/ZE2E_INS_HDR/ZE2E_INS_DETAILSet}" id="carouselQuestionId" class="carouselQuestionClass">
+			<f:SimpleForm minWidth="1024" maxContainerCols="1"
+				editable="false" layout="ResponsiveGridLayout" labelSpanL="4"
+				labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"
+				class="memberForm">
+				<f:content>
+					<core:Title
+						text="{ path: 'new>ZZ_DEPNDT_TYP',
+								formatter: 'sap.ui.project.e2etm.util.Formatter.getNameAndDependentText' }"
+						level="H4" class="font_size_16" />
+					<Table items="{new>ZE2E_INS_ANS}" mode="None" id="questionnaireTableId" class="questionaireTable">
+						<columns>
+							<Column demandPopin="true" minScreenWidth="Tablet" width="50%">
+								<Label text="Question" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet" width="15%">
+								<Label text="Anwser" required="true" />
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Label text="Description/Name of illness Date/Treatment Period" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text class="font_size_16"
+										text="{ path: 'new>ZZ_QA_KEY',
+											    formatter: 'sap.ui.project.e2etm.util.Formatter.getQuestion'}" />
+									<RadioButtonGroup
+										enabled="{	path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+										selectedIndex="{path: 'new>ZZ_ANS',
+											   			 formatter: 'sap.ui.project.e2etm.util.Formatter.sapRadio'}"
+										select="onQuestionSelect">
+										<buttons>
+											<RadioButton text="YES" />
+											<RadioButton text="NO" />
+										</buttons>
+									</RadioButtonGroup>
+									<TextArea value="{new>ZZ_COMMENTS}" rows="2" width="100%" class="font_size_14"
+										editable="{	path: 'global>/action',
+													formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+
+				</f:content>
+			</f:SimpleForm>
+		</Carousel>
+	</commons:Panel>
+</core:FragmentDefinition>

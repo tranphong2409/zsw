@@ -1,0 +1,252 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+			xmlns:t="sap.ui.table"  xmlns:commons="sap.ui.commons"
+	xmlns:l="sap.ui.layout" xmlns:view="sap.ui.core.mvc" xmlns:table="sap.ui.table"
+		controllerName="sap.ui.project.e2etm.controller.InsSlaReport" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="pgInsRecRep" height="100%" showNavButton="true" navButtonPress="backPress" title="INSURANCE RECOVERY REPORT" class="InsSlaReport">
+		<content>
+					<Toolbar>
+					    <Text text="From To" />
+						<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+							placeholder="From Date" displayFormat="dd/MM/yyyy" change="handleChange"
+							id="idFromDate" />
+						<DatePicker valueFormat="yyyyMMddHHmmss" width="200px"
+							placeholder="To Date" displayFormat="dd/MM/yyyy" change="handleChange"
+							id="idToDate" />
+					    <Label text="Search Field" class="font_size_14" />
+						<SearchField search="onSearch" width="30%" id="idSearch" 
+						    placeholder="Request Number or Employee Number"
+							class="margin_left_10" tooltip="Request Number or Employee Number" />
+					</Toolbar>
+								
+				<ScrollContainer focusable="true" horizontal="true" vertical="true">
+				<content>
+				<Panel>
+				<Table inset="false" class="sapUiSizeCompact" id="InsSlaReportTable"
+				items="{/}" growing="true" growingScrollToLoad="true" visibleRowCountMode="Auto">
+				<!-- <headerToolbar>
+					
+ 				</headerToolbar>
+ -->								
+				<columns>
+					<Column width="6rem">
+						<Text text="Employee ID"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Insured Name"  />
+					</Column>
+					<!-- <Column width="6rem">
+						<Text text="Relation"   />
+					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Employee DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Employee PP NO"  press="onMenu" /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Employee SD"  press="onMenu" />
+					</Column >
+					<Column width="6rem">
+						<Text text="Employee ED"   />
+					</Column>
+					<Column width="6rem">
+						<Text text="Spouse Name"   />
+					</Column>
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Spouse DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Spouse PP No"  /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Spouse SD"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Spouse ED"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid1 Name"  />
+					</Column>
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid1 DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid1 PP No"  /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Kid1 SD"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid1 ED"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid2 Name"  />
+					</Column>
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid2 DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid2 PP No"  /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Kid2 SD"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid2 ED"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid3 Name"  />
+					</Column>
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid3 DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid3 PP No"  /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Kid3 SD"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid3 ED"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid4 Name"  />
+					</Column>
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid4 DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid4 PP No"  /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Kid4 SD"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid4 ED"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid5 Name"  />
+					</Column>
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid5 DOB"  /> -->
+<!-- 					</Column> -->
+<!-- 					<Column width="6rem"> -->
+<!-- 						<Text text="Kid5 PP No"  /> -->
+<!-- 					</Column> -->
+					<Column width="6rem">
+						<Text text="Kid5 SD"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Kid5 ED"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Insurance Certificate No"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Travel Request"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Country of Travel"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Request initiation Date"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Request Time"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Action Date"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Action Time"  />
+					</Column>
+					<Column width="6rem">
+						<Text text="Time taken(Hrs)"  />
+					</Column>
+
+					<Column width="6rem">
+						<Text text="Travel Days"  />
+					</Column>
+					
+					<Column width="6rem">
+						<Text text="Medical Amount"  />
+					</Column>
+					<Column width="6rem">
+					<Text text="Medical Currency"/>
+					</Column>
+					<Column width="6rem">
+					<Text text="Non Medical Amount"/>
+					</Column>
+					<Column width="6rem">
+					<Text text="Non Medical Currency"/>
+					</Column>
+					<Column width="6rem">
+						<Text text="Cover Level"  />
+					</Column>					
+					
+				</columns>
+				<items>
+					<ColumnListItem height="10px">
+						<cells>
+						    <Text text="{ZZ_PERNR}" />
+						    <Text text="{ZZ_EMP_NAME}" wrapping="false" />
+<!-- 						    <Text text="{path:'ZZ_EMP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 						    <Text text="{ZZ_EMP_PP_NO}" /> -->
+						    <Text text="{path:'ZZ_EMP_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_EMP_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						   	<Text text="{ZZ_SP_NAME}" /> 
+<!-- 						   	<Text text="{path:'ZZ_SP_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 							<Text text="{ZZ_SP_PP_NO}" /> -->
+							<Text text="{path:'ZZ_SP_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_SP_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{ZZ_KD1_NAME}" /> 
+<!-- 						   	<Text text="{path:'ZZ_KD1_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 							<Text text="{ZZ_KD1_PP_NO}" /> -->
+							<Text text="{path:'ZZ_KD1_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_KD1_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{ZZ_KD2_NAME}" /> 
+<!-- 						   	<Text text="{path:'ZZ_KD2_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 							<Text text="{ZZ_KD2_PP_NO}" /> -->
+							<Text text="{path:'ZZ_KD2_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_KD2_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{ZZ_KD3_NAME}" /> 
+<!-- 						   	<Text text="{path:'ZZ_KD3_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 							<Text text="{ZZ_KD3_PP_NO}" /> -->
+							<Text text="{path:'ZZ_KD3_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_KD3_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{ZZ_KD4_NAME}" /> 
+<!-- 						   	<Text text="{path:'ZZ_KD4_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 							<Text text="{ZZ_KD4_PP_NO}" /> -->
+							<Text text="{path:'ZZ_KD4_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_KD4_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{ZZ_KD5_NAME}" /> 
+<!-- 						   	<Text text="{path:'ZZ_KD5_DOB', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" /> -->
+<!-- 							<Text text="{ZZ_KD5_PP_NO}" /> -->
+							<Text text="{path:'ZZ_KD5_SD', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_KD5_ED', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+							<Text text="{ZZ_INS_NO}" />
+							<Text text="{ZZ_TRV_REQ}"  />
+							<Text text="{ZZ_CNTRY_NAME}"  />
+							<Text text="{path:'ZZ_INSI_DATE', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+						    <Text text="{path:'ZZ_INSI_TIME',type:'sap.ui.model.type.Time',formatOptions:{source: {pattern:'HHmmss'},pattern:'HH:mm:ss'}}"  />
+							<Text text="{path:'ZZ_ACT_DATE', formatter: 'sap.ui.project.e2etm.util.Formatter.changeDate'}" />
+							<Text text="{path:'ZZ_ACT_TIME',type:'sap.ui.model.type.Time',formatOptions:{source: {pattern:'HHmmss'},pattern:'HH:mm:ss'}}"  />
+							<Text text="{path:'ZZ_TIME_TAK',type:'sap.ui.model.type.Time',formatOptions:{source: {pattern:'HHmmss'},pattern:'HH:mm:ss'}}"  />
+							<Text text="{ZZ_TOT_DYAS}"  />
+							<Text text="{ZZ_PR_AMT}"  />
+							<Text text="{ZZ_PR_CURR}"  />
+							<Text text="{ZZ_PRN_AMT}"  />
+							<Text text="{ZZ_PRN_CURR}"  />
+							
+							<Text text="{ZZ_CLEVEL}" />
+						
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>	
+			</Panel>
+			</content>
+			</ScrollContainer>
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,232 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+	<f:SimpleForm minWidth="1024" maxContainerCols="2"
+		class="employeeGeneralInfo" editable="false" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+		columnsM="2" title="{new>/CargoName}" icon="sap-icon://cargo-train">
+		<f:content>
+			<core:Title text="Employee Info" level="H5" />
+			<Label text="Employee Name" />
+			<Text text="{new>/DEP_EMP/ZZ_DEP_NAME}" />
+			<Label text="Employee Number" />
+			<Text text="{new>/DEP_EMP/ZZ_DEP_PERNR}" />
+			<Label text="Department" />
+			<Text text="{new>/DEP_EMP/ZZ_DEP_DEPT}" />
+			<Label text="No. of travelers" />
+			<Text text="{new>/Dependents}" />
+			<core:Title text="Travel Info" level="H5" />
+			<Label text="Travel Plan No " />
+			<Text text="{new>/ZZ_REINR}" />
+			<Label text="Start Date" />
+			<Text
+				text="{path:'new>/ZZ_DATV1', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			<Label text="End Date" />
+			<Text
+				text="{path:'new>/ZZ_DATB1' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			<Label text="Travel Duration" />
+			<Text text="{new>/DEP_HDR_INFO/ZZ_DEP_DAYS}" />
+			<Label text="Deputation Country " />
+			<Text
+				text="{path:'new>/ZZ_LAND1' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+			<Label text="Deputation Location " />
+			<Text text="{new>/ZZ_LOCATION_END}" />
+			<Label text="Assignment Model" />
+			<Text text="{new>/DEP_HDR_INFO/ZZ_ASG_TYP}" />
+			<Label text="Family Accompanied" />
+			<Text
+				text="{path:'new>/DEP_HDR_INFO/ZZ_FAMILY_ACCOMP' , formatter: 'sap.ui.project.e2etm.util.Formatter.getTextFamAcc'}" />
+		</f:content>
+	</f:SimpleForm>
+
+	<IconTabBar id="idIconTabBarMulti"
+		class="sapUiResponsiveContentPadding margin_bottom_100" expandable="false">
+		<items>
+			<IconTabFilter icon="sap-icon://hint" id="idInfo"
+				tooltip="Cargo detail information">
+				<commons:Panel text="CARGO INFO" class="panelCollapse">
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+						class="memberGeneralInfo" editable="true" layout="ResponsiveGridLayout"
+						labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+						columnsL="2" columnsM="2">
+						<f:content>
+							<core:Title level="H6" text="Basic Info" />
+							<Label text="*Cargo movement date" tooltip="*Movement date of Baggage" />
+
+							<DateTimeInput value="{new>/Detail/ZZ_CAR_PLA}" id="idZZ_CAR_PLA"
+								type="Date" tooltip="{path:'new>/Detail/ZZ_CAR_TYP',formatter:'sap.ui.project.e2etm.util.Formatter.setCargoMovtDateTooltip'}" placeholder="*Movement date of Baggage"
+								editable="{	path: 'global>/action',	formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+								valueFormat="yyyyMMdd" displayFormat="dd/MM/yyyy" />
+
+							<Label text="*Domestic address" id="idLBDomestic" />
+							<TextArea value="{new>/Detail/ZZ_ADD_LOC}" id="idZZ_ADD_LOC"
+								maxLength="255" placeholder="Domestic address"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+							<Label text="Deputation address"
+								tooltip="Address in the country of deputation (Can be provided at the time of CARGO pickup)" />
+							<TextArea value="{new>/Detail/ZZ_ADD_INT}" id="idZZ_ADD_INT"
+								placeholder="Fill Mandatorily for Return Cargo. Can be provided at the time of pickup for Onward cargo"
+								tooltip="For return cargo, address to be filled mandatorily.For onward cargo,this can be provided at the time of pick up"
+								maxLength="255"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableAction'}" />
+							<Label text="Additional Infomation" tooltip="Additional Information" />
+							<TextArea value="{new>/Detail/ZZ_ADD_INS}" maxLength="255"
+								placeholder="Additional Information"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+								id="idZZ_ADD_INS" />
+							<Label text="Employee eligibility" />
+							<Input value="{new>/Detail/ZZ_ELIGIBILITY}" editable="false"
+								id="idZZ_ELIGIBILITY" />
+							<Label text="Dependant eligibility" />
+							<Input value="{new>/Detail/ZZ_ELIGIBILITY_DEP}" editable="false"
+								id="idZZ_ELIGIBILITY_DEP"
+								visible="{	path: 'new>/Detail/ZZ_CAR_TYP',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.checkIfAALogistic'}" />
+							<core:Title text="Contact Number" level="H6" />
+							<Label text="*Area PIN Code" tooltip="PIN number" />
+							<Input value="{new>/Detail/ZZ_PIN}" id="idZZ_PIN"
+								maxLength="12" placeholder="PIN number"
+								tooltip="{path:'new>/Detail/ZZ_CAR_TYP',
+								          formatter:'sap.ui.project.e2etm.util.Formatter.areaPinCode'}"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+							<Label text="*Domestic number" tooltip="Domestic contact number" />
+							<Input value="{new>/Detail/ZZ_MOBILE}" id="idZZ_MOBILE"
+								maxLength="15" placeholder="+91987654321 or 0987654321"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}" />
+							<Label text="*Deputed number" tooltip="Deputed contact number" />
+							<Input value="{new>/Detail/ZZ_CONTACT_NO}" maxLength="15"
+								placeholder="+91987654321 or 0987654321"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+								visible="{new>/Mode/OnwardMode}" id="idZZ_CONTACT_NO" />
+							<!-- <Label text="Contact No. of country to" /> -->
+							<Label text="Office Number" visible="{new>/Mode/ReturnMode}"
+								tooltip="Office nubmer" />
+							<Input value="{new>/Detail/ZZ_OFF_NO}" maxLength="15"
+								placeholder="+91987654321 or 0987654321"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+								visible="{new>/Mode/ReturnMode}" id="idZZ_OFF_NO" />
+							<Label text="*Deputed number " visible="{new>/Mode/ReturnMode}"
+								tooltip="Deputed number" />
+							<Input value="{new>/Detail/ZZ_RES_NO}" maxLength="15"
+								placeholder="+91987654321 or 0987654321"
+								editable="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.editableEmployee'}"
+								visible="{new>/Mode/ReturnMode}" id="idZZ_RES_NO" />
+							<Label text="Vendor number" tooltip="Vendor account number"
+								visible="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.visibleNotEmployee'}" />
+							<Text text="{ZZ_ACCOUNT}" id="idZZ_ACCOUNT"
+								visible="{	path: 'global>/action',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.visibleNotEmployee'}" />
+						</f:content>
+					</f:SimpleForm>
+				</commons:Panel>
+				<commons:Panel text="CARGO ELIGIBILITY" class="panelCollapse">
+					<Text text="{VALUE}" id="idStaticEligibility"
+						class="font_size_14 line_height_25 margin_left_10"
+						visible="{	path: 'new>/Detail/ZZ_CAR_TYP',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.checkIfAALogistic'}" />
+					<!-- <HBox alignItems="Center"> -->
+					<!-- <Label width="120px" design="Bold" text="Cargo Policy"/> -->
+					<!-- <TextArea value="" rows="10" cols="150" editable="false"/> -->
+					<!-- </HBox> -->
+
+
+
+					<Table id="idEligibilityTable" insert="false"
+						items="{new>/EligibilityTable}" class="margin_top_20 memberTable">
+						<columns>
+							<Column>
+								<Text text="Period of stay" />
+							</Column>
+							<Column>
+								<Text text="Cargo limit" />
+							</Column>
+							<Column>
+								<Text text="Applicable" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text
+										text="{parts: [{path : 'new>ZZ_CAR_TYP'}, {path : 'new>ZZ_FROM'}, {path : 'new>ZZ_TO'}], 
+										formatter: 'sap.ui.project.e2etm.util.Formatter.formatPeriod'}" />
+									<Text
+										text="{parts: [{path : 'new>ZZ_CAR_LIMIT'}, {path : 'new>ZZ_CAR_UNIT'}], 
+										formatter: 'sap.ui.project.e2etm.util.Formatter.formatEligibility'}" />
+									<Text
+										text="{path : 'new>ZZ_CAR_TYP', 
+										formatter: 'sap.ui.project.e2etm.util.Formatter.formatApplicableCargo'}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+
+					<Panel height="300px" visible="{parts:[{path:'profile>/currentRole'},{path:'new>/Detail/ZZ_CAR_TYP'}],
+					                                formatter:'sap.ui.project.e2etm.util.Formatter.visibleCargoPolicy'}">
+						<ScrollContainer vertical="true">
+							<core:HTML id="html1" />
+						</ScrollContainer>
+					</Panel>
+				</commons:Panel>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://attachment" key="attachmentTab"
+				tooltip="Attachement">
+				<FlexBox direction="Column">
+<!-- 					<FlexBox -->
+<!-- 						visible="{	path: 'new>/Detail/ZZ_CAR_TYP', -->
+<!-- 											formatter: 'sap.ui.project.e2etm.util.Formatter.checkIfDHL'}"> -->
+	                   <FlexBox
+						visible="false">
+						<Link text="Authorization letter for DHL" emphasized="true"
+							class="font_size_14 height_12" id="idCargoLeterLink" target="_blank"
+							visible="{	path: 'new>/Detail/ZZ_CAR_TYP',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.checkIfDHL'}" />
+						<Text text="* Please download this form and upload again"
+							class="color_red smalltext link_notice margin_left_10 font_size_14"
+							visible="{	path: 'new>/Detail/ZZ_CAR_TYP',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.checkIfDHL'}" />
+					</FlexBox>
+					<FlexBox visible="false">					
+						<Link text="Cargo form" emphasized="true" class="font_size_14 height_12"
+							target="_blank" visible="false"
+							href="file://bosch.com/DfsRB/DfsIN/LOC/Kor/HRL/HRL-TD/HRL-TD-Share/18-Global_Mobility/Cargo" />
+						<Text
+							text="* NOTE: Please refer below link for the templates. These are mandatory documents required for initiating your Cargo movement."
+							class="color_red smalltext link_notice margin_left_10 font_size_14"
+							visible="{	path: 'new>/Detail/ZZ_CAR_TYP',
+											formatter: 'sap.ui.project.e2etm.util.Formatter.checkIfAALogistic'}" />
+					</FlexBox>
+					<Label class="blueInfoMsg" text="* Kindly download the excel document and submit later directly to the cargo vendor" design="Bold"
+					visible="{= ( ${new>/Detail/ZZ_CAR_TYP} === 'V' || 
+				            ${new>/Detail/ZZ_CAR_TYP} === 'S' ) ? true : false }"/>
+
+<!--                     <html:div visible="{= ( ${new>/Detail/ZZ_CAR_TYP} === 'V' ||   -->
+<!-- 					            ${new>/Detail/ZZ_CAR_TYP} === 'S' ) ? true : false }" -->
+<!--                               style="color:blue;"> -->
+<!--                           * Kindly download the excel document and submit later directly to the cargo vendor -->
+<!--                     </html:div> -->
+					
+				</FlexBox>
+
+				<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://group" id="idApprove"
+				tooltip="History">
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+					type="XML" />
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+
+</core:FragmentDefinition>

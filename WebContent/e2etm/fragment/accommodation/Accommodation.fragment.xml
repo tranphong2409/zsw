@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons" xmlns:u="sap.ui.unified">
+	<f:SimpleForm minWidth="1024" maxContainerCols="2"
+		class="employeeGeneralInfo" editable="false" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2"
+		columnsM="2" title="{new>/CargoName}" icon="sap-icon://cargo-train">
+		<f:content>
+			<core:Title text="Employee Info" level="H5" />
+			<Label text="Employee Name" />
+			<Text text="{new>/Header/DEP_EMP/ZZ_DEP_NAME}" />
+			<Label text="Employee Number" />
+			<Text text="{new>/Header/DEP_EMP/ZZ_DEP_PERNR}" />
+			<Label text="Department" />
+			<Text text="{new>/Header/DEP_EMP/ZZ_DEP_DEPT}" />
+<!-- 			<Label text="Number of dependent(s)" /> -->
+<!-- 			<Text text="{new>/Header/Dependents}" /> -->
+			<core:Title text="Travel Info" level="H5" id="travelTitle" />
+			<Label text="Travel Plan No " id="idTravelLabel" />
+			<Text text="{new>/Header/ZZ_REINR}" />
+			<Label text="Start Date" />
+			<Text
+				text="{path:'new>/Header/ZZ_DATV1', formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+			<Label text="End Date" />
+			<Text
+				text="{path:'new>/Header/ZZ_DATB1' , formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+<!-- 			<Label text="Travel Duration" /> -->
+<!-- 			<Text text="{new>/Header/DEP_HDR_INFO/ZZ_DEP_DAYS}" /> -->
+			<Label text="Deputation Country " />
+			<Text
+				text="{path:'new>/Header/ZZ_LAND1' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+			<Label text="Deputation Location " />
+			<Text
+				text="{path:'new>/Header/ZZ_LOCATION_END' , formatter: 'sap.ui.project.e2etm.util.Formatter.formatCountry'}" />
+			
+		</f:content>
+	</f:SimpleForm>
+
+	<IconTabBar id="idIconTabBarMulti"
+		class="sapUiResponsiveContentPadding margin_bottom_100" expandable="false">
+		<items>
+			<IconTabFilter icon="sap-icon://hint" id="idInfo"
+				tooltip="Accommodation Details information">
+				<commons:Panel text="ACCOMMODATION DETAILS" class="panelCollapse">
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.accommodation.AccommodationInfo"
+						type="XML" />
+				</commons:Panel>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://attachment" key="attachmentTab"
+				tooltip="Attachement">
+				<core:Fragment
+					fragmentName="sap.ui.project.e2etm.fragment.common.UploadCollection"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://group" id="idApprove"
+				tooltip="History">
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.common.AppoveInfo"
+					type="XML" />
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+
+</core:FragmentDefinition>

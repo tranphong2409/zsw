@@ -1,0 +1,86 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:view="sap.ui.core.mvc"
+	controllerName="sap.ui.project.e2etm.controller.Forex" xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<Page class='pageForexAdmin' showHeader="false">
+		<view:XMLView viewName='sap.ui.project.e2etm.view.Menu' />
+		<IconTabBar id='idIconTabBarForexAdmin' select="onIconTabBarAdminSelect"
+			class="forexicontabbaradmin sapUiSizeCompact">
+			<items>
+				<IconTabFilter icon="sap-icon://simple-payment" id="tabNEW"
+					 tooltip="Approved" text="Approved" key="NEW">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+
+				<IconTabFilter icon="sap-icon://pending" tooltip="Awaiting Approval" id="tabNGREE"
+					 text="Awaiting Approval" key="NGREE">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://begin" tooltip="Card Reload" id="tabCARD"
+					 text="Card Reload" key="CARD">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+
+				<IconTabFilter icon="sap-icon://payment-approval" id="tabISSUE"
+					tooltip="Issued Forex" text="Issued Forex" key="ISSUE">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://response" tooltip="Sent back by Fin Team" id="tabSBFT"
+					 text="Sent back by Fin Team" key="SBFT">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://status-completed"
+					tooltip="Close" text="Closed" key="CLOSE">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ClosedSearch"
+						type="XML" />
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+
+				<IconTabFilter icon="sap-icon://measure" id="tabFSURR"
+					tooltip="Forex Surrender" text="Forex Surrender"
+					key="FSURR">
+					<!-- <core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist" -->
+					<!-- type="XML"/> -->
+					<core:Fragment
+						fragmentName="sap.ui.project.e2etm.fragment.forex.SurrenderContent"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://decline" id="tabCANC"
+					tooltip="Cancelled" text="Cancelled"
+					key="CANC">
+					<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.ForexWorklist"
+						type="XML" />
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://upload" id="tabUPL"
+					tooltip="Upload" text="Upload"
+					key="UPL">
+				<core:Fragment fragmentName="sap.ui.project.e2etm.fragment.forex.MassUpload"
+						type="XML" />
+				</IconTabFilter>
+
+			</items>
+
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<!-- <PullToRefresh class="pullrefresh" showIcon="true" refresh="onRefresh"/> -->
+					<Button text="Refresh" press="onRefresh" icon="sap-icon://refresh" />
+				</contentLeft>
+				<contentRight>
+					<!-- <PullToRefresh class="pullrefresh" showIcon="true" refresh="onRefresh"/> -->
+					<Button id="btnFrexDownload" text="Download" press="onAllDownload" icon="sap-icon://download" />
+				</contentRight>
+
+			</Bar>
+		</footer>
+	</Page>
+	<core:Fragment id="custommenu"
+		fragmentName="sap.ui.project.e2etm.fragment.common.CustomMenu" type="XML" />
+</core:View>

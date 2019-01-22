@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:calendar="sap.ui.unified.calendar" xmlns:t="sap.ui.table">
+
+
+	<IconTabBar id="mrtab" class="sapUiResponsiveContentPadding"
+		select="onMonthTabSelect">
+
+		<items>
+			<IconTabFilter key="NEW" text="New">
+				<core:Fragment id="new"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+
+			</IconTabFilter>
+			<IconTabFilter key="REV" text="Reviewed">
+				<core:Fragment id="rev"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="APP" text="Approved">
+				<core:Fragment id="app"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="INRE" text="INR Receivable">
+				<core:Fragment id="inre"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+		    <IconTabFilter key="PAYB" text="Payable" visible="false">
+				<core:Fragment id="payb"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="AWF" text="Awaiting Forex">
+				<core:Fragment id="awf"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="PSUR" text="Partial Surrender">
+				<core:Fragment id="prsr"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="SURR" text="Surrender">
+				<core:Fragment id="surr"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="TAXB" text="Taxables">
+				<core:Fragment id="taxb"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.TRSettleWorklist"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="ACCT" text="Accounting">
+				<core:Fragment id="acct"
+					fragmentName="sap.ui.project.e2etm.fragment.travelsettlement.Accounting"
+					type="XML" />
+			</IconTabFilter>
+			<IconTabFilter key="CLSR" text="Closed">
+				<Table itemPress="onItemPress" inset="false"
+					class="tableclass table_ticket_admin" items="{path: 'trworklist>/'}">
+					<headerToolbar>
+						<Toolbar>
+							<Label text="Travel Plan:" />
+							<c:TextField change="onCloseSearchWorklist" />
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="5em">
+							<Label text="Travel Plan" />
+						</Column>
+
+
+						<Column width="5em">
+							<Label text="Employee No" />
+						</Column>
+
+						<Column width="5em">
+							<Label text="Employee Name" />
+						</Column>
+
+
+						<Column width="5em">
+							<Label text="Travel Type" />
+						</Column>
+						<Column width="5em">
+							<Label text="Receive Date" />
+						</Column>
+
+
+
+					</columns>
+
+					<items>
+						<ColumnListItem type="Navigation" height="10px">
+							<cells>
+								<Text text="{trworklist>TravelPlan}" />
+								<Text text="{trworklist>EmpNo}" />
+								<Text text="{trworklist>EmpName}" />
+
+								<Text text="{trworklist>VisaType}" />
+                                 <Text text="{path:'trworklist>ReceivedDt',formatter: 'sap.ui.project.e2etm.util.Formatter.sapDate'}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+
+				</Table>
+			</IconTabFilter>
+
+		</items>
+
+	</IconTabBar>
+	<!-- </l:VerticalLayout> -->
+</core:FragmentDefinition>

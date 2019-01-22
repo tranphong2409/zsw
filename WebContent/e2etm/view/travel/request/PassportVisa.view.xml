@@ -1,0 +1,76 @@
+<mvc:View controllerName="sap.ui.project.e2etm.controller.travelrequest.PVDetail" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<!--<FlexBox alignItems="Center">-->
+	<!--	<Label text="Self" width="150px"></Label>-->
+	<!--	<c:DatePicker placeholder="Visa valid from" tooltip="Visa valid from date"-->
+	<!--		value="{path: '/selfVisa/ZZ_VISA_SDATE_VALUE', mode: 'TwoWay', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"-->
+	<!--		valueState="{/selfVisa/ZZ_VISA_SDATE_ERROR}" yyyymmdd="{/selfVisa/ZZ_VISA_SDATE}"/>-->
+	<!--	<Label class="margin_left_10" text="To"></Label>-->
+	<!--	<c:DatePicker placeholder="Visa valid to" tooltip="Visa valid to date"-->
+	<!--		value="{path: '/selfVisa/ZZ_VISA_EDATE_VALUE', mode: 'TwoWay', type: 'sap.ui.project.e2etm.util.Formatter.sapDatePicker'}"-->
+	<!--		valueState="{/selfVisa/ZZ_VISA_EDATE_ERROR}" yyyymmdd="{/selfVisa/ZZ_VISA_EDATE}"/>-->
+	<!--	<Input placeholder="Enter visa number" tooltip="Visa number" value="{path: '/selfVisa/ZZ_VISA_NO', mode: 'TwoWay'}"-->
+	<!--		valueState="{/selfVisa/ZZ_VISA_NO_ERROR}"></Input>-->
+	<!--	<Select class="margin_left_20 normal_select margin_top_4" selectedKey="{path: '/selfVisa/ZZ_CURR_VISA_TYP', mode: 'TwoWay'}" width="137px">-->
+	<!--		<core:Item key="BUSR" text="Business Visa" tooltip="Business Visa"/>-->
+	<!--		<core:Item key="TRNG" text="Training Visa" tooltip="Training Visa"/>-->
+	<!--		<core:Item key="WRKP" text="Work Permit" tooltip="Work Permit"/>-->
+	<!--	</Select>-->
+	<!--	<c:CheckBox checked="{path: '/selfVisa/ZZ_MULT_ENTRY_CHAR', mode: 'TwoWay'}" class="margin_top_8 margin_left_20" text="Multi-Entry"></c:CheckBox>-->
+	<!--	<c:FileUploader buttonOnly="true" buttonText="Upload Visa Copy" change="onFileChange" class="margin_top_8 margin_left_10"-->
+	<!--		fileAllowed="onFileAllowed" fileSizeExceed="onFileSizeExceed" id="UploadVisaSelf" maximumFileSize="5" typeMissmatch="onTypeMissmatch"></c:FileUploader>-->
+	<!--	<Link class="margin_left_10" href="{Passport>/href}" target="_blank" text="{Passport>/filename}" visible="{Passport>/visibleOpen}"></Link>-->
+	<!--</FlexBox>-->
+	<forms:SimpleForm class="font-size-18" layout="ResponsiveGridLayout" maxContainerCols="1" width="100%">
+		<FlexBox alignItems="Center" direction="Row">
+			<layout:VerticalLayout width="22rem">
+				<Image class="pp_doc_icon" densityAware="true" press="openPPdoc" src="images/pdf.jpg"/>
+				<!--<Label design="Bold" text="Copy of your Passport "/>-->
+				<Text id="passportWarningText" text="Please upload your passport copy by clicking “Upload File” button." visible="false"/>
+				<Link class="margin_top_13 margin_left_5" href="{Passport>/href}" target="_blank" text="{Passport>/filename}"
+					visible="{Passport>/visibleOpen}"></Link>
+				<!--<Link class="margin_top_13 margin_left_5" href="{Passport>/href}" target="_blank" text="{Passport>/filename}"-->
+				<!--	visible="{Passport>/visibleOpen}"></Link>-->
+				<u:FileUploader buttonOnly="true" buttonText="Update File" change="onPassportFileChange" class="font-size-18"
+					enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" fileAllowed="onFileAllowed" id="newPassport" name="newPassport"
+					placeholder="Choose a file for Upload..." style="Emphasized" tooltip="Upload your file to the local server" typeMissmatch="onTypeMissmatch"></u:FileUploader>
+				<!--<Button press="onPassportFileChange" text="Update File" type="Emphasized" class="updateCopyPassBtn"/>-->
+			</layout:VerticalLayout>
+			<layout:VerticalLayout>
+				<Label design="Bold" text="Copy of your Existing VISA"/>
+				<Table id="tblVisaExit" items="{ path: '/visaExistingDependent'}">
+					<columns>
+						<Column>
+							<Label text="To Country"/>
+						</Column>
+						<Column>
+							<Label text="Valid From"/>
+						</Column>
+						<Column>
+							<Label text="Valid To"/>
+						</Column>
+						<Column>
+							<Label text="VISA Number"/>
+						</Column>
+						<Column>
+							<Label text="Multi Entry"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{ZZ_VISA_TOCNTRY}"/>
+								<Text text="{ZZ_VISA_SDATE}"/>
+								<Text text="{ZZ_VISA_EDATE}"/>
+								<Link href="{href}" target="_blank" text="{ZZ_VISA_NO}"></Link>
+								<Text text="{ZZ_MULT_ENTRY}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<Button class="uploadExistVisaBtn" enabled="{trvRequestDtl>/ZZ_TRV_STATUS}" press="_showUploadVisaDlg" text="Update Details"
+					type="Emphasized"/>
+			</layout:VerticalLayout>
+		</FlexBox>
+	</forms:SimpleForm>
+</mvc:View>
